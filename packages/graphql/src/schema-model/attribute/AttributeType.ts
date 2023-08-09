@@ -55,7 +55,7 @@ export enum ScalarTypeCategory {
 export type Neo4jGraphQLScalarType = Neo4jGraphQLTemporalType | Neo4jGraphQLNumberType | Neo4jGraphQLSpatialType;
 
 // The ScalarType class is not used to represent user defined scalar types, see UserScalarType for that.
-export class ScalarType {
+export class ScalarType implements AttributeTypeMeta {
     public readonly name: GraphQLBuiltInScalarType | Neo4jGraphQLScalarType;
     public readonly isRequired: boolean;
     public readonly category: ScalarTypeCategory;
@@ -86,29 +86,47 @@ export class ScalarType {
                 this.category = ScalarTypeCategory.Neo4jGraphQLNumberType;
         }
     }
+    getPretty(): string {
+        return `${this.name}${this.isRequired && "!"}`;
+    }
+    getName(): string {
+        return this.name;
+    }
 }
 
-export class UserScalarType {
+export class UserScalarType implements AttributeTypeMeta {
     public readonly name: string;
     public readonly isRequired: boolean;
     constructor(name: string, isRequired: boolean) {
         this.name = name;
         this.isRequired = isRequired;
     }
+    getPretty(): string {
+        return `${this.name}${this.isRequired && "!"}`;
+    }
+    getName(): string {
+        return this.name;
+    }
 }
 
-export class ObjectType {
+export class ObjectType implements AttributeTypeMeta {
     public readonly name: string;
     public readonly isRequired: boolean;
     // TODO: add fields
-    
+
     constructor(name: string, isRequired: boolean) {
         this.name = name;
         this.isRequired = isRequired;
     }
+    getPretty(): string {
+        return `${this.name}${this.isRequired && "!"}`;
+    }
+    getName(): string {
+        return this.name;
+    }
 }
 
-export class ListType {
+export class ListType implements AttributeTypeMeta {
     public ofType: Exclude<AttributeType, ListType>;
     public isRequired: boolean;
     constructor(ofType: AttributeType, isRequired: boolean) {
@@ -118,9 +136,15 @@ export class ListType {
         this.ofType = ofType;
         this.isRequired = isRequired;
     }
+    getPretty(): string {
+        return `[${this.ofType.getPretty()}]${this.isRequired && "!"}`;
+    }
+    getName(): string {
+        return this.ofType.name;
+    }
 }
 
-export class EnumType {
+export class EnumType implements AttributeTypeMeta {
     public name: string;
     public isRequired: boolean;
     // TODO: add enum values
@@ -129,9 +153,15 @@ export class EnumType {
         this.name = name;
         this.isRequired = isRequired;
     }
+    getPretty(): string {
+        return `${this.name}${this.isRequired && "!"}`;
+    }
+    getName(): string {
+        return this.name;
+    }
 }
 
-export class UnionType {
+export class UnionType implements AttributeTypeMeta {
     public name: string;
     public isRequired: boolean;
     // TODO: add implementing types
@@ -140,9 +170,15 @@ export class UnionType {
         this.name = name;
         this.isRequired = isRequired;
     }
+    getPretty(): string {
+        return `${this.name}${this.isRequired && "!"}`;
+    }
+    getName(): string {
+        return this.name;
+    }
 }
 
-export class InterfaceType {
+export class InterfaceType implements AttributeTypeMeta {
     public name: string;
     public isRequired: boolean;
     // TODO: add shared fields
@@ -151,6 +187,17 @@ export class InterfaceType {
         this.name = name;
         this.isRequired = isRequired;
     }
+    getPretty(): string {
+        return `${this.name}${this.isRequired && "!"}`;
+    }
+    getName(): string {
+        return this.name;
+    }
+}
+
+abstract class AttributeTypeMeta {
+    abstract getPretty(): string;
+    abstract getName(): string;
 }
 
 export type AttributeType = ScalarType | UserScalarType | ObjectType | ListType | EnumType | UnionType | InterfaceType;

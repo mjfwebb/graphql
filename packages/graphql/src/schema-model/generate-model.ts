@@ -24,6 +24,7 @@ import { Neo4jGraphQLSchemaModel } from "./Neo4jGraphQLSchemaModel";
 import type { Operations } from "./Neo4jGraphQLSchemaModel";
 import type { Annotation } from "./annotation/Annotation";
 import type { Attribute } from "./attribute/Attribute";
+import type { CompositeEntityType } from "./entity/CompositeEntity";
 import { CompositeEntity } from "./entity/CompositeEntity";
 import { ConcreteEntity } from "./entity/ConcreteEntity";
 import { findDirective } from "./parser/utils";
@@ -34,7 +35,7 @@ import type { DefinitionCollection } from "./parser/definition-collection";
 import { getDefinitionCollection } from "./parser/definition-collection";
 import { Operation } from "./Operation";
 import { parseAttribute, parseField } from "./parser/parse-attribute";
-import { nodeDirective, relationshipDirective } from "../graphql/directives";
+import { nodeDirective, privateDirective, relationshipDirective } from "../graphql/directives";
 import { parseKeyAnnotation } from "./parser/annotations-parser/key-annotation";
 import { parseAnnotations } from "./parser/parse-annotation";
 
@@ -63,14 +64,22 @@ export function generateModel(document: DocumentNode): Neo4jGraphQLSchemaModel {
 
     const interfaceEntities = Array.from(definitionCollection.interfaceToImplementingTypeNamesMap.entries()).map(
         ([name, concreteEntities]) => {
-            return generateCompositeEntity(name, concreteEntities, concreteEntitiesMap);
+            return generateCompositeEntity(
+                name,
+                concreteEntities,
+                concreteEntitiesMap,
+                "INTERFACE" as const,
+                definitionCollection
+            );
         }
     );
     const unionEntities = Array.from(definitionCollection.unionTypes).map(([unionName, unionDefinition]) => {
         return generateCompositeEntity(
             unionName,
             unionDefinition.types?.map((t) => t.name.value) || [],
-            concreteEntitiesMap
+            concreteEntitiesMap,
+            "UNION" as const,
+            definitionCollection
         );
     });
 
@@ -83,6 +92,9 @@ export function generateModel(document: DocumentNode): Neo4jGraphQLSchemaModel {
         annotations,
     });
     definitionCollection.nodes.forEach((def) => hydrateRelationships(def, schema, definitionCollection));
+    // TODO:
+    // for each interface hydrateAttributes() and hydrateRelationships() on definitionCollection.interfaceToImplementingTypeNamesMap.get(interface.name) with interface.attributes
+    // + model interfaceRelationships concept (interface types that are types of relationship fields)
     return schema;
 }
 
@@ -112,7 +124,9 @@ function hydrateInterfacesToTypeNamesMap(definitionCollection: DefinitionCollect
 function generateCompositeEntity(
     entityDefinitionName: string,
     entityImplementingTypeNames: string[],
-    concreteEntities: Map<string, ConcreteEntity>
+    concreteEntities: Map<string, ConcreteEntity>,
+    entityType: CompositeEntityType,
+    definitionCollection: DefinitionCollection
 ): CompositeEntity {
     const compositeFields = entityImplementingTypeNames.map((type) => {
         const concreteEntity = concreteEntities.get(type);
@@ -129,10 +143,31 @@ function generateCompositeEntity(
             `Composite entity ${entityDefinitionName} has no concrete entities`
         );
     } */
+
     // TODO: add annotations
+
+    // TODO: add attributes
+    if (entityType === "INTERFACE") {
+        const fields = definitionCollection.interfaceTypes.get(entityDefinitionName)?.fields;
+        const attrs = (fields || []).map((fieldDefinition) => {
+            if (findDirective(fieldDefinition.directives, privateDirective.name)) {
+                return;
+            }
+            return parseAttribute(fieldDefinition, definitionCollection) as Attribute;
+        });
+        return new CompositeEntity({
+            name: entityDefinitionName,
+            concreteEntities: compositeFields,
+            type: entityType,
+            attributes: filterTruthy(attrs),
+        });
+    }
+
     return new CompositeEntity({
         name: entityDefinitionName,
         concreteEntities: compositeFields,
+        type: entityType,
+        attributes: [],
     });
 }
 
@@ -145,6 +180,8 @@ function hydrateRelationships(
     const entity = schema.getEntity(name);
 
     if (!schema.isConcreteEntity(entity)) {
+        // TODO: why not? these would be "inherited" relationships
+        // definition already is ObjectType, what is the purpose of this check?
         throw new Error(`Cannot add relationship to non-concrete entity ${name}`);
     }
     const relationshipFields = (definition.fields || []).map((fieldDefinition) => {
@@ -205,9 +242,12 @@ function generateConcreteEntity(
     definition: ObjectTypeDefinitionNode,
     definitionCollection: DefinitionCollection
 ): ConcreteEntity {
-    const fields = (definition.fields || []).map((fieldDefinition) =>
-        parseAttribute(fieldDefinition, definitionCollection)
-    );
+    const fields = (definition.fields || []).map((fieldDefinition) => {
+        if (findDirective(fieldDefinition.directives, privateDirective.name)) {
+            return;
+        }
+        return parseAttribute(fieldDefinition, definitionCollection);
+    });
 
     const annotations = createEntityAnnotations(definition.directives || []);
 

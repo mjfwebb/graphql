@@ -39,7 +39,7 @@ import getFieldTypeMeta from "./get-field-type-meta";
 import { getCustomResolverMeta } from "./get-custom-resolver-meta";
 import getRelationshipMeta from "./get-relationship-meta";
 import getUniqueMeta from "./parse/get-unique-meta";
-import { SCALAR_TYPES } from "../constants";
+import { SCALAR_TYPES, SPATIAL_TYPES, TEMPORAL_SCALAR_TYPES } from "../constants";
 import type {
     RelationField,
     CypherField,
@@ -80,6 +80,21 @@ export interface ObjectFields {
     pointFields: PointField[];
     customResolverFields: CustomResolverField[];
 }
+
+class TemporaryCustomError extends Error {
+    constructor() {
+        super();
+    }
+}
+
+// TODO: this should be part of Schema Model Attribute / AttributeAdapter
+// verify/ add missing functionalities
+//  - getFields that are not private
+// - from Relationship to CompositeEntity of type Union / Interface
+// - relationField.connectionPrefix = connectionPrefix; (obj.name || obj.interfaces.find.name) used for naming types: connectionTypeName, relationshipTypeName
+// - getFieldTypeMeta
+
+// - when creating a Relationship check also inherited field annotations from CompositeEntity Interfaces (from ConcreteEntity get inherited field with same name from CompositeEntity Interface)
 
 function getObjFieldMeta({
     obj,
@@ -153,6 +168,8 @@ function getObjFieldMeta({
             const fieldScalar = scalars.find((x) => x.name.value === typeMeta.name);
             const fieldEnum = enums.find((x) => x.name.value === typeMeta.name);
             const fieldObject = objects.find((x) => x.name.value === typeMeta.name);
+            const fieldTemporal = TEMPORAL_SCALAR_TYPES.includes(typeMeta.name);
+            const fieldPoint = SPATIAL_TYPES.includes(typeMeta.name);
 
             const selectableOptions = parseSelectableDirective(selectableDirective);
             const settableOptions = parseSettableDirective(settableDirective);
@@ -459,7 +476,7 @@ function getObjFieldMeta({
                 };
                 res.objectFields.push(objectField);
             } else {
-                if (["DateTime", "Date", "Time", "LocalDateTime", "LocalTime"].includes(typeMeta.name)) {
+                if (fieldTemporal) {
                     const temporalField: TemporalField = {
                         ...baseField,
                     };
@@ -500,7 +517,7 @@ function getObjFieldMeta({
                     }
 
                     res.temporalFields.push(temporalField);
-                } else if (["Point", "CartesianPoint"].includes(typeMeta.name)) {
+                } else if (fieldPoint) {
                     if (defaultDirective) {
                         throw new Error("@default directive can only be used on primitive type fields");
                     }

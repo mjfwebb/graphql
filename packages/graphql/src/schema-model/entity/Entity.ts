@@ -17,10 +17,11 @@
  * limitations under the License.
  */
 
+import type { Attribute } from "../attribute/Attribute";
 
 export interface Entity {
     readonly name: string;
-
+    readonly attributes: Map<string, Attribute>;
     // attributes
     // relationships
     // annotations

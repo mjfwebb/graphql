@@ -17,30 +17,66 @@
  * limitations under the License.
  */
 
+import { ValueNode } from "graphql";
 import { Neo4jGraphQLSchemaValidationError } from "../../classes/Error";
 import { annotationToKey, type Annotation, type Annotations } from "../annotation/Annotation";
+import { parseValueNode } from "../parser/parse-value-node";
 import type { AttributeType } from "./AttributeType";
+
+export class InputValue {
+    // these are arguments (eg field arguments)
+    public readonly name: string;
+    public readonly type: AttributeType;
+    public readonly defaultValue?: string;
+    public readonly description: string;
+    // public readonly annotations: Partial<Annotations> = {};
+
+    constructor({
+        name,
+        type,
+        defaultValue,
+        description,
+    }: {
+        name: string;
+        type: AttributeType;
+        defaultValue?: ValueNode;
+        description?: string;
+    }) {
+        this.name = name;
+        this.type = type;
+        this.defaultValue = defaultValue ? parseValueNode(defaultValue) : undefined;
+        this.description = description || "";
+    }
+}
 
 export class Attribute {
     public readonly name: string;
     public readonly annotations: Partial<Annotations> = {};
     public readonly type: AttributeType;
     public readonly databaseName: string;
+    public readonly description: string;
+    public readonly attributeArguments: InputValue[];
 
     constructor({
         name,
         annotations = [],
         type,
+        attributeArguments,
         databaseName,
+        description,
     }: {
         name: string;
         annotations: Annotation[];
         type: AttributeType;
+        attributeArguments: InputValue[];
         databaseName?: string;
+        description?: string;
     }) {
         this.name = name;
         this.type = type;
+        this.attributeArguments = attributeArguments;
         this.databaseName = databaseName ?? name;
+        this.description = description || "";
 
         for (const annotation of annotations) {
             this.addAnnotation(annotation);
@@ -52,7 +88,9 @@ export class Attribute {
             name: this.name,
             annotations: Object.values(this.annotations),
             type: this.type,
+            attributeArguments: this.attributeArguments,
             databaseName: this.databaseName,
+            description: this.description,
         });
     }
 

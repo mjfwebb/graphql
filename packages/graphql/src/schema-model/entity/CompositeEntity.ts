@@ -17,18 +17,45 @@
  * limitations under the License.
  */
 
+import { Neo4jGraphQLSchemaValidationError } from "../../classes";
+import type { Attribute } from "../attribute/Attribute";
 import type { ConcreteEntity } from "./ConcreteEntity";
 import type { Entity } from "./Entity";
+
+export type CompositeEntityType = "INTERFACE" | "UNION";
 
 /** Entity for abstract GraphQL types, Interface and Union */
 export class CompositeEntity implements Entity {
     public readonly name: string;
     public concreteEntities: ConcreteEntity[];
+    public type: CompositeEntityType;
+    public readonly attributes: Map<string, Attribute> = new Map();
     // TODO: add type interface or union, and for interface add fields
     // TODO: add annotations
 
-    constructor({ name, concreteEntities }: { name: string; concreteEntities: ConcreteEntity[] }) {
+    constructor({
+        name,
+        concreteEntities,
+        type,
+        attributes = [],
+    }: {
+        name: string;
+        concreteEntities: ConcreteEntity[];
+        type: CompositeEntityType;
+        attributes: Attribute[];
+    }) {
         this.name = name;
         this.concreteEntities = concreteEntities;
+        this.type = type;
+        for (const attribute of attributes) {
+            this.addAttribute(attribute);
+        }
+    }
+
+    private addAttribute(attribute: Attribute): void {
+        if (this.attributes.has(attribute.name)) {
+            throw new Neo4jGraphQLSchemaValidationError(`Attribute ${attribute.name} already exists in ${this.name}`);
+        }
+        this.attributes.set(attribute.name, attribute);
     }
 }

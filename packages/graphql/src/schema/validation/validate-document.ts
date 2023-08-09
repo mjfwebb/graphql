@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { GraphQLSchema, extendSchema, validateSchema, specifiedDirectives, Kind } from "graphql";
+import { GraphQLSchema, extendSchema, validateSchema, specifiedDirectives, Kind, validate } from "graphql";
 import type {
     DefinitionNode,
     DocumentNode,
@@ -271,6 +271,37 @@ function validateDocument({
         throw new Error(filteredErrors.join("\n"));
     }
 
+    // filteredDocument
+    // schema
+
+    // for each object type in filteredDocument
+    //    o ->
+    //          selectionSetDoc = parse(o.selectionSet)
+    //          hackSchema = merge(schema, query) -> validate(hackSchema, selectionSetDoc)
+    //          validateSDL(selectionSetDoc, [NoCustomResolverFieldsRequired, NoFragmentSpreads], schema) ->
+    //                  on field kind INLINE_FRAGMENT ->
+    //                           fieldSelectionSetDoc = parse(field.selectionSet)
+    //                           validateSDL(fieldSelectionSetDoc, [NoCustomResolverFieldsRequired, NoFragmentSpreads], schema)
+    //                  on field kind FIELD ->
+    //                           fieldSelectionSetDoc = parse(field.selectionSet)
+    //                           validateSDL(fieldSelectionSetDoc, [NoCustomResolverFieldsRequired, NoFragmentSpreads], schema)
+    //
+
+    // for each object type in filteredDocument
+    //    o ->
+    //          selectionSetDoc = parse(o.selectionSet)
+    //          hackSchema = merge(schema, query) ->
+    //          validate(hackSchema, selectionSetDoc, [...standard(which one?), NoCustomResolverFieldsRequired, NoFragmentSpreads])
+    //                  on field kind INLINE_FRAGMENT ->
+    //                           fieldSelectionSetDoc = parse(field.selectionSet)
+    //                           validateSDL(fieldSelectionSetDoc, [NoCustomResolverFieldsRequired, NoFragmentSpreads], schema)
+    //                  on field kind FIELD ->
+    //                           fieldSelectionSetDoc = parse(field.selectionSet)
+    //                           validateSDL(fieldSelectionSetDoc, [NoCustomResolverFieldsRequired, NoFragmentSpreads], schema)
+    //
+
+    // TODO: how to improve this??
+    // validates `@customResolver`
     validateSchemaCustomizations({ document, schema });
 }
 

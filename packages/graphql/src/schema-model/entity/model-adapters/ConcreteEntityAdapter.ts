@@ -20,13 +20,13 @@
 import { AttributeAdapter } from "../../attribute/model-adapters/AttributeAdapter";
 import type { Relationship } from "../../relationship/Relationship";
 import { getFromMap } from "../../utils/get-from-map";
-import type { Entity } from "../Entity";
 import { singular, plural } from "../../utils/string-manipulation";
 import type { ConcreteEntity } from "../ConcreteEntity";
 import type { Attribute } from "../../attribute/Attribute";
 import { RelationshipAdapter } from "../../relationship/model-adapters/RelationshipAdapter";
 import type { Annotations } from "../../annotation/Annotation";
 import { ConcreteEntityOperations } from "./ConcreteEntityOperations";
+import type { CompositeEntityAdapter } from "./CompositeEntityAdapter";
 
 export class ConcreteEntityAdapter {
     public readonly name: string;
@@ -40,10 +40,14 @@ export class ConcreteEntityAdapter {
     private uniqueFieldsKeys: string[] = [];
     private constrainableFieldsKeys: string[] = [];
 
-    private _relatedEntities: Entity[] | undefined;
+    private _relatedEntities: (ConcreteEntityAdapter | CompositeEntityAdapter)[] | undefined;
 
     private _singular: string | undefined;
     private _plural: string | undefined;
+    private _globalIdField: AttributeAdapter | undefined;
+    private _pointTypeInDefs: boolean;
+    private _cartesianPointTypeInDefs: boolean;
+    private _floatWhereInTypeDefs: boolean;
 
     // specialize models
     private _operations: ConcreteEntityOperations | undefined;
@@ -54,6 +58,10 @@ export class ConcreteEntityAdapter {
         this.annotations = entity.annotations;
         this.initAttributes(entity.attributes);
         this.initRelationships(entity.relationships);
+
+        this._pointTypeInDefs = false;
+        this._cartesianPointTypeInDefs = false;
+        this._floatWhereInTypeDefs = false;
     }
 
     private initAttributes(attributes: Map<string, Attribute>) {
@@ -70,15 +78,26 @@ export class ConcreteEntityAdapter {
                     this.uniqueFieldsKeys.push(attribute.name);
                 }
             }
+
+            if (attributeAdapter.isGlobalIDAttribute()) {
+                this._globalIdField = attributeAdapter;
+            }
+
+            if (attributeAdapter.isPoint()) {
+                this._pointTypeInDefs = true;
+            }
+            if (attributeAdapter.isCartesianPoint()) {
+                this._cartesianPointTypeInDefs = true;
+            }
+            if (attributeAdapter.annotations.fulltext) {
+                this._floatWhereInTypeDefs = true;
+            }
         }
     }
 
     private initRelationships(relationships: Map<string, Relationship>) {
         for (const [relationshipName, relationship] of relationships.entries()) {
-            this.relationships.set(
-                relationshipName,
-                new RelationshipAdapter(relationship, this)
-            );
+            this.relationships.set(relationshipName, new RelationshipAdapter(relationship, this));
         }
     }
 
@@ -94,7 +113,7 @@ export class ConcreteEntityAdapter {
         return this.constrainableFieldsKeys.map((key) => getFromMap(this.attributes, key));
     }
 
-    public get relatedEntities(): Entity[] {
+    public get relatedEntities(): (ConcreteEntityAdapter | CompositeEntityAdapter)[] {
         if (!this._relatedEntities) {
             this._relatedEntities = [...this.relationships.values()].map((relationship) => relationship.target);
         }
@@ -107,7 +126,7 @@ export class ConcreteEntityAdapter {
     }
 
     public getMainLabel(): string {
-        return this.getLabels()[0] as string; 
+        return this.getLabels()[0] as string;
     }
 
     public get singular(): string {
@@ -136,4 +155,21 @@ export class ConcreteEntityAdapter {
     }
 
     // TODO: Implement the Globals methods toGlobalId and fromGlobalId, getGlobalId etc...
+    get globalIdField() {
+        return this._globalIdField;
+    }
+
+    public isGlobalNode() {
+        return !!this._globalIdField;
+    }
+
+    get pointTypeInTypeDefs() {
+        return this._pointTypeInDefs;
+    }
+    get cartesianPointTypeInTypeDefs() {
+        return this._cartesianPointTypeInDefs;
+    }
+    get floatWhereInTypeDefs() {
+        return this._floatWhereInTypeDefs;
+    }
 }
