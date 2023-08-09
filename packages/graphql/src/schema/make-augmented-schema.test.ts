@@ -31,6 +31,9 @@ import { gql } from "graphql-tag";
 import makeAugmentedSchema from "./make-augmented-schema";
 import { Node } from "../classes";
 import * as constants from "../constants";
+import { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel";
+import { generateModel } from "../schema-model/generate-model";
+import { mergeTypeDefs } from "@graphql-tools/merge";
 
 describe("makeAugmentedSchema", () => {
     test("should be a function", () => {
@@ -50,7 +53,8 @@ describe("makeAugmentedSchema", () => {
             }
         `;
 
-        const neoSchema = makeAugmentedSchema(typeDefs);
+        const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+        const neoSchema = makeAugmentedSchema(typeDefs, {}, schemaModel);
         const document = neoSchema.typeDefs;
         const queryObject = document.definitions.find(
             (x) => x.kind === Kind.OBJECT_TYPE_DEFINITION && x.name.value === "Query"
@@ -98,7 +102,8 @@ describe("makeAugmentedSchema", () => {
             }
         `;
 
-        expect(() => makeAugmentedSchema(typeDefs)).toThrow("cannot auto-generate a non ID field");
+        const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+        expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow("cannot auto-generate a non ID field");
     });
 
     test("should throw cannot auto-generate an array", () => {
@@ -108,7 +113,8 @@ describe("makeAugmentedSchema", () => {
             }
         `;
 
-        expect(() => makeAugmentedSchema(typeDefs)).toThrow("cannot auto-generate an array");
+        const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+        expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow("cannot auto-generate an array");
     });
 
     test("should throw cannot timestamp on array of DateTime", () => {
@@ -118,7 +124,8 @@ describe("makeAugmentedSchema", () => {
             }
         `;
 
-        expect(() => makeAugmentedSchema(typeDefs)).toThrow("cannot auto-generate an array");
+        const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+        expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow("cannot auto-generate an array");
     });
 
     describe("REGEX", () => {
@@ -129,7 +136,8 @@ describe("makeAugmentedSchema", () => {
                 }
             `;
 
-            const neoSchema = makeAugmentedSchema(typeDefs);
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            const neoSchema = makeAugmentedSchema(typeDefs, {}, schemaModel);
 
             const document = neoSchema.typeDefs;
 
@@ -149,15 +157,20 @@ describe("makeAugmentedSchema", () => {
                 }
             `;
 
-            const neoSchema = makeAugmentedSchema(typeDefs, {
-                features: {
-                    filters: {
-                        String: {
-                            MATCHES: true,
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            const neoSchema = makeAugmentedSchema(
+                typeDefs,
+                {
+                    features: {
+                        filters: {
+                            String: {
+                                MATCHES: true,
+                            },
                         },
                     },
                 },
-            });
+                schemaModel
+            );
 
             const document = neoSchema.typeDefs;
 
@@ -178,15 +191,20 @@ describe("makeAugmentedSchema", () => {
                 }
             `;
 
-            const neoSchema = makeAugmentedSchema(typeDefs, {
-                features: {
-                    filters: {
-                        ID: {
-                            MATCHES: true,
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            const neoSchema = makeAugmentedSchema(
+                typeDefs,
+                {
+                    features: {
+                        filters: {
+                            ID: {
+                                MATCHES: true,
+                            },
                         },
                     },
                 },
-            });
+                schemaModel
+            );
 
             const document = neoSchema.typeDefs;
 
@@ -207,18 +225,23 @@ describe("makeAugmentedSchema", () => {
                 }
             `;
 
-            const neoSchema = makeAugmentedSchema(typeDefs, {
-                features: {
-                    filters: {
-                        String: {
-                            MATCHES: true,
-                        },
-                        ID: {
-                            MATCHES: false,
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            const neoSchema = makeAugmentedSchema(
+                typeDefs,
+                {
+                    features: {
+                        filters: {
+                            String: {
+                                MATCHES: true,
+                            },
+                            ID: {
+                                MATCHES: false,
+                            },
                         },
                     },
                 },
-            });
+                schemaModel
+            );
 
             const document = neoSchema.typeDefs;
 
@@ -243,18 +266,23 @@ describe("makeAugmentedSchema", () => {
                 }
             `;
 
-            const neoSchema = makeAugmentedSchema(typeDefs, {
-                features: {
-                    filters: {
-                        String: {
-                            MATCHES: false,
-                        },
-                        ID: {
-                            MATCHES: true,
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            const neoSchema = makeAugmentedSchema(
+                typeDefs,
+                {
+                    features: {
+                        filters: {
+                            String: {
+                                MATCHES: false,
+                            },
+                            ID: {
+                                MATCHES: true,
+                            },
                         },
                     },
                 },
-            });
+                schemaModel
+            );
 
             const document = neoSchema.typeDefs;
 
@@ -286,7 +314,8 @@ describe("makeAugmentedSchema", () => {
                 }
             `;
 
-            const neoSchema = makeAugmentedSchema(typeDefs);
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            const neoSchema = makeAugmentedSchema(typeDefs, {}, schemaModel);
 
             const document = neoSchema.typeDefs;
 
@@ -305,7 +334,8 @@ describe("makeAugmentedSchema", () => {
                 }
             `;
 
-            expect(() => makeAugmentedSchema(typeDefs)).not.toThrow(
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).not.toThrow(
                 'Error: Type with name "ActionMapping" does not exists'
             );
         });
@@ -326,7 +356,8 @@ describe("makeAugmentedSchema", () => {
             }
         `;
 
-        expect(() => makeAugmentedSchema(typeDefs)).toThrow(
+        const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+        expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
             "Cannot have @auth directive on relationship properties interface"
         );
     });
@@ -346,7 +377,10 @@ describe("makeAugmentedSchema", () => {
             }
         `;
 
-        expect(() => makeAugmentedSchema(typeDefs)).toThrow("Cannot have @auth directive on relationship property");
+        const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+        expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
+            "Cannot have @auth directive on relationship property"
+        );
     });
 
     test("should throw error if @relationship is used on relationship property", () => {
@@ -364,7 +398,8 @@ describe("makeAugmentedSchema", () => {
             }
         `;
 
-        expect(() => makeAugmentedSchema(typeDefs)).toThrow(
+        const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+        expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
             "Cannot have @relationship directive on relationship property"
         );
     });
@@ -385,7 +420,10 @@ describe("makeAugmentedSchema", () => {
             }
         `;
 
-        expect(() => makeAugmentedSchema(typeDefs)).toThrow("Cannot have @cypher directive on relationship property");
+        const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+        expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
+            "Cannot have @cypher directive on relationship property"
+        );
     });
 
     describe("Reserved Names", () => {
@@ -407,7 +445,8 @@ describe("makeAugmentedSchema", () => {
                         }
                     `;
 
-                    expect(() => makeAugmentedSchema(typeDefs)).toThrow(
+                    const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+                    expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
                         (constants.RESERVED_INTERFACE_FIELDS.find((x) => x[0] === "node") as string[])[1]
                     );
                 });
@@ -428,7 +467,8 @@ describe("makeAugmentedSchema", () => {
                         }
                     `;
 
-                    expect(() => makeAugmentedSchema(typeDefs)).toThrow(
+                    const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+                    expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
                         (constants.RESERVED_INTERFACE_FIELDS.find((x) => x[0] === "cursor") as string[])[1]
                     );
                 });
@@ -453,7 +493,8 @@ describe("makeAugmentedSchema", () => {
                 }
             `;
 
-            expect(() => makeAugmentedSchema(typeDefs)).toThrow(
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
                 "@unique directive cannot be used on interface type fields: ActedIn.id"
             );
         });
@@ -471,7 +512,8 @@ describe("makeAugmentedSchema", () => {
                 }
             `;
 
-            expect(() => makeAugmentedSchema(typeDefs)).toThrow(
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
                 "@unique directive cannot be used on interface type fields: Production.id"
             );
         });
@@ -490,7 +532,8 @@ describe("makeAugmentedSchema", () => {
                 }
             `;
 
-            expect(() => makeAugmentedSchema(typeDefs)).toThrow(
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
                 "Directive @unique cannot be used in combination with @relationship"
             );
         });
@@ -507,7 +550,8 @@ describe("makeAugmentedSchema", () => {
                 }
             `;
 
-            expect(() => makeAugmentedSchema(typeDefs)).toThrow(
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
                 "Directive @relationship cannot be used in combination with @authentication"
             );
         });
@@ -526,7 +570,8 @@ describe("makeAugmentedSchema", () => {
                 }
             `;
 
-            expect(() => makeAugmentedSchema(typeDefs)).toThrow(
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
                 "Directive @relationship cannot be used in combination with @authorization"
             );
         });
@@ -546,7 +591,8 @@ describe("makeAugmentedSchema", () => {
                 }
             `;
 
-            expect(() => makeAugmentedSchema(typeDefs)).toThrow(
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
                 "Objects and Interfaces must have one or more fields: UserInterface"
             );
         });
@@ -558,7 +604,8 @@ describe("makeAugmentedSchema", () => {
                 }
             `;
 
-            expect(() => makeAugmentedSchema(typeDefs)).toThrow(
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
                 "Objects and Interfaces must have one or more fields: User"
             );
         });
@@ -571,7 +618,8 @@ describe("makeAugmentedSchema", () => {
                     name: ID! @id(global: true)
                 }
             `;
-            expect(() => makeAugmentedSchema(typeDefs)).toThrow(
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
                 "Only one field may be decorated with an '@id' directive with the global argument set to `true`"
             );
         });
@@ -581,7 +629,8 @@ describe("makeAugmentedSchema", () => {
                     email: ID! @id(global: true, unique: false)
                 }
             `;
-            expect(() => makeAugmentedSchema(typeDefs)).toThrow(
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
                 `Fields decorated with the "@id" directive must be unique in the database. Please remove it, or consider making the field unique`
             );
         });
@@ -593,7 +642,8 @@ describe("makeAugmentedSchema", () => {
                 }
             `;
 
-            expect(() => makeAugmentedSchema(typeDefs)).toThrow(
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
                 `Type User already has a field "id." Either remove it, or if you need access to this property, consider using the "@alias" directive to access it via another field`
             );
         });
@@ -603,7 +653,8 @@ describe("makeAugmentedSchema", () => {
                     dbId: ID! @id(global: true) @alias(property: "id")
                 }
             `;
-            expect(() => makeAugmentedSchema(typeDefs)).not.toThrow();
+            const schemaModel = generateModel(mergeTypeDefs(typeDefs));
+            expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).not.toThrow();
         });
     });
 });

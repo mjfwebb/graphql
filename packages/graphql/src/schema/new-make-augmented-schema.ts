@@ -230,6 +230,7 @@ class AugmentedSchemaGenerator {
         };
     }
 
+    /*
     private addGlobalNodeFields(concreteEntities: ConcreteEntity[], nodes: Node[]) {
         const globalEntities = concreteEntities.filter((entity) => {
             const model = new ConcreteEntityAdapter(entity);
@@ -262,8 +263,6 @@ class AugmentedSchemaGenerator {
             .withCreateInputType()
             .build(this._composer);
 
-        // const composeFields = this._attributesToComposeFields(Array.from(adapter.attributes.values()));
-
         // Option 1
         // new ToComposer(relationshipPropertiesInterface)
         // .withInterfaceType()
@@ -280,7 +279,7 @@ class AugmentedSchemaGenerator {
         // makeUpdateInputType.withMathOperators().withArrayMethods()
         // makeCreateInputType()
     }
-
+*/
     private add({
         objects = [],
         inputs = [],
@@ -302,6 +301,7 @@ class AugmentedSchemaGenerator {
     }
 }
 
+/*
 class ToComposer {
     _entity: ConcreteEntity | CompositeEntity;
     _entityModel: ConcreteEntityAdapter | CompositeEntityAdapter;
@@ -341,15 +341,6 @@ class ToComposer {
             })
         );
         return this;
-
-        // this._collection.inputs.push(
-        //     new GraphQLInputObjectType({
-        //         name: `${this._entity.name}Sort`,
-        //         fields: Object.keys(this._currentType.fields).reduce((res, f) => {
-        //             return { ...res, [f]: "SortDirection" };
-        //         }, {}),
-        //     })
-        // );
     }
 
     public withWhereInputType({ enabledFeatures }) {
@@ -364,15 +355,6 @@ class ToComposer {
             })
         );
         return this;
-
-        // this._collection.inputs.push(
-        //     new GraphQLInputObjectType({
-        //         name: `${this._entity.name}Where`,
-        //         fields: this._attributesToComposeFields(this._entityModel.getCreateInputTypeFields()),
-        //         // TODO: refactor getWhereFields
-        //         //getWhereFields({ typeName: relationship.name.value, fields: adapter.getWhereInputTypeFields(), enabledFeatures: features.filters })
-        //     })
-        // );
     }
 
     public withUpdateInputType({ addMathOperators = true, addArrayMethods = true }) {
@@ -387,12 +369,6 @@ class ToComposer {
         this._ts.set(updateTypeName, updateInput);
 
         return this;
-        // this._collection.inputs.push(
-        //     new GraphQLInputObjectType({
-        //         name: `${this._entity.name}UpdateInput`,
-        //         fields: this._attributesToComposeFields(this._entityModel.getUpdateInputTypeFields()),
-        //     })
-        // );
 
         // TODO: add these
         // addMathOperatorsToITC(relationshipUpdateITC);
@@ -411,19 +387,12 @@ class ToComposer {
         );
 
         return this;
-        // this._collection.inputs.push(
-        //     new GraphQLInputObjectType({
-        //         name: `${this._entity.name}CreateInput`,
-        //         fields: this._attributesToComposeFields(this._entityModel.getCreateInputTypeFields()),
-        //     })
-        // );
     }
 
     public build(_composer: SchemaComposer) {
         // _composer.createInterfaceTC(x);
 
         this._ts.forEach((v) => {
-            console.log(v);
             _composer.add(v);
         });
 
@@ -491,6 +460,7 @@ class ToComposer {
         }, {});
     }
 }
+*/
 
 function makeAugmentedSchema(
     document: DocumentNode,
