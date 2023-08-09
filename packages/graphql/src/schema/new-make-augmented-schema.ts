@@ -192,7 +192,9 @@ class AugmentedSchemaGenerator {
             ...this.definitionNodes.directives,
             ...this.rootTypesCustomResolvers,
         ].filter(Boolean);
-        this._composer.addTypeDefs(print({ kind: Kind.DOCUMENT, definitions: pipedDefs }));
+        if (pipedDefs.length) {
+            this._composer.addTypeDefs(print({ kind: Kind.DOCUMENT, definitions: pipedDefs }));
+        }
     }
 
     private getStaticTypes() {

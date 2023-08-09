@@ -34,24 +34,28 @@ describe("RelationshipAdapter", () => {
             name: "id",
             annotations: [new UniqueAnnotation({ constraintName: "User_id_unique" })],
             type: new ScalarType(GraphQLBuiltInScalarType.ID, true),
+            attributeArguments: [],
         });
 
         const userName = new Attribute({
             name: "name",
             annotations: [],
             type: new ScalarType(GraphQLBuiltInScalarType.String, true),
+            attributeArguments: [],
         });
 
         const accountId = new Attribute({
             name: "id",
             annotations: [new UniqueAnnotation({ constraintName: "User_id_unique" })],
             type: new ScalarType(GraphQLBuiltInScalarType.ID, true),
+            attributeArguments: [],
         });
 
         const accountUsername = new Attribute({
             name: "username",
             annotations: [],
             type: new ScalarType(GraphQLBuiltInScalarType.String, true),
+            attributeArguments: [],
         });
 
         const userEntity = new ConcreteEntity({
@@ -70,6 +74,7 @@ describe("RelationshipAdapter", () => {
             name: "accountAlias",
             annotations: [],
             type: new ScalarType(GraphQLBuiltInScalarType.String, true),
+            attributeArguments: [],
         });
 
         relationship = new Relationship({

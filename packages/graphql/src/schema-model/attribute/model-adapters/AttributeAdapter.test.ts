@@ -43,6 +43,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(GraphQLBuiltInScalarType.ID, true),
+                    attributeArguments: [],
                 })
             );
 
@@ -55,6 +56,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(GraphQLBuiltInScalarType.Boolean, true),
+                    attributeArguments: [],
                 })
             );
 
@@ -67,6 +69,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(GraphQLBuiltInScalarType.Int, true),
+                    attributeArguments: [],
                 })
             );
 
@@ -79,6 +82,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(GraphQLBuiltInScalarType.Float, true),
+                    attributeArguments: [],
                 })
             );
             expect(attribute.isFloat()).toBe(true);
@@ -90,6 +94,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(GraphQLBuiltInScalarType.String, true),
+                    attributeArguments: [],
                 })
             );
             expect(attribute.isString()).toBe(true);
@@ -101,6 +106,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(Neo4jGraphQLSpatialType.CartesianPoint, true),
+                    attributeArguments: [],
                 })
             );
 
@@ -113,6 +119,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(Neo4jGraphQLSpatialType.Point, true),
+                    attributeArguments: [],
                 })
             );
 
@@ -125,6 +132,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(Neo4jGraphQLNumberType.BigInt, true),
+                    attributeArguments: [],
                 })
             );
 
@@ -137,6 +145,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(Neo4jGraphQLTemporalType.Date, true),
+                    attributeArguments: [],
                 })
             );
 
@@ -149,6 +158,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(Neo4jGraphQLTemporalType.DateTime, true),
+                    attributeArguments: [],
                 })
             );
 
@@ -161,6 +171,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(Neo4jGraphQLTemporalType.LocalDateTime, true),
+                    attributeArguments: [],
                 })
             );
 
@@ -173,6 +184,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(Neo4jGraphQLTemporalType.Time, true),
+                    attributeArguments: [],
                 })
             );
 
@@ -185,6 +197,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(Neo4jGraphQLTemporalType.LocalTime, true),
+                    attributeArguments: [],
                 })
             );
 
@@ -197,6 +210,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(Neo4jGraphQLTemporalType.Duration, true),
+                    attributeArguments: [],
                 })
             );
 
@@ -209,6 +223,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ObjectType("testType", true),
+                    attributeArguments: [],
                 })
             );
 
@@ -221,6 +236,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new EnumType("testType", true),
+                    attributeArguments: [],
                 })
             );
 
@@ -233,6 +249,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new UserScalarType("testType", true),
+                    attributeArguments: [],
                 })
             );
 
@@ -245,6 +262,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new InterfaceType("Tool", true),
+                    attributeArguments: [],
                 })
             );
             expect(attribute.isInterface()).toBe(true);
@@ -256,6 +274,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new UnionType("Tool", true),
+                    attributeArguments: [],
                 })
             );
             expect(attribute.isUnion()).toBe(true);
@@ -270,6 +289,7 @@ describe("Attribute", () => {
                         name: "test",
                         annotations: [],
                         type: new ListType(stringType, true),
+                        attributeArguments: [],
                     })
                 );
 
@@ -284,6 +304,7 @@ describe("Attribute", () => {
                         name: "test",
                         annotations: [],
                         type: stringType,
+                        attributeArguments: [],
                     })
                 );
 
@@ -298,6 +319,7 @@ describe("Attribute", () => {
                         name: "test",
                         annotations: [],
                         type: new ListType(stringType, true),
+                        attributeArguments: [],
                     })
                 );
                 const intType = new ScalarType(GraphQLBuiltInScalarType.Int, true);
@@ -312,6 +334,7 @@ describe("Attribute", () => {
                         name: "test",
                         annotations: [],
                         type: new ListType(stringType, true),
+                        attributeArguments: [],
                     })
                 );
                 const stringType2 = new ScalarType(GraphQLBuiltInScalarType.String, true);
@@ -326,6 +349,7 @@ describe("Attribute", () => {
                         name: "test",
                         annotations: [],
                         type: new ListType(stringType, true),
+                        attributeArguments: [],
                     })
                 );
                 expect(attribute.isListOf(GraphQLBuiltInScalarType.Int)).toBe(false);
@@ -339,6 +363,7 @@ describe("Attribute", () => {
                         name: "test",
                         annotations: [],
                         type: new ListType(stringType, true),
+                        attributeArguments: [],
                     })
                 );
                 expect(attribute.isListOf(GraphQLBuiltInScalarType.String)).toBe(true);
@@ -353,6 +378,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(GraphQLBuiltInScalarType.String, true),
+                    attributeArguments: [],
                 })
             );
 
@@ -365,6 +391,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(Neo4jGraphQLSpatialType.CartesianPoint, true),
+                    attributeArguments: [],
                 })
             );
 
@@ -377,6 +404,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(Neo4jGraphQLTemporalType.Date, true),
+                    attributeArguments: [],
                 })
             );
 
@@ -389,6 +417,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new UnionType("Tool", true),
+                    attributeArguments: [],
                 })
             );
 
@@ -402,6 +431,7 @@ describe("Attribute", () => {
                 name: "test",
                 annotations: [],
                 type: new ScalarType(GraphQLBuiltInScalarType.String, true),
+                attributeArguments: [],
             })
         );
 
@@ -410,6 +440,7 @@ describe("Attribute", () => {
                 name: "test",
                 annotations: [],
                 type: new ScalarType(GraphQLBuiltInScalarType.String, false),
+                attributeArguments: [],
             })
         );
 
@@ -423,6 +454,7 @@ describe("Attribute", () => {
                 name: "test",
                 annotations: [],
                 type: new ListType(new ScalarType(GraphQLBuiltInScalarType.String, true), true),
+                attributeArguments: [],
             })
         );
 
@@ -431,6 +463,7 @@ describe("Attribute", () => {
                 name: "test",
                 annotations: [],
                 type: new ListType(new ScalarType(GraphQLBuiltInScalarType.String, true), false),
+                attributeArguments: [],
             })
         );
 
@@ -444,6 +477,7 @@ describe("Attribute", () => {
                 name: "test",
                 annotations: [],
                 type: new ListType(new ScalarType(GraphQLBuiltInScalarType.String, true), false),
+                attributeArguments: [],
             })
         );
 
@@ -452,6 +486,7 @@ describe("Attribute", () => {
                 name: "test",
                 annotations: [],
                 type: new ListType(new ScalarType(GraphQLBuiltInScalarType.String, false), true),
+                attributeArguments: [],
             })
         );
 
@@ -466,6 +501,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [new UniqueAnnotation({ constraintName: "test" })],
                     type: new ScalarType(GraphQLBuiltInScalarType.ID, true),
+                    attributeArguments: [],
                 })
             );
             expect(attribute.isUnique()).toBe(true);
@@ -482,6 +518,7 @@ describe("Attribute", () => {
                         }),
                     ],
                     type: new ScalarType(GraphQLBuiltInScalarType.ID, true),
+                    attributeArguments: [],
                 })
             );
             expect(attribute.isCypher()).toBe(true);
@@ -495,6 +532,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ListType(new ScalarType(GraphQLBuiltInScalarType.String, true), false),
+                    attributeArguments: [],
                 })
             );
 
@@ -512,6 +550,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(GraphQLBuiltInScalarType.Int, true),
+                    attributeArguments: [],
                 })
             );
             // TODO: test it with String as well.
@@ -576,6 +615,7 @@ describe("Attribute", () => {
                     name: "test",
                     annotations: [],
                     type: new ScalarType(GraphQLBuiltInScalarType.Int, true),
+                    attributeArguments: [],
                 })
             );
             // TODO: test it with float as well.
