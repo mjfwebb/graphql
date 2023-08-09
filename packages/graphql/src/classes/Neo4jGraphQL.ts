@@ -324,11 +324,15 @@ class Neo4jGraphQL {
 
             this.generateSchemaModel(document);
 
-            const { nodes, relationships, typeDefs, resolvers } = makeAugmentedSchema(document, {
-                features: this.features,
-                generateSubscriptions: Boolean(this.features?.subscriptions),
-                userCustomResolvers: this.resolvers,
-            });
+            const { nodes, relationships, typeDefs, resolvers } = makeAugmentedSchema(
+                document,
+                {
+                    features: this.features,
+                    generateSubscriptions: Boolean(this.features?.subscriptions),
+                    userCustomResolvers: this.resolvers,
+                },
+                this.schemaModel as Neo4jGraphQLSchemaModel
+            );
 
             if (this.validate) {
                 validateUserDefinition({ userDocument: document, augmentedDocument: typeDefs, jwt: jwt?.type });
@@ -372,12 +376,16 @@ class Neo4jGraphQL {
 
         const schemaModel = this.generateSchemaModel(document);
 
-        const { nodes, relationships, typeDefs, resolvers } = makeAugmentedSchema(document, {
-            features: this.features,
-            generateSubscriptions: Boolean(this.features?.subscriptions),
-            userCustomResolvers: this.resolvers,
-            subgraph,
-        });
+        const { nodes, relationships, typeDefs, resolvers } = makeAugmentedSchema(
+            document,
+            {
+                features: this.features,
+                generateSubscriptions: Boolean(this.features?.subscriptions),
+                userCustomResolvers: this.resolvers,
+                subgraph,
+            },
+            this.schemaModel as Neo4jGraphQLSchemaModel
+        );
 
         if (this.validate) {
             validateUserDefinition({
