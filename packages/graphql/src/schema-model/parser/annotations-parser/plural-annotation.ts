@@ -22,7 +22,7 @@ import { parseArguments } from "../parse-arguments";
 import { pluralDirective } from "../../../graphql/directives";
 
 export function parsePluralAnnotation(directive: DirectiveNode): PluralAnnotation {
-    const { value } = parseArguments(pluralDirective, directive) as { value: string };
+    const { value } = parseArguments<{ value: string }>(pluralDirective, directive);
     return new PluralAnnotation({
         value,
     });

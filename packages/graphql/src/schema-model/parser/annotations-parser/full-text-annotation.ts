@@ -23,7 +23,7 @@ import { parseArguments } from "../parse-arguments";
 import { fulltextDirective } from "../../../graphql/directives";
 
 export function parseFullTextAnnotation(directive: DirectiveNode): FullTextAnnotation {
-    const { indexes } = parseArguments(fulltextDirective, directive) as { indexes: FullTextField[] };
+    const { indexes } = parseArguments<{ indexes: FullTextField[] }>(fulltextDirective, directive);
 
     return new FullTextAnnotation({
         indexes,

@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { GraphQLSchema, extendSchema, validateSchema, specifiedDirectives, Kind, validate } from "graphql";
+import { GraphQLSchema, extendSchema, validateSchema, specifiedDirectives, Kind } from "graphql";
 import type {
     DefinitionNode,
     DocumentNode,

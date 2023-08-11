@@ -22,7 +22,7 @@ import { parseArguments } from "../parse-arguments";
 import { uniqueDirective } from "../../../graphql/directives";
 
 export function parseUniqueAnnotation(directive: DirectiveNode): UniqueAnnotation {
-    const { constraintName } = parseArguments(uniqueDirective, directive) as { constraintName: string };
+    const { constraintName } = parseArguments<{ constraintName: string }>(uniqueDirective, directive);
 
     return new UniqueAnnotation({
         constraintName,

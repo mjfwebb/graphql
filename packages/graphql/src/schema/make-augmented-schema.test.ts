@@ -28,7 +28,8 @@ import {
 } from "graphql";
 import { pluralize } from "graphql-compose";
 import { gql } from "graphql-tag";
-import makeAugmentedSchema from "./make-augmented-schema";
+// import makeAugmentedSchema from "./make-augmented-schema";
+import makeAugmentedSchema from "./new-make-augmented-schema";
 import { Node } from "../classes";
 import * as constants from "../constants";
 import { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel";
@@ -339,48 +340,6 @@ describe("makeAugmentedSchema", () => {
                 'Error: Type with name "ActionMapping" does not exists'
             );
         });
-    });
-
-    test("should throw error if @auth is used on relationship properties interface", () => {
-        const typeDefs = gql`
-            type Movie {
-                actors: Actor! @relationship(type: "ACTED_IN", direction: OUT, properties: "ActedIn")
-            }
-
-            type Actor {
-                name: String
-            }
-
-            interface ActedIn @auth(rules: [{ operations: [CREATE], roles: ["admin"] }]) @relationshipProperties {
-                screenTime: Int
-            }
-        `;
-
-        const schemaModel = generateModel(mergeTypeDefs(typeDefs));
-        expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
-            "Cannot have @auth directive on relationship properties interface"
-        );
-    });
-
-    test("should throw error if @auth is used on relationship property", () => {
-        const typeDefs = gql`
-            type Movie {
-                actors: Actor! @relationship(type: "ACTED_IN", direction: OUT, properties: "ActedIn")
-            }
-
-            type Actor {
-                name: String
-            }
-
-            interface ActedIn @relationshipProperties {
-                screenTime: Int @auth(rules: [{ operations: [CREATE], roles: ["admin"] }])
-            }
-        `;
-
-        const schemaModel = generateModel(mergeTypeDefs(typeDefs));
-        expect(() => makeAugmentedSchema(typeDefs, {}, schemaModel)).toThrow(
-            "Cannot have @auth directive on relationship property"
-        );
     });
 
     test("should throw error if @relationship is used on relationship property", () => {

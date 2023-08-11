@@ -17,7 +17,9 @@
  * limitations under the License.
  */
 
+import type { DirectiveNode } from "graphql";
 import type { GraphQLWhereArg } from "../../types";
+import { parseAuthorizationAnnotation } from "../parser/annotations-parser/authorization-annotation";
 
 export const AuthorizationAnnotationArguments = ["filter", "validate"] as const;
 
@@ -58,9 +60,12 @@ export class AuthorizationAnnotation {
     public filter?: AuthorizationFilterRule[];
     public validate?: AuthorizationValidateRule[];
 
-    constructor({ filter, validate }: { filter?: AuthorizationFilterRule[]; validate?: AuthorizationValidateRule[] }) {
-        this.filter = filter;
-        this.validate = validate;
+    constructor(private readonly authorizationDirective: DirectiveNode) {}
+
+    parseAnnotation() {
+        const parsedAnnotation = parseAuthorizationAnnotation(this.authorizationDirective);
+        this.filter = parsedAnnotation.filter;
+        this.validate = parsedAnnotation.validate;
     }
 }
 

@@ -22,7 +22,7 @@ import { parseArguments } from "../parse-arguments";
 import { jwtClaim } from "../../../graphql/directives";
 
 export function parseJWTClaimAnnotation(directive: DirectiveNode): JWTClaimAnnotation {
-    const { path } = parseArguments(jwtClaim, directive) as { path: string };
+    const { path } = parseArguments<{ path: string }>(jwtClaim, directive);
 
     return new JWTClaimAnnotation({
         path,

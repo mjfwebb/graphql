@@ -18,14 +18,13 @@
  */
 
 import type { IResolvers } from "@graphql-tools/utils";
-import {
+import type {
     DefinitionNode,
     DocumentNode,
     GraphQLEnumType,
     GraphQLInputObjectType,
     GraphQLInterfaceType,
     GraphQLObjectType,
-    GraphQLResolveInfo,
     GraphQLScalarType,
     InterfaceTypeDefinitionNode,
     NameNode,
@@ -33,18 +32,7 @@ import {
     SchemaExtensionNode,
 } from "graphql";
 import { GraphQLID, GraphQLNonNull, Kind, parse, print } from "graphql";
-import {
-    Directive,
-    DirectiveArgs,
-    InputTypeComposer,
-    InputTypeComposerDefinition,
-    InputTypeComposerFieldConfigMapDefinition,
-    InterfaceTypeComposer,
-    NamedTypeComposer,
-    ObjectTypeComposer,
-    ObjectTypeComposerFieldConfigAsObjectDefinition,
-    TypeStorage,
-} from "graphql-compose";
+import type { InputTypeComposer, InputTypeComposerFieldConfigMapDefinition, ObjectTypeComposer } from "graphql-compose";
 import { SchemaComposer } from "graphql-compose";
 import pluralize from "pluralize";
 import { cypherResolver } from "./resolvers/field/cypher";
@@ -103,21 +91,13 @@ import { filterInterfaceTypes } from "./make-augmented-schema/filter-interface-t
 import { addMathOperatorsToITC } from "./math";
 import { getSchemaConfigurationFlags, schemaConfigurationFromSchemaExtensions } from "./schema-configuration";
 import { generateSubscriptionTypes } from "./subscriptions/generate-subscription-types";
-import type { BaseField, Context, Neo4jFeaturesSettings } from "../types";
+import type { BaseField, Neo4jFeaturesSettings } from "../types";
 import createRelationshipFields from "./create-relationship-fields/create-relationship-fields";
-import { CompositeEntity } from "../schema-model/entity/CompositeEntity";
-import { Attribute, InputValue } from "../schema-model/attribute/Attribute";
-import { AttributeAdapter } from "../schema-model/attribute/model-adapters/AttributeAdapter";
-import { idResolver } from "./resolvers/field/id";
-import { Annotation } from "../schema-model/annotation/Annotation";
-import { parseValueNode } from "../schema-model/parser/parse-value-node";
-import { DefinitionCollection } from "../schema-model/parser/definition-collection";
+import type { CompositeEntity } from "../schema-model/entity/CompositeEntity";
 import { CompositeEntityAdapter } from "../schema-model/entity/model-adapters/CompositeEntityAdapter";
 import { ConcreteEntity } from "../schema-model/entity/ConcreteEntity";
 import { ConcreteEntityAdapter } from "../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { globalNodeResolver } from "./resolvers/query/global-node";
-import { nodeDefinitions } from "graphql-relay";
-import { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel";
+import type { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel";
 
 function definitionNodeHasName(x: DefinitionNode): x is DefinitionNode & { name: NameNode } {
     return "name" in x;
@@ -160,6 +140,7 @@ class AugmentedSchemaGenerator {
                     ? new ConcreteEntityAdapter(entity)
                     : new CompositeEntityAdapter(entity as CompositeEntity);
             if (model.pointTypeInTypeDefs) {
+                console.log(1);
                 pointInTypeDefs = true;
             }
             if (model.cartesianPointTypeInTypeDefs) {
@@ -170,7 +151,7 @@ class AugmentedSchemaGenerator {
             }
         }
 
-        this.pipeDefs();
+        // this.pipeDefs();
         this.add(this.getStaticTypes());
         this.add(this.getSpatialTypes(pointInTypeDefs, cartesianPointInTypeDefs));
         this.add(this.getTemporalTypes(floatWhereInTypeDefs));
@@ -512,6 +493,23 @@ function makeAugmentedSchema(
     );
     const generatorComposer = schemaGenerator.generate();
     composer.merge(generatorComposer);
+
+    // TODO: move these to SchemaGenerator once nodes are moved (in the meantime references to object types are causing errors because they are not present in the generated schema)
+    const pipedDefs = [
+        ...definitionNodes.enumTypes,
+        ...definitionNodes.scalarTypes,
+        ...definitionNodes.inputObjectTypes,
+        ...definitionNodes.unionTypes,
+        ...definitionNodes.directives,
+        ...[customResolvers.customQuery, customResolvers.customMutation, customResolvers.customSubscription].filter(
+            (x): x is ObjectTypeDefinitionNode => Boolean(x)
+        ),
+    ].filter(Boolean);
+    if (pipedDefs.length) {
+        composer.addTypeDefs(print({ kind: Kind.DOCUMENT, definitions: pipedDefs }));
+    }
+
+    // """createSomething"""
 
     // TODO: move deprecationMap out to separate file eventually
     const deprecationMap = new Map<
@@ -1315,6 +1313,10 @@ function makeAugmentedSchema(
 
     if (!Object.values(composer.Mutation.getFields()).length) {
         composer.delete("Mutation");
+    }
+    //  TODO: why is this now needed?
+    if (!Object.values(composer.Subscription.getFields()).length) {
+        composer.delete("Subscription");
     }
 
     const generatedTypeDefs = composer.toSDL();

@@ -26,9 +26,9 @@ function parseSubscriptionDirective(directiveNode: DirectiveNode | undefined) {
     if (!directiveNode || directiveNode.name.value !== subscriptionDirectiveDefinition.name) {
         throw new Error("Undefined or incorrect directive passed into parseSubscriptionDirective function");
     }
-    const arg = parseArguments(subscriptionDirectiveDefinition, directiveNode) as {
+    const arg = parseArguments<{
         operations: ConstructorParameters<typeof SubscriptionDirective>[0];
-    };
+    }>(subscriptionDirectiveDefinition, directiveNode);
 
     return new SubscriptionDirective(arg.operations);
 }

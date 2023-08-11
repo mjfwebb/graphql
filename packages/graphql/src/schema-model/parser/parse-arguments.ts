@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) "Neo4j"
  * Neo4j Sweden AB [http://neo4j.com]
@@ -42,11 +41,11 @@ export function parseArgumentsFromUnknownDirective(directive: DirectiveNode): Re
  * exposed to user code. Care should be taken to not pull values from the
  * Object prototype.
  */
-export function parseArguments(
+export function parseArguments<T extends Record<string, unknown>>(
     def: GraphQLField<unknown, unknown> | GraphQLDirective,
     node: FieldNode | DirectiveNode,
     variableValues?: Maybe<ObjMap<unknown>>
-): { [argument: string]: unknown } {
+): T {
     const coercedValues: { [argument: string]: unknown } = {};
     const argumentNodes = node.arguments ?? [];
     const argNodeMap = new Map(argumentNodes.map((arg) => [arg.name.value, arg]));
@@ -94,5 +93,5 @@ export function parseArguments(
         }
         coercedValues[name] = coercedValue;
     }
-    return coercedValues;
+    return coercedValues as T;
 }

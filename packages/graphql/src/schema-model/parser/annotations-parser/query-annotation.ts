@@ -23,7 +23,7 @@ import { parseArguments } from "../parse-arguments";
 import { queryDirective } from "../../../graphql/directives";
 
 export function parseQueryAnnotation(directive: DirectiveNode): QueryAnnotation {
-    const { read, aggregate } = parseArguments(queryDirective, directive) as { read: boolean; aggregate: boolean };
+    const { read, aggregate } = parseArguments<{ read: boolean; aggregate: boolean }>(queryDirective, directive);
 
     return new QueryAnnotation({
         read,

@@ -1280,6 +1280,7 @@ describe("@filterable directive", () => {
                       info: CreateInfo!
                     }
 
+                    \\"\\"\\"CreateInfo\\"\\"\\"
                     type CreateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -1291,6 +1292,7 @@ describe("@filterable directive", () => {
                       movies: [Movie!]!
                     }
 
+                    \\"\\"\\"DeleteInfo\\"\\"\\"
                     type DeleteInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesDeleted: Int!
@@ -1694,6 +1696,7 @@ describe("@filterable directive", () => {
                       moviesConnection(after: String, first: Int, sort: [MovieSort], where: MovieWhere): MoviesConnection!
                     }
 
+                    \\"\\"\\"SortDirection\\"\\"\\"
                     enum SortDirection {
                       \\"\\"\\"Sort by field values in ascending order.\\"\\"\\"
                       ASC
@@ -1729,6 +1732,7 @@ describe("@filterable directive", () => {
                       info: UpdateInfo!
                     }
 
+                    \\"\\"\\"UpdateInfo\\"\\"\\"
                     type UpdateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -2130,6 +2134,7 @@ describe("@filterable directive", () => {
                       info: CreateInfo!
                     }
 
+                    \\"\\"\\"CreateInfo\\"\\"\\"
                     type CreateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -2141,6 +2146,7 @@ describe("@filterable directive", () => {
                       movies: [Movie!]!
                     }
 
+                    \\"\\"\\"DeleteInfo\\"\\"\\"
                     type DeleteInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesDeleted: Int!
@@ -2544,6 +2550,7 @@ describe("@filterable directive", () => {
                       moviesConnection(after: String, first: Int, sort: [MovieSort], where: MovieWhere): MoviesConnection!
                     }
 
+                    \\"\\"\\"SortDirection\\"\\"\\"
                     enum SortDirection {
                       \\"\\"\\"Sort by field values in ascending order.\\"\\"\\"
                       ASC
@@ -2579,6 +2586,7 @@ describe("@filterable directive", () => {
                       info: UpdateInfo!
                     }
 
+                    \\"\\"\\"UpdateInfo\\"\\"\\"
                     type UpdateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -2970,6 +2978,7 @@ describe("@filterable directive", () => {
                       info: CreateInfo!
                     }
 
+                    \\"\\"\\"CreateInfo\\"\\"\\"
                     type CreateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -2981,6 +2990,7 @@ describe("@filterable directive", () => {
                       movies: [Movie!]!
                     }
 
+                    \\"\\"\\"DeleteInfo\\"\\"\\"
                     type DeleteInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesDeleted: Int!
@@ -3356,6 +3366,7 @@ describe("@filterable directive", () => {
                       moviesConnection(after: String, first: Int, sort: [MovieSort], where: MovieWhere): MoviesConnection!
                     }
 
+                    \\"\\"\\"SortDirection\\"\\"\\"
                     enum SortDirection {
                       \\"\\"\\"Sort by field values in ascending order.\\"\\"\\"
                       ASC
@@ -3391,6 +3402,7 @@ describe("@filterable directive", () => {
                       info: UpdateInfo!
                     }
 
+                    \\"\\"\\"UpdateInfo\\"\\"\\"
                     type UpdateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -3795,6 +3807,7 @@ describe("@filterable directive", () => {
                       info: CreateInfo!
                     }
 
+                    \\"\\"\\"CreateInfo\\"\\"\\"
                     type CreateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -3806,6 +3819,7 @@ describe("@filterable directive", () => {
                       movies: [Movie!]!
                     }
 
+                    \\"\\"\\"DeleteInfo\\"\\"\\"
                     type DeleteInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesDeleted: Int!
@@ -4120,6 +4134,7 @@ describe("@filterable directive", () => {
                       moviesConnection(after: String, first: Int, sort: [MovieSort], where: MovieWhere): MoviesConnection!
                     }
 
+                    \\"\\"\\"SortDirection\\"\\"\\"
                     enum SortDirection {
                       \\"\\"\\"Sort by field values in ascending order.\\"\\"\\"
                       ASC
@@ -4155,6 +4170,7 @@ describe("@filterable directive", () => {
                       info: UpdateInfo!
                     }
 
+                    \\"\\"\\"UpdateInfo\\"\\"\\"
                     type UpdateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -4558,6 +4574,7 @@ describe("@filterable directive", () => {
                       info: CreateInfo!
                     }
 
+                    \\"\\"\\"CreateInfo\\"\\"\\"
                     type CreateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -4569,6 +4586,7 @@ describe("@filterable directive", () => {
                       movies: [Movie!]!
                     }
 
+                    \\"\\"\\"DeleteInfo\\"\\"\\"
                     type DeleteInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesDeleted: Int!
@@ -4972,6 +4990,7 @@ describe("@filterable directive", () => {
                       moviesConnection(after: String, first: Int, sort: [MovieSort], where: MovieWhere): MoviesConnection!
                     }
 
+                    \\"\\"\\"SortDirection\\"\\"\\"
                     enum SortDirection {
                       \\"\\"\\"Sort by field values in ascending order.\\"\\"\\"
                       ASC
@@ -5007,6 +5026,7 @@ describe("@filterable directive", () => {
                       info: UpdateInfo!
                     }
 
+                    \\"\\"\\"UpdateInfo\\"\\"\\"
                     type UpdateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -5410,6 +5430,7 @@ describe("@filterable directive", () => {
                       info: CreateInfo!
                     }
 
+                    \\"\\"\\"CreateInfo\\"\\"\\"
                     type CreateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -5421,6 +5442,7 @@ describe("@filterable directive", () => {
                       movies: [Movie!]!
                     }
 
+                    \\"\\"\\"DeleteInfo\\"\\"\\"
                     type DeleteInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesDeleted: Int!
@@ -5796,6 +5818,7 @@ describe("@filterable directive", () => {
                       moviesConnection(after: String, first: Int, sort: [MovieSort], where: MovieWhere): MoviesConnection!
                     }
 
+                    \\"\\"\\"SortDirection\\"\\"\\"
                     enum SortDirection {
                       \\"\\"\\"Sort by field values in ascending order.\\"\\"\\"
                       ASC
@@ -5831,6 +5854,7 @@ describe("@filterable directive", () => {
                       info: UpdateInfo!
                     }
 
+                    \\"\\"\\"UpdateInfo\\"\\"\\"
                     type UpdateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -6234,6 +6258,7 @@ describe("@filterable directive", () => {
                       info: CreateInfo!
                     }
 
+                    \\"\\"\\"CreateInfo\\"\\"\\"
                     type CreateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -6245,6 +6270,7 @@ describe("@filterable directive", () => {
                       movies: [Movie!]!
                     }
 
+                    \\"\\"\\"DeleteInfo\\"\\"\\"
                     type DeleteInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesDeleted: Int!
@@ -6559,6 +6585,7 @@ describe("@filterable directive", () => {
                       moviesConnection(after: String, first: Int, sort: [MovieSort], where: MovieWhere): MoviesConnection!
                     }
 
+                    \\"\\"\\"SortDirection\\"\\"\\"
                     enum SortDirection {
                       \\"\\"\\"Sort by field values in ascending order.\\"\\"\\"
                       ASC
@@ -6594,6 +6621,7 @@ describe("@filterable directive", () => {
                       info: UpdateInfo!
                     }
 
+                    \\"\\"\\"UpdateInfo\\"\\"\\"
                     type UpdateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -6998,6 +7026,7 @@ describe("@filterable directive", () => {
                       info: CreateInfo!
                     }
 
+                    \\"\\"\\"CreateInfo\\"\\"\\"
                     type CreateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -7009,6 +7038,7 @@ describe("@filterable directive", () => {
                       movies: [Movie!]!
                     }
 
+                    \\"\\"\\"DeleteInfo\\"\\"\\"
                     type DeleteInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesDeleted: Int!
@@ -7402,6 +7432,7 @@ describe("@filterable directive", () => {
                       moviesConnection(after: String, first: Int, sort: [MovieSort], where: MovieWhere): MoviesConnection!
                     }
 
+                    \\"\\"\\"SortDirection\\"\\"\\"
                     enum SortDirection {
                       \\"\\"\\"Sort by field values in ascending order.\\"\\"\\"
                       ASC
@@ -7437,6 +7468,7 @@ describe("@filterable directive", () => {
                       info: UpdateInfo!
                     }
 
+                    \\"\\"\\"UpdateInfo\\"\\"\\"
                     type UpdateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -7841,6 +7873,7 @@ describe("@filterable directive", () => {
                       info: CreateInfo!
                     }
 
+                    \\"\\"\\"CreateInfo\\"\\"\\"
                     type CreateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -7852,6 +7885,7 @@ describe("@filterable directive", () => {
                       movies: [Movie!]!
                     }
 
+                    \\"\\"\\"DeleteInfo\\"\\"\\"
                     type DeleteInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesDeleted: Int!
@@ -8245,6 +8279,7 @@ describe("@filterable directive", () => {
                       moviesConnection(after: String, first: Int, sort: [MovieSort], where: MovieWhere): MoviesConnection!
                     }
 
+                    \\"\\"\\"SortDirection\\"\\"\\"
                     enum SortDirection {
                       \\"\\"\\"Sort by field values in ascending order.\\"\\"\\"
                       ASC
@@ -8280,6 +8315,7 @@ describe("@filterable directive", () => {
                       info: UpdateInfo!
                     }
 
+                    \\"\\"\\"UpdateInfo\\"\\"\\"
                     type UpdateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -8684,6 +8720,7 @@ describe("@filterable directive", () => {
                       info: CreateInfo!
                     }
 
+                    \\"\\"\\"CreateInfo\\"\\"\\"
                     type CreateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -8695,6 +8732,7 @@ describe("@filterable directive", () => {
                       movies: [Movie!]!
                     }
 
+                    \\"\\"\\"DeleteInfo\\"\\"\\"
                     type DeleteInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesDeleted: Int!
@@ -9088,6 +9126,7 @@ describe("@filterable directive", () => {
                       moviesConnection(after: String, first: Int, sort: [MovieSort], where: MovieWhere): MoviesConnection!
                     }
 
+                    \\"\\"\\"SortDirection\\"\\"\\"
                     enum SortDirection {
                       \\"\\"\\"Sort by field values in ascending order.\\"\\"\\"
                       ASC
@@ -9123,6 +9162,7 @@ describe("@filterable directive", () => {
                       info: UpdateInfo!
                     }
 
+                    \\"\\"\\"UpdateInfo\\"\\"\\"
                     type UpdateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -9893,6 +9933,7 @@ describe("@filterable directive", () => {
                       info: CreateInfo!
                     }
 
+                    \\"\\"\\"CreateInfo\\"\\"\\"
                     type CreateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -9904,6 +9945,7 @@ describe("@filterable directive", () => {
                       movies: [Movie!]!
                     }
 
+                    \\"\\"\\"DeleteInfo\\"\\"\\"
                     type DeleteInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesDeleted: Int!
@@ -10293,11 +10335,13 @@ describe("@filterable directive", () => {
                       moviesConnection(after: String, first: Int, sort: [MovieSort], where: MovieWhere): MoviesConnection!
                     }
 
+                    \\"\\"\\"\\"\\"\\"
                     input QueryOptions {
                       limit: Int
                       offset: Int
                     }
 
+                    \\"\\"\\"SortDirection\\"\\"\\"
                     enum SortDirection {
                       \\"\\"\\"Sort by field values in ascending order.\\"\\"\\"
                       ASC
@@ -10343,6 +10387,7 @@ describe("@filterable directive", () => {
                       info: UpdateInfo!
                     }
 
+                    \\"\\"\\"UpdateInfo\\"\\"\\"
                     type UpdateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -11113,6 +11158,7 @@ describe("@filterable directive", () => {
                       info: CreateInfo!
                     }
 
+                    \\"\\"\\"CreateInfo\\"\\"\\"
                     type CreateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -11124,6 +11170,7 @@ describe("@filterable directive", () => {
                       movies: [Movie!]!
                     }
 
+                    \\"\\"\\"DeleteInfo\\"\\"\\"
                     type DeleteInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesDeleted: Int!
@@ -11513,11 +11560,13 @@ describe("@filterable directive", () => {
                       moviesConnection(after: String, first: Int, sort: [MovieSort], where: MovieWhere): MoviesConnection!
                     }
 
+                    \\"\\"\\"\\"\\"\\"
                     input QueryOptions {
                       limit: Int
                       offset: Int
                     }
 
+                    \\"\\"\\"SortDirection\\"\\"\\"
                     enum SortDirection {
                       \\"\\"\\"Sort by field values in ascending order.\\"\\"\\"
                       ASC
@@ -11563,6 +11612,7 @@ describe("@filterable directive", () => {
                       info: UpdateInfo!
                     }
 
+                    \\"\\"\\"UpdateInfo\\"\\"\\"
                     type UpdateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -12333,6 +12383,7 @@ describe("@filterable directive", () => {
                       info: CreateInfo!
                     }
 
+                    \\"\\"\\"CreateInfo\\"\\"\\"
                     type CreateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!
@@ -12344,6 +12395,7 @@ describe("@filterable directive", () => {
                       movies: [Movie!]!
                     }
 
+                    \\"\\"\\"DeleteInfo\\"\\"\\"
                     type DeleteInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesDeleted: Int!
@@ -12733,11 +12785,13 @@ describe("@filterable directive", () => {
                       moviesConnection(after: String, first: Int, sort: [MovieSort], where: MovieWhere): MoviesConnection!
                     }
 
+                    \\"\\"\\"\\"\\"\\"
                     input QueryOptions {
                       limit: Int
                       offset: Int
                     }
 
+                    \\"\\"\\"SortDirection\\"\\"\\"
                     enum SortDirection {
                       \\"\\"\\"Sort by field values in ascending order.\\"\\"\\"
                       ASC
@@ -12783,6 +12837,7 @@ describe("@filterable directive", () => {
                       info: UpdateInfo!
                     }
 
+                    \\"\\"\\"UpdateInfo\\"\\"\\"
                     type UpdateInfo {
                       bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
                       nodesCreated: Int!

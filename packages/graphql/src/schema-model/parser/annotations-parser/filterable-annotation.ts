@@ -22,10 +22,10 @@ import { parseArguments } from "../parse-arguments";
 import { filterableDirective } from "../../../graphql/directives";
 
 export function parseFilterableAnnotation(directive: DirectiveNode): FilterableAnnotation {
-    const { byValue, byAggregate } = parseArguments(filterableDirective, directive) as {
+    const { byValue, byAggregate } = parseArguments<{
         byValue: boolean;
         byAggregate: boolean;
-    };
+    }>(filterableDirective, directive);
 
     return new FilterableAnnotation({
         byAggregate,

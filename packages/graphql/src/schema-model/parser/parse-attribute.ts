@@ -77,7 +77,7 @@ export function parseAttribute(
 function getDatabaseName(fieldDefinitionNode: FieldDefinitionNode): string | undefined {
     const aliasUsage = findDirective(fieldDefinitionNode.directives, aliasDirective.name);
     if (aliasUsage) {
-        const { property } = parseArguments(aliasDirective, aliasUsage) as { property: string };
+        const { property } = parseArguments<{ property: string }>(aliasDirective, aliasUsage);
         return property;
     }
 }

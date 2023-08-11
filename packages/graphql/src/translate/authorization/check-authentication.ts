@@ -40,7 +40,7 @@ export function checkAuthentication({
     const schemaLevelAnnotation = context.schemaModel.annotations.authentication;
     if (schemaLevelAnnotation) {
         const requiresAuthentication = targetOperations.some(
-            (targetOperation) => schemaLevelAnnotation && schemaLevelAnnotation.operations.has(targetOperation)
+            (targetOperation) => schemaLevelAnnotation && schemaLevelAnnotation.operations?.has(targetOperation)
         );
         if (requiresAuthentication) {
             applyAuthentication({ context, annotation: schemaLevelAnnotation });
@@ -61,7 +61,7 @@ export function checkAuthentication({
 
     if (annotation) {
         const requiresAuthentication = targetOperations.some(
-            (targetOperation) => annotation && annotation.operations.has(targetOperation)
+            (targetOperation) => annotation && annotation.operations?.has(targetOperation)
         );
         if (requiresAuthentication) {
             applyAuthentication({ context, annotation });

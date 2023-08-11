@@ -24,13 +24,13 @@ import { parseArguments } from "../parse-arguments";
 import { queryOptionsDirective } from "../../../graphql/directives";
 
 export function parseQueryOptionsAnnotation(directive: DirectiveNode): QueryOptionsAnnotation {
-    const { limit } = parseArguments(queryOptionsDirective, directive) as {
+    const { limit } = parseArguments<{
         limit: {
             default?: number;
             max?: number;
         };
         resolvable: boolean;
-    };
+    }>(queryOptionsDirective, directive);
     if (limit.default && typeof limit.default !== "number") {
         throw new Neo4jGraphQLSchemaValidationError(`@queryOptions limit.default must be a number`);
     }

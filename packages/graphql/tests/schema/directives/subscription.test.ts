@@ -699,6 +699,8 @@ describe("@subscription directive", () => {
             expect(movieRelationshipDeleted).toBeUndefined();
         });
 
+        // TODO: why did we expect Subscription type empty here? Can it not be not present?
+        // We think that empty types are considered invalid in GraphQL
         test("should disable subscription for CREATE, DELETE, UPDATE, CREATE_RELATIONSHIP, DELETE_RELATIONSHIP", async () => {
             const typeDefs = gql`
                 type Actor {
@@ -716,37 +718,8 @@ describe("@subscription directive", () => {
 
             const neoSchema = new Neo4jGraphQL({ typeDefs, features: { subscriptions: subscriptionPlugin } });
             const schema = await neoSchema.getSchema();
-            const subscriptionFields = schema.getSubscriptionType()?.getFields() as GraphQLFieldMap<any, any>;
 
-            const actorCreated = subscriptionFields["actorCreated"];
-            const movieCreated = subscriptionFields["movieCreated"];
-
-            expect(actorCreated).toBeUndefined();
-            expect(movieCreated).toBeUndefined();
-
-            const actorUpdated = subscriptionFields["actorUpdated"];
-            const movieUpdated = subscriptionFields["movieUpdated"];
-
-            expect(actorUpdated).toBeUndefined();
-            expect(movieUpdated).toBeUndefined();
-
-            const actorDeleted = subscriptionFields["actorDeleted"];
-            const movieDeleted = subscriptionFields["movieDeleted"];
-
-            expect(actorDeleted).toBeUndefined();
-            expect(movieDeleted).toBeUndefined();
-
-            const actorRelationshipCreated = subscriptionFields["actorRelationshipCreated"];
-            const movieRelationshipCreated = subscriptionFields["movieRelationshipCreated"];
-
-            expect(actorRelationshipCreated).toBeUndefined();
-            expect(movieRelationshipCreated).toBeUndefined();
-
-            const actorRelationshipDeleted = subscriptionFields["actorRelationshipDeleted"];
-            const movieRelationshipDeleted = subscriptionFields["movieRelationshipDeleted"];
-
-            expect(actorRelationshipDeleted).toBeUndefined();
-            expect(movieRelationshipDeleted).toBeUndefined();
+            expect(schema.getSubscriptionType()).toBeUndefined();
         });
 
         test("should not throw an Error when is mixed with @query", async () => {

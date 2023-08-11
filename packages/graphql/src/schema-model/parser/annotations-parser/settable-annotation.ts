@@ -22,10 +22,10 @@ import { parseArguments } from "../parse-arguments";
 import { settableDirective } from "../../../graphql/directives";
 
 export function parseSettableAnnotation(directive: DirectiveNode): SettableAnnotation {
-    const { onCreate, onUpdate } = parseArguments(settableDirective, directive) as {
+    const { onCreate, onUpdate } = parseArguments<{
         onCreate: boolean;
         onUpdate: boolean;
-    };
+    }>(settableDirective, directive);
 
     return new SettableAnnotation({
         onCreate,

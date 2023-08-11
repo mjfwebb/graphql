@@ -21,11 +21,13 @@ import type { SchemaComposer } from "graphql-compose";
 
 export function getResolveAndSubscriptionMethods(composer: SchemaComposer) {
     const resolveMethods = composer.getResolveMethods();
+    // console.log(2, composer.has("Subscription"));
 
     const subscriptionMethods = Object.entries(composer.Subscription.getFields()).reduce((acc, [key, value]) => {
         acc[key] = { subscribe: value.subscribe, resolve: value.resolve };
         return acc;
     }, {});
+    // console.log(3, composer.has("Subscription"));
     return {
         ...resolveMethods,
         Subscription: subscriptionMethods,

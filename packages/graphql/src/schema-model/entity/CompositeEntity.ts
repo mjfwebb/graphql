@@ -18,18 +18,22 @@
  */
 
 import { Neo4jGraphQLSchemaValidationError } from "../../classes";
+import type { Annotation, Annotations } from "../annotation/Annotation";
+import { annotationToKey } from "../annotation/Annotation";
 import type { Attribute } from "../attribute/Attribute";
 import type { ConcreteEntity } from "./ConcreteEntity";
 import type { Entity } from "./Entity";
 
 export type CompositeEntityType = "INTERFACE" | "UNION";
 
+// TODO: check with Simone
 /** Entity for abstract GraphQL types, Interface and Union */
 export class CompositeEntity implements Entity {
     public readonly name: string;
     public concreteEntities: ConcreteEntity[];
     public type: CompositeEntityType;
     public readonly attributes: Map<string, Attribute> = new Map();
+    public readonly annotations: Partial<Annotations> = {};
     // TODO: add type interface or union, and for interface add fields
     // TODO: add annotations
 
@@ -38,17 +42,22 @@ export class CompositeEntity implements Entity {
         concreteEntities,
         type,
         attributes = [],
+        annotations = [],
     }: {
         name: string;
         concreteEntities: ConcreteEntity[];
         type: CompositeEntityType;
         attributes: Attribute[];
+        annotations?: Annotation[];
     }) {
         this.name = name;
         this.concreteEntities = concreteEntities;
         this.type = type;
         for (const attribute of attributes) {
             this.addAttribute(attribute);
+        }
+        for (const annotation of annotations) {
+            this.addAnnotation(annotation);
         }
     }
 
@@ -57,5 +66,18 @@ export class CompositeEntity implements Entity {
             throw new Neo4jGraphQLSchemaValidationError(`Attribute ${attribute.name} already exists in ${this.name}`);
         }
         this.attributes.set(attribute.name, attribute);
+    }
+
+    private addAnnotation(annotation: Annotation): void {
+        const annotationKey = annotationToKey(annotation);
+        const existingAnnotation = this.annotations[annotationKey];
+
+        if (existingAnnotation) {
+            throw new Neo4jGraphQLSchemaValidationError(`Annotation ${annotationKey} already exists in ${this.name}`);
+        }
+
+        // We cast to any because we aren't narrowing the Annotation type here.
+        // There's no reason to narrow either, since we care more about performance.
+        this.annotations[annotationKey] = annotation as any;
     }
 }

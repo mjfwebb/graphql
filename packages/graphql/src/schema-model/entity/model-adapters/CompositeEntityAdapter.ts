@@ -36,17 +36,14 @@ export class CompositeEntityAdapter {
     private createInputTypeFieldKeys: string[] = [];
     private whereInputTypeFieldKeys: string[] = [];
 
-    private _pointTypeInDefs: boolean;
-    private _cartesianPointTypeInDefs: boolean;
+    private _pointTypeInDefs = false;
+    private _cartesianPointTypeInDefs = false;
 
     constructor({ name, concreteEntities, attributes }: CompositeEntity) {
         this.name = name;
         this.concreteEntities = [];
         this.initConcreteEntities(concreteEntities);
         this.initAttributes(attributes);
-
-        this._pointTypeInDefs = false;
-        this._cartesianPointTypeInDefs = false;
     }
 
     private initAttributes(attributes: Map<string, Attribute>) {

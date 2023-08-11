@@ -23,14 +23,16 @@ import type {
     AuthorizationValidateRuleConstructor,
 } from "../../annotation/AuthorizationAnnotation";
 import {
-    AuthorizationAnnotation,
     AuthorizationAnnotationArguments,
     AuthorizationFilterRule,
     AuthorizationValidateRule,
 } from "../../annotation/AuthorizationAnnotation";
 import { parseArgumentsFromUnknownDirective } from "../parse-arguments";
 
-export function parseAuthorizationAnnotation(directive: DirectiveNode): AuthorizationAnnotation {
+export function parseAuthorizationAnnotation(directive: DirectiveNode): {
+    filter?: AuthorizationFilterRule[];
+    validate?: AuthorizationValidateRule[];
+} {
     const { filter, validate, ...unrecognizedArguments } = parseArgumentsFromUnknownDirective(directive) as {
         filter?: Record<string, any>[];
         validate?: Record<string, any>[];
@@ -46,13 +48,17 @@ export function parseAuthorizationAnnotation(directive: DirectiveNode): Authoriz
         );
     }
 
+    console.log(filter);
+    console.log(validate);
+
     const filterRules = filter?.map((rule) => new AuthorizationFilterRule(rule as AuthorizationFilterRuleConstructor));
     const validateRules = validate?.map(
         (rule) => new AuthorizationValidateRule(rule as AuthorizationValidateRuleConstructor)
     );
 
-    return new AuthorizationAnnotation({
-        filter: filterRules,
-        validate: validateRules,
-    });
+    // return new AuthorizationAnnotation({
+    //     filter: filterRules,
+    //     validate: validateRules,
+    // });
+    return { filter: filterRules, validate: validateRules };
 }

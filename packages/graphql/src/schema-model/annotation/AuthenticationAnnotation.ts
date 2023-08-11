@@ -17,7 +17,9 @@
  * limitations under the License.
  */
 
+import type { DirectiveNode } from "graphql";
 import type { GraphQLWhereArg } from "../../types";
+import { parseAuthenticationAnnotation } from "../parser/annotations-parser/authentication-annotation";
 
 export type AuthenticationOperation =
     | "READ"
@@ -30,11 +32,14 @@ export type AuthenticationOperation =
     | "SUBSCRIBE";
 
 export class AuthenticationAnnotation {
-    public readonly operations: Set<AuthenticationOperation>;
-    public readonly jwt?: GraphQLWhereArg;
+    public operations?: Set<AuthenticationOperation>;
+    public jwt?: GraphQLWhereArg;
 
-    constructor(operations: AuthenticationOperation[], jwt?: GraphQLWhereArg) {
-        this.operations = new Set<AuthenticationOperation>(operations);
-        this.jwt = jwt;
+    constructor(private readonly authenticationDirective: DirectiveNode) {}
+
+    parseAnnotation() {
+        const parsedAnnotation = parseAuthenticationAnnotation(this.authenticationDirective);
+        this.operations = new Set(parsedAnnotation.operations);
+        this.jwt = parsedAnnotation.jwt;
     }
 }

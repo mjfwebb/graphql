@@ -17,10 +17,16 @@
  * limitations under the License.
  */
 
-export class CustomResolverAnnotation {
-    public readonly requires: string;
+import type { DirectiveNode } from "graphql";
+import { parseCustomResolverAnnotation } from "../parser/annotations-parser/custom-resolver-annotation";
 
-    constructor({ requires }: { requires: string }) {
-        this.requires = requires;
+export class CustomResolverAnnotation {
+    public requires?: string;
+
+    constructor(private readonly customResolverAnnotation: DirectiveNode) {}
+
+    parseAnnotation() {
+        const parsedAnnotation = parseCustomResolverAnnotation(this.customResolverAnnotation);
+        this.requires = parsedAnnotation.requires;
     }
 }

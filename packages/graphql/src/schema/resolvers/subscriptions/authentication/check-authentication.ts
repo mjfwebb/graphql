@@ -38,11 +38,11 @@ export function checkAuthentication({
     context: SubscriptionContext;
 }) {
     const schemaLevelAnnotation = context.schemaModel.annotations.authentication;
-    if (schemaLevelAnnotation && schemaLevelAnnotation.operations.has(operation)) {
+    if (schemaLevelAnnotation && schemaLevelAnnotation.operations?.has(operation)) {
         applyAuthentication(schemaLevelAnnotation, context);
     }
     const annotation = authenticated.annotations.authentication;
-    if (annotation && annotation.operations.has(operation)) {
+    if (annotation && annotation.operations?.has(operation)) {
         applyAuthentication(annotation, context);
     }
 }

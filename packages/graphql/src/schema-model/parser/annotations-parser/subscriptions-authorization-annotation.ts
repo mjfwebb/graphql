@@ -22,14 +22,13 @@ import { parseArgumentsFromUnknownDirective } from "../parse-arguments";
 
 import type { SubscriptionsAuthorizationFilterRuleConstructor } from "../../annotation/SubscriptionsAuthorizationAnnotation";
 import {
-    SubscriptionsAuthorizationAnnotation,
     SubscriptionsAuthorizationAnnotationArguments,
     SubscriptionsAuthorizationFilterRule,
 } from "../../annotation/SubscriptionsAuthorizationAnnotation";
 
-export function parseSubscriptionsAuthorizationAnnotation(
-    directive: DirectiveNode
-): SubscriptionsAuthorizationAnnotation {
+export function parseSubscriptionsAuthorizationAnnotation(directive: DirectiveNode): {
+    filter: SubscriptionsAuthorizationFilterRule[];
+} {
     const { filter, ...unrecognizedArguments } = parseArgumentsFromUnknownDirective(directive) as {
         filter?: Record<string, any>[];
     };
@@ -50,7 +49,7 @@ export function parseSubscriptionsAuthorizationAnnotation(
         (rule) => new SubscriptionsAuthorizationFilterRule(rule as SubscriptionsAuthorizationFilterRuleConstructor)
     );
 
-    return new SubscriptionsAuthorizationAnnotation({
+    return {
         filter: filterRules,
-    });
+    };
 }

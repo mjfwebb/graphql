@@ -45,9 +45,9 @@ export class ConcreteEntityAdapter {
     private _singular: string | undefined;
     private _plural: string | undefined;
     private _globalIdField: AttributeAdapter | undefined;
-    private _pointTypeInDefs: boolean;
-    private _cartesianPointTypeInDefs: boolean;
-    private _floatWhereInTypeDefs: boolean;
+    private _pointTypeInDefs = false;
+    private _cartesianPointTypeInDefs = false;
+    private _floatWhereInTypeDefs = false;
 
     // specialize models
     private _operations: ConcreteEntityOperations | undefined;
@@ -58,10 +58,6 @@ export class ConcreteEntityAdapter {
         this.annotations = entity.annotations;
         this.initAttributes(entity.attributes);
         this.initRelationships(entity.relationships);
-
-        this._pointTypeInDefs = false;
-        this._cartesianPointTypeInDefs = false;
-        this._floatWhereInTypeDefs = false;
     }
 
     private initAttributes(attributes: Map<string, Attribute>) {

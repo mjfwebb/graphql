@@ -27,13 +27,13 @@ import {
 import { generateModel } from "./generate-model";
 import type { Neo4jGraphQLSchemaModel } from "./Neo4jGraphQLSchemaModel";
 import { SubscriptionsAuthorizationFilterEventRule } from "./annotation/SubscriptionsAuthorizationAnnotation";
-import { AuthenticationAnnotation } from "./annotation/AuthenticationAnnotation";
 import type { AttributeAdapter } from "./attribute/model-adapters/AttributeAdapter";
 import type { ConcreteEntityAdapter } from "./entity/model-adapters/ConcreteEntityAdapter";
 import type { RelationshipAdapter } from "./relationship/model-adapters/RelationshipAdapter";
 import type { ConcreteEntity } from "./entity/ConcreteEntity";
 
 describe("Schema model generation", () => {
+    // TODO: check with Simone
     test("parses @authentication directive with no arguments", () => {
         const typeDefs = gql`
             extend schema @authentication
@@ -41,9 +41,10 @@ describe("Schema model generation", () => {
 
         const document = mergeTypeDefs(typeDefs);
         const schemaModel = generateModel(document);
+        schemaModel.annotations.authentication?.parseAnnotation();
 
-        expect(schemaModel.annotations.authentication).toEqual(
-            new AuthenticationAnnotation([
+        expect(schemaModel.annotations.authentication?.operations).toEqual(
+            new Set([
                 "READ",
                 "AGGREGATE",
                 "CREATE",
@@ -63,8 +64,9 @@ describe("Schema model generation", () => {
 
         const document = mergeTypeDefs(typeDefs);
         const schemaModel = generateModel(document);
+        schemaModel.annotations.authentication?.parseAnnotation();
 
-        expect(schemaModel.annotations.authentication).toEqual(new AuthenticationAnnotation(["CREATE"]));
+        expect(schemaModel.annotations.authentication?.operations).toEqual(new Set(["CREATE"]));
     });
 });
 
@@ -116,6 +118,7 @@ describe("ConcreteEntity generation", () => {
             const authAnnotation = userEntity?.attributes.get("password")?.annotations[AnnotationsKey.authorization];
 
             expect(authAnnotation).toBeDefined();
+            authAnnotation!.parseAnnotation();
             expect(authAnnotation?.filter).toHaveLength(1);
             expect(authAnnotation?.filter).toEqual([
                 {
@@ -134,6 +137,7 @@ describe("ConcreteEntity generation", () => {
             const userEntity = schemaModel.concreteEntities.find((e) => e.name === "User");
             const authAnnotation = userEntity?.annotations[AnnotationsKey.authorization];
             expect(authAnnotation).toBeDefined();
+            authAnnotation!.parseAnnotation();
             expect(authAnnotation?.filter).toBeUndefined();
             expect(authAnnotation?.validate).toHaveLength(2);
             expect(authAnnotation?.validate).toEqual(
@@ -205,6 +209,7 @@ describe("ConcreteEntity generation", () => {
                 userEntity?.attributes.get("password")?.annotations[AnnotationsKey.subscriptionsAuthorization];
 
             expect(authAnnotation).toBeDefined();
+            authAnnotation!.parseAnnotation();
             expect(authAnnotation?.filter).toHaveLength(1);
             expect(authAnnotation?.filter).toEqual([
                 {
@@ -222,6 +227,7 @@ describe("ConcreteEntity generation", () => {
             const userEntity = schemaModel.concreteEntities.find((e) => e.name === "User");
             const authAnnotation = userEntity?.annotations[AnnotationsKey.subscriptionsAuthorization];
             expect(authAnnotation).toBeDefined();
+            authAnnotation!.parseAnnotation();
             expect(authAnnotation?.filter).toEqual([
                 {
                     events: SubscriptionsAuthorizationFilterEventRule,
@@ -372,7 +378,7 @@ describe("Annotations & Attributes", () => {
                 id: ID!
                 name: String! @selectable(onAggregate: true) @alias(property: "dbName")
                 defaultName: String! @default(value: "John")
-                age: Int! @populatedBy(callback: "thisCallback" operations: [CREATE])
+                age: Int! @populatedBy(callback: "thisCallback", operations: [CREATE])
                 accounts: [Account!]! @relationship(type: "HAS_ACCOUNT", direction: OUT)
             }
 
@@ -444,7 +450,6 @@ describe("Annotations & Attributes", () => {
 
         expect(accountName?.databaseName).toBeDefined();
         expect(accountName?.databaseName).toBe("accountName");
-
     });
 });
 

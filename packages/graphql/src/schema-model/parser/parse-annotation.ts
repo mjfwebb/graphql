@@ -20,7 +20,6 @@
 import type { DirectiveNode } from "graphql";
 import { parseCoalesceAnnotation } from "./annotations-parser/coalesce-annotation";
 import { parseCypherAnnotation } from "./annotations-parser/cypher-annotation";
-import { parseCustomResolverAnnotation } from "./annotations-parser/custom-resolver-annotation";
 import { parseDefaultAnnotation } from "./annotations-parser/default-annotation";
 import { parseIDAnnotation } from "./annotations-parser/id-annotation";
 import { parseFilterableAnnotation } from "./annotations-parser/filterable-annotation";
@@ -38,25 +37,29 @@ import { parseUniqueAnnotation } from "./annotations-parser/unique-annotation";
 import { parseFullTextAnnotation } from "./annotations-parser/full-text-annotation";
 import { parseJWTClaimAnnotation } from "./annotations-parser/jwt-claim-annotation";
 import { parseJWTPayloadAnnotation } from "./annotations-parser/jwt-payload-annotation";
-import { parseAuthorizationAnnotation } from "./annotations-parser/authorization-annotation";
-import { parseAuthenticationAnnotation } from "./annotations-parser/authentication-annotation";
-import { parseSubscriptionsAuthorizationAnnotation } from "./annotations-parser/subscriptions-authorization-annotation";
 import { filterTruthy } from "../../utils/utils";
 import type { Annotation } from "../annotation/Annotation";
 import { AnnotationsKey } from "../annotation/Annotation";
+import { AuthenticationAnnotation } from "../annotation/AuthenticationAnnotation";
+import { AuthorizationAnnotation } from "../annotation/AuthorizationAnnotation";
+import { CustomResolverAnnotation } from "../annotation/CustomResolverAnnotation";
+import { SubscriptionsAuthorizationAnnotation } from "../annotation/SubscriptionsAuthorizationAnnotation";
 
 export function parseAnnotations(directives: readonly DirectiveNode[]): Annotation[] {
     return filterTruthy(
         directives.map((directive) => {
             switch (directive.name.value) {
                 case AnnotationsKey.authentication:
-                    return parseAuthenticationAnnotation(directive);
+                    return new AuthenticationAnnotation(directive);
+                // return parseAuthenticationAnnotation(directive);
                 case AnnotationsKey.authorization:
-                    return parseAuthorizationAnnotation(directive);
+                    return new AuthorizationAnnotation(directive);
+                // return parseAuthorizationAnnotation(directive);
                 case AnnotationsKey.coalesce:
                     return parseCoalesceAnnotation(directive);
                 case AnnotationsKey.customResolver:
-                    return parseCustomResolverAnnotation(directive);
+                    return new CustomResolverAnnotation(directive);
+                // return parseCustomResolverAnnotation(directive);
                 case AnnotationsKey.cypher:
                     return parseCypherAnnotation(directive);
                 case AnnotationsKey.default:
@@ -90,7 +93,8 @@ export function parseAnnotations(directives: readonly DirectiveNode[]): Annotati
                 case AnnotationsKey.subscription:
                     return parseSubscriptionAnnotation(directive);
                 case AnnotationsKey.subscriptionsAuthorization:
-                    return parseSubscriptionsAuthorizationAnnotation(directive);
+                    return new SubscriptionsAuthorizationAnnotation(directive);
+                // return parseSubscriptionsAuthorizationAnnotation(directive);
                 case AnnotationsKey.timestamp:
                     return parseTimestampAnnotation(directive);
                 case AnnotationsKey.unique:

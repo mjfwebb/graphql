@@ -50,6 +50,7 @@ describe("Null", () => {
               mutation: Mutation
             }
 
+            \\"\\"\\"CreateInfo\\"\\"\\"
             type CreateInfo {
               bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
               nodesCreated: Int!
@@ -69,6 +70,7 @@ describe("Null", () => {
               min: DateTime!
             }
 
+            \\"\\"\\"DeleteInfo\\"\\"\\"
             type DeleteInfo {
               bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
               nodesDeleted: Int!
@@ -302,6 +304,7 @@ describe("Null", () => {
               startCursor: String
             }
 
+            \\"\\"\\"Point type\\"\\"\\"
             type Point {
               crs: String!
               height: Float
@@ -310,12 +313,14 @@ describe("Null", () => {
               srid: Int!
             }
 
+            \\"\\"\\"\\"\\"\\"
             input PointDistance {
               \\"\\"\\"The distance in metres to be used when comparing two points\\"\\"\\"
               distance: Float!
               point: PointInput!
             }
 
+            \\"\\"\\"\\"\\"\\"
             input PointInput {
               height: Float
               latitude: Float!
@@ -328,6 +333,7 @@ describe("Null", () => {
               moviesConnection(after: String, first: Int, sort: [MovieSort], where: MovieWhere): MoviesConnection!
             }
 
+            \\"\\"\\"SortDirection\\"\\"\\"
             enum SortDirection {
               \\"\\"\\"Sort by field values in ascending order.\\"\\"\\"
               ASC
@@ -340,6 +346,7 @@ describe("Null", () => {
               shortest: String!
             }
 
+            \\"\\"\\"UpdateInfo\\"\\"\\"
             type UpdateInfo {
               bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
               nodesCreated: Int!

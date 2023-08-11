@@ -17,6 +17,7 @@
  * limitations under the License.
  */
 
+import type { DirectiveNode } from "graphql";
 import type { AuthorizationValidateRuleConstructor } from "./AuthorizationAnnotation";
 import {
     AuthorizationAnnotation,
@@ -25,6 +26,7 @@ import {
     AuthorizationValidateOperationRule,
     AuthorizationValidateRule,
 } from "./AuthorizationAnnotation";
+import { makeDirectiveNode } from "@graphql-tools/utils";
 
 describe("AuthorizationAnnotation", () => {
     it("initialize class correctly", () => {
@@ -34,12 +36,12 @@ describe("AuthorizationAnnotation", () => {
         const validateRule = {
             where: { node: { name: { equals: "Keanu" } } },
         };
-        const authFilterRule = new AuthorizationFilterRule(filterRule);
-        const authPreValidationRule = new AuthorizationValidateRule(validateRule);
-        const authAnnotation = new AuthorizationAnnotation({
-            filter: [authFilterRule],
-            validate: [authPreValidationRule],
+        const directive: DirectiveNode = makeDirectiveNode("authorization", {
+            filter: [filterRule],
+            validate: [validateRule],
         });
+        const authAnnotation = new AuthorizationAnnotation(directive);
+        authAnnotation.parseAnnotation();
         expect(authAnnotation.filter).toHaveLength(1);
         expect(authAnnotation.filter).toEqual([
             {
