@@ -18,6 +18,7 @@
  */
 
 import type { Attribute } from "../../attribute/Attribute";
+import { Neo4jGraphQLSpatialType } from "../../attribute/AttributeType";
 import { AttributeAdapter } from "../../attribute/model-adapters/AttributeAdapter";
 import { getFromMap } from "../../utils/get-from-map";
 import type { CompositeEntity } from "../CompositeEntity";
@@ -56,10 +57,13 @@ export class CompositeEntityAdapter {
             if (attributeAdapter.isPartOfWhereInputType()) {
                 this.whereInputTypeFieldKeys.push(attribute.name);
             }
-            if (attributeAdapter.isPoint()) {
+            if (attributeAdapter.isPoint() || attributeAdapter.isListOf(Neo4jGraphQLSpatialType.Point)) {
                 this._pointTypeInDefs = true;
             }
-            if (attributeAdapter.isCartesianPoint()) {
+            if (
+                attributeAdapter.isCartesianPoint() ||
+                attributeAdapter.isListOf(Neo4jGraphQLSpatialType.CartesianPoint)
+            ) {
                 this._cartesianPointTypeInDefs = true;
             }
         }

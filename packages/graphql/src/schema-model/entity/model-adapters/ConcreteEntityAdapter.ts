@@ -27,6 +27,7 @@ import { RelationshipAdapter } from "../../relationship/model-adapters/Relations
 import type { Annotations } from "../../annotation/Annotation";
 import { ConcreteEntityOperations } from "./ConcreteEntityOperations";
 import type { CompositeEntityAdapter } from "./CompositeEntityAdapter";
+import { Neo4jGraphQLSpatialType } from "../../attribute/AttributeType";
 
 export class ConcreteEntityAdapter {
     public readonly name: string;
@@ -79,13 +80,16 @@ export class ConcreteEntityAdapter {
                 this._globalIdField = attributeAdapter;
             }
 
-            if (attributeAdapter.isPoint()) {
+            if (attributeAdapter.isPoint() || attributeAdapter.isListOf(Neo4jGraphQLSpatialType.Point)) {
                 this._pointTypeInDefs = true;
             }
-            if (attributeAdapter.isCartesianPoint()) {
+            if (
+                attributeAdapter.isCartesianPoint() ||
+                attributeAdapter.isListOf(Neo4jGraphQLSpatialType.CartesianPoint)
+            ) {
                 this._cartesianPointTypeInDefs = true;
             }
-            if (attributeAdapter.annotations.fulltext) {
+            if (this.annotations.fulltext) {
                 this._floatWhereInTypeDefs = true;
             }
         }

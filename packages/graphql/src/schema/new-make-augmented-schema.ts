@@ -584,14 +584,13 @@ function makeAugmentedSchema(
 
     const getNodesResult = getNodes(definitionNodes, { callbacks, userCustomResolvers });
 
-    const { nodes, relationshipPropertyInterfaceNames, interfaceRelationshipNames, floatWhereInTypeDefs } =
-        getNodesResult;
+    const { nodes, relationshipPropertyInterfaceNames, interfaceRelationshipNames } = getNodesResult;
 
     // graphql-compose will break if the Point and CartesianPoint types are created but not used,
     // because it will purge the unused types but leave behind orphaned field resolvers
     //
     // These are flags to check whether the types are used and then create them if they are
-    let { pointInTypeDefs, cartesianPointInTypeDefs } = getNodesResult;
+    // let { pointInTypeDefs, cartesianPointInTypeDefs } = getNodesResult;
 
     const hasGlobalNodes = addGlobalNodeFields(nodes, composer);
 
@@ -637,15 +636,6 @@ function makeAugmentedSchema(
             obj: relationship,
             callbacks,
         });
-
-        // ________
-        if (!pointInTypeDefs) {
-            pointInTypeDefs = relFields.pointFields.some((field) => field.typeMeta.name === "Point");
-        }
-        if (!cartesianPointInTypeDefs) {
-            cartesianPointInTypeDefs = relFields.pointFields.some((field) => field.typeMeta.name === "CartesianPoint");
-        }
-        // ^^^^^^^^
 
         relationshipFields.set(relationship.name.value, relFields);
 
@@ -726,15 +716,6 @@ function makeAugmentedSchema(
             obj: interfaceRelationship,
             callbacks,
         });
-
-        if (!pointInTypeDefs) {
-            pointInTypeDefs = interfaceFields.pointFields.some((field) => field.typeMeta.name === "Point");
-        }
-        if (!cartesianPointInTypeDefs) {
-            cartesianPointInTypeDefs = interfaceFields.pointFields.some(
-                (field) => field.typeMeta.name === "CartesianPoint"
-            );
-        }
 
         const baseFields: BaseField[][] = Object.values(interfaceFields);
         const objectComposeFields = objectFieldsToComposeFields(baseFields.reduce((acc, x) => [...acc, ...x], []));
