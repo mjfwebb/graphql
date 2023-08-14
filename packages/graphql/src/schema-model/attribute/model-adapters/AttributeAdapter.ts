@@ -185,7 +185,7 @@ export class AttributeAdapter {
         return this.type instanceof ScalarType && this.type.name === Neo4jGraphQLTemporalType.Duration;
     }
 
-    isList(): boolean {
+    isList(): this is this & { type: ListType } {
         return this.type instanceof ListType;
     }
 
@@ -283,11 +283,23 @@ export class AttributeAdapter {
      * Schema Generator Stuff
      *
      */
+
+    getTypePrettyName(): string {
+        if (this.isList()) {
+            return `[${this.name}${this.isListElementRequired() ? "!" : ""}]${this.isRequired() ? "!" : ""}`;
+        }
+        return `${this.name}${this.isRequired() ? "!" : ""}`;
+    }
+
+    getTypeName(): string {
+        return this.isList() ? this.type.ofType.name : this.type.name;
+    }
+
     getInputTypenames(): InputTypeNames {
-        let typeName = this.type.getName();
-        let pretty = this.type.getPretty();
+        let typeName = this.getTypeName();
+        let pretty = this.getTypePrettyName();
         if (this.isSpatial()) {
-            if (this.type.getName() === "Point") {
+            if (this.getTypeName() === "Point") {
                 typeName = "PointInput";
                 pretty = pretty.replace("Point", "PointInput");
             } else {
@@ -298,11 +310,11 @@ export class AttributeAdapter {
         return {
             where: { type: typeName, pretty },
             create: {
-                type: this.type.getName(),
+                type: this.getTypeName(),
                 pretty,
             },
             update: {
-                type: this.type.getName(),
+                type: this.getTypeName(),
                 pretty,
             },
         };

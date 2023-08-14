@@ -27,7 +27,6 @@ import { RelationshipAdapter } from "../../relationship/model-adapters/Relations
 import type { Annotations } from "../../annotation/Annotation";
 import { ConcreteEntityOperations } from "./ConcreteEntityOperations";
 import type { CompositeEntityAdapter } from "./CompositeEntityAdapter";
-import { Neo4jGraphQLSpatialType } from "../../attribute/AttributeType";
 
 export class ConcreteEntityAdapter {
     public readonly name: string;
@@ -46,9 +45,6 @@ export class ConcreteEntityAdapter {
     private _singular: string | undefined;
     private _plural: string | undefined;
     private _globalIdField: AttributeAdapter | undefined;
-    private _pointTypeInDefs = false;
-    private _cartesianPointTypeInDefs = false;
-    private _floatWhereInTypeDefs = false;
 
     // specialize models
     private _operations: ConcreteEntityOperations | undefined;
@@ -78,19 +74,6 @@ export class ConcreteEntityAdapter {
 
             if (attributeAdapter.isGlobalIDAttribute()) {
                 this._globalIdField = attributeAdapter;
-            }
-
-            if (attributeAdapter.isPoint() || attributeAdapter.isListOf(Neo4jGraphQLSpatialType.Point)) {
-                this._pointTypeInDefs = true;
-            }
-            if (
-                attributeAdapter.isCartesianPoint() ||
-                attributeAdapter.isListOf(Neo4jGraphQLSpatialType.CartesianPoint)
-            ) {
-                this._cartesianPointTypeInDefs = true;
-            }
-            if (this.annotations.fulltext) {
-                this._floatWhereInTypeDefs = true;
             }
         }
     }
@@ -161,15 +144,5 @@ export class ConcreteEntityAdapter {
 
     public isGlobalNode() {
         return !!this._globalIdField;
-    }
-
-    get pointTypeInTypeDefs() {
-        return this._pointTypeInDefs;
-    }
-    get cartesianPointTypeInTypeDefs() {
-        return this._cartesianPointTypeInDefs;
-    }
-    get floatWhereInTypeDefs() {
-        return this._floatWhereInTypeDefs;
     }
 }

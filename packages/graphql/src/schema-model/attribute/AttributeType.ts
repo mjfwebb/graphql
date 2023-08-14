@@ -55,7 +55,7 @@ export enum ScalarTypeCategory {
 export type Neo4jGraphQLScalarType = Neo4jGraphQLTemporalType | Neo4jGraphQLNumberType | Neo4jGraphQLSpatialType;
 
 // The ScalarType class is not used to represent user defined scalar types, see UserScalarType for that.
-export class ScalarType implements AttributeTypeMeta {
+export class ScalarType {
     public readonly name: GraphQLBuiltInScalarType | Neo4jGraphQLScalarType;
     public readonly isRequired: boolean;
     public readonly category: ScalarTypeCategory;
@@ -86,30 +86,18 @@ export class ScalarType implements AttributeTypeMeta {
                 this.category = ScalarTypeCategory.Neo4jGraphQLNumberType;
         }
     }
-    getPretty(): string {
-        return `${this.name}${this.isRequired && "!"}`;
-    }
-    getName(): string {
-        return this.name;
-    }
 }
 
-export class UserScalarType implements AttributeTypeMeta {
+export class UserScalarType {
     public readonly name: string;
     public readonly isRequired: boolean;
     constructor(name: string, isRequired: boolean) {
         this.name = name;
         this.isRequired = isRequired;
     }
-    getPretty(): string {
-        return `${this.name}${this.isRequired && "!"}`;
-    }
-    getName(): string {
-        return this.name;
-    }
 }
 
-export class ObjectType implements AttributeTypeMeta {
+export class ObjectType {
     public readonly name: string;
     public readonly isRequired: boolean;
     // TODO: add fields
@@ -118,33 +106,23 @@ export class ObjectType implements AttributeTypeMeta {
         this.name = name;
         this.isRequired = isRequired;
     }
-    getPretty(): string {
-        return `${this.name}${this.isRequired && "!"}`;
-    }
-    getName(): string {
-        return this.name;
-    }
 }
 
-export class ListType implements AttributeTypeMeta {
+export class ListType {
     public ofType: Exclude<AttributeType, ListType>;
     public isRequired: boolean;
+    public name: string;
     constructor(ofType: AttributeType, isRequired: boolean) {
         if (ofType instanceof ListType) {
             throw new Neo4jGraphQLSchemaValidationError("two-dimensional lists are not supported");
         }
         this.ofType = ofType;
         this.isRequired = isRequired;
-    }
-    getPretty(): string {
-        return `[${this.ofType.getPretty()}]${this.isRequired && "!"}`;
-    }
-    getName(): string {
-        return this.ofType.name;
+        this.name = `List<${ofType.name}>`;
     }
 }
 
-export class EnumType implements AttributeTypeMeta {
+export class EnumType {
     public name: string;
     public isRequired: boolean;
     // TODO: add enum values
@@ -153,15 +131,9 @@ export class EnumType implements AttributeTypeMeta {
         this.name = name;
         this.isRequired = isRequired;
     }
-    getPretty(): string {
-        return `${this.name}${this.isRequired && "!"}`;
-    }
-    getName(): string {
-        return this.name;
-    }
 }
 
-export class UnionType implements AttributeTypeMeta {
+export class UnionType {
     public name: string;
     public isRequired: boolean;
     // TODO: add implementing types
@@ -170,15 +142,9 @@ export class UnionType implements AttributeTypeMeta {
         this.name = name;
         this.isRequired = isRequired;
     }
-    getPretty(): string {
-        return `${this.name}${this.isRequired && "!"}`;
-    }
-    getName(): string {
-        return this.name;
-    }
 }
 
-export class InterfaceType implements AttributeTypeMeta {
+export class InterfaceType {
     public name: string;
     public isRequired: boolean;
     // TODO: add shared fields
@@ -187,17 +153,6 @@ export class InterfaceType implements AttributeTypeMeta {
         this.name = name;
         this.isRequired = isRequired;
     }
-    getPretty(): string {
-        return `${this.name}${this.isRequired && "!"}`;
-    }
-    getName(): string {
-        return this.name;
-    }
-}
-
-abstract class AttributeTypeMeta {
-    abstract getPretty(): string;
-    abstract getName(): string;
 }
 
 export type AttributeType = ScalarType | UserScalarType | ObjectType | ListType | EnumType | UnionType | InterfaceType;

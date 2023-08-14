@@ -18,7 +18,6 @@
  */
 
 import type { Attribute } from "../../attribute/Attribute";
-import { Neo4jGraphQLSpatialType } from "../../attribute/AttributeType";
 import { AttributeAdapter } from "../../attribute/model-adapters/AttributeAdapter";
 import { getFromMap } from "../../utils/get-from-map";
 import type { CompositeEntity } from "../CompositeEntity";
@@ -37,9 +36,6 @@ export class CompositeEntityAdapter {
     private createInputTypeFieldKeys: string[] = [];
     private whereInputTypeFieldKeys: string[] = [];
 
-    private _pointTypeInDefs = false;
-    private _cartesianPointTypeInDefs = false;
-
     constructor({ name, concreteEntities, attributes }: CompositeEntity) {
         this.name = name;
         this.concreteEntities = [];
@@ -56,15 +52,6 @@ export class CompositeEntityAdapter {
             }
             if (attributeAdapter.isPartOfWhereInputType()) {
                 this.whereInputTypeFieldKeys.push(attribute.name);
-            }
-            if (attributeAdapter.isPoint() || attributeAdapter.isListOf(Neo4jGraphQLSpatialType.Point)) {
-                this._pointTypeInDefs = true;
-            }
-            if (
-                attributeAdapter.isCartesianPoint() ||
-                attributeAdapter.isListOf(Neo4jGraphQLSpatialType.CartesianPoint)
-            ) {
-                this._cartesianPointTypeInDefs = true;
             }
         }
     }
@@ -85,16 +72,5 @@ export class CompositeEntityAdapter {
 
     getWhereInputTypeFields() {
         return this.whereInputTypeFieldKeys.map((key) => getFromMap(this.attributes, key));
-    }
-
-    get pointTypeInTypeDefs() {
-        return this._pointTypeInDefs;
-    }
-    get cartesianPointTypeInTypeDefs() {
-        return this._cartesianPointTypeInDefs;
-    }
-    get floatWhereInTypeDefs() {
-        // not applicable to composite entities
-        return false;
     }
 }
