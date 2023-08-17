@@ -22,7 +22,7 @@ import getFieldTypeMeta from "../schema/get-field-type-meta";
 import { filterTruthy } from "../utils/utils";
 import { Neo4jGraphQLSchemaModel } from "./Neo4jGraphQLSchemaModel";
 import type { Operations } from "./Neo4jGraphQLSchemaModel";
-import type { Annotation, Annotations } from "./annotation/Annotation";
+import type { Annotation } from "./annotation/Annotation";
 import type { Attribute } from "./attribute/Attribute";
 import type { CompositeEntityType } from "./entity/CompositeEntity";
 import { CompositeEntity } from "./entity/CompositeEntity";
@@ -38,36 +38,6 @@ import { parseAttribute, parseField } from "./parser/parse-attribute";
 import { nodeDirective, privateDirective, relationshipDirective } from "../graphql/directives";
 import { parseKeyAnnotation } from "./parser/annotations-parser/key-annotation";
 import { parseAnnotations } from "./parser/parse-annotation";
-
-// TODO: check with Simone
-function triggerParserFunction(annotations: Partial<Annotations>) {
-    if (annotations.authentication) {
-        annotations.authentication.parseAnnotation();
-    }
-    if (annotations.authentication) {
-        annotations.authentication.parseAnnotation();
-    }
-    if (annotations.subscriptionsAuthorization) {
-        annotations.subscriptionsAuthorization.parseAnnotation();
-    }
-    if (annotations.customResolver) {
-        annotations.customResolver.parseAnnotation();
-    }
-}
-export function enhanceSchemaModel(schemaModel: Neo4jGraphQLSchemaModel) {
-    // "Dynamic" annotations need to be correct before parsing - otherwise will return errors at schemaModel construction
-    // When called, this function triggers the annotation parsing logic
-    // This function should be called after the schema validation step has finished
-    triggerParserFunction(schemaModel.annotations);
-    schemaModel.concreteEntities.forEach((entity) => {
-        triggerParserFunction(entity.annotations);
-        entity.attributes.forEach((attribute) => triggerParserFunction(attribute.annotations));
-    });
-    schemaModel.compositeEntities.forEach((entity) => {
-        triggerParserFunction(entity.annotations);
-        entity.attributes.forEach((attribute) => triggerParserFunction(attribute.annotations));
-    });
-}
 
 export function generateModel(document: DocumentNode): Neo4jGraphQLSchemaModel {
     const definitionCollection: DefinitionCollection = getDefinitionCollection(document);

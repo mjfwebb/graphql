@@ -31,9 +31,9 @@ import type { AttributeAdapter } from "./attribute/model-adapters/AttributeAdapt
 import type { ConcreteEntityAdapter } from "./entity/model-adapters/ConcreteEntityAdapter";
 import type { RelationshipAdapter } from "./relationship/model-adapters/RelationshipAdapter";
 import type { ConcreteEntity } from "./entity/ConcreteEntity";
+import { AuthenticationAnnotation } from "./annotation/AuthenticationAnnotation";
 
 describe("Schema model generation", () => {
-    // TODO: check with Simone
     test("parses @authentication directive with no arguments", () => {
         const typeDefs = gql`
             extend schema @authentication
@@ -41,10 +41,9 @@ describe("Schema model generation", () => {
 
         const document = mergeTypeDefs(typeDefs);
         const schemaModel = generateModel(document);
-        schemaModel.annotations.authentication?.parseAnnotation();
 
-        expect(schemaModel.annotations.authentication?.operations).toEqual(
-            new Set([
+        expect(schemaModel.annotations.authentication).toEqual(
+            new AuthenticationAnnotation([
                 "READ",
                 "AGGREGATE",
                 "CREATE",
@@ -64,9 +63,8 @@ describe("Schema model generation", () => {
 
         const document = mergeTypeDefs(typeDefs);
         const schemaModel = generateModel(document);
-        schemaModel.annotations.authentication?.parseAnnotation();
 
-        expect(schemaModel.annotations.authentication?.operations).toEqual(new Set(["CREATE"]));
+        expect(schemaModel.annotations.authentication).toEqual(new AuthenticationAnnotation(["CREATE"]));
     });
 });
 
@@ -118,7 +116,6 @@ describe("ConcreteEntity generation", () => {
             const authAnnotation = userEntity?.attributes.get("password")?.annotations[AnnotationsKey.authorization];
 
             expect(authAnnotation).toBeDefined();
-            authAnnotation!.parseAnnotation();
             expect(authAnnotation?.filter).toHaveLength(1);
             expect(authAnnotation?.filter).toEqual([
                 {
@@ -137,7 +134,6 @@ describe("ConcreteEntity generation", () => {
             const userEntity = schemaModel.concreteEntities.find((e) => e.name === "User");
             const authAnnotation = userEntity?.annotations[AnnotationsKey.authorization];
             expect(authAnnotation).toBeDefined();
-            authAnnotation!.parseAnnotation();
             expect(authAnnotation?.filter).toBeUndefined();
             expect(authAnnotation?.validate).toHaveLength(2);
             expect(authAnnotation?.validate).toEqual(
@@ -209,7 +205,6 @@ describe("ConcreteEntity generation", () => {
                 userEntity?.attributes.get("password")?.annotations[AnnotationsKey.subscriptionsAuthorization];
 
             expect(authAnnotation).toBeDefined();
-            authAnnotation!.parseAnnotation();
             expect(authAnnotation?.filter).toHaveLength(1);
             expect(authAnnotation?.filter).toEqual([
                 {
@@ -227,7 +222,6 @@ describe("ConcreteEntity generation", () => {
             const userEntity = schemaModel.concreteEntities.find((e) => e.name === "User");
             const authAnnotation = userEntity?.annotations[AnnotationsKey.subscriptionsAuthorization];
             expect(authAnnotation).toBeDefined();
-            authAnnotation!.parseAnnotation();
             expect(authAnnotation?.filter).toEqual([
                 {
                     events: SubscriptionsAuthorizationFilterEventRule,

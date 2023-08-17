@@ -19,9 +19,12 @@
 import type { DirectiveNode } from "graphql";
 import { parseArguments } from "../parse-arguments";
 import { customResolverDirective } from "../../../graphql/directives";
+import { CustomResolverAnnotation } from "../../annotation/CustomResolverAnnotation";
 
-export function parseCustomResolverAnnotation(directive: DirectiveNode): { requires: string } {
-    const args = parseArguments<{ requires: string }>(customResolverDirective, directive);
+export function parseCustomResolverAnnotation(directive: DirectiveNode): CustomResolverAnnotation {
+    const { requires } = parseArguments<{ requires: string }>(customResolverDirective, directive);
 
-    return args;
+    return new CustomResolverAnnotation({
+        requires,
+    });
 }

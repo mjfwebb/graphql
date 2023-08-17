@@ -35,7 +35,7 @@ import type { Neo4jDatabaseInfo } from "./Neo4jDatabaseInfo";
 import { getNeo4jDatabaseInfo } from "./Neo4jDatabaseInfo";
 import type { ExecutorConstructorParam, Neo4jGraphQLSessionConfig } from "./Executor";
 import { Executor } from "./Executor";
-import { enhanceSchemaModel, generateModel } from "../schema-model/generate-model";
+import { generateModel } from "../schema-model/generate-model";
 import type { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel";
 import { composeResolvers } from "@graphql-tools/resolvers-composition";
 import type { IExecutableSchemaDefinition } from "@graphql-tools/schema";
@@ -337,9 +337,6 @@ class Neo4jGraphQL {
             if (this.validate) {
                 validateUserDefinition({ userDocument: document, augmentedDocument: typeDefs, jwt: jwt?.type });
             }
-
-            // enhance schemaModel with parsed dynamic annotations (auth ones & customResolver)
-            enhanceSchemaModel(this.schemaModel);
 
             this._nodes = nodes;
             this._relationships = relationships;

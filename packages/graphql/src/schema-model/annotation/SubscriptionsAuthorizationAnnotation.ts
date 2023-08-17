@@ -17,9 +17,7 @@
  * limitations under the License.
  */
 
-import type { DirectiveNode } from "graphql";
 import type { GraphQLWhereArg } from "../../types";
-import { parseSubscriptionsAuthorizationAnnotation } from "../parser/annotations-parser/subscriptions-authorization-annotation";
 
 export const SubscriptionsAuthorizationAnnotationArguments = ["filter"] as const;
 
@@ -45,11 +43,8 @@ export type SubscriptionsAuthorizationWhere = {
 export class SubscriptionsAuthorizationAnnotation {
     public filter?: SubscriptionsAuthorizationFilterRule[];
 
-    constructor(private subscriptionsAuthorizationDirective: DirectiveNode) {}
-
-    parseAnnotation() {
-        const parsedAnnotation = parseSubscriptionsAuthorizationAnnotation(this.subscriptionsAuthorizationDirective);
-        this.filter = parsedAnnotation.filter;
+    constructor({ filter }: { filter?: SubscriptionsAuthorizationFilterRule[] }) {
+        this.filter = filter;
     }
 }
 

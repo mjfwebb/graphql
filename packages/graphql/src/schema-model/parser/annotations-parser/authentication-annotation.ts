@@ -19,6 +19,7 @@
 import type { DirectiveNode } from "graphql";
 import type { GraphQLWhereArg } from "../../../types";
 import type { AuthenticationOperation } from "../../annotation/AuthenticationAnnotation";
+import { AuthenticationAnnotation } from "../../annotation/AuthenticationAnnotation";
 import { parseArgumentsFromUnknownDirective } from "../parse-arguments";
 
 const authenticationDefaultOperations: AuthenticationOperation[] = [
@@ -31,10 +32,8 @@ const authenticationDefaultOperations: AuthenticationOperation[] = [
     "DELETE_RELATIONSHIP",
     "SUBSCRIBE",
 ];
-export function parseAuthenticationAnnotation(directive: DirectiveNode): {
-    operations: AuthenticationOperation[];
-    jwt?: GraphQLWhereArg;
-} {
+
+export function parseAuthenticationAnnotation(directive: DirectiveNode): AuthenticationAnnotation {
     const args = parseArgumentsFromUnknownDirective(directive) as {
         operations?: AuthenticationOperation[];
         jwt?: GraphQLWhereArg;
@@ -46,6 +45,5 @@ export function parseAuthenticationAnnotation(directive: DirectiveNode): {
     if (args.jwt) {
         constructorArgs.push(args.jwt);
     }
-
-    return { operations: constructorArgs[0], jwt: constructorArgs[1] };
+    return new AuthenticationAnnotation(...constructorArgs);
 }
