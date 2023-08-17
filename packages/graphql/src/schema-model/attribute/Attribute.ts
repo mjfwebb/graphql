@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { ValueNode } from "graphql";
+import type { ValueNode } from "graphql";
 import { Neo4jGraphQLSchemaValidationError } from "../../classes/Error";
 import { annotationToKey, type Annotation, type Annotations } from "../annotation/Annotation";
 import { parseValueNode } from "../parser/parse-value-node";

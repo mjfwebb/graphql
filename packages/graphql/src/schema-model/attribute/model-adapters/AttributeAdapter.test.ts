@@ -22,9 +22,10 @@ import {
     GraphQLBuiltInScalarType,
     InterfaceType,
     ListType,
+    Neo4jCartesianPointType,
     Neo4jGraphQLNumberType,
-    Neo4jGraphQLSpatialType,
     Neo4jGraphQLTemporalType,
+    Neo4jPointType,
     ObjectType,
     ScalarType,
     UnionType,
@@ -105,7 +106,7 @@ describe("Attribute", () => {
                 new Attribute({
                     name: "test",
                     annotations: [],
-                    type: new ScalarType(Neo4jGraphQLSpatialType.CartesianPoint, true),
+                    type: new Neo4jCartesianPointType(true),
                     attributeArguments: [],
                 })
             );
@@ -118,7 +119,7 @@ describe("Attribute", () => {
                 new Attribute({
                     name: "test",
                     annotations: [],
-                    type: new ScalarType(Neo4jGraphQLSpatialType.Point, true),
+                    type: new Neo4jPointType(true),
                     attributeArguments: [],
                 })
             );
@@ -281,7 +282,7 @@ describe("Attribute", () => {
         });
 
         describe("List", () => {
-            test("isList", () => {
+            test("isList should return true if attribute is a list", () => {
                 const stringType = new ScalarType(GraphQLBuiltInScalarType.String, true);
 
                 const attribute = new AttributeAdapter(
@@ -296,7 +297,7 @@ describe("Attribute", () => {
                 expect(attribute.isList()).toBe(true);
             });
 
-            test("isListOf, should return false if attribute it's not a list", () => {
+            test("isList should return false if attribute is not a list", () => {
                 const stringType = new ScalarType(GraphQLBuiltInScalarType.String, true);
 
                 const attribute = new AttributeAdapter(
@@ -308,10 +309,10 @@ describe("Attribute", () => {
                     })
                 );
 
-                expect(attribute.isListOf(stringType)).toBe(false);
+                expect(attribute.isList()).toBe(false);
             });
 
-            test("isListOf(Attribute), should return false if it's a list of a different type", () => {
+            test("type assertion, should return true if it's a list of a the same type.", () => {
                 const stringType = new ScalarType(GraphQLBuiltInScalarType.String, true);
 
                 const attribute = new AttributeAdapter(
@@ -322,11 +323,11 @@ describe("Attribute", () => {
                         attributeArguments: [],
                     })
                 );
-                const intType = new ScalarType(GraphQLBuiltInScalarType.Int, true);
-                expect(attribute.isListOf(intType)).toBe(false);
+                expect(attribute.isString({ includeLists: true })).toBe(true);
+                expect(attribute.isString({ includeLists: false })).toBe(false);
             });
 
-            test("isListOf(Attribute), should return true if it's a list of a the same type.", () => {
+            test("type assertion, should return false if it's a list of a different type", () => {
                 const stringType = new ScalarType(GraphQLBuiltInScalarType.String, true);
 
                 const attribute = new AttributeAdapter(
@@ -337,128 +338,210 @@ describe("Attribute", () => {
                         attributeArguments: [],
                     })
                 );
-                const stringType2 = new ScalarType(GraphQLBuiltInScalarType.String, true);
-                expect(attribute.isListOf(stringType2)).toBe(true);
-            });
-
-            test("isListOf(string), should return false if it's a list of a different type", () => {
-                const stringType = new ScalarType(GraphQLBuiltInScalarType.String, true);
-
-                const attribute = new AttributeAdapter(
-                    new Attribute({
-                        name: "test",
-                        annotations: [],
-                        type: new ListType(stringType, true),
-                        attributeArguments: [],
-                    })
-                );
-                expect(attribute.isListOf(GraphQLBuiltInScalarType.Int)).toBe(false);
-            });
-
-            test("isListOf(string), should return true if it's a list of a the same type.", () => {
-                const stringType = new ScalarType(GraphQLBuiltInScalarType.String, true);
-
-                const attribute = new AttributeAdapter(
-                    new Attribute({
-                        name: "test",
-                        annotations: [],
-                        type: new ListType(stringType, true),
-                        attributeArguments: [],
-                    })
-                );
-                expect(attribute.isListOf(GraphQLBuiltInScalarType.String)).toBe(true);
+                expect(attribute.isInt({ includeLists: true })).toBe(false);
+                expect(attribute.isInt({ includeLists: false })).toBe(false);
             });
         });
     });
 
-    describe("category assertions", () => {
-        test("isGraphQLBuiltInScalar", () => {
-            const attribute = new AttributeAdapter(
-                new Attribute({
-                    name: "test",
-                    annotations: [],
-                    type: new ScalarType(GraphQLBuiltInScalarType.String, true),
-                    attributeArguments: [],
-                })
-            );
+    test("isListOf(string), should return false if it's a list of a different type", () => {
+        const stringType = new ScalarType(GraphQLBuiltInScalarType.String, true);
 
-            expect(attribute.isGraphQLBuiltInScalar()).toBe(true);
-        });
-
-        test("isSpatial", () => {
-            const attribute = new AttributeAdapter(
-                new Attribute({
-                    name: "test",
-                    annotations: [],
-                    type: new ScalarType(Neo4jGraphQLSpatialType.CartesianPoint, true),
-                    attributeArguments: [],
-                })
-            );
-
-            expect(attribute.isSpatial()).toBe(true);
-        });
-
-        test("isTemporal", () => {
-            const attribute = new AttributeAdapter(
-                new Attribute({
-                    name: "test",
-                    annotations: [],
-                    type: new ScalarType(Neo4jGraphQLTemporalType.Date, true),
-                    attributeArguments: [],
-                })
-            );
-
-            expect(attribute.isTemporal()).toBe(true);
-        });
-
-        test("isAbstract", () => {
-            const attribute = new AttributeAdapter(
-                new Attribute({
-                    name: "test",
-                    annotations: [],
-                    type: new UnionType("Tool", true),
-                    attributeArguments: [],
-                })
-            );
-
-            expect(attribute.isAbstract()).toBe(true);
-        });
+        const attribute = new AttributeAdapter(
+            new Attribute({
+                name: "test",
+                annotations: [],
+                type: new ListType(stringType, true),
+                attributeArguments: [],
+            })
+        );
+        expect(attribute.isInt({ includeLists: true })).toBe(false);
     });
 
-    test("isRequired", () => {
-        const attributeRequired = new AttributeAdapter(
+    test("isListOf(string), should return true if it's a list of a the same type.", () => {
+        const stringType = new ScalarType(GraphQLBuiltInScalarType.String, true);
+
+        const attribute = new AttributeAdapter(
             new Attribute({
                 name: "test",
                 annotations: [],
-                type: new ScalarType(GraphQLBuiltInScalarType.String, true),
+                type: new ListType(stringType, true),
                 attributeArguments: [],
             })
         );
+        expect(attribute.isString({ includeLists: true })).toBe(true);
+    });
+});
 
-        const attributeNotRequired = new AttributeAdapter(
+test("isSpatial", () => {
+    const attribute = new AttributeAdapter(
+        new Attribute({
+            name: "test",
+            annotations: [],
+            type: new Neo4jCartesianPointType(true),
+            attributeArguments: [],
+        })
+    );
+    const nonSpatial = new AttributeAdapter(
+        new Attribute({
+            name: "test",
+            annotations: [],
+            type: new ScalarType(GraphQLBuiltInScalarType.String, true),
+            attributeArguments: [],
+        })
+    );
+
+    expect(attribute.isSpatial()).toBe(true);
+    expect(nonSpatial.isSpatial()).toBe(false);
+});
+
+test("isTemporal", () => {
+    const attribute = new AttributeAdapter(
+        new Attribute({
+            name: "test",
+            annotations: [],
+            type: new ScalarType(Neo4jGraphQLTemporalType.Date, true),
+            attributeArguments: [],
+        })
+    );
+    const nonTemporal = new AttributeAdapter(
+        new Attribute({
+            name: "test",
+            annotations: [],
+            type: new ScalarType(GraphQLBuiltInScalarType.String, true),
+            attributeArguments: [],
+        })
+    );
+
+    expect(attribute.isTemporal()).toBe(true);
+    expect(nonTemporal.isTemporal()).toBe(false);
+});
+
+test("isAbstract", () => {
+    const attribute = new AttributeAdapter(
+        new Attribute({
+            name: "test",
+            annotations: [],
+            type: new UnionType("Tool", true),
+            attributeArguments: [],
+        })
+    );
+    const nonAbstract = new AttributeAdapter(
+        new Attribute({
+            name: "test",
+            annotations: [],
+            type: new ScalarType(GraphQLBuiltInScalarType.String, true),
+            attributeArguments: [],
+        })
+    );
+
+    expect(attribute.isAbstract()).toBe(true);
+    expect(nonAbstract.isAbstract()).toBe(false);
+});
+
+test("isRequired", () => {
+    const attributeRequired = new AttributeAdapter(
+        new Attribute({
+            name: "test",
+            annotations: [],
+            type: new ScalarType(GraphQLBuiltInScalarType.String, true),
+            attributeArguments: [],
+        })
+    );
+
+    const attributeNotRequired = new AttributeAdapter(
+        new Attribute({
+            name: "test",
+            annotations: [],
+            type: new ScalarType(GraphQLBuiltInScalarType.String, false),
+            attributeArguments: [],
+        })
+    );
+
+    expect(attributeRequired.isRequired()).toBe(true);
+    expect(attributeNotRequired.isRequired()).toBe(false);
+});
+
+test("isRequired - List", () => {
+    const attributeRequired = new AttributeAdapter(
+        new Attribute({
+            name: "test",
+            annotations: [],
+            type: new ListType(new ScalarType(GraphQLBuiltInScalarType.String, true), true),
+            attributeArguments: [],
+        })
+    );
+
+    const attributeNotRequired = new AttributeAdapter(
+        new Attribute({
+            name: "test",
+            annotations: [],
+            type: new ListType(new ScalarType(GraphQLBuiltInScalarType.String, true), false),
+            attributeArguments: [],
+        })
+    );
+
+    expect(attributeRequired.isRequired()).toBe(true);
+    expect(attributeNotRequired.isRequired()).toBe(false);
+});
+
+test("isListElementRequired", () => {
+    const listElementRequired = new AttributeAdapter(
+        new Attribute({
+            name: "test",
+            annotations: [],
+            type: new ListType(new ScalarType(GraphQLBuiltInScalarType.String, true), false),
+            attributeArguments: [],
+        })
+    );
+
+    const listElementNotRequired = new AttributeAdapter(
+        new Attribute({
+            name: "test",
+            annotations: [],
+            type: new ListType(new ScalarType(GraphQLBuiltInScalarType.String, false), true),
+            attributeArguments: [],
+        })
+    );
+
+    expect(listElementRequired.isListElementRequired()).toBe(true);
+    expect(listElementNotRequired.isListElementRequired()).toBe(false);
+});
+
+describe("annotation assertions", () => {
+    test("isUnique", () => {
+        const attribute = new AttributeAdapter(
             new Attribute({
                 name: "test",
-                annotations: [],
-                type: new ScalarType(GraphQLBuiltInScalarType.String, false),
+                annotations: [new UniqueAnnotation({ constraintName: "test" })],
+                type: new ScalarType(GraphQLBuiltInScalarType.ID, true),
                 attributeArguments: [],
             })
         );
-
-        expect(attributeRequired.isRequired()).toBe(true);
-        expect(attributeNotRequired.isRequired()).toBe(false);
+        expect(attribute.isUnique()).toBe(true);
     });
 
-    test("isRequired - List", () => {
-        const attributeRequired = new AttributeAdapter(
+    test("isCypher", () => {
+        const attribute = new AttributeAdapter(
             new Attribute({
                 name: "test",
-                annotations: [],
-                type: new ListType(new ScalarType(GraphQLBuiltInScalarType.String, true), true),
+                annotations: [
+                    new CypherAnnotation({
+                        statement: "MATCH (this)-[:FRIENDS_WITH]->(closestUser:User) RETURN closestUser",
+                        columnName: "closestUser",
+                    }),
+                ],
+                type: new ScalarType(GraphQLBuiltInScalarType.ID, true),
                 attributeArguments: [],
             })
         );
+        expect(attribute.isCypher()).toBe(true);
+    });
+});
 
-        const attributeNotRequired = new AttributeAdapter(
+describe("specialized models", () => {
+    test("List Model", () => {
+        const listElementAttribute = new AttributeAdapter(
             new Attribute({
                 name: "test",
                 annotations: [],
@@ -467,168 +550,96 @@ describe("Attribute", () => {
             })
         );
 
-        expect(attributeRequired.isRequired()).toBe(true);
-        expect(attributeNotRequired.isRequired()).toBe(false);
+        expect(listElementAttribute).toBeInstanceOf(AttributeAdapter);
+        expect(listElementAttribute.listModel).toBeDefined();
+        expect(listElementAttribute.listModel.getIncludes()).toMatchInlineSnapshot(`"test_INCLUDES"`);
+        expect(listElementAttribute.listModel.getNotIncludes()).toMatchInlineSnapshot(`"test_NOT_INCLUDES"`);
+        expect(listElementAttribute.listModel.getPop()).toMatchInlineSnapshot(`"test_POP"`);
+        expect(listElementAttribute.listModel.getPush()).toMatchInlineSnapshot(`"test_PUSH"`);
     });
 
-    test("isListElementRequired", () => {
-        const listElementRequired = new AttributeAdapter(
+    test("Aggregation Model", () => {
+        const attribute = new AttributeAdapter(
             new Attribute({
                 name: "test",
                 annotations: [],
-                type: new ListType(new ScalarType(GraphQLBuiltInScalarType.String, true), false),
+                type: new ScalarType(GraphQLBuiltInScalarType.Int, true),
                 attributeArguments: [],
             })
         );
+        // TODO: test it with String as well.
 
-        const listElementNotRequired = new AttributeAdapter(
+        expect(attribute).toBeInstanceOf(AttributeAdapter);
+        expect(attribute.aggregationModel).toBeDefined();
+        expect(attribute.aggregationModel.getAggregationComparators()).toEqual(
+            expect.arrayContaining([
+                "test_AVERAGE_EQUAL",
+                "test_MIN_EQUAL",
+                "test_MAX_EQUAL",
+                "test_SUM_EQUAL",
+                "test_AVERAGE_GT",
+                "test_MIN_GT",
+                "test_MAX_GT",
+                "test_SUM_GT",
+                "test_AVERAGE_GTE",
+                "test_MIN_GTE",
+                "test_MAX_GTE",
+                "test_SUM_GTE",
+                "test_AVERAGE_LT",
+                "test_MIN_LT",
+                "test_MAX_LT",
+                "test_SUM_LT",
+                "test_AVERAGE_LTE",
+                "test_MIN_LTE",
+                "test_MAX_LTE",
+                "test_SUM_LTE",
+            ])
+        );
+        // Average
+        expect(attribute.aggregationModel.getAverageComparator("EQUAL")).toMatchInlineSnapshot(`"test_AVERAGE_EQUAL"`);
+        expect(attribute.aggregationModel.getAverageComparator("GT")).toMatchInlineSnapshot(`"test_AVERAGE_GT"`);
+        expect(attribute.aggregationModel.getAverageComparator("GTE")).toMatchInlineSnapshot(`"test_AVERAGE_GTE"`);
+        expect(attribute.aggregationModel.getAverageComparator("LT")).toMatchInlineSnapshot(`"test_AVERAGE_LT"`);
+        expect(attribute.aggregationModel.getAverageComparator("LTE")).toMatchInlineSnapshot(`"test_AVERAGE_LTE"`);
+        // Max
+        expect(attribute.aggregationModel.getMaxComparator("EQUAL")).toMatchInlineSnapshot(`"test_MAX_EQUAL"`);
+        expect(attribute.aggregationModel.getMaxComparator("GT")).toMatchInlineSnapshot(`"test_MAX_GT"`);
+        expect(attribute.aggregationModel.getMaxComparator("GTE")).toMatchInlineSnapshot(`"test_MAX_GTE"`);
+        expect(attribute.aggregationModel.getMaxComparator("LT")).toMatchInlineSnapshot(`"test_MAX_LT"`);
+        expect(attribute.aggregationModel.getMaxComparator("LTE")).toMatchInlineSnapshot(`"test_MAX_LTE"`);
+        // Min
+        expect(attribute.aggregationModel.getMinComparator("EQUAL")).toMatchInlineSnapshot(`"test_MIN_EQUAL"`);
+        expect(attribute.aggregationModel.getMinComparator("GT")).toMatchInlineSnapshot(`"test_MIN_GT"`);
+        expect(attribute.aggregationModel.getMinComparator("GTE")).toMatchInlineSnapshot(`"test_MIN_GTE"`);
+        expect(attribute.aggregationModel.getMinComparator("LT")).toMatchInlineSnapshot(`"test_MIN_LT"`);
+        expect(attribute.aggregationModel.getMinComparator("LTE")).toMatchInlineSnapshot(`"test_MIN_LTE"`);
+        // Sum
+        expect(attribute.aggregationModel.getSumComparator("EQUAL")).toMatchInlineSnapshot(`"test_SUM_EQUAL"`);
+        expect(attribute.aggregationModel.getSumComparator("GT")).toMatchInlineSnapshot(`"test_SUM_GT"`);
+        expect(attribute.aggregationModel.getSumComparator("GTE")).toMatchInlineSnapshot(`"test_SUM_GTE"`);
+        expect(attribute.aggregationModel.getSumComparator("LT")).toMatchInlineSnapshot(`"test_SUM_LT"`);
+        expect(attribute.aggregationModel.getSumComparator("LTE")).toMatchInlineSnapshot(`"test_SUM_LTE"`);
+    });
+
+    test("Math Model", () => {
+        const attribute = new AttributeAdapter(
             new Attribute({
                 name: "test",
                 annotations: [],
-                type: new ListType(new ScalarType(GraphQLBuiltInScalarType.String, false), true),
+                type: new ScalarType(GraphQLBuiltInScalarType.Int, true),
                 attributeArguments: [],
             })
         );
+        // TODO: test it with float as well.
+        expect(attribute).toBeInstanceOf(AttributeAdapter);
+        expect(attribute.mathModel).toBeDefined();
+        expect(attribute.mathModel.getMathOperations()).toEqual(
+            expect.arrayContaining(["test_INCREMENT", "test_DECREMENT", "test_MULTIPLY", "test_DIVIDE"])
+        );
 
-        expect(listElementRequired.isListElementRequired()).toBe(true);
-        expect(listElementNotRequired.isListElementRequired()).toBe(false);
-    });
-
-    describe("annotation assertions", () => {
-        test("isUnique", () => {
-            const attribute = new AttributeAdapter(
-                new Attribute({
-                    name: "test",
-                    annotations: [new UniqueAnnotation({ constraintName: "test" })],
-                    type: new ScalarType(GraphQLBuiltInScalarType.ID, true),
-                    attributeArguments: [],
-                })
-            );
-            expect(attribute.isUnique()).toBe(true);
-        });
-
-        test("isCypher", () => {
-            const attribute = new AttributeAdapter(
-                new Attribute({
-                    name: "test",
-                    annotations: [
-                        new CypherAnnotation({
-                            statement: "MATCH (this)-[:FRIENDS_WITH]->(closestUser:User) RETURN closestUser",
-                            columnName: "closestUser",
-                        }),
-                    ],
-                    type: new ScalarType(GraphQLBuiltInScalarType.ID, true),
-                    attributeArguments: [],
-                })
-            );
-            expect(attribute.isCypher()).toBe(true);
-        });
-    });
-
-    describe("specialized models", () => {
-        test("List Model", () => {
-            const listElementAttribute = new AttributeAdapter(
-                new Attribute({
-                    name: "test",
-                    annotations: [],
-                    type: new ListType(new ScalarType(GraphQLBuiltInScalarType.String, true), false),
-                    attributeArguments: [],
-                })
-            );
-
-            expect(listElementAttribute).toBeInstanceOf(AttributeAdapter);
-            expect(listElementAttribute.listModel).toBeDefined();
-            expect(listElementAttribute.listModel.getIncludes()).toMatchInlineSnapshot(`"test_INCLUDES"`);
-            expect(listElementAttribute.listModel.getNotIncludes()).toMatchInlineSnapshot(`"test_NOT_INCLUDES"`);
-            expect(listElementAttribute.listModel.getPop()).toMatchInlineSnapshot(`"test_POP"`);
-            expect(listElementAttribute.listModel.getPush()).toMatchInlineSnapshot(`"test_PUSH"`);
-        });
-
-        test("Aggregation Model", () => {
-            const attribute = new AttributeAdapter(
-                new Attribute({
-                    name: "test",
-                    annotations: [],
-                    type: new ScalarType(GraphQLBuiltInScalarType.Int, true),
-                    attributeArguments: [],
-                })
-            );
-            // TODO: test it with String as well.
-
-            expect(attribute).toBeInstanceOf(AttributeAdapter);
-            expect(attribute.aggregationModel).toBeDefined();
-            expect(attribute.aggregationModel.getAggregationComparators()).toEqual(
-                expect.arrayContaining([
-                    "test_AVERAGE_EQUAL",
-                    "test_MIN_EQUAL",
-                    "test_MAX_EQUAL",
-                    "test_SUM_EQUAL",
-                    "test_AVERAGE_GT",
-                    "test_MIN_GT",
-                    "test_MAX_GT",
-                    "test_SUM_GT",
-                    "test_AVERAGE_GTE",
-                    "test_MIN_GTE",
-                    "test_MAX_GTE",
-                    "test_SUM_GTE",
-                    "test_AVERAGE_LT",
-                    "test_MIN_LT",
-                    "test_MAX_LT",
-                    "test_SUM_LT",
-                    "test_AVERAGE_LTE",
-                    "test_MIN_LTE",
-                    "test_MAX_LTE",
-                    "test_SUM_LTE",
-                ])
-            );
-            // Average
-            expect(attribute.aggregationModel.getAverageComparator("EQUAL")).toMatchInlineSnapshot(
-                `"test_AVERAGE_EQUAL"`
-            );
-            expect(attribute.aggregationModel.getAverageComparator("GT")).toMatchInlineSnapshot(`"test_AVERAGE_GT"`);
-            expect(attribute.aggregationModel.getAverageComparator("GTE")).toMatchInlineSnapshot(`"test_AVERAGE_GTE"`);
-            expect(attribute.aggregationModel.getAverageComparator("LT")).toMatchInlineSnapshot(`"test_AVERAGE_LT"`);
-            expect(attribute.aggregationModel.getAverageComparator("LTE")).toMatchInlineSnapshot(`"test_AVERAGE_LTE"`);
-            // Max
-            expect(attribute.aggregationModel.getMaxComparator("EQUAL")).toMatchInlineSnapshot(`"test_MAX_EQUAL"`);
-            expect(attribute.aggregationModel.getMaxComparator("GT")).toMatchInlineSnapshot(`"test_MAX_GT"`);
-            expect(attribute.aggregationModel.getMaxComparator("GTE")).toMatchInlineSnapshot(`"test_MAX_GTE"`);
-            expect(attribute.aggregationModel.getMaxComparator("LT")).toMatchInlineSnapshot(`"test_MAX_LT"`);
-            expect(attribute.aggregationModel.getMaxComparator("LTE")).toMatchInlineSnapshot(`"test_MAX_LTE"`);
-            // Min
-            expect(attribute.aggregationModel.getMinComparator("EQUAL")).toMatchInlineSnapshot(`"test_MIN_EQUAL"`);
-            expect(attribute.aggregationModel.getMinComparator("GT")).toMatchInlineSnapshot(`"test_MIN_GT"`);
-            expect(attribute.aggregationModel.getMinComparator("GTE")).toMatchInlineSnapshot(`"test_MIN_GTE"`);
-            expect(attribute.aggregationModel.getMinComparator("LT")).toMatchInlineSnapshot(`"test_MIN_LT"`);
-            expect(attribute.aggregationModel.getMinComparator("LTE")).toMatchInlineSnapshot(`"test_MIN_LTE"`);
-            // Sum
-            expect(attribute.aggregationModel.getSumComparator("EQUAL")).toMatchInlineSnapshot(`"test_SUM_EQUAL"`);
-            expect(attribute.aggregationModel.getSumComparator("GT")).toMatchInlineSnapshot(`"test_SUM_GT"`);
-            expect(attribute.aggregationModel.getSumComparator("GTE")).toMatchInlineSnapshot(`"test_SUM_GTE"`);
-            expect(attribute.aggregationModel.getSumComparator("LT")).toMatchInlineSnapshot(`"test_SUM_LT"`);
-            expect(attribute.aggregationModel.getSumComparator("LTE")).toMatchInlineSnapshot(`"test_SUM_LTE"`);
-        });
-
-        test("Math Model", () => {
-            const attribute = new AttributeAdapter(
-                new Attribute({
-                    name: "test",
-                    annotations: [],
-                    type: new ScalarType(GraphQLBuiltInScalarType.Int, true),
-                    attributeArguments: [],
-                })
-            );
-            // TODO: test it with float as well.
-            expect(attribute).toBeInstanceOf(AttributeAdapter);
-            expect(attribute.mathModel).toBeDefined();
-            expect(attribute.mathModel.getMathOperations()).toEqual(
-                expect.arrayContaining(["test_INCREMENT", "test_DECREMENT", "test_MULTIPLY", "test_DIVIDE"])
-            );
-
-            expect(attribute.mathModel.getAdd()).toMatchInlineSnapshot(`"test_INCREMENT"`);
-            expect(attribute.mathModel.getSubtract()).toMatchInlineSnapshot(`"test_DECREMENT"`);
-            expect(attribute.mathModel.getMultiply()).toMatchInlineSnapshot(`"test_MULTIPLY"`);
-            expect(attribute.mathModel.getDivide()).toMatchInlineSnapshot(`"test_DIVIDE"`);
-        });
+        expect(attribute.mathModel.getAdd()).toMatchInlineSnapshot(`"test_INCREMENT"`);
+        expect(attribute.mathModel.getSubtract()).toMatchInlineSnapshot(`"test_DECREMENT"`);
+        expect(attribute.mathModel.getMultiply()).toMatchInlineSnapshot(`"test_MULTIPLY"`);
+        expect(attribute.mathModel.getDivide()).toMatchInlineSnapshot(`"test_DIVIDE"`);
     });
 });
