@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { IResolvers, selectObjectFields } from "@graphql-tools/utils";
+import type { IResolvers } from "@graphql-tools/utils";
 import type {
     DefinitionNode,
     DocumentNode,
@@ -32,16 +32,8 @@ import type {
     SchemaExtensionNode,
 } from "graphql";
 import { GraphQLID, GraphQLNonNull, Kind, parse, print } from "graphql";
-import {
-    Directive,
-    DirectiveArgs,
-    InputTypeComposer,
-    InputTypeComposerFieldConfigMapDefinition,
-    InterfaceTypeComposer,
-    ObjectTypeComposer,
-    TypeStorage,
-} from "graphql-compose";
 import { SchemaComposer } from "graphql-compose";
+import type { InputTypeComposer, InputTypeComposerFieldConfigMapDefinition, ObjectTypeComposer } from "graphql-compose";
 import pluralize from "pluralize";
 import { cypherResolver } from "./resolvers/field/cypher";
 import { numericalResolver } from "./resolvers/field/numerical";
@@ -106,11 +98,6 @@ import { CompositeEntityAdapter } from "../schema-model/entity/model-adapters/Co
 import { ConcreteEntity } from "../schema-model/entity/ConcreteEntity";
 import { ConcreteEntityAdapter } from "../schema-model/entity/model-adapters/ConcreteEntityAdapter";
 import type { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel";
-import { AttributeAdapter } from "../schema-model/attribute/model-adapters/AttributeAdapter";
-import { Annotation } from "../schema-model/annotation/Annotation";
-import { parseValueNode } from "../schema-model/parser/parse-value-node";
-import { InputValue } from "../schema-model/attribute/Attribute";
-import { Neo4jGraphQLSpatialType } from "../schema-model/attribute/AttributeType";
 
 function definitionNodeHasName(x: DefinitionNode): x is DefinitionNode & { name: NameNode } {
     return "name" in x;
@@ -155,10 +142,10 @@ class AugmentedSchemaGenerator {
 
             // TODO: check if these can be created ad-hoc
             for (const attribute of model.attributes.values()) {
-                if (attribute.isPoint() || attribute.isListOf(Neo4jGraphQLSpatialType.Point)) {
+                if (attribute.isPoint()) {
                     pointInTypeDefs = true;
                 }
-                if (attribute.isCartesianPoint() || attribute.isListOf(Neo4jGraphQLSpatialType.CartesianPoint)) {
+                if (attribute.isCartesianPoint()) {
                     cartesianPointInTypeDefs = true;
                 }
             }
@@ -173,7 +160,6 @@ class AugmentedSchemaGenerator {
         this.add(this.getTemporalTypes(floatWhereInTypeDefs));
 
         // this.add(this.getEntityTypes());
-
         // const relationshipPropertiesTypes = this.getRelationshipProperties(
         //     this._definitionCollection.relationshipProperties
         // );
@@ -231,23 +217,6 @@ class AugmentedSchemaGenerator {
         };
     }
 
-    // private getEntityTypes() {
-    //     // TODO: consider Factory
-    //     this.schemaModel.concreteEntities.forEach((concreteEntity) => {
-    //         new ToComposer(concreteEntity)
-    //             .withObjectType()
-    //             .withSortInputType()
-    //             .withWhereInputType({ enabledFeatures })
-    //             .withUpdateInputType({ addMathOperators: true, addArrayMethods: true })
-    //             .withCreateInputType()
-    //             .build(this._composer);
-    //     });
-    // }
-
-    // abstract ComposerBuilder
-    // ConcreteEntityBuilder extends ComposerBuilder
-    // CompositeEntityBuilder extends ComposerBuilder
-
     /*
     private addGlobalNodeFields(concreteEntities: ConcreteEntity[], nodes: Node[]) {
         const globalEntities = concreteEntities.filter((entity) => {
@@ -280,23 +249,21 @@ class AugmentedSchemaGenerator {
             .withUpdateInputType({ addMathOperators: true, addArrayMethods: true })
             .withCreateInputType()
             .build(this._composer);
-
-        // Option 1
-        // new ToComposer(relationshipPropertiesInterface)
-        // .withInterfaceType()
-        // .withSortInputType()
-        // .withWhereInputType({ enabledFeatures })
-        // .withUpdateInputType({ addMathOperators: true, addArrayMethods: true })
-        // .withCreateInputType()
-        // .build(this._composer)
-
-        // Option 2
-        // i = makeInterfaceType()
-        // makeSortInputType(i)
-        // makeWhereInputType({ enabledFeatures })
-        // makeUpdateInputType.withMathOperators().withArrayMethods()
-        // makeCreateInputType()
     }
+
+        private getEntityTypes() {
+        // TODO: consider Factory
+        this.schemaModel.concreteEntities.forEach((concreteEntity) => {
+            new ToComposer(concreteEntity)
+                .withObjectType()
+                .withSortInputType()
+                .withWhereInputType({ enabledFeatures })
+                .withUpdateInputType({ addMathOperators: true, addArrayMethods: true })
+                .withCreateInputType()
+                .build(this._composer);
+        });
+    }
+
 */
     private add({
         objects = [],
@@ -320,6 +287,10 @@ class AugmentedSchemaGenerator {
 }
 
 /*
+    abstract ComposerBuilder
+    ConcreteEntityBuilder extends ComposerBuilder
+    CompositeEntityBuilder extends ComposerBuilder
+
 class ToComposer {
     _entity: ConcreteEntity | CompositeEntity;
     _entityModel: ConcreteEntityAdapter | CompositeEntityAdapter;
