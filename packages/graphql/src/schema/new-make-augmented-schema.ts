@@ -152,6 +152,18 @@ class AugmentedSchemaGenerator {
             if ("annotations" in model && model.annotations.fulltext) {
                 floatWhereInTypeDefs = true;
             }
+            if (model instanceof ConcreteEntityAdapter) {
+                for (const rel of model.relationships.values()) {
+                    for (const attribute of rel.attributes.values()) {
+                        if (attribute.isPoint()) {
+                            pointInTypeDefs = true;
+                        }
+                        if (attribute.isCartesianPoint()) {
+                            cartesianPointInTypeDefs = true;
+                        }
+                    }
+                }
+            }
         }
 
         // this.pipeDefs();
