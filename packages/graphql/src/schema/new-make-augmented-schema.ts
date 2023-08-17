@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import type { IResolvers } from "@graphql-tools/utils";
+import { IResolvers, selectObjectFields } from "@graphql-tools/utils";
 import type {
     DefinitionNode,
     DocumentNode,
@@ -32,7 +32,15 @@ import type {
     SchemaExtensionNode,
 } from "graphql";
 import { GraphQLID, GraphQLNonNull, Kind, parse, print } from "graphql";
-import type { InputTypeComposer, InputTypeComposerFieldConfigMapDefinition, ObjectTypeComposer } from "graphql-compose";
+import {
+    Directive,
+    DirectiveArgs,
+    InputTypeComposer,
+    InputTypeComposerFieldConfigMapDefinition,
+    InterfaceTypeComposer,
+    ObjectTypeComposer,
+    TypeStorage,
+} from "graphql-compose";
 import { SchemaComposer } from "graphql-compose";
 import pluralize from "pluralize";
 import { cypherResolver } from "./resolvers/field/cypher";
@@ -98,6 +106,11 @@ import { CompositeEntityAdapter } from "../schema-model/entity/model-adapters/Co
 import { ConcreteEntity } from "../schema-model/entity/ConcreteEntity";
 import { ConcreteEntityAdapter } from "../schema-model/entity/model-adapters/ConcreteEntityAdapter";
 import type { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel";
+import { AttributeAdapter } from "../schema-model/attribute/model-adapters/AttributeAdapter";
+import { Annotation } from "../schema-model/annotation/Annotation";
+import { parseValueNode } from "../schema-model/parser/parse-value-node";
+import { InputValue } from "../schema-model/attribute/Attribute";
+import { Neo4jGraphQLSpatialType } from "../schema-model/attribute/AttributeType";
 
 function definitionNodeHasName(x: DefinitionNode): x is DefinitionNode & { name: NameNode } {
     return "name" in x;
@@ -129,24 +142,27 @@ class AugmentedSchemaGenerator {
     }
 
     generate() {
-        // TODO: move these to a schemaModelAdapter?
         let pointInTypeDefs,
             cartesianPointInTypeDefs,
             floatWhereInTypeDefs = false;
+
         for (const entity of this.schemaModel.entities.values()) {
             // TODO: add an EntityModel to schema model to avoid these checks everywhere?
             const model =
                 entity instanceof ConcreteEntity
                     ? new ConcreteEntityAdapter(entity)
                     : new CompositeEntityAdapter(entity as CompositeEntity);
-            if (model.pointTypeInTypeDefs) {
-                console.log(1);
-                pointInTypeDefs = true;
+
+            // TODO: check if these can be created ad-hoc
+            for (const attribute of model.attributes.values()) {
+                if (attribute.isPoint() || attribute.isListOf(Neo4jGraphQLSpatialType.Point)) {
+                    pointInTypeDefs = true;
+                }
+                if (attribute.isCartesianPoint() || attribute.isListOf(Neo4jGraphQLSpatialType.CartesianPoint)) {
+                    cartesianPointInTypeDefs = true;
+                }
             }
-            if (model.cartesianPointTypeInTypeDefs) {
-                cartesianPointInTypeDefs = true;
-            }
-            if (model.floatWhereInTypeDefs) {
+            if ("annotations" in model && model.annotations.fulltext) {
                 floatWhereInTypeDefs = true;
             }
         }
@@ -155,6 +171,8 @@ class AugmentedSchemaGenerator {
         this.add(this.getStaticTypes());
         this.add(this.getSpatialTypes(pointInTypeDefs, cartesianPointInTypeDefs));
         this.add(this.getTemporalTypes(floatWhereInTypeDefs));
+
+        // this.add(this.getEntityTypes());
 
         // const relationshipPropertiesTypes = this.getRelationshipProperties(
         //     this._definitionCollection.relationshipProperties
@@ -212,6 +230,23 @@ class AugmentedSchemaGenerator {
             inputs,
         };
     }
+
+    // private getEntityTypes() {
+    //     // TODO: consider Factory
+    //     this.schemaModel.concreteEntities.forEach((concreteEntity) => {
+    //         new ToComposer(concreteEntity)
+    //             .withObjectType()
+    //             .withSortInputType()
+    //             .withWhereInputType({ enabledFeatures })
+    //             .withUpdateInputType({ addMathOperators: true, addArrayMethods: true })
+    //             .withCreateInputType()
+    //             .build(this._composer);
+    //     });
+    // }
+
+    // abstract ComposerBuilder
+    // ConcreteEntityBuilder extends ComposerBuilder
+    // CompositeEntityBuilder extends ComposerBuilder
 
     /*
     private addGlobalNodeFields(concreteEntities: ConcreteEntity[], nodes: Node[]) {
@@ -305,7 +340,24 @@ class ToComposer {
             this._entity.name,
             InterfaceTypeComposer.createTemp({
                 name: this._entity.name,
-                fields: this._attributesToComposeFields(Array.from(this._entityModel.attributes.values())),
+                fields: ToComposer._attributesToComposeFields(Array.from(this._entityModel.attributes.values())),
+            })
+        );
+        return this;
+    }
+
+    public withObjectType() {
+        this._ts.set(
+            this._entity.name,
+            ObjectTypeComposer.createTemp({
+                name: this._entity.name,
+                fields: ToComposer._attributesToComposeFields(Array.from(this._entityModel.attributes.values())),
+                // TODO: add description field
+                // description: this._entity.description,
+                // TODO: discuss with Simone - create an AnnotationAdapter or logic straight in AttributeAdapter
+                // directives: graphqlDirectivesToCompose([...node.otherDirectives, ...node.propagatedDirectives]),
+                // TODO: discuss with Simone - add interfaces to ConcreteEntity
+                // interfaces: this._entity.interfaces.map((x) => x.name.value)
             })
         );
         return this;
@@ -332,7 +384,7 @@ class ToComposer {
             whereTypeName,
             InputTypeComposer.createTemp({
                 name: whereTypeName,
-                fields: this._attributesToComposeFields(this._entityModel.getCreateInputTypeFields()),
+                fields: ToComposer._attributesToComposeFields(this._entityModel.getCreateInputTypeFields()),
                 // TODO: refactor getWhereFields
                 // getWhereFields({ typeName: relationship.name.value, fields: adapter.getWhereInputTypeFields(), enabledFeatures: features.filters })
             })
@@ -344,7 +396,7 @@ class ToComposer {
         const updateTypeName = `${this._entity.name}UpdateInput`;
         const updateInput = InputTypeComposer.createTemp({
             name: updateTypeName,
-            fields: this._attributesToComposeFields(this._entityModel.getUpdateInputTypeFields()),
+            fields: ToComposer._attributesToComposeFields(this._entityModel.getUpdateInputTypeFields()),
         });
         addMathOperators && addMathOperatorsToITC(updateInput);
         addArrayMethods && addArrayMethodsToITC(updateInput, relFields.primitiveFields);
@@ -365,7 +417,7 @@ class ToComposer {
             createTypeName,
             InputTypeComposer.createTemp({
                 name: createTypeName,
-                fields: this._attributesToComposeFields(this._entityModel.getCreateInputTypeFields()),
+                fields: ToComposer._attributesToComposeFields(this._entityModel.getCreateInputTypeFields()),
             })
         );
 

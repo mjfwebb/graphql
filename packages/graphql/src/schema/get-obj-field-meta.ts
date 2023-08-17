@@ -81,12 +81,6 @@ export interface ObjectFields {
     customResolverFields: CustomResolverField[];
 }
 
-class TemporaryCustomError extends Error {
-    constructor() {
-        super();
-    }
-}
-
 // TODO: this should be part of Schema Model Attribute / AttributeAdapter
 // verify/ add missing functionalities
 //  - getFields that are not private
