@@ -39,7 +39,7 @@ import { SchemaComposer } from "graphql-compose";
 import pluralize from "pluralize";
 import { AggregationTypesMapper } from "./aggregations/aggregation-types-mapper";
 import { augmentFulltextSchema2 } from "./augment/fulltext";
-import { cypherResolver } from "./resolvers/field/cypher";
+import { cypherResolver, cypherResolver2 } from "./resolvers/field/cypher";
 import { numericalResolver } from "./resolvers/field/numerical";
 import { createResolver2 } from "./resolvers/mutation/create";
 import { deleteResolver2 } from "./resolvers/mutation/delete";
@@ -103,7 +103,7 @@ import type { UnionEntity } from "../schema-model/entity/UnionEntity";
 import { ConcreteEntityAdapter } from "../schema-model/entity/model-adapters/ConcreteEntityAdapter";
 import { InterfaceEntityAdapter } from "../schema-model/entity/model-adapters/InterfaceEntityAdapter";
 import { UnionEntityAdapter } from "../schema-model/entity/model-adapters/UnionEntityAdapter";
-import type { BaseField, Neo4jFeaturesSettings } from "../types";
+import type { BaseField, CypherField, Neo4jFeaturesSettings } from "../types";
 import { isInArray } from "../utils/is-in-array";
 import { addArrayMethodsToITC, addArrayMethodsToITC2 } from "./array-methods";
 import createConnectionFields, { createConnectionFields2 } from "./create-connection-fields";
@@ -122,6 +122,11 @@ import {
 } from "./schema-configuration";
 import { generateSubscriptionTypes } from "./subscriptions/generate-subscription-types";
 import { RelationshipAdapter } from "../schema-model/relationship/model-adapters/RelationshipAdapter";
+import { Operation } from "../schema-model/Operation";
+import { Field } from "../schema-model/attribute/Field";
+import { Attribute } from "../schema-model/attribute/Attribute";
+import { OperationAdapter } from "../schema-model/OperationAdapter";
+import { AttributeAdapter } from "../schema-model/attribute/model-adapters/AttributeAdapter";
 
 function definitionNodeHasName(x: DefinitionNode): x is DefinitionNode & { name: NameNode } {
     return "name" in x;
@@ -1368,45 +1373,60 @@ function makeAugmentedSchema(
         });
     }
 
+    // TODO: test this - toplevel cypher fields of type Point?
     ["Mutation", "Query"].forEach((type) => {
         const objectComposer: ObjectTypeComposer = composer[type];
-        const cypherType: ObjectTypeDefinitionNode = customResolvers[`customCypher${type}`];
 
-        if (cypherType) {
-            const objectFields = getObjFieldMeta({
-                obj: cypherType,
-                scalars: scalarTypes,
-                enums: enumTypes,
-                interfaces: filteredInterfaceTypes,
-                unions: unionTypes,
-                objects: objectTypes,
-                callbacks,
-            });
+        const operation: Operation | undefined = schemaModel.operations[type];
+        if (!operation) {
+            return;
+        }
+        const operationAdapter = new OperationAdapter(operation);
 
-            const objectComposeFields = objectFieldsToComposeFields([
-                ...objectFields.enumFields,
-                ...objectFields.interfaceFields,
-                ...objectFields.primitiveFields,
-                ...objectFields.relationFields,
-                ...objectFields.scalarFields,
-                ...objectFields.unionFields,
-                ...objectFields.objectFields,
-                ...objectFields.temporalFields,
-            ]);
+        const definitionNode = definitionNodes.operations.find(
+            (d) => d.name.value === type
+        ) as ObjectTypeDefinitionNode;
+        const userDefinedDirectives = getUserDefinedFieldDirectivesForDefinition(definitionNode, definitionNodes);
 
-            objectComposer.addFields(objectComposeFields);
+        // TODO: this check is for getObjFieldMeta
+        // this should technically be implied. TBD in Operations class
+        const hasCypherAttributes = Array.from(operationAdapter.attributes.values()).find(
+            (attribute) => attribute.annotations.cypher !== undefined
+        );
+        if (!hasCypherAttributes) {
+            return;
+        }
+        // needed for compatibility with translation layer
+        const objectFields = getObjFieldMeta({
+            obj: customResolvers[`customCypher${type}`],
+            scalars: scalarTypes,
+            enums: enumTypes,
+            interfaces: filteredInterfaceTypes,
+            unions: unionTypes,
+            objects: objectTypes,
+            callbacks,
+        });
 
-            objectFields.cypherFields.forEach((field) => {
-                const customResolver = cypherResolver({
+        // TODO: extend this loop to do the non-cypher field logic as well
+        for (const attributeAdapter of operationAdapter.attributes.values()) {
+            const cypherAnnotation = attributeAdapter.annotations.cypher;
+            if (cypherAnnotation) {
+                // needed for compatibility with translation layer
+                const field = objectFields.cypherFields.find(
+                    (f) => f.fieldName === attributeAdapter.name
+                ) as CypherField;
+                const customResolver = cypherResolver2({
                     field,
-                    statement: field.statement,
+                    attributeAdapter,
                     type: type as "Query" | "Mutation",
                 });
 
-                const composedField = objectFieldsToComposeFields([field])[field.fieldName];
+                const composedField = attributeAdapterToComposeFields([attributeAdapter], userDefinedDirectives)[
+                    attributeAdapter.name
+                ];
 
-                objectComposer.addFields({ [field.fieldName]: { ...composedField, ...customResolver } });
-            });
+                objectComposer.addFields({ [attributeAdapter.name]: { ...composedField, ...customResolver } });
+            }
         }
     });
 
