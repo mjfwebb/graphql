@@ -17,13 +17,13 @@
  * limitations under the License.
  */
 
-import { Neo4jGraphQLSchemaValidationError } from "../../classes";
-import type { RelationshipNestedOperationsOption, RelationshipQueryDirectionOption } from "../../constants";
-import { upperFirst } from "../../utils/upper-first";
-import type { Annotations } from "../annotation/Annotation";
-import type { Argument } from "../argument/Argument";
-import type { Attribute } from "../attribute/Attribute";
-import type { Entity } from "../entity/Entity";
+import { Neo4jGraphQLSchemaValidationError } from "../../classes/index.js";
+import type { RelationshipNestedOperationsOption, RelationshipQueryDirectionOption } from "../../constants.js";
+import { upperFirst } from "../../utils/upper-first.js";
+import type { Annotations } from "../annotation/Annotation.js";
+import type { Argument } from "../argument/Argument.js";
+import type { Attribute } from "../attribute/Attribute.js";
+import type { Entity } from "../entity/Entity.js";
 
 export type RelationshipDirection = "IN" | "OUT";
 export type QueryDirection = keyof typeof RelationshipQueryDirectionOption;

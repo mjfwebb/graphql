@@ -18,9 +18,9 @@
  */
 
 import type { DirectiveNode } from "graphql";
-import type { DefaultAnnotationValue } from "../../annotation/DefaultAnnotation";
-import { DefaultAnnotation } from "../../annotation/DefaultAnnotation";
-import { parseArgumentsFromUnknownDirective } from "../parse-arguments";
+import type { DefaultAnnotationValue } from "../../annotation/DefaultAnnotation.js";
+import { DefaultAnnotation } from "../../annotation/DefaultAnnotation.js";
+import { parseArgumentsFromUnknownDirective } from "../parse-arguments.js";
 
 export function parseDefaultAnnotation(directive: DirectiveNode): DefaultAnnotation {
     const args = parseArgumentsFromUnknownDirective(directive) as Record<string, DefaultAnnotationValue>;

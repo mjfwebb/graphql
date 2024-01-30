@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 import type { DirectiveNode } from "graphql";
-import { pluralDirective } from "../../../graphql/directives";
-import { PluralAnnotation } from "../../annotation/PluralAnnotation";
-import { parseArguments } from "../parse-arguments";
+import { pluralDirective } from "../../../graphql/directives/index.js";
+import { PluralAnnotation } from "../../annotation/PluralAnnotation.js";
+import { parseArguments } from "../parse-arguments.js";
 
 export function parsePluralAnnotation(directive: DirectiveNode): PluralAnnotation {
     const { value } = parseArguments<{ value: string }>(pluralDirective, directive);

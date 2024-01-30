@@ -18,7 +18,7 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import { AttributeField } from "./AttributeField";
+import { AttributeField } from "./AttributeField.js";
 
 export class DateTimeField extends AttributeField {
     protected getCypherExpr(target: Cypher.Variable): Cypher.Expr {

@@ -18,21 +18,21 @@
  */
 import type {
     DirectiveNode,
-    FieldDefinitionNode,
     EnumTypeDefinitionNode,
+    FieldDefinitionNode,
     InterfaceTypeDefinitionNode,
-    UnionTypeDefinitionNode,
     InterfaceTypeExtensionNode,
+    UnionTypeDefinitionNode,
 } from "graphql";
 import { Kind } from "graphql";
-import { parseValueNode } from "../../../../schema-model/parser/parse-value-node";
-import { getInnerTypeName, getPrettyName } from "../utils/utils";
-import { DocumentValidationError } from "../utils/document-validation-error";
+import { parseValueNode } from "../../../../schema-model/parser/parse-value-node.js";
+import { DocumentValidationError } from "../utils/document-validation-error.js";
 import {
     getInheritedTypeNames,
     hydrateInterfaceWithImplementedTypesMap,
-} from "../utils/interface-to-implementing-types";
-import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser";
+} from "../utils/interface-to-implementing-types.js";
+import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser.js";
+import { getInnerTypeName, getPrettyName } from "../utils/utils.js";
 
 export function verifyRelationshipArgumentValue(
     objectTypeToRelationshipsPerRelationshipTypeMap: Map<string, Map<string, [string, string, string][]>>,

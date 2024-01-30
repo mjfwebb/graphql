@@ -18,16 +18,16 @@
  */
 
 import type { ResolveTree } from "graphql-parse-resolve-info";
-import type { Neo4jGraphQLSchemaModel } from "../../../schema-model/Neo4jGraphQLSchemaModel";
-import type { EntityAdapter } from "../../../schema-model/entity/EntityAdapter";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
-import { QueryAST } from "../ast/QueryAST";
-import { AuthFilterFactory } from "./AuthFilterFactory";
-import { AuthorizationFactory } from "./AuthorizationFactory";
-import { FieldFactory } from "./FieldFactory";
-import { FilterFactory } from "./FilterFactory";
-import { OperationsFactory } from "./OperationFactory";
-import { SortAndPaginationFactory } from "./SortAndPaginationFactory";
+import type { Neo4jGraphQLSchemaModel } from "../../../schema-model/Neo4jGraphQLSchemaModel.js";
+import type { EntityAdapter } from "../../../schema-model/entity/EntityAdapter.js";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
+import { QueryAST } from "../ast/QueryAST.js";
+import { AuthFilterFactory } from "./AuthFilterFactory.js";
+import { AuthorizationFactory } from "./AuthorizationFactory.js";
+import { FieldFactory } from "./FieldFactory.js";
+import { FilterFactory } from "./FilterFactory.js";
+import { OperationsFactory } from "./OperationFactory.js";
+import { SortAndPaginationFactory } from "./SortAndPaginationFactory.js";
 
 export class QueryASTFactory {
     public schemaModel: Neo4jGraphQLSchemaModel;

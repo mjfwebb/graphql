@@ -19,8 +19,8 @@
 
 import { makeDirectiveNode } from "@graphql-tools/utils";
 import type { DirectiveNode } from "graphql";
-import { parseJWTClaimAnnotation } from "./jwt-claim-annotation";
-import { jwtClaim } from "../../../graphql/directives";
+import { jwtClaim } from "../../../graphql/directives/index.js";
+import { parseJWTClaimAnnotation } from "./jwt-claim-annotation.js";
 
 describe("parseJWTClaimAnnotation", () => {
     test("should correctly parse jwtClaim path", () => {

@@ -20,18 +20,18 @@
 import type { DirectiveNode } from "graphql";
 import { GraphQLFloat, GraphQLNonNull, GraphQLString } from "graphql";
 import type { ObjectTypeComposer, SchemaComposer } from "graphql-compose";
-import { EventType } from "../../graphql/enums/EventType";
-import type { Neo4jGraphQLSchemaModel } from "../../schema-model/Neo4jGraphQLSchemaModel";
-import { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import type { NodeSubscriptionsEvent, RelationshipSubscriptionsEvent, SubscriptionsEvent } from "../../types";
-import { generateSubscribeMethod, subscriptionResolve } from "../resolvers/subscriptions/subscribe";
-import { attributeAdapterToComposeFields } from "../to-compose";
-import { getConnectedTypes, hasProperties } from "./generate-subscription-connection-types";
+import { EventType } from "../../graphql/enums/EventType.js";
+import type { Neo4jGraphQLSchemaModel } from "../../schema-model/Neo4jGraphQLSchemaModel.js";
+import { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import type { NodeSubscriptionsEvent, RelationshipSubscriptionsEvent, SubscriptionsEvent } from "../../types/index.js";
+import { generateSubscribeMethod, subscriptionResolve } from "../resolvers/subscriptions/subscribe.js";
+import { attributeAdapterToComposeFields } from "../to-compose.js";
+import { getConnectedTypes, hasProperties } from "./generate-subscription-connection-types.js";
 import {
     generateSubscriptionConnectionWhereType,
     generateSubscriptionWhereType,
-} from "./generate-subscription-where-type";
+} from "./generate-subscription-where-type.js";
 
 export function generateSubscriptionTypes({
     schemaComposer,

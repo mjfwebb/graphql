@@ -19,9 +19,9 @@
 
 import Cypher from "@neo4j/cypher-builder";
 import type { ResolveTree } from "graphql-parse-resolve-info";
-import { getOrCreateCypherVariable } from "../../utils/get-or-create-cypher-variable";
-import type { PointField } from "../../../types";
-import { compileCypher } from "../../../utils/compile-cypher";
+import type { PointField } from "../../../types/index.js";
+import { compileCypher } from "../../../utils/compile-cypher.js";
+import { getOrCreateCypherVariable } from "../../utils/get-or-create-cypher-variable.js";
 
 export default function createPointElement({
     resolveTree,

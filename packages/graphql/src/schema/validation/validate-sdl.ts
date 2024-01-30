@@ -20,9 +20,9 @@
 import type { Maybe } from "@graphql-tools/utils";
 import type { DocumentNode, GraphQLError, GraphQLSchema } from "graphql";
 import { visit, visitInParallel } from "graphql";
-import type { SDLValidationRule } from "graphql/validation/ValidationContext";
-import { SDLValidationContext } from "graphql/validation/ValidationContext";
-import { mapError } from "./utils/map-error";
+import type { SDLValidationRule } from "graphql/validation/ValidationContext.js";
+import { SDLValidationContext } from "graphql/validation/ValidationContext.js";
+import { mapError } from "./utils/map-error.js";
 
 export function validateSDL(
     documentAST: DocumentNode,

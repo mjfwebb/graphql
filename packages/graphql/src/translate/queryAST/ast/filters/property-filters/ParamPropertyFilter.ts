@@ -18,10 +18,10 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { QueryASTContext } from "../../QueryASTContext";
-import { PropertyFilter } from "./PropertyFilter";
-import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import type { FilterOperator } from "../Filter";
+import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import type { QueryASTContext } from "../../QueryASTContext.js";
+import type { FilterOperator } from "../Filter.js";
+import { PropertyFilter } from "./PropertyFilter.js";
 
 type CypherVariable = Cypher.Variable | Cypher.Property | Cypher.Param;
 

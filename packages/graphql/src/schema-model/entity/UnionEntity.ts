@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import type { ConcreteEntity } from "./ConcreteEntity";
-import type { CompositeEntity } from "./CompositeEntity";
-import type { Annotations } from "../annotation/Annotation";
+import type { Annotations } from "../annotation/Annotation.js";
+import type { CompositeEntity } from "./CompositeEntity.js";
+import type { ConcreteEntity } from "./ConcreteEntity.js";
 
 export class UnionEntity implements CompositeEntity {
     public readonly name: string;

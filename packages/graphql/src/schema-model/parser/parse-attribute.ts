@@ -19,10 +19,10 @@
 
 import type { DirectiveNode, FieldDefinitionNode, InputValueDefinitionNode, TypeNode } from "graphql";
 import { Kind } from "graphql";
-import { aliasDirective } from "../../graphql/directives";
-import { Argument } from "../argument/Argument";
-import { Attribute } from "../attribute/Attribute";
-import type { AttributeType, Neo4jGraphQLScalarType } from "../attribute/AttributeType";
+import { aliasDirective } from "../../graphql/directives/index.js";
+import { Argument } from "../argument/Argument.js";
+import { Attribute } from "../attribute/Attribute.js";
+import type { AttributeType, Neo4jGraphQLScalarType } from "../attribute/AttributeType.js";
 import {
     EnumType,
     GraphQLBuiltInScalarType,
@@ -39,11 +39,11 @@ import {
     UnionType,
     UnknownType,
     UserScalarType,
-} from "../attribute/AttributeType";
-import type { DefinitionCollection } from "./definition-collection";
-import { parseAnnotations } from "./parse-annotation";
-import { parseArguments } from "./parse-arguments";
-import { findDirective } from "./utils";
+} from "../attribute/AttributeType.js";
+import type { DefinitionCollection } from "./definition-collection.js";
+import { parseAnnotations } from "./parse-annotation.js";
+import { parseArguments } from "./parse-arguments.js";
+import { findDirective } from "./utils.js";
 
 export function parseAttributeArguments(
     fieldArgs: readonly InputValueDefinitionNode[],

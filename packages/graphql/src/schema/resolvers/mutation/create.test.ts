@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 
-import { NodeBuilder } from "../../../../tests/utils/builders/node-builder";
-import { ConcreteEntity } from "../../../schema-model/entity/ConcreteEntity";
-import { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { createResolver } from "./create";
+import { NodeBuilder } from "../../../../tests/utils/builders/node-builder.js";
+import { ConcreteEntity } from "../../../schema-model/entity/ConcreteEntity.js";
+import { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { createResolver } from "./create.js";
 
 describe("Create resolver", () => {
     test("should return the correct; type, args and resolve", () => {

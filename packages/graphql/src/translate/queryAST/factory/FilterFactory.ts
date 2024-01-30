@@ -17,35 +17,39 @@
  * limitations under the License.
  */
 
-import type { AttributeAdapter } from "../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import type { EntityAdapter } from "../../../schema-model/entity/EntityAdapter";
-import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { InterfaceEntityAdapter } from "../../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import { RelationshipAdapter } from "../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import type { ConnectionWhereArg, GraphQLWhereArg } from "../../../types";
-import { fromGlobalId } from "../../../utils/global-ids";
-import { asArray, filterTruthy, isObject, omitFields } from "../../../utils/utils";
-import { isLogicalOperator } from "../../utils/logical-operators";
-import type { RelationshipWhereOperator, WhereOperator } from "../../where/types";
-import { ConnectionFilter } from "../ast/filters/ConnectionFilter";
-import type { Filter } from "../ast/filters/Filter";
-import { isRelationshipOperator } from "../ast/filters/Filter";
-import { LogicalFilter } from "../ast/filters/LogicalFilter";
-import { RelationshipFilter } from "../ast/filters/RelationshipFilter";
-import { AggregationDurationFilter } from "../ast/filters/aggregation/AggregationDurationPropertyFilter";
-import { AggregationFilter } from "../ast/filters/aggregation/AggregationFilter";
-import { AggregationPropertyFilter } from "../ast/filters/aggregation/AggregationPropertyFilter";
-import { CountFilter } from "../ast/filters/aggregation/CountFilter";
-import { DurationFilter } from "../ast/filters/property-filters/DurationFilter";
-import { PointFilter } from "../ast/filters/property-filters/PointFilter";
-import { PropertyFilter } from "../ast/filters/property-filters/PropertyFilter";
-import { TypenameFilter } from "../ast/filters/property-filters/TypenameFilter";
-import { getConcreteEntities } from "../utils/get-concrete-entities";
-import { isConcreteEntity } from "../utils/is-concrete-entity";
-import { isInterfaceEntity } from "../utils/is-interface-entity";
-import { isUnionEntity } from "../utils/is-union-entity";
-import type { QueryASTFactory } from "./QueryASTFactory";
-import { parseAggregationWhereFields, parseConnectionWhereFields, parseWhereField } from "./parsers/parse-where-field";
+import type { AttributeAdapter } from "../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import type { EntityAdapter } from "../../../schema-model/entity/EntityAdapter.js";
+import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { InterfaceEntityAdapter } from "../../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import { RelationshipAdapter } from "../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import type { ConnectionWhereArg, GraphQLWhereArg } from "../../../types/index.js";
+import { fromGlobalId } from "../../../utils/global-ids.js";
+import { asArray, filterTruthy, isObject, omitFields } from "../../../utils/utils.js";
+import { isLogicalOperator } from "../../utils/logical-operators.js";
+import type { RelationshipWhereOperator, WhereOperator } from "../../where/types.js";
+import { ConnectionFilter } from "../ast/filters/ConnectionFilter.js";
+import type { Filter } from "../ast/filters/Filter.js";
+import { isRelationshipOperator } from "../ast/filters/Filter.js";
+import { LogicalFilter } from "../ast/filters/LogicalFilter.js";
+import { RelationshipFilter } from "../ast/filters/RelationshipFilter.js";
+import { AggregationDurationFilter } from "../ast/filters/aggregation/AggregationDurationPropertyFilter.js";
+import { AggregationFilter } from "../ast/filters/aggregation/AggregationFilter.js";
+import { AggregationPropertyFilter } from "../ast/filters/aggregation/AggregationPropertyFilter.js";
+import { CountFilter } from "../ast/filters/aggregation/CountFilter.js";
+import { DurationFilter } from "../ast/filters/property-filters/DurationFilter.js";
+import { PointFilter } from "../ast/filters/property-filters/PointFilter.js";
+import { PropertyFilter } from "../ast/filters/property-filters/PropertyFilter.js";
+import { TypenameFilter } from "../ast/filters/property-filters/TypenameFilter.js";
+import { getConcreteEntities } from "../utils/get-concrete-entities.js";
+import { isConcreteEntity } from "../utils/is-concrete-entity.js";
+import { isInterfaceEntity } from "../utils/is-interface-entity.js";
+import { isUnionEntity } from "../utils/is-union-entity.js";
+import type { QueryASTFactory } from "./QueryASTFactory.js";
+import {
+    parseAggregationWhereFields,
+    parseConnectionWhereFields,
+    parseWhereField,
+} from "./parsers/parse-where-field.js";
 
 type AggregateWhereInput = {
     count: number;

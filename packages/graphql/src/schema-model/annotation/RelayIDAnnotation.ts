@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import type { Annotation } from "./Annotation";
+import type { Annotation } from "./Annotation.js";
 
 export class RelayIDAnnotation implements Annotation {
     readonly name = "relayId";

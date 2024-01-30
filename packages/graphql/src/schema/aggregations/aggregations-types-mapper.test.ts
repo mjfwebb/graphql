@@ -18,7 +18,7 @@
  */
 
 import { SchemaComposer } from "graphql-compose";
-import { AggregationTypesMapper } from "./aggregation-types-mapper";
+import { AggregationTypesMapper } from "./aggregation-types-mapper.js";
 
 describe("AggregationTypesMapper", () => {
     let composer: SchemaComposer;

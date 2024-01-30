@@ -19,14 +19,14 @@
 
 import type { Driver } from "neo4j-driver";
 import supertest from "supertest";
-import { Neo4jGraphQL } from "../../../src/classes";
-import { UniqueType } from "../../utils/graphql-types";
-import type { TestGraphQLServer } from "../setup/apollo-server";
-import { ApolloTestServer } from "../setup/apollo-server";
-import { WebSocketTestClient } from "../setup/ws-client";
-import Neo4j from "../setup/neo4j";
-import { cleanNodes } from "../../utils/clean-nodes";
-import { Neo4jGraphQLSubscriptionsDefaultEngine } from "../../../src/classes/subscription/Neo4jGraphQLSubscriptionsDefaultEngine";
+import { Neo4jGraphQL } from "../../../src/classes/index.js";
+import { Neo4jGraphQLSubscriptionsDefaultEngine } from "../../../src/classes/subscription/Neo4jGraphQLSubscriptionsDefaultEngine.js";
+import { cleanNodes } from "../../utils/clean-nodes.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import type { TestGraphQLServer } from "../setup/apollo-server.js";
+import { ApolloTestServer } from "../setup/apollo-server.js";
+import Neo4j from "../setup/neo4j.js";
+import { WebSocketTestClient } from "../setup/ws-client.js";
 
 describe("Delete Subscriptions when only nodes are targeted - when nodes employ @node directive to configure db label and additionalLabels", () => {
     let neo4j: Neo4j;

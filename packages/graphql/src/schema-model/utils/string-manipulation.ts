@@ -19,13 +19,12 @@
 
 import camelcase from "camelcase";
 import pluralize from "pluralize";
-import { leadingUnderscores } from "../../utils/leading-underscore";
+import { leadingUnderscores } from "../../utils/leading-underscore.js";
 
 export function singular(name: string): string {
     const singular = camelcase(name);
     return `${leadingUnderscores(name)}${singular}`;
 }
-
 
 export function plural(name: string): string {
     const plural = pluralize(camelcase(name));

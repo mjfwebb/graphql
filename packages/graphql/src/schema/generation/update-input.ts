@@ -25,19 +25,19 @@ import type {
     InputTypeComposerFieldConfigMapDefinition,
     SchemaComposer,
 } from "graphql-compose";
-import { RelationshipNestedOperationsOption } from "../../constants";
-import { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import { UnionEntityAdapter } from "../../schema-model/entity/model-adapters/UnionEntityAdapter";
-import { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import { concreteEntityToUpdateInputFields, withArrayOperators, withMathOperators } from "../to-compose";
-import { withConnectFieldInputType } from "./connect-input";
-import { withConnectOrCreateFieldInputType } from "./connect-or-create-input";
-import { withDeleteFieldInputType } from "./delete-input";
-import { withDisconnectFieldInputType } from "./disconnect-input";
-import { makeImplementationsUpdateInput } from "./implementation-inputs";
-import { withCreateFieldInputType } from "./relation-input";
-import { makeConnectionWhereInputType } from "./where-input";
+import { RelationshipNestedOperationsOption } from "../../constants.js";
+import { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import { UnionEntityAdapter } from "../../schema-model/entity/model-adapters/UnionEntityAdapter.js";
+import { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { concreteEntityToUpdateInputFields, withArrayOperators, withMathOperators } from "../to-compose.js";
+import { withConnectFieldInputType } from "./connect-input.js";
+import { withConnectOrCreateFieldInputType } from "./connect-or-create-input.js";
+import { withDeleteFieldInputType } from "./delete-input.js";
+import { withDisconnectFieldInputType } from "./disconnect-input.js";
+import { makeImplementationsUpdateInput } from "./implementation-inputs.js";
+import { withCreateFieldInputType } from "./relation-input.js";
+import { makeConnectionWhereInputType } from "./where-input.js";
 
 export function withUpdateInputType({
     entityAdapter,

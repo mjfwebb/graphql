@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 
-import type { ConcreteEntityAdapter } from "../../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { QueryASTContext } from "../../QueryASTContext";
-import { QueryASTNode } from "../../QueryASTNode";
-import type { Field } from "../Field";
 import Cypher from "@neo4j/cypher-builder";
+import type { ConcreteEntityAdapter } from "../../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { QueryASTContext } from "../../QueryASTContext.js";
+import { QueryASTNode } from "../../QueryASTNode.js";
+import type { Field } from "../Field.js";
 
 export class CypherUnionAttributePartial extends QueryASTNode {
     protected fields: Field[];

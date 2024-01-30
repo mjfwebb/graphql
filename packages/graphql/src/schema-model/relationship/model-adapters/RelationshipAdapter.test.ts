@@ -17,14 +17,14 @@
  * limitations under the License.
  */
 
-import { SelectableAnnotation } from "../../annotation/SelectableAnnotation";
-import { UniqueAnnotation } from "../../annotation/UniqueAnnotation";
-import { Attribute } from "../../attribute/Attribute";
-import { GraphQLBuiltInScalarType, ScalarType } from "../../attribute/AttributeType";
-import { ConcreteEntity } from "../../entity/ConcreteEntity";
-import { ConcreteEntityAdapter } from "../../entity/model-adapters/ConcreteEntityAdapter";
-import { Relationship } from "../Relationship";
-import { RelationshipAdapter } from "./RelationshipAdapter";
+import { SelectableAnnotation } from "../../annotation/SelectableAnnotation.js";
+import { UniqueAnnotation } from "../../annotation/UniqueAnnotation.js";
+import { Attribute } from "../../attribute/Attribute.js";
+import { GraphQLBuiltInScalarType, ScalarType } from "../../attribute/AttributeType.js";
+import { ConcreteEntity } from "../../entity/ConcreteEntity.js";
+import { ConcreteEntityAdapter } from "../../entity/model-adapters/ConcreteEntityAdapter.js";
+import { Relationship } from "../Relationship.js";
+import { RelationshipAdapter } from "./RelationshipAdapter.js";
 
 describe("RelationshipAdapter", () => {
     let userAdapter: ConcreteEntityAdapter;

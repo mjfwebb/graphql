@@ -20,13 +20,13 @@
 import type { GraphQLResolveInfo } from "graphql";
 import type { ResolveTree } from "graphql-parse-resolve-info";
 import { parseResolveInfo } from "graphql-parse-resolve-info";
-import type { ConcreteEntity } from "../../../../schema-model/entity/ConcreteEntity";
-import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { Neo4jGraphQLComposedSubscriptionsContext } from "../../composition/wrap-subscription";
-import type { SubscriptionEventType } from "../types";
-import { checkAuthentication } from "./check-authentication";
-import type { SelectionFields } from "./selection-set-parser";
-import { parseSelectionSetForAuthenticated } from "./selection-set-parser";
+import type { ConcreteEntity } from "../../../../schema-model/entity/ConcreteEntity.js";
+import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { Neo4jGraphQLComposedSubscriptionsContext } from "../../composition/wrap-subscription.js";
+import type { SubscriptionEventType } from "../types.js";
+import { checkAuthentication } from "./check-authentication.js";
+import type { SelectionFields } from "./selection-set-parser.js";
+import { parseSelectionSetForAuthenticated } from "./selection-set-parser.js";
 
 export function checkAuthenticationOnSelectionSet(
     resolveInfo: GraphQLResolveInfo,

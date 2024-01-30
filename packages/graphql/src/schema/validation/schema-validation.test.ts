@@ -20,12 +20,12 @@
 import type { ASTVisitor, FieldDefinitionNode, ObjectTypeDefinitionNode } from "graphql";
 import { GraphQLError, parse } from "graphql";
 import { gql } from "graphql-tag";
-import type { SDLValidationContext } from "graphql/validation/ValidationContext";
-import { NoErrorThrownError, getError } from "../../../tests/utils/get-error";
-import { Subgraph } from "../../classes/Subgraph";
-import { generateModel } from "../../schema-model/generate-model";
-import makeAugmentedSchema from "../make-augmented-schema";
-import { validateUserDefinition } from "./schema-validation";
+import type { SDLValidationContext } from "graphql/validation/ValidationContext.js";
+import { NoErrorThrownError, getError } from "../../../tests/utils/get-error.js";
+import { Subgraph } from "../../classes/Subgraph.js";
+import { generateModel } from "../../schema-model/generate-model.js";
+import makeAugmentedSchema from "../make-augmented-schema.js";
+import { validateUserDefinition } from "./schema-validation.js";
 
 describe("schema validation", () => {
     describe("JWT", () => {

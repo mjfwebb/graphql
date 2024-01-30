@@ -17,5 +17,5 @@
  * limitations under the License.
  */
 
-export { default as trimmer } from "./trimmer";
-export { default as execute } from "./execute";
+export { default as execute } from "./execute.js";
+export { default as trimmer } from "./trimmer.js";

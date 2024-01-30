@@ -29,7 +29,7 @@ import type { Server } from "http";
 import { createServer } from "http";
 import type { AddressInfo } from "ws";
 import { WebSocketServer } from "ws";
-import type { Neo4jGraphQL } from "../../../src";
+import type { Neo4jGraphQL } from "../../../src/index.js";
 
 export interface TestGraphQLServer {
     path: string;

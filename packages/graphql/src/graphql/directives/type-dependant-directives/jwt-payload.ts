@@ -19,9 +19,9 @@
 
 import { astFromObjectType } from "@graphql-tools/utils";
 import type { GraphQLSchema, ObjectTypeDefinitionNode } from "graphql";
-import { GraphQLList, GraphQLInt, GraphQLString, GraphQLObjectType } from "graphql";
-import getObjFieldMeta from "../../../schema/get-obj-field-meta";
-import type { ObjectFields } from "../../../schema/get-obj-field-meta";
+import { GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLString } from "graphql";
+import type { ObjectFields } from "../../../schema/get-obj-field-meta.js";
+import getObjFieldMeta from "../../../schema/get-obj-field-meta.js";
 
 export function getJwtFields(
     schema: GraphQLSchema,

@@ -25,18 +25,18 @@ import type {
     ObjectTypeDefinitionNode,
     UnionTypeDefinitionNode,
 } from "graphql";
-import type { SDLValidationContext } from "graphql/validation/ValidationContext";
-import type { Neo4jGraphQLCallbacks } from "../../../../types";
-import type { ValidationFunction } from "../utils/document-validation-error";
-import { assertValid, createGraphQLError } from "../utils/document-validation-error";
-import { getPathToNode } from "../utils/path-parser";
-import { verifyAuthorization } from "./authorization";
-import { verifyCoalesce } from "./coalesce";
-import { verifyDefault } from "./default";
-import { verifyFulltext } from "./fulltext";
-import { verifyLimit } from "./limit";
-import { verifyPopulatedBy } from "./populatedBy";
-import { verifyRelationshipArgumentValue } from "./relationship";
+import type { SDLValidationContext } from "graphql/validation/ValidationContext.js";
+import type { Neo4jGraphQLCallbacks } from "../../../../types/index.js";
+import type { ValidationFunction } from "../utils/document-validation-error.js";
+import { assertValid, createGraphQLError } from "../utils/document-validation-error.js";
+import { getPathToNode } from "../utils/path-parser.js";
+import { verifyAuthorization } from "./authorization.js";
+import { verifyCoalesce } from "./coalesce.js";
+import { verifyDefault } from "./default.js";
+import { verifyFulltext } from "./fulltext.js";
+import { verifyLimit } from "./limit.js";
+import { verifyPopulatedBy } from "./populatedBy.js";
+import { verifyRelationshipArgumentValue } from "./relationship.js";
 
 function getValidationFunction(
     directiveName: string,

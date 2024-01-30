@@ -18,10 +18,10 @@
  */
 
 import type { DirectiveNode } from "graphql";
-import { Neo4jGraphQLSchemaValidationError } from "../../../classes";
-import { limitDirective } from "../../../graphql/directives";
-import { LimitAnnotation } from "../../annotation/LimitAnnotation";
-import { parseArguments } from "../parse-arguments";
+import { Neo4jGraphQLSchemaValidationError } from "../../../classes/index.js";
+import { limitDirective } from "../../../graphql/directives/index.js";
+import { LimitAnnotation } from "../../annotation/LimitAnnotation.js";
+import { parseArguments } from "../parse-arguments.js";
 
 export function parseLimitAnnotation(directive: DirectiveNode): LimitAnnotation {
     const { default: _default, max } = parseArguments<{

@@ -18,7 +18,7 @@
  */
 
 import type Cypher from "@neo4j/cypher-builder";
-import type { QueryASTContext } from "./QueryASTContext";
+import type { QueryASTContext } from "./QueryASTContext.js";
 
 export abstract class QueryASTNode {
     public abstract getChildren(): QueryASTNode[];

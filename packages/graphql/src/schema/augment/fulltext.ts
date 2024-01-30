@@ -19,16 +19,16 @@
 
 import { GraphQLInt, GraphQLNonNull, GraphQLString } from "graphql";
 import type { SchemaComposer } from "graphql-compose";
-import type { Node } from "../../classes";
+import type { Node } from "../../classes/index.js";
 
-import type { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
+import type { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
 import {
     withFullTextInputType,
     withFullTextResultType,
     withFullTextSortInputType,
     withFullTextWhereInputType,
-} from "../generation/fulltext-input";
-import { fulltextResolver } from "../resolvers/query/fulltext";
+} from "../generation/fulltext-input.js";
+import { fulltextResolver } from "../resolvers/query/fulltext.js";
 
 export function augmentFulltextSchema(
     node: Node,

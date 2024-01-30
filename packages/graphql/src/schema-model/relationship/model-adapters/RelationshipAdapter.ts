@@ -17,23 +17,23 @@
  * limitations under the License.
  */
 
-import { RelationshipNestedOperationsOption } from "../../../constants";
-import type { Annotations } from "../../annotation/Annotation";
-import type { Argument } from "../../argument/Argument";
-import type { Attribute } from "../../attribute/Attribute";
-import { AttributeAdapter } from "../../attribute/model-adapters/AttributeAdapter";
-import { ListFiltersAdapter } from "../../attribute/model-adapters/ListFiltersAdapter";
-import { ConcreteEntity } from "../../entity/ConcreteEntity";
-import type { Entity } from "../../entity/Entity";
-import type { EntityAdapter } from "../../entity/EntityAdapter";
-import { InterfaceEntity } from "../../entity/InterfaceEntity";
-import { UnionEntity } from "../../entity/UnionEntity";
-import { ConcreteEntityAdapter } from "../../entity/model-adapters/ConcreteEntityAdapter";
-import { InterfaceEntityAdapter } from "../../entity/model-adapters/InterfaceEntityAdapter";
-import { UnionEntityAdapter } from "../../entity/model-adapters/UnionEntityAdapter";
-import { plural, singular } from "../../utils/string-manipulation";
-import type { NestedOperation, QueryDirection, Relationship, RelationshipDirection } from "../Relationship";
-import { RelationshipOperations } from "./RelationshipOperations";
+import { RelationshipNestedOperationsOption } from "../../../constants.js";
+import type { Annotations } from "../../annotation/Annotation.js";
+import type { Argument } from "../../argument/Argument.js";
+import type { Attribute } from "../../attribute/Attribute.js";
+import { AttributeAdapter } from "../../attribute/model-adapters/AttributeAdapter.js";
+import { ListFiltersAdapter } from "../../attribute/model-adapters/ListFiltersAdapter.js";
+import { ConcreteEntity } from "../../entity/ConcreteEntity.js";
+import type { Entity } from "../../entity/Entity.js";
+import type { EntityAdapter } from "../../entity/EntityAdapter.js";
+import { InterfaceEntity } from "../../entity/InterfaceEntity.js";
+import { UnionEntity } from "../../entity/UnionEntity.js";
+import { ConcreteEntityAdapter } from "../../entity/model-adapters/ConcreteEntityAdapter.js";
+import { InterfaceEntityAdapter } from "../../entity/model-adapters/InterfaceEntityAdapter.js";
+import { UnionEntityAdapter } from "../../entity/model-adapters/UnionEntityAdapter.js";
+import { plural, singular } from "../../utils/string-manipulation.js";
+import type { NestedOperation, QueryDirection, Relationship, RelationshipDirection } from "../Relationship.js";
+import { RelationshipOperations } from "./RelationshipOperations.js";
 
 export class RelationshipAdapter {
     private _listFiltersModel: ListFiltersAdapter | undefined;

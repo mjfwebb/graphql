@@ -18,7 +18,7 @@
  */
 
 import { DirectiveLocation, GraphQLDirective } from "graphql";
-import { GraphQLSelectionSet } from "../scalars/SelectionSet";
+import { GraphQLSelectionSet } from "../scalars/SelectionSet.js";
 
 export const customResolverDirective = new GraphQLDirective({
     name: "customResolver",

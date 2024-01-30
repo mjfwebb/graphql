@@ -20,15 +20,15 @@
 import type { Driver } from "neo4j-driver";
 import type { Response } from "supertest";
 import supertest from "supertest";
-import type { Neo4jGraphQLSubscriptionsEngine } from "../../../src";
-import { Neo4jGraphQL } from "../../../src/classes";
-import { Neo4jGraphQLSubscriptionsCDCEngine } from "../../../src/classes/subscription/Neo4jGraphQLSubscriptionsCDCEngine";
-import { Neo4jGraphQLSubscriptionsDefaultEngine } from "../../../src/classes/subscription/Neo4jGraphQLSubscriptionsDefaultEngine";
-import { UniqueType } from "../../utils/graphql-types";
-import type { TestGraphQLServer } from "../setup/apollo-server";
-import { ApolloTestServer } from "../setup/apollo-server";
-import Neo4j from "../setup/neo4j";
-import { WebSocketTestClient } from "../setup/ws-client";
+import { Neo4jGraphQL } from "../../../src/classes/index.js";
+import { Neo4jGraphQLSubscriptionsCDCEngine } from "../../../src/classes/subscription/Neo4jGraphQLSubscriptionsCDCEngine.js";
+import { Neo4jGraphQLSubscriptionsDefaultEngine } from "../../../src/classes/subscription/Neo4jGraphQLSubscriptionsDefaultEngine.js";
+import type { Neo4jGraphQLSubscriptionsEngine } from "../../../src/index.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import type { TestGraphQLServer } from "../setup/apollo-server.js";
+import { ApolloTestServer } from "../setup/apollo-server.js";
+import Neo4j from "../setup/neo4j.js";
+import { WebSocketTestClient } from "../setup/ws-client.js";
 
 describe.each([
     {

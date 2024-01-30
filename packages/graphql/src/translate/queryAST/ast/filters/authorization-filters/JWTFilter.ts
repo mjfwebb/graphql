@@ -18,12 +18,12 @@
  */
 
 import type { Predicate } from "@neo4j/cypher-builder";
-import type { QueryASTContext } from "../../QueryASTContext";
-import type { FilterOperator } from "../Filter";
-import { Filter } from "../Filter";
 import Cypher from "@neo4j/cypher-builder";
-import { createComparisonOperation } from "../../../utils/create-comparison-operator";
-import type { QueryASTNode } from "../../QueryASTNode";
+import { createComparisonOperation } from "../../../utils/create-comparison-operator.js";
+import type { QueryASTContext } from "../../QueryASTContext.js";
+import type { QueryASTNode } from "../../QueryASTNode.js";
+import type { FilterOperator } from "../Filter.js";
+import { Filter } from "../Filter.js";
 
 export class JWTFilter extends Filter {
     protected operator: FilterOperator;

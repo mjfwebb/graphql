@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import type { Visitor } from "./types";
+import type { Visitor } from "./types.js";
 
 export abstract class UnwindASTNode {
     public id: number;

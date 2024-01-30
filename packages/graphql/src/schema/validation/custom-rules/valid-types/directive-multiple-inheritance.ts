@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import type { ASTVisitor, ObjectTypeDefinitionNode, InterfaceTypeDefinitionNode } from "graphql";
-import type { SDLValidationContext } from "graphql/validation/ValidationContext";
-import { assertValid, createGraphQLError, DocumentValidationError } from "../utils/document-validation-error";
+import type { ASTVisitor, InterfaceTypeDefinitionNode, ObjectTypeDefinitionNode } from "graphql";
+import type { SDLValidationContext } from "graphql/validation/ValidationContext.js";
+import { DocumentValidationError, assertValid, createGraphQLError } from "../utils/document-validation-error.js";
 
 // this rule was implemented for @exclude but is not used now
 export function ValidDirectiveInheritance(context: SDLValidationContext): ASTVisitor {

@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import type { Annotation } from "./Annotation";
+import type { Annotation } from "./Annotation.js";
 
 export class LimitAnnotation implements Annotation {
     readonly name = "limit";

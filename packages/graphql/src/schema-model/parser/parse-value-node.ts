@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import type { ValueNode } from "graphql/language/ast";
 import { Kind } from "graphql/language";
+import type { ValueNode } from "graphql/language/ast.js";
 
 export function parseValueNode(ast: ValueNode): any {
     switch (ast.kind) {
@@ -42,4 +42,3 @@ export function parseValueNode(ast: ValueNode): any {
             throw new Error(`invalid Kind: ${ast.kind}`);
     }
 }
-

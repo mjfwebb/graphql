@@ -17,18 +17,18 @@
  * limitations under the License.
  */
 
+import Cypher from "@neo4j/cypher-builder";
 import type { ResolveTree } from "graphql-parse-resolve-info";
 import { cursorToOffset } from "graphql-relay";
 import type { Integer } from "neo4j-driver";
-import { isNeoInt, isString, toNumber } from "../../utils/utils";
-import Cypher from "@neo4j/cypher-builder";
+import type { GraphQLSortArg } from "../../types/index.js";
+import { isNeoInt, isString, toNumber } from "../../utils/utils.js";
 import {
-    addSortAndLimitOptionsToClause,
     addLimitOrOffsetOptionsToClause,
-} from "../projection/subquery/add-sort-and-limit-to-clause";
-import type { SortFields } from "./get-sort-fields";
-import { getSortFields } from "./get-sort-fields";
-import type { GraphQLSortArg } from "../../types";
+    addSortAndLimitOptionsToClause,
+} from "../projection/subquery/add-sort-and-limit-to-clause.js";
+import type { SortFields } from "./get-sort-fields.js";
+import { getSortFields } from "./get-sort-fields.js";
 
 export function createSortAndLimitProjection({
     resolveTree,

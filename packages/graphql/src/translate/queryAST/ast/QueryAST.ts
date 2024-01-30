@@ -18,15 +18,15 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
-import { createNodeFromEntity } from "../utils/create-node-from-entity";
-import { QueryASTContext, QueryASTEnv } from "./QueryASTContext";
-import type { QueryASTNode } from "./QueryASTNode";
-import { AggregationOperation } from "./operations/AggregationOperation";
-import { ConnectionReadOperation } from "./operations/ConnectionReadOperation";
-import { ReadOperation } from "./operations/ReadOperation";
-import type { Operation, OperationTranspileResult } from "./operations/operations";
-import { DeleteOperation } from "./operations/DeleteOperation";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
+import { createNodeFromEntity } from "../utils/create-node-from-entity.js";
+import { QueryASTContext, QueryASTEnv } from "./QueryASTContext.js";
+import type { QueryASTNode } from "./QueryASTNode.js";
+import { AggregationOperation } from "./operations/AggregationOperation.js";
+import { ConnectionReadOperation } from "./operations/ConnectionReadOperation.js";
+import { DeleteOperation } from "./operations/DeleteOperation.js";
+import { ReadOperation } from "./operations/ReadOperation.js";
+import type { Operation, OperationTranspileResult } from "./operations/operations.js";
 
 export class QueryAST {
     private operation: Operation;

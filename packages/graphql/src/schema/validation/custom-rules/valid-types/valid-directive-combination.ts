@@ -46,20 +46,20 @@ import type {
     VariableDefinitionNode,
 } from "graphql";
 import { Kind, isTypeDefinitionNode, isTypeExtensionNode } from "graphql";
-import type { SDLValidationContext } from "graphql/validation/ValidationContext";
+import type { SDLValidationContext } from "graphql/validation/ValidationContext.js";
 import {
     invalidFieldCombinations,
     invalidInterfaceCombinations,
     invalidObjectCombinations,
     invalidUnionCombinations,
-} from "../../utils/invalid-directive-combinations";
-import { DocumentValidationError, assertValid, createGraphQLError } from "../utils/document-validation-error";
+} from "../../utils/invalid-directive-combinations.js";
+import { DocumentValidationError, assertValid, createGraphQLError } from "../utils/document-validation-error.js";
 import {
     getInheritedTypeNames,
     hydrateInterfaceWithImplementedTypesMap,
-} from "../utils/interface-to-implementing-types";
-import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser";
-import { getPathToNode } from "../utils/path-parser";
+} from "../utils/interface-to-implementing-types.js";
+import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser.js";
+import { getPathToNode } from "../utils/path-parser.js";
 
 type ASTNodeWithDirectives =
     | OperationDefinitionNode

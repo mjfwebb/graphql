@@ -18,8 +18,8 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { WhereOperator } from "../Filter";
-import { PropertyFilter } from "./PropertyFilter";
+import type { WhereOperator } from "../Filter.js";
+import { PropertyFilter } from "./PropertyFilter.js";
 
 export class DurationFilter extends PropertyFilter {
     protected getOperation(prop: Cypher.Property): Cypher.ComparisonOp {

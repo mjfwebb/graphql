@@ -18,7 +18,7 @@
  */
 
 import { GraphQLFloat, GraphQLInputObjectType, GraphQLNonNull } from "graphql";
-import { PointInput } from "./PointInput";
+import { PointInput } from "./PointInput.js";
 
 export const PointDistance = new GraphQLInputObjectType({
     name: "PointDistance",

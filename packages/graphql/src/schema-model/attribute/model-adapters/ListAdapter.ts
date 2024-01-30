@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import type { AttributeAdapter } from "./AttributeAdapter";
+import type { AttributeAdapter } from "./AttributeAdapter.js";
 
 export class ListAdapter {
     readonly AttributeAdapter: AttributeAdapter;

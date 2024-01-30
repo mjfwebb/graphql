@@ -16,16 +16,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Kind } from "graphql";
 import type { DefinitionNode } from "graphql";
-import type { EnricherContext } from "../../EnricherContext";
-import type { Enricher } from "../../types";
+import { Kind } from "graphql";
+import type { EnricherContext } from "../../EnricherContext.js";
+import type { Enricher } from "../../types.js";
 import type {
     CREATE_DIRECTIVE_DEFINITION_FN,
     ObjectOrInterfaceDefinitionNode,
     ObjectOrInterfaceExtensionNode,
-} from "./utils";
-import { containsDirective } from "./utils";
+} from "./utils.js";
+import { containsDirective } from "./utils.js";
 
 function findDirectiveByTypeName(typeName: string, enricherContext: EnricherContext, directiveName: string): boolean {
     const userDocumentObject = enricherContext.userDefinitionNodeMap[typeName] as

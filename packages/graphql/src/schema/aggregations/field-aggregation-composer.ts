@@ -19,13 +19,13 @@
 
 import { GraphQLInt, GraphQLNonNull } from "graphql";
 import type { ObjectTypeComposer, SchemaComposer } from "graphql-compose";
-import type { Subgraph } from "../../classes/Subgraph";
-import type { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import { UnionEntityAdapter } from "../../schema-model/entity/model-adapters/UnionEntityAdapter";
-import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import { numericalResolver } from "../resolvers/field/numerical";
-import { AggregationTypesMapper } from "./aggregation-types-mapper";
+import type { Subgraph } from "../../classes/Subgraph.js";
+import type { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import { UnionEntityAdapter } from "../../schema-model/entity/model-adapters/UnionEntityAdapter.js";
+import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { numericalResolver } from "../resolvers/field/numerical.js";
+import { AggregationTypesMapper } from "./aggregation-types-mapper.js";
 
 export enum FieldAggregationSchemaTypes {
     field = "AggregationSelection",

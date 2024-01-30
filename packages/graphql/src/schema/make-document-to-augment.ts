@@ -19,7 +19,7 @@
 
 import type { DefinitionNode, DocumentNode, ObjectTypeDefinitionNode } from "graphql";
 import { Kind } from "graphql";
-import getFieldTypeMeta from "./get-field-type-meta";
+import getFieldTypeMeta from "./get-field-type-meta.js";
 
 type DocumentToAugment = {
     document: DocumentNode;

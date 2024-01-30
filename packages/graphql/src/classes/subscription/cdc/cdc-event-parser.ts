@@ -17,10 +17,14 @@
  * limitations under the License.
  */
 
-import type { Neo4jGraphQLSchemaModel } from "../../../schema-model/Neo4jGraphQLSchemaModel";
-import { serializeProperties } from "../../../schema/subscriptions/publish-events-to-subscription-mechanism";
-import type { NodeSubscriptionsEvent, RelationshipSubscriptionsEvent, SubscriptionsEvent } from "../../../types";
-import type { CDCNodeEvent, CDCQueryResponse, CDCRelationshipEvent } from "./cdc-types";
+import type { Neo4jGraphQLSchemaModel } from "../../../schema-model/Neo4jGraphQLSchemaModel.js";
+import { serializeProperties } from "../../../schema/subscriptions/publish-events-to-subscription-mechanism.js";
+import type {
+    NodeSubscriptionsEvent,
+    RelationshipSubscriptionsEvent,
+    SubscriptionsEvent,
+} from "../../../types/index.js";
+import type { CDCNodeEvent, CDCQueryResponse, CDCRelationshipEvent } from "./cdc-types.js";
 
 export class CDCEventParser {
     private schemaModel: Neo4jGraphQLSchemaModel;

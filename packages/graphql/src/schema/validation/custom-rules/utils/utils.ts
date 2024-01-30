@@ -19,7 +19,7 @@
 import type { ArgumentNode, EnumTypeDefinitionNode, FieldDefinitionNode, TypeNode, ValueNode } from "graphql";
 import { Kind } from "graphql";
 import * as neo4j from "neo4j-driver";
-import { parseValueNode } from "../../../../schema-model/parser/parse-value-node";
+import { parseValueNode } from "../../../../schema-model/parser/parse-value-node.js";
 
 export function getInnerTypeName(typeNode: TypeNode): string {
     if (typeNode.kind === Kind.LIST_TYPE) {

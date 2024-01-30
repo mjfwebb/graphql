@@ -24,14 +24,14 @@ import type {
     InputTypeComposerFieldConfigMapDefinition,
     SchemaComposer,
 } from "graphql-compose";
-import { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import { UnionEntityAdapter } from "../../schema-model/entity/model-adapters/UnionEntityAdapter";
-import { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import { concreteEntityToCreateInputFields } from "../to-compose";
-import { withConnectFieldInputType } from "./connect-input";
-import { withConnectOrCreateFieldInputType } from "./connect-or-create-input";
-import { withCreateFieldInputType } from "./relation-input";
+import { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import { UnionEntityAdapter } from "../../schema-model/entity/model-adapters/UnionEntityAdapter.js";
+import { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { concreteEntityToCreateInputFields } from "../to-compose.js";
+import { withConnectFieldInputType } from "./connect-input.js";
+import { withConnectOrCreateFieldInputType } from "./connect-or-create-input.js";
+import { withCreateFieldInputType } from "./relation-input.js";
 
 export function withCreateInputType({
     entityAdapter,

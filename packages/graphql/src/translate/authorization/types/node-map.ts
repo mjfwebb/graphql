@@ -18,7 +18,7 @@
  */
 
 import type Cypher from "@neo4j/cypher-builder";
-import type { Node } from "../../../types";
+import type { Node } from "../../../types/index.js";
 
 export type NodeMap = {
     node: Node;

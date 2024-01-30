@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
-import type { Annotations } from "../../annotation/Annotation";
-import { plural, singular } from "../../utils/string-manipulation";
-import type { ConcreteEntity } from "../ConcreteEntity";
-import type { UnionEntity } from "../UnionEntity";
-import { ConcreteEntityAdapter } from "./ConcreteEntityAdapter";
-import { UnionEntityOperations } from "./UnionEntityOperations";
+import type { Annotations } from "../../annotation/Annotation.js";
+import { plural, singular } from "../../utils/string-manipulation.js";
+import type { ConcreteEntity } from "../ConcreteEntity.js";
+import type { UnionEntity } from "../UnionEntity.js";
+import { ConcreteEntityAdapter } from "./ConcreteEntityAdapter.js";
+import { UnionEntityOperations } from "./UnionEntityOperations.js";
 
 export class UnionEntityAdapter {
     public readonly name: string;

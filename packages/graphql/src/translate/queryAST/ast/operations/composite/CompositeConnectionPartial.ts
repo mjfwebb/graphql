@@ -18,11 +18,11 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import { wrapSubqueriesInCypherCalls } from "../../../utils/wrap-subquery-in-calls";
-import type { QueryASTContext } from "../../QueryASTContext";
-import type { Pagination } from "../../pagination/Pagination";
-import { ConnectionReadOperation } from "../ConnectionReadOperation";
-import type { OperationTranspileResult } from "../operations";
+import { wrapSubqueriesInCypherCalls } from "../../../utils/wrap-subquery-in-calls.js";
+import type { QueryASTContext } from "../../QueryASTContext.js";
+import type { Pagination } from "../../pagination/Pagination.js";
+import { ConnectionReadOperation } from "../ConnectionReadOperation.js";
+import type { OperationTranspileResult } from "../operations.js";
 
 export class CompositeConnectionPartial extends ConnectionReadOperation {
     public transpile(context: QueryASTContext): OperationTranspileResult {
@@ -80,7 +80,7 @@ export class CompositeConnectionPartial extends ConnectionReadOperation {
 
         const edgeProjectionMap = new Cypher.Map();
 
-        const edgeProjectionFields = this.edgeFields.map((f) => f.getProjectionField(nestedContext.relationship!));
+        const edgeProjectionFields = this.edgeFields.map((f) => f.getProjectionField(nestedContext.relationship));
         const edgeSortProjectionFields = this.sortFields.flatMap((f) =>
             f.edge.map((ef) => ef.getProjectionField(nestedContext))
         );

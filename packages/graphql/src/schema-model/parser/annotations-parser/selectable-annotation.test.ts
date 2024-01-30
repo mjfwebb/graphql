@@ -18,16 +18,20 @@
  */
 
 import { makeDirectiveNode } from "@graphql-tools/utils";
-import { parseSelectableAnnotation } from "./selectable-annotation";
-import { selectableDirective } from "../../../graphql/directives";
+import { selectableDirective } from "../../../graphql/directives/index.js";
+import { parseSelectableAnnotation } from "./selectable-annotation.js";
 
 const tests = [
     {
         name: "should parse correctly when onRead is true and onAggregate is true",
-        directive: makeDirectiveNode("selectable", {
-            onRead: true,
-            onAggregate: true,
-        }, selectableDirective),
+        directive: makeDirectiveNode(
+            "selectable",
+            {
+                onRead: true,
+                onAggregate: true,
+            },
+            selectableDirective
+        ),
         expected: {
             onRead: true,
             onAggregate: true,
@@ -35,10 +39,14 @@ const tests = [
     },
     {
         name: "should parse correctly when onRead is true and onAggregate is false",
-        directive: makeDirectiveNode("selectable", {
-            onRead: true,
-            onAggregate: false,
-        }, selectableDirective),
+        directive: makeDirectiveNode(
+            "selectable",
+            {
+                onRead: true,
+                onAggregate: false,
+            },
+            selectableDirective
+        ),
         expected: {
             onRead: true,
             onAggregate: false,

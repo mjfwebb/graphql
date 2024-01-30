@@ -19,7 +19,7 @@
 
 import Cypher from "@neo4j/cypher-builder";
 import { int, type Integer } from "neo4j-driver";
-import { QueryASTNode } from "../QueryASTNode";
+import { QueryASTNode } from "../QueryASTNode.js";
 
 export type PaginationField = {
     skip: Cypher.Param<number | Integer> | undefined;

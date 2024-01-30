@@ -18,9 +18,9 @@
  */
 
 import type { DirectiveNode } from "graphql";
-import { queryDirective } from "../../../graphql/directives";
-import { QueryAnnotation } from "../../annotation/QueryAnnotation";
-import { parseArguments } from "../parse-arguments";
+import { queryDirective } from "../../../graphql/directives/index.js";
+import { QueryAnnotation } from "../../annotation/QueryAnnotation.js";
+import { parseArguments } from "../parse-arguments.js";
 
 export function parseQueryAnnotation(directive: DirectiveNode): QueryAnnotation {
     const { read, aggregate } = parseArguments<{ read: boolean; aggregate: boolean }>(queryDirective, directive);

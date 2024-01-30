@@ -18,7 +18,7 @@
  */
 
 import * as neo4j from "neo4j-driver";
-import { LimitDirective } from "./LimitDirective";
+import { LimitDirective } from "./LimitDirective.js";
 
 describe("QueryOptionsDirective", () => {
     describe("getLimit", () => {

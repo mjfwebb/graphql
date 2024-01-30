@@ -17,17 +17,17 @@
  * limitations under the License.
  */
 
-import type { ResolveTree } from "graphql-parse-resolve-info";
 import { mergeDeep } from "@graphql-tools/utils";
-import type { ConnectionField, ConnectionSortArg, CypherFieldReferenceMap } from "../../types";
-import type { Node } from "../../classes";
+import type { ResolveTree } from "graphql-parse-resolve-info";
+import type { Node } from "../../classes/index.js";
+import type { ConnectionField, ConnectionSortArg, CypherFieldReferenceMap } from "../../types/index.js";
 
-import createProjectionAndParams from "../create-projection-and-params";
-import type Relationship from "../../classes/Relationship";
-import { createRelationshipPropertyValue } from "../projection/elements/create-relationship-property-value";
-import { generateMissingOrAliasedFields } from "../utils/resolveTree";
 import Cypher from "@neo4j/cypher-builder";
-import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context";
+import type Relationship from "../../classes/Relationship.js";
+import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context.js";
+import createProjectionAndParams from "../create-projection-and-params.js";
+import { createRelationshipPropertyValue } from "../projection/elements/create-relationship-property-value.js";
+import { generateMissingOrAliasedFields } from "../utils/resolveTree.js";
 
 export function createEdgeProjection({
     resolveTree,

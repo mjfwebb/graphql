@@ -18,12 +18,12 @@
  */
 import type { DirectiveNode } from "graphql";
 import type { Directive } from "graphql-compose";
-import type { Subgraph } from "../../classes/Subgraph";
-import { QueryOptions } from "../../graphql/input-objects/QueryOptions";
-import { UnionEntityAdapter } from "../../schema-model/entity/model-adapters/UnionEntityAdapter";
-import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import { getDirectedArgument } from "../directed-argument";
-import { graphqlDirectivesToCompose } from "../to-compose";
+import type { Subgraph } from "../../classes/Subgraph.js";
+import { QueryOptions } from "../../graphql/input-objects/QueryOptions.js";
+import { UnionEntityAdapter } from "../../schema-model/entity/model-adapters/UnionEntityAdapter.js";
+import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { getDirectedArgument } from "../directed-argument.js";
+import { graphqlDirectivesToCompose } from "../to-compose.js";
 
 export function augmentObjectOrInterfaceTypeWithRelationshipField(
     relationshipAdapter: RelationshipAdapter,

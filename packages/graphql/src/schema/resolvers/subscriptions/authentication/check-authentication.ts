@@ -17,18 +17,18 @@
  * limitations under the License.
  */
 
-import { Neo4jGraphQLError } from "../../../../classes";
-import { AUTHORIZATION_UNAUTHENTICATED } from "../../../../constants";
+import { Neo4jGraphQLError } from "../../../../classes/index.js";
+import { AUTHORIZATION_UNAUTHENTICATED } from "../../../../constants.js";
 import type {
     AuthenticationAnnotation,
     AuthenticationOperation,
-} from "../../../../schema-model/annotation/AuthenticationAnnotation";
-import type { Attribute } from "../../../../schema-model/attribute/Attribute";
-import type { AttributeAdapter } from "../../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import type { ConcreteEntity } from "../../../../schema-model/entity/ConcreteEntity";
-import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { filterByValues } from "../../../../translate/authorization/utils/filter-by-values";
-import type { Neo4jGraphQLComposedSubscriptionsContext } from "../../composition/wrap-subscription";
+} from "../../../../schema-model/annotation/AuthenticationAnnotation.js";
+import type { Attribute } from "../../../../schema-model/attribute/Attribute.js";
+import type { AttributeAdapter } from "../../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import type { ConcreteEntity } from "../../../../schema-model/entity/ConcreteEntity.js";
+import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { filterByValues } from "../../../../translate/authorization/utils/filter-by-values.js";
+import type { Neo4jGraphQLComposedSubscriptionsContext } from "../../composition/wrap-subscription.js";
 
 export function checkAuthentication({
     authenticated,

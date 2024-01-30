@@ -18,12 +18,12 @@
  */
 import { GraphQLInt, type DirectiveNode } from "graphql";
 import type { InputTypeComposer, InputTypeComposerFieldConfigMapDefinition, SchemaComposer } from "graphql-compose";
-import { DEPRECATED } from "../../constants";
-import { SortDirection } from "../../graphql/enums/SortDirection";
-import { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import { graphqlDirectivesToCompose } from "../to-compose";
+import { DEPRECATED } from "../../constants.js";
+import { SortDirection } from "../../graphql/enums/SortDirection.js";
+import { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { graphqlDirectivesToCompose } from "../to-compose.js";
 
 export function withOptionsInputType({
     entityAdapter,

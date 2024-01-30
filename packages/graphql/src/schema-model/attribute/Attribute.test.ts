@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import { Attribute } from "./Attribute";
-import { ScalarType, GraphQLBuiltInScalarType } from "./AttributeType";
+import { Attribute } from "./Attribute.js";
+import { GraphQLBuiltInScalarType, ScalarType } from "./AttributeType.js";
 
 describe("Attribute", () => {
     test("should clone attribute", () => {

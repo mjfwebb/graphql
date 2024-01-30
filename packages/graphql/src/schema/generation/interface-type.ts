@@ -18,13 +18,13 @@
  */
 import type { DirectiveNode } from "graphql";
 import type { InterfaceTypeComposer, SchemaComposer } from "graphql-compose";
-import { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter";
+import { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
 import {
     attributeAdapterToComposeFields,
     graphqlDirectivesToCompose,
     relationshipAdapterToComposeFields,
-} from "../to-compose";
+} from "../to-compose.js";
 
 export function withInterfaceType({
     entityAdapter,

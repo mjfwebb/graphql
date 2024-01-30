@@ -18,15 +18,15 @@
  */
 
 import type { GraphQLResolveInfo } from "graphql";
-import type { AttributeAdapter } from "../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import { translateTopLevelCypher } from "../../../translate";
-import type { CypherField } from "../../../types";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
-import { execute } from "../../../utils";
-import getNeo4jResolveTree from "../../../utils/get-neo4j-resolve-tree";
-import { isNeoInt } from "../../../utils/utils";
-import { graphqlArgsToCompose } from "../../to-compose";
-import type { Neo4jGraphQLComposedContext } from "../composition/wrap-query-and-mutation";
+import type { AttributeAdapter } from "../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import { translateTopLevelCypher } from "../../../translate/index.js";
+import type { CypherField } from "../../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
+import getNeo4jResolveTree from "../../../utils/get-neo4j-resolve-tree.js";
+import { execute } from "../../../utils/index.js";
+import { isNeoInt } from "../../../utils/utils.js";
+import { graphqlArgsToCompose } from "../../to-compose.js";
+import type { Neo4jGraphQLComposedContext } from "../composition/wrap-query-and-mutation.js";
 
 export function cypherResolver({
     field,

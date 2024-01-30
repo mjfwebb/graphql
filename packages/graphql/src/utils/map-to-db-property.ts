@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import type { GraphElement } from "../classes";
+import type { GraphElement } from "../classes/index.js";
 
 // For the @alias directive to be used
 function mapToDbProperty(item: GraphElement, graphQLField: string): string {

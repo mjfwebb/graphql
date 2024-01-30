@@ -18,7 +18,7 @@
  */
 
 import pluralize from "pluralize";
-import type { RelationshipAdapter } from "../../relationship/model-adapters/RelationshipAdapter";
+import type { RelationshipAdapter } from "../../relationship/model-adapters/RelationshipAdapter.js";
 
 export class ListFiltersAdapter {
     readonly relationshipAdapter: RelationshipAdapter;

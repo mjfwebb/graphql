@@ -19,7 +19,7 @@
 
 import type { FieldDefinitionNode } from "graphql";
 import { Kind } from "graphql";
-import getRelationshipMeta from "./get-relationship-meta";
+import getRelationshipMeta from "./get-relationship-meta.js";
 
 describe("getRelationshipMeta", () => {
     test("should return undefined if no directive found", () => {

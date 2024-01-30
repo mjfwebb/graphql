@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-export * from "./Error";
-export { GraphElement } from "./GraphElement";
-export { Neo4jDatabaseInfo } from "./Neo4jDatabaseInfo";
-export { default as Neo4jGraphQL, Neo4jGraphQLConstructor } from "./Neo4jGraphQL";
-export { default as Node, NodeConstructor } from "./Node";
-export { default as Relationship } from "./Relationship";
+export * from "./Error.js";
+export { GraphElement } from "./GraphElement.js";
+export { Neo4jDatabaseInfo } from "./Neo4jDatabaseInfo.js";
+export { default as Neo4jGraphQL, Neo4jGraphQLConstructor } from "./Neo4jGraphQL.js";
+export { default as Node, NodeConstructor } from "./Node.js";
+export { default as Relationship } from "./Relationship.js";

@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import { MIN_NEO4J_VERSION } from "../../constants";
-import type { Neo4jDatabaseInfo } from "../Neo4jDatabaseInfo";
+import { MIN_NEO4J_VERSION } from "../../constants.js";
+import type { Neo4jDatabaseInfo } from "../Neo4jDatabaseInfo.js";
 
 export function verifyVersion(dbInfo: Neo4jDatabaseInfo): void {
     if (!dbInfo.toString().includes("aura")) {

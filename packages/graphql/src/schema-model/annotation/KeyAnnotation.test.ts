@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { KeyAnnotation } from "./KeyAnnotation";
+import { KeyAnnotation } from "./KeyAnnotation.js";
 
 describe("KeyAnnotation", () => {
     it("initialize class correctly when resolvable param is set", () => {

@@ -19,7 +19,7 @@
 
 import type { ASTNode } from "graphql";
 import { Kind } from "graphql";
-import type { ObjectOrInterfaceWithExtensions } from "./path-parser";
+import type { ObjectOrInterfaceWithExtensions } from "./path-parser.js";
 
 export function hydrateInterfaceWithImplementedTypesMap(
     node: ASTNode,

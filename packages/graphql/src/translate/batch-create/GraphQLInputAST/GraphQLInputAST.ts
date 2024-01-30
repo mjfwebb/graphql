@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import { UnwindASTNode } from "./UnwindASTNode";
-import { CreateAST } from "./CreateAST";
-import { NestedCreateAST } from "./NestedCreateAST";
+import { CreateAST } from "./CreateAST.js";
+import { NestedCreateAST } from "./NestedCreateAST.js";
+import { UnwindASTNode } from "./UnwindASTNode.js";
 
-export { UnwindASTNode, CreateAST, NestedCreateAST };
-export type { Visitor } from "./types";
+export type { Visitor } from "./types.js";
+export { CreateAST, NestedCreateAST, UnwindASTNode };

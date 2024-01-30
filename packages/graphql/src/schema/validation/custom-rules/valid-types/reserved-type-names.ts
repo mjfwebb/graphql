@@ -18,19 +18,19 @@
  */
 
 import type {
-    ASTVisitor,
     ASTNode,
-    ObjectTypeDefinitionNode,
-    ScalarTypeDefinitionNode,
-    InterfaceTypeDefinitionNode,
-    UnionTypeDefinitionNode,
+    ASTVisitor,
     EnumTypeDefinitionNode,
     InputObjectTypeDefinitionNode,
+    InterfaceTypeDefinitionNode,
+    ObjectTypeDefinitionNode,
+    ScalarTypeDefinitionNode,
+    UnionTypeDefinitionNode,
 } from "graphql";
 import { Kind } from "graphql";
-import type { SDLValidationContext } from "graphql/validation/ValidationContext";
-import { RESERVED_TYPE_NAMES } from "../../../../constants";
-import { assertValid, createGraphQLError, DocumentValidationError } from "../utils/document-validation-error";
+import type { SDLValidationContext } from "graphql/validation/ValidationContext.js";
+import { RESERVED_TYPE_NAMES } from "../../../../constants.js";
+import { DocumentValidationError, assertValid, createGraphQLError } from "../utils/document-validation-error.js";
 
 type ReservableASTNode =
     | ObjectTypeDefinitionNode

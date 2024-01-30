@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 import type { DirectiveNode } from "graphql";
-import { filterableDirective } from "../../../graphql/directives";
-import { FilterableAnnotation } from "../../annotation/FilterableAnnotation";
-import { parseArguments } from "../parse-arguments";
+import { filterableDirective } from "../../../graphql/directives/index.js";
+import { FilterableAnnotation } from "../../annotation/FilterableAnnotation.js";
+import { parseArguments } from "../parse-arguments.js";
 
 export function parseFilterableAnnotation(directive: DirectiveNode): FilterableAnnotation {
     const { byValue, byAggregate } = parseArguments<{

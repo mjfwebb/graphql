@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import type { Node } from "../classes";
-import mapToDbProperty from "./map-to-db-property";
+import type { Node } from "../classes/index.js";
+import mapToDbProperty from "./map-to-db-property.js";
 
 /* returns conflicting mutation input properties */
 export function findConflictingProperties({

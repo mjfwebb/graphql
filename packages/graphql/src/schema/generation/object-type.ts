@@ -19,9 +19,9 @@
 import type { DirectiveNode } from "graphql";
 import { GraphQLID, GraphQLNonNull } from "graphql";
 import type { ObjectTypeComposer, SchemaComposer } from "graphql-compose";
-import { InterfaceEntity } from "../../schema-model/entity/InterfaceEntity";
-import type { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { attributeAdapterToComposeFields, graphqlDirectivesToCompose } from "../to-compose";
+import { InterfaceEntity } from "../../schema-model/entity/InterfaceEntity.js";
+import type { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { attributeAdapterToComposeFields, graphqlDirectivesToCompose } from "../to-compose.js";
 
 export function withObjectType({
     concreteEntityAdapter,

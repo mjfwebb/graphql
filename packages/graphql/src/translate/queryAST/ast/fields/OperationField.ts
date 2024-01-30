@@ -18,10 +18,10 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import { QueryASTContext } from "../QueryASTContext";
-import type { QueryASTNode } from "../QueryASTNode";
-import type { Operation } from "../operations/operations";
-import { Field } from "./Field";
+import { QueryASTContext } from "../QueryASTContext.js";
+import type { QueryASTNode } from "../QueryASTNode.js";
+import type { Operation } from "../operations/operations.js";
+import { Field } from "./Field.js";
 
 export class OperationField extends Field {
     private operation: Operation;

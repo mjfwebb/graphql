@@ -18,12 +18,12 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { RelationshipAdapter } from "../../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import { hasTarget } from "../../utils/context-has-target";
-import { createNodeFromEntity, createRelationshipFromEntity } from "../../utils/create-node-from-entity";
-import type { QueryASTContext } from "../QueryASTContext";
-import { EntitySelection, type SelectionClause } from "./EntitySelection";
+import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { RelationshipAdapter } from "../../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { hasTarget } from "../../utils/context-has-target.js";
+import { createNodeFromEntity, createRelationshipFromEntity } from "../../utils/create-node-from-entity.js";
+import type { QueryASTContext } from "../QueryASTContext.js";
+import { EntitySelection, type SelectionClause } from "./EntitySelection.js";
 
 export class RelationshipSelection extends EntitySelection {
     private relationship: RelationshipAdapter;

@@ -18,9 +18,9 @@
  */
 
 import type { DirectiveNode } from "graphql";
-import type { CoalesceAnnotationValue } from "../../annotation/CoalesceAnnotation";
-import { CoalesceAnnotation } from "../../annotation/CoalesceAnnotation";
-import { parseArgumentsFromUnknownDirective } from "../parse-arguments";
+import type { CoalesceAnnotationValue } from "../../annotation/CoalesceAnnotation.js";
+import { CoalesceAnnotation } from "../../annotation/CoalesceAnnotation.js";
+import { parseArgumentsFromUnknownDirective } from "../parse-arguments.js";
 
 export function parseCoalesceAnnotation(directive: DirectiveNode): CoalesceAnnotation {
     const args = parseArgumentsFromUnknownDirective(directive) as Record<string, CoalesceAnnotationValue>;

@@ -19,8 +19,8 @@
 
 import type { GraphQLError } from "graphql";
 import { gql } from "graphql-tag";
-import { validateSDL } from "../validate-sdl";
-import { DirectiveArgumentOfCorrectType } from "./directive-argument-of-correct-type";
+import { validateSDL } from "../validate-sdl.js";
+import { DirectiveArgumentOfCorrectType } from "./directive-argument-of-correct-type.js";
 
 describe("DirectiveArgumentOfCorrectType", () => {
     describe("for Scalar", () => {

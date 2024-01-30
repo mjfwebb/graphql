@@ -18,8 +18,8 @@
  */
 
 import type { Directive, InputTypeComposerFieldConfigMapDefinition } from "graphql-compose";
-import { DEPRECATED } from "../../constants";
-import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter";
+import { DEPRECATED } from "../../constants.js";
+import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
 
 function augmentWhereInputType({
     whereType,

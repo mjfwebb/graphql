@@ -18,12 +18,12 @@
  */
 
 import type Cypher from "@neo4j/cypher-builder";
-import type { AttributeAdapter } from "../../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import { CypherAnnotationSubqueryGenerator } from "../../cypher-generators/CypherAnnotationSubqueryGenerator";
-import type { QueryASTContext } from "../QueryASTContext";
-import type { QueryASTNode } from "../QueryASTNode";
-import type { SortField } from "./Sort";
-import { Sort } from "./Sort";
+import type { AttributeAdapter } from "../../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import { CypherAnnotationSubqueryGenerator } from "../../cypher-generators/CypherAnnotationSubqueryGenerator.js";
+import type { QueryASTContext } from "../QueryASTContext.js";
+import type { QueryASTNode } from "../QueryASTNode.js";
+import type { SortField } from "./Sort.js";
+import { Sort } from "./Sort.js";
 
 export class CypherPropertySort extends Sort {
     private attribute: AttributeAdapter;

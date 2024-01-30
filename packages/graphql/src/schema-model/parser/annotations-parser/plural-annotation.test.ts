@@ -19,8 +19,8 @@
 
 import { makeDirectiveNode } from "@graphql-tools/utils";
 import type { DirectiveNode } from "graphql";
-import { parsePluralAnnotation } from "./plural-annotation";
-import { pluralDirective } from "../../../graphql/directives";
+import { pluralDirective } from "../../../graphql/directives/index.js";
+import { parsePluralAnnotation } from "./plural-annotation.js";
 
 describe("parsePluralAnnotation", () => {
     it("should parse correctly", () => {

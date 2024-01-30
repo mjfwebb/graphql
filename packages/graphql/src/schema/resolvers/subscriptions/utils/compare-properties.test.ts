@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { compareProperties } from "./compare-properties";
+import { compareProperties } from "./compare-properties.js";
 
 describe("Compare Properties", () => {
     test("with string array - equal", () => {

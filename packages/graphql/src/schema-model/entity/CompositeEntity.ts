@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import type { ConcreteEntity } from "./ConcreteEntity";
-import type { Entity } from "./Entity";
+import type { ConcreteEntity } from "./ConcreteEntity.js";
+import type { Entity } from "./Entity.js";
 
 /** models the concept of an Abstract Type */
 export interface CompositeEntity extends Entity {

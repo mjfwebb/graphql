@@ -18,20 +18,20 @@
  */
 
 import { upperFirst } from "graphql-compose";
-import { MutationOperations } from "../../../graphql/directives/mutation";
-import { SubscriptionEvent } from "../../../graphql/directives/subscription";
-import { toGlobalId } from "../../../utils/global-ids";
-import type { Annotations } from "../../annotation/Annotation";
-import type { Attribute } from "../../attribute/Attribute";
-import { AttributeAdapter } from "../../attribute/model-adapters/AttributeAdapter";
-import type { Relationship } from "../../relationship/Relationship";
-import { RelationshipAdapter } from "../../relationship/model-adapters/RelationshipAdapter";
-import { getFromMap } from "../../utils/get-from-map";
-import { plural, singular } from "../../utils/string-manipulation";
-import type { CompositeEntity } from "../CompositeEntity";
-import type { ConcreteEntity } from "../ConcreteEntity";
-import type { EntityAdapter } from "../EntityAdapter";
-import { ConcreteEntityOperations } from "./ConcreteEntityOperations";
+import { MutationOperations } from "../../../graphql/directives/mutation.js";
+import { SubscriptionEvent } from "../../../graphql/directives/subscription.js";
+import { toGlobalId } from "../../../utils/global-ids.js";
+import type { Annotations } from "../../annotation/Annotation.js";
+import type { Attribute } from "../../attribute/Attribute.js";
+import { AttributeAdapter } from "../../attribute/model-adapters/AttributeAdapter.js";
+import type { Relationship } from "../../relationship/Relationship.js";
+import { RelationshipAdapter } from "../../relationship/model-adapters/RelationshipAdapter.js";
+import { getFromMap } from "../../utils/get-from-map.js";
+import { plural, singular } from "../../utils/string-manipulation.js";
+import type { CompositeEntity } from "../CompositeEntity.js";
+import type { ConcreteEntity } from "../ConcreteEntity.js";
+import type { EntityAdapter } from "../EntityAdapter.js";
+import { ConcreteEntityOperations } from "./ConcreteEntityOperations.js";
 
 export class ConcreteEntityAdapter {
     public readonly name: string;

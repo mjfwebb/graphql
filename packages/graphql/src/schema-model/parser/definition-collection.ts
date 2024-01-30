@@ -30,9 +30,9 @@ import type {
     UnionTypeDefinitionNode,
 } from "graphql";
 import { Kind } from "graphql";
-import { jwt, relationshipPropertiesDirective } from "../../graphql/directives";
-import { isRootType } from "../../utils/is-root-type";
-import { findDirective } from "./utils";
+import { jwt, relationshipPropertiesDirective } from "../../graphql/directives/index.js";
+import { isRootType } from "../../utils/is-root-type.js";
+import { findDirective } from "./utils.js";
 
 export type DefinitionCollection = {
     nodes: Map<string, ObjectTypeDefinitionNode>; // this does not include @jwtPayload type.

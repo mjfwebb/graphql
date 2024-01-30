@@ -19,7 +19,7 @@
 
 import * as neo4j from "neo4j-driver";
 import * as util from "util";
-import type { Neo4jGraphQLContext } from "../../../src";
+import type { Neo4jGraphQLContext } from "../../../src/index.js";
 
 const INT_TEST_DB_NAME = "neo4jgraphqlinttestdatabase";
 

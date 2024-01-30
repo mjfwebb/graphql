@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import type { AttributeType } from "./AttributeType";
+import type { AttributeType } from "./AttributeType.js";
 import {
     EnumType,
     GraphQLBuiltInScalarType,
@@ -32,7 +32,7 @@ import {
     ScalarType,
     UnionType,
     UserScalarType,
-} from "./AttributeType";
+} from "./AttributeType.js";
 
 export class AttributeTypeHelper {
     private assertionOptions: {

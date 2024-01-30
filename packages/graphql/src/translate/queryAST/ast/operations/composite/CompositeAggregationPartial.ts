@@ -18,12 +18,12 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { ConcreteEntityAdapter } from "../../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { RelationshipAdapter } from "../../../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import { createNodeFromEntity, createRelationshipFromEntity } from "../../../utils/create-node-from-entity";
-import { wrapSubqueriesInCypherCalls } from "../../../utils/wrap-subquery-in-calls";
-import type { QueryASTContext } from "../../QueryASTContext";
-import { QueryASTNode } from "../../QueryASTNode";
+import type { ConcreteEntityAdapter } from "../../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { RelationshipAdapter } from "../../../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { createNodeFromEntity, createRelationshipFromEntity } from "../../../utils/create-node-from-entity.js";
+import { wrapSubqueriesInCypherCalls } from "../../../utils/wrap-subquery-in-calls.js";
+import type { QueryASTContext } from "../../QueryASTContext.js";
+import { QueryASTNode } from "../../QueryASTNode.js";
 
 export class CompositeAggregationPartial extends QueryASTNode {
     public readonly entity?: RelationshipAdapter;

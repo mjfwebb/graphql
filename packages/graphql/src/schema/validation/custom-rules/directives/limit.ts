@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 import type { DirectiveNode } from "graphql";
-import { DocumentValidationError } from "../utils/document-validation-error";
-import { parseArgumentToInt } from "../utils/utils";
+import { DocumentValidationError } from "../utils/document-validation-error.js";
+import { parseArgumentToInt } from "../utils/utils.js";
 
 export function verifyLimit({ directiveNode }: { directiveNode: DirectiveNode }) {
     const defaultArg = directiveNode.arguments?.find((a) => a.name.value === "default");

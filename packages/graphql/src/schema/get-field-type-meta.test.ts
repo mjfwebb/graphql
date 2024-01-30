@@ -19,7 +19,7 @@
 
 import type { FieldDefinitionNode, ObjectTypeDefinitionNode } from "graphql";
 import { parse } from "graphql";
-import getFieldTypeMeta from "./get-field-type-meta";
+import getFieldTypeMeta from "./get-field-type-meta.js";
 
 describe("getFieldTypeMeta", () => {
     test("should return NonNullType ListType type name", () => {

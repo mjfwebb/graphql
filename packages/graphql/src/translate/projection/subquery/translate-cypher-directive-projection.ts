@@ -17,13 +17,13 @@
  * limitations under the License.
  */
 
-import type { ResolveTree } from "graphql-parse-resolve-info";
-import type { Node } from "../../../classes";
-import type { GraphQLSortArg, CypherField, CypherFieldReferenceMap } from "../../../types";
 import Cypher from "@neo4j/cypher-builder";
-import createProjectionAndParams from "../../create-projection-and-params";
-import { compileCypher } from "../../../utils/compile-cypher";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
+import type { ResolveTree } from "graphql-parse-resolve-info";
+import type { Node } from "../../../classes/index.js";
+import type { CypherField, CypherFieldReferenceMap, GraphQLSortArg } from "../../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
+import { compileCypher } from "../../../utils/compile-cypher.js";
+import createProjectionAndParams from "../../create-projection-and-params.js";
 
 interface Res {
     projection: Cypher.Expr[];

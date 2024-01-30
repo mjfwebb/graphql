@@ -18,9 +18,9 @@
  */
 
 import type { DirectiveNode, ObjectTypeDefinitionNode } from "graphql";
-import gql from "graphql-tag";
-import getObjFieldMeta from "../get-obj-field-meta";
-import parseFulltextDirective from "./parse-fulltext-directive";
+import { gql } from "graphql-tag";
+import getObjFieldMeta from "../get-obj-field-meta.js";
+import parseFulltextDirective from "./parse-fulltext-directive.js";
 
 describe("parseFulltextDirective", () => {
     test("should throw error when directive has duplicate name", () => {

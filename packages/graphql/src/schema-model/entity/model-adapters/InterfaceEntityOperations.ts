@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import { upperFirst } from "../../../utils/upper-first";
-import type { InterfaceEntityAdapter } from "./InterfaceEntityAdapter";
+import { upperFirst } from "../../../utils/upper-first.js";
+import type { InterfaceEntityAdapter } from "./InterfaceEntityAdapter.js";
 
 type RootTypeFieldNames = {
     create: string;

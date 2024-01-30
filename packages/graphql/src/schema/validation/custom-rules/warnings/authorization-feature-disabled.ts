@@ -18,7 +18,7 @@
  */
 
 import type { ASTVisitor, DirectiveNode } from "graphql";
-import type { Neo4jAuthorizationSettings } from "../../../../types";
+import type { Neo4jAuthorizationSettings } from "../../../../types/index.js";
 
 export function WarnIfAuthorizationFeatureDisabled(authorization: Neo4jAuthorizationSettings | undefined) {
     return function (): ASTVisitor {

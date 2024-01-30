@@ -18,9 +18,9 @@
  */
 
 import type { ArgumentNode, DirectiveNode, ObjectTypeDefinitionNode } from "graphql";
-import type { FullText, FulltextContext } from "../../types";
-import type { ObjectFields } from "../get-obj-field-meta";
-import { parseValueNode } from "../../schema-model/parser/parse-value-node";
+import { parseValueNode } from "../../schema-model/parser/parse-value-node.js";
+import type { FullText, FulltextContext } from "../../types/index.js";
+import type { ObjectFields } from "../get-obj-field-meta.js";
 
 function parseFulltextDirective({
     directive,

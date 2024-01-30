@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import trimmer from "./trimmer";
+import trimmer from "./trimmer.js";
 
 describe("trimmer", () => {
     test("should replace newlines with a space", () => {

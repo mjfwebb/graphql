@@ -18,10 +18,10 @@
  */
 
 import { int } from "neo4j-driver";
-import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import { getFilteringFn } from "../utils/get-filtering-fn";
-import { multipleConditionsAggregationMap } from "../utils/multiple-conditions-aggregation-map";
-import { parseFilterProperty } from "../utils/parse-filter-property";
+import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import { getFilteringFn } from "../utils/get-filtering-fn.js";
+import { multipleConditionsAggregationMap } from "../utils/multiple-conditions-aggregation-map.js";
+import { parseFilterProperty } from "../utils/parse-filter-property.js";
 
 /** Returns true if receivedProperties comply with filters specified in whereProperties, false otherwise. */
 export function filterByProperties<T>({

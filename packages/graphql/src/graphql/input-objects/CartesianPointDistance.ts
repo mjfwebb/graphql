@@ -18,7 +18,7 @@
  */
 
 import { GraphQLFloat, GraphQLInputObjectType, GraphQLNonNull } from "graphql";
-import { CartesianPointInput } from "./CartesianPointInput";
+import { CartesianPointInput } from "./CartesianPointInput.js";
 
 export const CartesianPointDistance = new GraphQLInputObjectType({
     name: "CartesianPointDistance",

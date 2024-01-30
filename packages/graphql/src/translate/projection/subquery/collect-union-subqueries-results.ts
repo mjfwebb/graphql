@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import type { GraphQLOptionsArg } from "../../../types";
 import Cypher from "@neo4j/cypher-builder";
-import { addSortAndLimitOptionsToClause } from "./add-sort-and-limit-to-clause";
+import type { GraphQLOptionsArg } from "../../../types/index.js";
+import { addSortAndLimitOptionsToClause } from "./add-sort-and-limit-to-clause.js";
 
 export function collectUnionSubqueriesResults({
     resultVariable,

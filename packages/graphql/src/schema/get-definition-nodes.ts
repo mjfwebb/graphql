@@ -30,8 +30,8 @@ import type {
     UnionTypeDefinitionNode,
 } from "graphql";
 import { Kind } from "graphql";
-import { isRootType } from "../utils/is-root-type";
-import { DEBUG_GENERATE } from "../constants";
+import { DEBUG_GENERATE } from "../constants.js";
+import { isRootType } from "../utils/is-root-type.js";
 
 const debug = Debug(DEBUG_GENERATE);
 

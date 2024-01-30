@@ -16,19 +16,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Kind } from "graphql";
 import type {
-    ObjectTypeDefinitionNode,
-    FieldDefinitionNode,
     DefinitionNode,
+    FieldDefinitionNode,
     InterfaceTypeDefinitionNode,
-    ObjectTypeExtensionNode,
     InterfaceTypeExtensionNode,
+    ObjectTypeDefinitionNode,
+    ObjectTypeExtensionNode,
 } from "graphql";
-import type { EnricherContext } from "../../EnricherContext";
-import type { Enricher } from "../../types";
-import type { DIRECTIVE_TRANSFORM_FN } from "./utils";
-import { containsDirective, getDirectiveDefinition } from "./utils";
+import { Kind } from "graphql";
+import type { EnricherContext } from "../../EnricherContext.js";
+import type { Enricher } from "../../types.js";
+import type { DIRECTIVE_TRANSFORM_FN } from "./utils.js";
+import { containsDirective, getDirectiveDefinition } from "./utils.js";
 
 type ObjectOrInterfaceDefinitionNode = ObjectTypeDefinitionNode | InterfaceTypeDefinitionNode;
 type ObjectOrInterfaceExtensionNode = ObjectTypeExtensionNode | InterfaceTypeExtensionNode;

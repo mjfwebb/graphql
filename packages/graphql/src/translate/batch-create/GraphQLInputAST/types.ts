@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import type { CreateAST } from "./CreateAST";
-import type { NestedCreateAST } from "./NestedCreateAST";
+import type { CreateAST } from "./CreateAST.js";
+import type { NestedCreateAST } from "./NestedCreateAST.js";
 
 export interface Visitor<T = void> {
     visitCreate: (create: CreateAST) => T;

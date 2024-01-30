@@ -17,15 +17,15 @@
  * limitations under the License.
  */
 
-import type { Annotations } from "../../annotation/Annotation";
-import type { Argument } from "../../argument/Argument";
-import type { Attribute } from "../Attribute";
-import type { AttributeType } from "../AttributeType";
-import { ListType } from "../AttributeType";
-import { AttributeTypeHelper } from "../AttributeTypeHelper";
-import { AggregationAdapter } from "./AggregationAdapter";
-import { ListAdapter } from "./ListAdapter";
-import { MathAdapter } from "./MathAdapter";
+import type { Annotations } from "../../annotation/Annotation.js";
+import type { Argument } from "../../argument/Argument.js";
+import type { Attribute } from "../Attribute.js";
+import type { AttributeType } from "../AttributeType.js";
+import { ListType } from "../AttributeType.js";
+import { AttributeTypeHelper } from "../AttributeTypeHelper.js";
+import { AggregationAdapter } from "./AggregationAdapter.js";
+import { ListAdapter } from "./ListAdapter.js";
+import { MathAdapter } from "./MathAdapter.js";
 
 export class AttributeAdapter {
     private _listModel: ListAdapter | undefined;

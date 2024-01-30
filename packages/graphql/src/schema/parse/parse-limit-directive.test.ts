@@ -18,10 +18,10 @@
  */
 
 import type { DirectiveNode, ObjectTypeDefinitionNode } from "graphql";
-import gql from "graphql-tag";
+import { gql } from "graphql-tag";
 import * as neo4j from "neo4j-driver";
-import { LimitDirective } from "../../classes/LimitDirective";
-import { parseLimitDirective } from "./parse-limit-directive";
+import { LimitDirective } from "../../classes/LimitDirective.js";
+import { parseLimitDirective } from "./parse-limit-directive.js";
 
 describe("parseLimitDirective", () => {
     test("max and default argument", () => {

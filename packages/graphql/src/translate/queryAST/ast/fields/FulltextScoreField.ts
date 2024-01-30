@@ -19,8 +19,8 @@
 
 import type Cypher from "@neo4j/cypher-builder";
 import type { Variable } from "@neo4j/cypher-builder";
-import type { QueryASTNode } from "../QueryASTNode";
-import { Field } from "./Field";
+import type { QueryASTNode } from "../QueryASTNode.js";
+import { Field } from "./Field.js";
 
 export class FulltextScoreField extends Field {
     private score: Cypher.Variable;

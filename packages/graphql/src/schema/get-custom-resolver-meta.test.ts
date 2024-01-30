@@ -24,8 +24,8 @@ import type {
     UnionTypeDefinitionNode,
 } from "graphql";
 import { Kind } from "graphql";
-import { generateResolveTree } from "../translate/utils/resolveTree";
-import { getCustomResolverMeta, INVALID_SELECTION_SET_ERROR } from "./get-custom-resolver-meta";
+import { generateResolveTree } from "../translate/utils/resolveTree.js";
+import { INVALID_SELECTION_SET_ERROR, getCustomResolverMeta } from "./get-custom-resolver-meta.js";
 
 describe("getCustomResolverMeta", () => {
     const authorType = "Author";

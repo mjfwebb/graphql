@@ -18,10 +18,10 @@
  */
 
 import type { Driver } from "neo4j-driver";
-import execute from "./execute";
-import { trimmer } from ".";
-import { ContextBuilder } from "../../tests/utils/builders/context-builder";
-import { Executor } from "../classes/Executor";
+import { ContextBuilder } from "../../tests/utils/builders/context-builder.js";
+import { Executor } from "../classes/Executor.js";
+import execute from "./execute.js";
+import { trimmer } from "./index.js";
 
 describe("execute", () => {
     test("should execute return records.toObject", async () => {

@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { parseTime } from "./Time";
+import { parseTime } from "./Time.js";
 
 describe("Time Scalar", () => {
     describe("parseTime", () => {

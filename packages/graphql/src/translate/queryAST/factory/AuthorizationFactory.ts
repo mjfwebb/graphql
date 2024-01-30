@@ -17,23 +17,23 @@
  * limitations under the License.
  */
 
+import type Cypher from "@neo4j/cypher-builder";
 import type {
     AuthorizationAnnotation,
     AuthorizationOperation,
     BaseAuthorizationRule,
     ValidateWhen,
-} from "../../../schema-model/annotation/AuthorizationAnnotation";
-import type { AttributeAdapter } from "../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import type Cypher from "@neo4j/cypher-builder";
-import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { InterfaceEntityAdapter } from "../../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
-import { populateWhereParams } from "../../authorization/utils/populate-where-params";
-import { AuthorizationFilters } from "../ast/filters/authorization-filters/AuthorizationFilters";
-import { AuthorizationRuleFilter } from "../ast/filters/authorization-filters/AuthorizationRuleFilter";
-import type { AuthFilterFactory } from "./AuthFilterFactory";
-import { filterTruthy } from "../../../utils/utils";
-import { isConcreteEntity } from "../utils/is-concrete-entity";
+} from "../../../schema-model/annotation/AuthorizationAnnotation.js";
+import type { AttributeAdapter } from "../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { InterfaceEntityAdapter } from "../../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
+import { filterTruthy } from "../../../utils/utils.js";
+import { populateWhereParams } from "../../authorization/utils/populate-where-params.js";
+import { AuthorizationFilters } from "../ast/filters/authorization-filters/AuthorizationFilters.js";
+import { AuthorizationRuleFilter } from "../ast/filters/authorization-filters/AuthorizationRuleFilter.js";
+import { isConcreteEntity } from "../utils/is-concrete-entity.js";
+import type { AuthFilterFactory } from "./AuthFilterFactory.js";
 
 type AuthParams = {
     entity: ConcreteEntityAdapter | InterfaceEntityAdapter;

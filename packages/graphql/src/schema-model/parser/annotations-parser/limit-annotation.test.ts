@@ -18,8 +18,8 @@
  */
 
 import { makeDirectiveNode } from "@graphql-tools/utils";
-import { parseLimitAnnotation } from "./limit-annotation";
-import { limitDirective } from "../../../graphql/directives";
+import { limitDirective } from "../../../graphql/directives/index.js";
+import { parseLimitAnnotation } from "./limit-annotation.js";
 
 const tests = [
     {

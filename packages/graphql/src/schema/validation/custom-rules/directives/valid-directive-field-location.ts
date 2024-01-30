@@ -27,14 +27,14 @@ import type {
     ObjectTypeExtensionNode,
 } from "graphql";
 import { Kind } from "graphql";
-import type { SDLValidationContext } from "graphql/validation/ValidationContext";
-import { assertValid, createGraphQLError, DocumentValidationError } from "../utils/document-validation-error";
-import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser";
-import { getPathToNode } from "../utils/path-parser";
-import * as directives from "../../../../graphql/directives";
-import { typeDependantDirectivesScaffolds } from "../../../../graphql/directives/type-dependant-directives/scaffolds";
-import { SCHEMA_CONFIGURATION_FIELD_DIRECTIVES } from "../../../../schema-model/library-directives";
-import { isInArray } from "../../../../utils/is-in-array";
+import type { SDLValidationContext } from "graphql/validation/ValidationContext.js";
+import * as directives from "../../../../graphql/directives/index.js";
+import { typeDependantDirectivesScaffolds } from "../../../../graphql/directives/type-dependant-directives/scaffolds.js";
+import { SCHEMA_CONFIGURATION_FIELD_DIRECTIVES } from "../../../../schema-model/library-directives.js";
+import { isInArray } from "../../../../utils/is-in-array.js";
+import { DocumentValidationError, assertValid, createGraphQLError } from "../utils/document-validation-error.js";
+import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser.js";
+import { getPathToNode } from "../utils/path-parser.js";
 
 export function ValidDirectiveAtFieldLocation(experimental: boolean) {
     return function (context: SDLValidationContext): ASTVisitor {

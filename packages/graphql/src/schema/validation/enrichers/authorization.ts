@@ -18,11 +18,11 @@
  */
 
 import { Kind } from "graphql";
-import { createAuthorizationDefinitions } from "../../../graphql/directives/type-dependant-directives/authorization";
-import type { EnricherContext } from "../EnricherContext";
-import type { Enricher } from "../types";
-import { definitionsEnricher } from "./directive/definitions";
-import { directiveEnricher } from "./directive/directive";
+import { createAuthorizationDefinitions } from "../../../graphql/directives/type-dependant-directives/authorization.js";
+import type { EnricherContext } from "../EnricherContext.js";
+import type { Enricher } from "../types.js";
+import { definitionsEnricher } from "./directive/definitions.js";
+import { directiveEnricher } from "./directive/directive.js";
 
 // currentDirectiveDirective is of type ConstDirectiveNode, has to be any to support GraphQL 15
 function getAuthorizationDirective(currentDirectiveDirective: any, typeName: string) {

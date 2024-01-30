@@ -19,10 +19,10 @@
 
 import Cypher from "@neo4j/cypher-builder";
 import type { ResolveTree } from "graphql-parse-resolve-info";
-import Relationship from "../../../classes/Relationship";
-import type { TemporalField, PointField, PrimitiveField } from "../../../types";
-import { compileCypher } from "../../../utils/compile-cypher";
-import { createRelationshipPropertyValue } from "./create-relationship-property-value";
+import Relationship from "../../../classes/Relationship.js";
+import type { PointField, PrimitiveField, TemporalField } from "../../../types/index.js";
+import { compileCypher } from "../../../utils/compile-cypher.js";
+import { createRelationshipPropertyValue } from "./create-relationship-property-value.js";
 
 describe("createRelationshipPropertyElement", () => {
     let relationship: Relationship;

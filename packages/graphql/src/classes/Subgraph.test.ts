@@ -18,7 +18,7 @@
  */
 
 import { gql } from "graphql-tag";
-import { Subgraph } from "./Subgraph";
+import { Subgraph } from "./Subgraph.js";
 
 describe("Subgraph", () => {
     describe("findFederationLinkMeta", () => {

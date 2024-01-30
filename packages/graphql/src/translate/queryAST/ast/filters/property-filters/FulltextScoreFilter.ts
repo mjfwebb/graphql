@@ -18,9 +18,9 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { QueryASTContext } from "../../QueryASTContext";
-import type { QueryASTNode } from "../../QueryASTNode";
-import { Filter } from "../Filter";
+import type { QueryASTContext } from "../../QueryASTContext.js";
+import type { QueryASTNode } from "../../QueryASTNode.js";
+import { Filter } from "../Filter.js";
 
 /** A property which comparison has already been parsed into a Param */
 export class FulltextScoreFilter extends Filter {

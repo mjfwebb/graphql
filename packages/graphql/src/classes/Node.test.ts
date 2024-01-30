@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 
-import type { MutationResponseTypeNames, NodeConstructor, RootTypeFieldNames, SubscriptionEvents } from "./Node";
-import Node from "./Node";
-import { ContextBuilder } from "../../tests/utils/builders/context-builder";
-import { NodeBuilder } from "../../tests/utils/builders/node-builder";
-import { NodeDirective } from "./NodeDirective";
+import { ContextBuilder } from "../../tests/utils/builders/context-builder.js";
+import { NodeBuilder } from "../../tests/utils/builders/node-builder.js";
+import type { MutationResponseTypeNames, NodeConstructor, RootTypeFieldNames, SubscriptionEvents } from "./Node.js";
+import Node from "./Node.js";
+import { NodeDirective } from "./NodeDirective.js";
 
 describe("Node", () => {
     const defaultContext = new ContextBuilder().instance();

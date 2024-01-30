@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import { ConcreteEntity } from "../../../schema-model/entity/ConcreteEntity";
-import { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { findResolver } from "./read";
+import { ConcreteEntity } from "../../../schema-model/entity/ConcreteEntity.js";
+import { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { findResolver } from "./read.js";
 
 describe("Read resolver", () => {
     test("should return the correct; type, args and resolve", () => {

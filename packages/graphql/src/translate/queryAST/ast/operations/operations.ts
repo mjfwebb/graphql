@@ -18,8 +18,8 @@
  */
 
 import type Cypher from "@neo4j/cypher-builder";
-import type { QueryASTContext } from "../QueryASTContext";
-import { QueryASTNode } from "../QueryASTNode";
+import type { QueryASTContext } from "../QueryASTContext.js";
+import { QueryASTNode } from "../QueryASTNode.js";
 
 export type OperationTranspileResult = {
     projectionExpr: Cypher.Expr;

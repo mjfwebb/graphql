@@ -19,8 +19,8 @@
 
 import Cypher from "@neo4j/cypher-builder";
 import type { Driver, QueryConfig } from "neo4j-driver";
-import { filterTruthy } from "../../../utils/utils";
-import type { CDCQueryResponse } from "./cdc-types";
+import { filterTruthy } from "../../../utils/utils.js";
+import type { CDCQueryResponse } from "./cdc-types.js";
 
 export class CDCApi {
     private driver: Driver;

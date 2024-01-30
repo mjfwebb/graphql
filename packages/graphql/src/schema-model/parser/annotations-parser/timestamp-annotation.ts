@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 import type { DirectiveNode } from "graphql";
-import { timestampDirective } from "../../../graphql/directives";
-import { TimestampAnnotation } from "../../annotation/TimestampAnnotation";
-import { parseArguments } from "../parse-arguments";
+import { timestampDirective } from "../../../graphql/directives/index.js";
+import { TimestampAnnotation } from "../../annotation/TimestampAnnotation.js";
+import { parseArguments } from "../parse-arguments.js";
 
 export function parseTimestampAnnotation(directive: DirectiveNode): TimestampAnnotation {
     const { operations } = parseArguments<{ operations: string[] }>(timestampDirective, directive);

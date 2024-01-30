@@ -18,7 +18,7 @@
  */
 
 import { makeDirectiveNode } from "@graphql-tools/utils";
-import { parseKeyAnnotation } from "./key-annotation";
+import { parseKeyAnnotation } from "./key-annotation.js";
 
 const tests = [
     {

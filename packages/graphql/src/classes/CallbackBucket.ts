@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import type { Neo4jGraphQLCallbacks } from "../types";
-import type { Neo4jGraphQLContext } from "../types/neo4j-graphql-context";
-import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context";
+import type { Neo4jGraphQLCallbacks } from "../types/index.js";
+import type { Neo4jGraphQLContext } from "../types/neo4j-graphql-context.js";
+import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context.js";
 
 interface Callback {
     functionName: string;

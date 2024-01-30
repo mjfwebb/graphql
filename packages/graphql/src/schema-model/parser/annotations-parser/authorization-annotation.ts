@@ -20,13 +20,13 @@ import type { DirectiveNode } from "graphql";
 import type {
     AuthorizationFilterRuleConstructor,
     AuthorizationValidateRuleConstructor,
-} from "../../annotation/AuthorizationAnnotation";
+} from "../../annotation/AuthorizationAnnotation.js";
 import {
     AuthorizationAnnotation,
     AuthorizationFilterRule,
     AuthorizationValidateRule,
-} from "../../annotation/AuthorizationAnnotation";
-import { parseArgumentsFromUnknownDirective } from "../parse-arguments";
+} from "../../annotation/AuthorizationAnnotation.js";
+import { parseArgumentsFromUnknownDirective } from "../parse-arguments.js";
 
 export function parseAuthorizationAnnotation(directive: DirectiveNode): AuthorizationAnnotation {
     const { filter, validate } = parseArgumentsFromUnknownDirective(directive) as {

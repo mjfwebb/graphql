@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 import type { DirectiveNode } from "graphql";
-import { Neo4jGraphQLSchemaValidationError } from "../../../classes";
-import { MutationAnnotation } from "../../annotation/MutationAnnotation";
-import { mutationDirective } from "../../../graphql/directives";
-import { parseArguments } from "../parse-arguments";
-import type { MutationOperations } from "../../../graphql/directives/mutation";
+import { Neo4jGraphQLSchemaValidationError } from "../../../classes/index.js";
+import { mutationDirective } from "../../../graphql/directives/index.js";
+import type { MutationOperations } from "../../../graphql/directives/mutation.js";
+import { MutationAnnotation } from "../../annotation/MutationAnnotation.js";
+import { parseArguments } from "../parse-arguments.js";
 
 export function parseMutationAnnotation(directive: DirectiveNode): MutationAnnotation {
     const { operations } = parseArguments(mutationDirective, directive);

@@ -19,18 +19,18 @@
 
 import type { IResolvers } from "@graphql-tools/utils";
 import type {
+    DocumentNode,
     FieldDefinitionNode,
+    FieldNode,
     InterfaceTypeDefinitionNode,
     ObjectTypeDefinitionNode,
-    DocumentNode,
     SelectionSetNode,
     TypeNode,
     UnionTypeDefinitionNode,
-    FieldNode,
 } from "graphql";
 import { Kind, parse } from "graphql";
 import type { FieldsByTypeName, ResolveTree } from "graphql-parse-resolve-info";
-import { generateResolveTree } from "../translate/utils/resolveTree";
+import { generateResolveTree } from "../translate/utils/resolveTree.js";
 
 type CustomResolverMeta = {
     requiredFields: Record<string, ResolveTree>;

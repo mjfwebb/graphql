@@ -17,18 +17,18 @@
  * limitations under the License.
  */
 
-import { upperFirst } from "../../../utils/upper-first";
-import type { Annotations } from "../../annotation/Annotation";
-import type { Attribute } from "../../attribute/Attribute";
-import { AttributeAdapter } from "../../attribute/model-adapters/AttributeAdapter";
-import { RelationshipAdapter } from "../../relationship/model-adapters/RelationshipAdapter";
-import type { Relationship } from "../../relationship/Relationship";
-import { getFromMap } from "../../utils/get-from-map";
-import { plural, singular } from "../../utils/string-manipulation";
-import type { ConcreteEntity } from "../ConcreteEntity";
-import type { InterfaceEntity } from "../InterfaceEntity";
-import { ConcreteEntityAdapter } from "./ConcreteEntityAdapter";
-import { InterfaceEntityOperations } from "./InterfaceEntityOperations";
+import { upperFirst } from "../../../utils/upper-first.js";
+import type { Annotations } from "../../annotation/Annotation.js";
+import type { Attribute } from "../../attribute/Attribute.js";
+import { AttributeAdapter } from "../../attribute/model-adapters/AttributeAdapter.js";
+import { RelationshipAdapter } from "../../relationship/model-adapters/RelationshipAdapter.js";
+import type { Relationship } from "../../relationship/Relationship.js";
+import { getFromMap } from "../../utils/get-from-map.js";
+import { plural, singular } from "../../utils/string-manipulation.js";
+import type { ConcreteEntity } from "../ConcreteEntity.js";
+import type { InterfaceEntity } from "../InterfaceEntity.js";
+import { ConcreteEntityAdapter } from "./ConcreteEntityAdapter.js";
+import { InterfaceEntityOperations } from "./InterfaceEntityOperations.js";
 
 export class InterfaceEntityAdapter {
     public readonly name: string;

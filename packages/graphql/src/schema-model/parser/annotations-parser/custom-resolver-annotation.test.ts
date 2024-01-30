@@ -19,8 +19,8 @@
 
 import { makeDirectiveNode } from "@graphql-tools/utils";
 import type { DirectiveNode } from "graphql";
-import { parseCustomResolverAnnotation } from "./custom-resolver-annotation";
-import { customResolverDirective } from "../../../graphql/directives";
+import { customResolverDirective } from "../../../graphql/directives/index.js";
+import { parseCustomResolverAnnotation } from "./custom-resolver-annotation.js";
 
 describe("parseCustomResolverAnnotation", () => {
     it("should parse correctly", () => {

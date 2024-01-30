@@ -23,11 +23,11 @@ import type {
     ObjectTypeComposer,
     SchemaComposer,
 } from "graphql-compose";
-import type { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { GraphQLFloat, GraphQLNonNull, GraphQLString } from "graphql";
-import { SCORE_FIELD } from "../../graphql/directives/fulltext";
-import { FloatWhere } from "../../graphql/input-objects/FloatWhere";
-import { SortDirection } from "../../graphql/enums/SortDirection";
+import { GraphQLFloat, GraphQLNonNull, GraphQLString } from "graphql/index.js";
+import { SCORE_FIELD } from "../../graphql/directives/fulltext.js";
+import { SortDirection } from "../../graphql/enums/SortDirection.js";
+import { FloatWhere } from "../../graphql/input-objects/FloatWhere.js";
+import type { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
 
 export function withFullTextInputType({
     concreteEntityAdapter,

@@ -18,13 +18,13 @@
  */
 
 import supertest from "supertest";
-import { UniqueType } from "../../utils/graphql-types";
-import { GatewayServer } from "./setup/gateway-server";
-import { Neo4j } from "./setup/neo4j";
-import type { Server } from "./setup/server";
-import { TestSubgraph } from "./setup/subgraph";
-import { SubgraphServer } from "./setup/subgraph-server";
-import { createBearerToken } from "../../utils/create-bearer-token";
+import { createBearerToken } from "../../utils/create-bearer-token.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import { GatewayServer } from "./setup/gateway-server.js";
+import { Neo4j } from "./setup/neo4j.js";
+import type { Server } from "./setup/server.js";
+import { SubgraphServer } from "./setup/subgraph-server.js";
+import { TestSubgraph } from "./setup/subgraph.js";
 
 describe("Federation 2 Authorization", () => {
     describe("type authorization", () => {

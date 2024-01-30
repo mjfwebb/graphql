@@ -18,15 +18,15 @@
  */
 
 import type {
-    PrimitiveField,
-    PointField,
     CustomEnumField,
-    CypherField,
-    CustomScalarField,
-    TemporalField,
     CustomResolverField,
-} from "../types";
-import { GraphElement } from "./GraphElement";
+    CustomScalarField,
+    CypherField,
+    PointField,
+    PrimitiveField,
+    TemporalField,
+} from "../types/index.js";
+import { GraphElement } from "./GraphElement.js";
 
 interface RelationshipConstructor {
     name: string;

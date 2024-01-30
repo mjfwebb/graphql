@@ -19,17 +19,21 @@
 
 import { on } from "events";
 import type { GraphQLResolveInfo } from "graphql";
-import { Neo4jGraphQLError } from "../../../classes";
-import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { NodeSubscriptionsEvent, RelationshipSubscriptionsEvent, SubscriptionsEvent } from "../../../types";
-import type { Neo4jGraphQLComposedSubscriptionsContext } from "../composition/wrap-subscription";
-import { checkAuthentication } from "./authentication/check-authentication";
-import { checkAuthenticationOnSelectionSet } from "./authentication/check-authentication-selection-set";
-import { filterAsyncIterator } from "./filter-async-iterator";
-import type { SubscriptionEventType } from "./types";
-import { updateDiffFilter } from "./update-diff-filter";
-import { subscriptionAuthorization } from "./where/authorization";
-import { subscriptionWhere } from "./where/where";
+import { Neo4jGraphQLError } from "../../../classes/index.js";
+import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type {
+    NodeSubscriptionsEvent,
+    RelationshipSubscriptionsEvent,
+    SubscriptionsEvent,
+} from "../../../types/index.js";
+import type { Neo4jGraphQLComposedSubscriptionsContext } from "../composition/wrap-subscription.js";
+import { checkAuthenticationOnSelectionSet } from "./authentication/check-authentication-selection-set.js";
+import { checkAuthentication } from "./authentication/check-authentication.js";
+import { filterAsyncIterator } from "./filter-async-iterator.js";
+import type { SubscriptionEventType } from "./types.js";
+import { updateDiffFilter } from "./update-diff-filter.js";
+import { subscriptionAuthorization } from "./where/authorization.js";
+import { subscriptionWhere } from "./where/where.js";
 
 export function subscriptionResolve(payload: [SubscriptionsEvent]): SubscriptionsEvent {
     if (!payload) {

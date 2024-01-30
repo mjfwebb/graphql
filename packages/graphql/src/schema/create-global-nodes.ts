@@ -20,11 +20,11 @@
 import type { GraphQLResolveInfo } from "graphql";
 import type { ObjectTypeComposerFieldConfigAsObjectDefinition, SchemaComposer } from "graphql-compose";
 import { nodeDefinitions } from "graphql-relay";
-import type { Node } from "../types";
-import { globalNodeResolver } from "./resolvers/query/global-node";
-import type { Neo4jGraphQLComposedContext } from "./resolvers/composition/wrap-query-and-mutation";
-import type { ConcreteEntity } from "../schema-model/entity/ConcreteEntity";
-import { ConcreteEntityAdapter } from "../schema-model/entity/model-adapters/ConcreteEntityAdapter";
+import type { ConcreteEntity } from "../schema-model/entity/ConcreteEntity.js";
+import { ConcreteEntityAdapter } from "../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { Node } from "../types/index.js";
+import type { Neo4jGraphQLComposedContext } from "./resolvers/composition/wrap-query-and-mutation.js";
+import { globalNodeResolver } from "./resolvers/query/global-node.js";
 
 // returns true if globalNodeFields added or false if not
 export function addGlobalNodeFields(

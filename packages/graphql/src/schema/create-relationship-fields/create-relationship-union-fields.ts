@@ -19,16 +19,16 @@
 
 import type { DirectiveNode } from "graphql";
 import type { InterfaceTypeComposer, ObjectTypeComposer, SchemaComposer } from "graphql-compose";
-import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import { augmentObjectOrInterfaceTypeWithRelationshipField } from "../generation/augment-object-or-interface";
-import { augmentConnectInputTypeWithConnectFieldInput } from "../generation/connect-input";
-import { withConnectOrCreateInputType } from "../generation/connect-or-create-input";
-import { augmentCreateInputTypeWithRelationshipsInput } from "../generation/create-input";
-import { augmentDeleteInputTypeWithDeleteFieldInput } from "../generation/delete-input";
-import { augmentDisconnectInputTypeWithDisconnectFieldInput } from "../generation/disconnect-input";
-import { withRelationInputType } from "../generation/relation-input";
-import { augmentUpdateInputTypeWithUpdateFieldInput } from "../generation/update-input";
-import { withSourceWhereInputType } from "../generation/where-input";
+import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { augmentObjectOrInterfaceTypeWithRelationshipField } from "../generation/augment-object-or-interface.js";
+import { augmentConnectInputTypeWithConnectFieldInput } from "../generation/connect-input.js";
+import { withConnectOrCreateInputType } from "../generation/connect-or-create-input.js";
+import { augmentCreateInputTypeWithRelationshipsInput } from "../generation/create-input.js";
+import { augmentDeleteInputTypeWithDeleteFieldInput } from "../generation/delete-input.js";
+import { augmentDisconnectInputTypeWithDisconnectFieldInput } from "../generation/disconnect-input.js";
+import { withRelationInputType } from "../generation/relation-input.js";
+import { augmentUpdateInputTypeWithUpdateFieldInput } from "../generation/update-input.js";
+import { withSourceWhereInputType } from "../generation/where-input.js";
 
 export function createRelationshipUnionFields({
     relationshipAdapter,

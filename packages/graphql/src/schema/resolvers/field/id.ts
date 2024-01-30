@@ -18,9 +18,9 @@
  */
 
 import type { GraphQLResolveInfo } from "graphql";
-import { defaultFieldResolver } from "./defaultField";
-import { isNeoInt } from "../../../utils/utils";
-import type { Neo4jGraphQLContext } from "../../../types/neo4j-graphql-context";
+import type { Neo4jGraphQLContext } from "../../../types/neo4j-graphql-context.js";
+import { isNeoInt } from "../../../utils/utils.js";
+import { defaultFieldResolver } from "./defaultField.js";
 
 function serializeValue(value) {
     if (isNeoInt(value)) {

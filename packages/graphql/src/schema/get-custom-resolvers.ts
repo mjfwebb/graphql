@@ -18,7 +18,7 @@
  */
 
 import { Kind, type DocumentNode, type ObjectTypeDefinitionNode } from "graphql";
-import { isRootType } from "../utils/is-root-type";
+import { isRootType } from "../utils/is-root-type.js";
 
 interface CustomResolvers {
     customQuery?: ObjectTypeDefinitionNode;

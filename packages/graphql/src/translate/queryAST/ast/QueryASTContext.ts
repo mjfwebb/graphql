@@ -18,14 +18,14 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
 
 type Scope = Map<string, Cypher.Variable>;
 
 export class QueryASTEnv {
     private scopes = new Map<Cypher.Node | Cypher.Relationship, Scope>();
-    public topLevelOperationName: "READ" | "CREATE" | "UPDATE" | "DELETE"= "READ";
-    
+    public topLevelOperationName: "READ" | "CREATE" | "UPDATE" | "DELETE" = "READ";
+
     public getScope(element: Cypher.Node | Cypher.Relationship): Scope {
         const scope = this.scopes.get(element);
         if (scope) {

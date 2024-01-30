@@ -18,16 +18,16 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { OperationTranspileResult } from "../operations";
-import { Operation } from "../operations";
+import type { OperationTranspileResult } from "../operations.js";
+import { Operation } from "../operations.js";
 
-import { filterTruthy } from "../../../../../utils/utils";
-import { hasTarget } from "../../../utils/context-has-target";
-import { QueryASTContext } from "../../QueryASTContext";
-import type { QueryASTNode } from "../../QueryASTNode";
-import type { Pagination } from "../../pagination/Pagination";
-import type { Sort, SortField } from "../../sort/Sort";
-import type { CompositeConnectionPartial } from "./CompositeConnectionPartial";
+import { filterTruthy } from "../../../../../utils/utils.js";
+import { hasTarget } from "../../../utils/context-has-target.js";
+import { QueryASTContext } from "../../QueryASTContext.js";
+import type { QueryASTNode } from "../../QueryASTNode.js";
+import type { Pagination } from "../../pagination/Pagination.js";
+import type { Sort, SortField } from "../../sort/Sort.js";
+import type { CompositeConnectionPartial } from "./CompositeConnectionPartial.js";
 
 export class CompositeConnectionReadOperation extends Operation {
     private children: CompositeConnectionPartial[];

@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 import type { DirectiveNode } from "graphql";
-import { subscriptionDirective } from "../../../graphql/directives";
-import type { SubscriptionEvent } from "../../../graphql/directives/subscription";
-import { SubscriptionAnnotation } from "../../annotation/SubscriptionAnnotation";
-import { parseArguments } from "../parse-arguments";
+import { subscriptionDirective } from "../../../graphql/directives/index.js";
+import type { SubscriptionEvent } from "../../../graphql/directives/subscription.js";
+import { SubscriptionAnnotation } from "../../annotation/SubscriptionAnnotation.js";
+import { parseArguments } from "../parse-arguments.js";
 
 export function parseSubscriptionAnnotation(directive: DirectiveNode): SubscriptionAnnotation {
     const { events } = parseArguments<{ events: SubscriptionEvent[] }>(subscriptionDirective, directive);

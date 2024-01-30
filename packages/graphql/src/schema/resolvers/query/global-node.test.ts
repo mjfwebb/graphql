@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { globalNodeResolver } from "./global-node";
+import { globalNodeResolver } from "./global-node.js";
 
 describe("Global node resolver", () => {
     test("should return the correct type, args and resolve", () => {

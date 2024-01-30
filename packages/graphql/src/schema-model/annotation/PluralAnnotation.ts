@@ -18,7 +18,7 @@
  */
 
 // TODO: maybe this can be a field on the concrete entity
-import type { Annotation } from "./Annotation";
+import type { Annotation } from "./Annotation.js";
 
 export class PluralAnnotation implements Annotation {
     readonly name = "plural";

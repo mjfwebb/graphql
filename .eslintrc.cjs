@@ -22,6 +22,9 @@ module.exports = {
         "import/no-named-as-default": "off",
         "import/no-named-as-default-member": "off",
     },
+    parserOptions: {
+        ecmaVersion: 15,
+    },
     overrides: [
         {
             files: ["**/*.ts", "**/*.tsx"],

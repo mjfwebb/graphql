@@ -18,11 +18,11 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { mapLabelsWithContext } from "../../../../schema-model/utils/map-labels-with-context";
-import { QueryASTContext } from "../QueryASTContext";
-import type { FulltextOptions } from "../operations/FulltextOperation";
-import { EntitySelection, type SelectionClause } from "./EntitySelection";
+import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { mapLabelsWithContext } from "../../../../schema-model/utils/map-labels-with-context.js";
+import { QueryASTContext } from "../QueryASTContext.js";
+import type { FulltextOptions } from "../operations/FulltextOperation.js";
+import { EntitySelection, type SelectionClause } from "./EntitySelection.js";
 
 export class FulltextSelection extends EntitySelection {
     private target: ConcreteEntityAdapter;

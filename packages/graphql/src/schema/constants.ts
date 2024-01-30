@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { DEPRECATED } from "../constants";
+import { DEPRECATED } from "../constants.js";
 
 export const DEPRECATE_NOT = {
     name: DEPRECATED,

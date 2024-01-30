@@ -19,18 +19,18 @@
 
 import type { IResolvers } from "@graphql-tools/utils";
 import type { NamedTypeNode } from "graphql";
-import { Node } from "../classes";
-import type { NodeDirective } from "../classes/NodeDirective";
-import type { LimitDirective } from "../classes/LimitDirective";
-import type { FullText, Neo4jGraphQLCallbacks } from "../types";
-import { asArray } from "../utils/utils";
-import type { DefinitionNodes } from "./get-definition-nodes";
-import getObjFieldMeta from "./get-obj-field-meta";
-import parseNodeDirective from "./parse-node-directive";
-import parseFulltextDirective from "./parse/parse-fulltext-directive";
-import parsePluralDirective from "./parse/parse-plural-directive";
-import { parseLimitDirective } from "./parse/parse-limit-directive";
-import { DEPRECATED, SHAREABLE } from "../constants";
+import type { LimitDirective } from "../classes/LimitDirective.js";
+import type { NodeDirective } from "../classes/NodeDirective.js";
+import { Node } from "../classes/index.js";
+import { DEPRECATED, SHAREABLE } from "../constants.js";
+import type { FullText, Neo4jGraphQLCallbacks } from "../types/index.js";
+import { asArray } from "../utils/utils.js";
+import type { DefinitionNodes } from "./get-definition-nodes.js";
+import getObjFieldMeta from "./get-obj-field-meta.js";
+import parseNodeDirective from "./parse-node-directive.js";
+import parseFulltextDirective from "./parse/parse-fulltext-directive.js";
+import { parseLimitDirective } from "./parse/parse-limit-directive.js";
+import parsePluralDirective from "./parse/parse-plural-directive.js";
 
 type Nodes = {
     nodes: Node[];

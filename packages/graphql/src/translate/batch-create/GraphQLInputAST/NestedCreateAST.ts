@@ -17,10 +17,11 @@
  * limitations under the License.
  */
 
-import type { Visitor } from "./types";
-import { UnwindASTNode } from "./UnwindASTNode";
-import type { Node, Relationship } from "../../../classes";
-import type { RelationField } from "../../../types";
+import type { Node, Relationship } from "../../../classes/index.js";
+import type { RelationField } from "../../../types/index.js";
+import { UnwindASTNode } from "./UnwindASTNode.js";
+import type { Visitor } from "./types.js";
+
 export class NestedCreateAST extends UnwindASTNode {
     node: Node;
     parent: Node;

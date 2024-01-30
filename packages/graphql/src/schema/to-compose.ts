@@ -25,18 +25,18 @@ import type {
     InputTypeComposerFieldConfigMapDefinition,
     ObjectTypeComposerFieldConfigAsObjectDefinition,
 } from "graphql-compose";
-import { DEPRECATED } from "../constants";
-import type { Argument } from "../schema-model/argument/Argument";
-import { ArgumentAdapter } from "../schema-model/argument/model-adapters/ArgumentAdapter";
-import type { AttributeAdapter } from "../schema-model/attribute/model-adapters/AttributeAdapter";
-import type { ConcreteEntityAdapter } from "../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { InterfaceEntityAdapter } from "../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import { parseValueNode } from "../schema-model/parser/parse-value-node";
-import { RelationshipAdapter } from "../schema-model/relationship/model-adapters/RelationshipAdapter";
-import type { InputField } from "../types";
-import { DEPRECATE_NOT } from "./constants";
-import { idResolver } from "./resolvers/field/id";
-import { numericalResolver } from "./resolvers/field/numerical";
+import { DEPRECATED } from "../constants.js";
+import type { Argument } from "../schema-model/argument/Argument.js";
+import { ArgumentAdapter } from "../schema-model/argument/model-adapters/ArgumentAdapter.js";
+import type { AttributeAdapter } from "../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import type { ConcreteEntityAdapter } from "../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { InterfaceEntityAdapter } from "../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import { parseValueNode } from "../schema-model/parser/parse-value-node.js";
+import { RelationshipAdapter } from "../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import type { InputField } from "../types/index.js";
+import { DEPRECATE_NOT } from "./constants.js";
+import { idResolver } from "./resolvers/field/id.js";
+import { numericalResolver } from "./resolvers/field/numerical.js";
 
 export function graphqlArgsToCompose(args: Argument[]) {
     return args.reduce((res, arg) => {

@@ -20,17 +20,17 @@
 import type { DirectiveNode } from "graphql";
 import type { Directive, InterfaceTypeComposer, SchemaComposer } from "graphql-compose";
 import { ObjectTypeComposer } from "graphql-compose";
-import type { Subgraph } from "../../classes/Subgraph";
-import { DEPRECATED } from "../../constants";
-import { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import { UnionEntityAdapter } from "../../schema-model/entity/model-adapters/UnionEntityAdapter";
-import { FieldAggregationComposer } from "../aggregations/field-aggregation-composer";
-import { addDirectedArgument } from "../directed-argument";
-import { graphqlDirectivesToCompose } from "../to-compose";
-import { createRelationshipConcreteFields } from "./create-relationship-concrete-fields";
-import { createRelationshipInterfaceFields } from "./create-relationship-interface-fields";
-import { createRelationshipUnionFields } from "./create-relationship-union-fields";
+import type { Subgraph } from "../../classes/Subgraph.js";
+import { DEPRECATED } from "../../constants.js";
+import { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import { UnionEntityAdapter } from "../../schema-model/entity/model-adapters/UnionEntityAdapter.js";
+import { FieldAggregationComposer } from "../aggregations/field-aggregation-composer.js";
+import { addDirectedArgument } from "../directed-argument.js";
+import { graphqlDirectivesToCompose } from "../to-compose.js";
+import { createRelationshipConcreteFields } from "./create-relationship-concrete-fields.js";
+import { createRelationshipInterfaceFields } from "./create-relationship-interface-fields.js";
+import { createRelationshipUnionFields } from "./create-relationship-union-fields.js";
 
 export function createRelationshipFields({
     entityAdapter,

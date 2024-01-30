@@ -18,11 +18,11 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import { AUTH_FORBIDDEN_ERROR } from "../../../../../constants";
-import type { QueryASTContext } from "../../QueryASTContext";
-import type { QueryASTNode } from "../../QueryASTNode";
-import { Filter } from "../Filter";
-import type { AuthorizationRuleFilter } from "./AuthorizationRuleFilter";
+import { AUTH_FORBIDDEN_ERROR } from "../../../../../constants.js";
+import type { QueryASTContext } from "../../QueryASTContext.js";
+import type { QueryASTNode } from "../../QueryASTNode.js";
+import { Filter } from "../Filter.js";
+import type { AuthorizationRuleFilter } from "./AuthorizationRuleFilter.js";
 
 export class AuthorizationFilters extends Filter {
     // Maybe we can merge these into a single array

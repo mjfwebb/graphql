@@ -18,15 +18,15 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import { Filter } from "../Filter";
-import type { CountFilter } from "./CountFilter";
-import type { AggregationPropertyFilter } from "./AggregationPropertyFilter";
-import type { LogicalFilter } from "../LogicalFilter";
-import type { QueryASTContext } from "../../QueryASTContext";
-import type { RelationshipAdapter } from "../../../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import type { QueryASTNode } from "../../QueryASTNode";
-import { hasTarget } from "../../../utils/context-has-target";
-import { createNodeFromEntity } from "../../../utils/create-node-from-entity";
+import type { RelationshipAdapter } from "../../../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { hasTarget } from "../../../utils/context-has-target.js";
+import { createNodeFromEntity } from "../../../utils/create-node-from-entity.js";
+import type { QueryASTContext } from "../../QueryASTContext.js";
+import type { QueryASTNode } from "../../QueryASTNode.js";
+import { Filter } from "../Filter.js";
+import type { LogicalFilter } from "../LogicalFilter.js";
+import type { AggregationPropertyFilter } from "./AggregationPropertyFilter.js";
+import type { CountFilter } from "./CountFilter.js";
 
 export class AggregationFilter extends Filter {
     private relationship: RelationshipAdapter;

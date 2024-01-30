@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
-import type { ResolveTree } from "graphql-parse-resolve-info";
-import type Relationship from "../../../classes/Relationship";
-import mapToDbProperty from "../../../utils/map-to-db-property";
-import { createDatetimeExpression } from "./create-datetime-element";
-import { createPointExpression } from "./create-point-element";
 import type Cypher from "@neo4j/cypher-builder";
+import type { ResolveTree } from "graphql-parse-resolve-info";
+import type Relationship from "../../../classes/Relationship.js";
+import mapToDbProperty from "../../../utils/map-to-db-property.js";
+import { createDatetimeExpression } from "./create-datetime-element.js";
+import { createPointExpression } from "./create-point-element.js";
 
 export function createRelationshipPropertyValue({
     resolveTree,

@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 import type { DirectiveNode } from "graphql";
-import { Neo4jGraphQLSchemaValidationError } from "../../../classes";
-import { CypherAnnotation } from "../../annotation/CypherAnnotation";
-import { parseArguments } from "../parse-arguments";
-import { cypherDirective } from "../../../graphql/directives";
+import { Neo4jGraphQLSchemaValidationError } from "../../../classes/index.js";
+import { cypherDirective } from "../../../graphql/directives/index.js";
+import { CypherAnnotation } from "../../annotation/CypherAnnotation.js";
+import { parseArguments } from "../parse-arguments.js";
 
 export function parseCypherAnnotation(directive: DirectiveNode): CypherAnnotation {
     const { statement, columnName } = parseArguments(cypherDirective, directive);

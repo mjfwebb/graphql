@@ -18,13 +18,13 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import { createComparisonOperation } from "../../../utils/create-comparison-operator";
-import type { QueryASTContext } from "../../QueryASTContext";
-import type { QueryASTNode } from "../../QueryASTNode";
-import type { FilterOperator } from "../Filter";
-import { Filter } from "../Filter";
-import { hasTarget } from "../../../utils/context-has-target";
+import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import { hasTarget } from "../../../utils/context-has-target.js";
+import { createComparisonOperation } from "../../../utils/create-comparison-operator.js";
+import type { QueryASTContext } from "../../QueryASTContext.js";
+import type { QueryASTNode } from "../../QueryASTNode.js";
+import type { FilterOperator } from "../Filter.js";
+import { Filter } from "../Filter.js";
 
 export class PropertyFilter extends Filter {
     protected attribute: AttributeAdapter;

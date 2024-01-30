@@ -26,20 +26,20 @@ import type {
     ObjectTypeComposerArgumentConfigMapDefinition,
     SchemaComposer,
 } from "graphql-compose";
-import { Relationship } from "../classes";
-import { DEPRECATED } from "../constants";
-import { PageInfo } from "../graphql/objects/PageInfo";
-import { ConcreteEntityAdapter } from "../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { InterfaceEntityAdapter } from "../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import { UnionEntityAdapter } from "../schema-model/entity/model-adapters/UnionEntityAdapter";
-import type { RelationshipAdapter } from "../schema-model/relationship/model-adapters/RelationshipAdapter";
-import type { ConnectionQueryArgs } from "../types";
-import { DEPRECATE_NOT } from "./constants";
-import { addDirectedArgument } from "./directed-argument";
-import { augmentWhereInputTypeWithConnectionFields } from "./generation/augment-where-input";
-import type { ObjectFields } from "./get-obj-field-meta";
-import { connectionFieldResolver } from "./pagination";
-import { graphqlDirectivesToCompose } from "./to-compose";
+import { Relationship } from "../classes/index.js";
+import { DEPRECATED } from "../constants.js";
+import { PageInfo } from "../graphql/objects/PageInfo.js";
+import { ConcreteEntityAdapter } from "../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { InterfaceEntityAdapter } from "../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import { UnionEntityAdapter } from "../schema-model/entity/model-adapters/UnionEntityAdapter.js";
+import type { RelationshipAdapter } from "../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import type { ConnectionQueryArgs } from "../types/index.js";
+import { DEPRECATE_NOT } from "./constants.js";
+import { addDirectedArgument } from "./directed-argument.js";
+import { augmentWhereInputTypeWithConnectionFields } from "./generation/augment-where-input.js";
+import type { ObjectFields } from "./get-obj-field-meta.js";
+import { connectionFieldResolver } from "./pagination.js";
+import { graphqlDirectivesToCompose } from "./to-compose.js";
 
 function addConnectionSortField({
     schemaComposer,

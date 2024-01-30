@@ -18,7 +18,7 @@
  */
 
 import type { Session } from "neo4j-driver";
-import { REQUIRED_APOC_FUNCTIONS } from "../../constants";
+import { REQUIRED_APOC_FUNCTIONS } from "../../constants.js";
 
 export async function verifyFunctions(sessionFactory: () => Session): Promise<void> {
     const session = sessionFactory();

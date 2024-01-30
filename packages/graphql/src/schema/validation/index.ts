@@ -17,4 +17,4 @@
  * limitations under the License.
  */
 
-export { default as validateDocument } from "./validate-document";
+export { default as validateDocument } from "./validate-document.js";

@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import { Neo4jGraphQLError } from "../classes/Error";
-import { RelationshipQueryDirectionOption } from "../constants";
-import type { RelationField } from "../types";
+import { Neo4jGraphQLError } from "../classes/Error.js";
+import { RelationshipQueryDirectionOption } from "../constants.js";
+import type { RelationField } from "../types/index.js";
 
 export type DirectionString = "-" | "->" | "<-";
 export type QueryRelationshipDirection = "IN" | "OUT" | "undirected";

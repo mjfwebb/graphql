@@ -19,8 +19,8 @@
 
 import type { DirectiveNode, ObjectTypeDefinitionNode } from "graphql";
 import { parse } from "graphql";
-import parseNodeDirective from "./parse-node-directive";
-import { NodeDirective } from "../classes/NodeDirective";
+import { NodeDirective } from "../classes/NodeDirective.js";
+import parseNodeDirective from "./parse-node-directive.js";
 
 describe("parseNodeDirective", () => {
     test("should throw an error if incorrect directive is passed in", () => {

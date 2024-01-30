@@ -17,22 +17,22 @@
  * limitations under the License.
  */
 
-import type { PredicateReturn } from "../../../types";
-import type { CallbackBucket } from "../../../classes/CallbackBucket";
-import type { Visitor, CreateAST, NestedCreateAST, UnwindASTNode } from "../GraphQLInputAST/GraphQLInputAST";
-import type { Node, Relationship } from "../../../classes";
-import createRelationshipValidationString from "../../create-relationship-validation-string";
-import { filterTruthy } from "../../../utils/utils";
 import type { Expr, Map, MapProjection } from "@neo4j/cypher-builder";
 import Cypher from "@neo4j/cypher-builder";
-import mapToDbProperty from "../../../utils/map-to-db-property";
-import { getCypherRelationshipDirection } from "../../../utils/get-relationship-direction";
+import type { CallbackBucket } from "../../../classes/CallbackBucket.js";
+import type { Node, Relationship } from "../../../classes/index.js";
+import type { PredicateReturn } from "../../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
+import { getCypherRelationshipDirection } from "../../../utils/get-relationship-direction.js";
+import mapToDbProperty from "../../../utils/map-to-db-property.js";
+import { filterTruthy } from "../../../utils/utils.js";
+import { checkAuthentication } from "../../authorization/check-authentication.js";
 import {
-    createAuthorizationAfterPredicateField,
     createAuthorizationAfterPredicate,
-} from "../../authorization/create-authorization-after-predicate";
-import { checkAuthentication } from "../../authorization/check-authentication";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
+    createAuthorizationAfterPredicateField,
+} from "../../authorization/create-authorization-after-predicate.js";
+import createRelationshipValidationString from "../../create-relationship-validation-string.js";
+import type { CreateAST, NestedCreateAST, UnwindASTNode, Visitor } from "../GraphQLInputAST/GraphQLInputAST.js";
 
 type UnwindCreateScopeDefinition = {
     unwindVar: Cypher.Variable;

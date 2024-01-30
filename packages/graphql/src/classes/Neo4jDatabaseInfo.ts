@@ -18,8 +18,8 @@
  */
 
 import * as semver from "semver";
-import type { Executor } from "./Executor";
-import { DBMS_COMPONENTS_QUERY } from "../constants";
+import { DBMS_COMPONENTS_QUERY } from "../constants.js";
+import type { Executor } from "./Executor.js";
 
 export type Neo4jEdition = "enterprise" | "community";
 

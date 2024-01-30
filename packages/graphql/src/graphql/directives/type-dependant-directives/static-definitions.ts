@@ -19,15 +19,15 @@
 
 import { astFromEnumType, astFromInputObjectType } from "@graphql-tools/utils";
 import type {
-    ObjectTypeDefinitionNode,
     EnumTypeDefinitionNode,
-    InputObjectTypeDefinitionNode,
     GraphQLInputObjectType,
+    InputObjectTypeDefinitionNode,
+    ObjectTypeDefinitionNode,
 } from "graphql";
 import { GraphQLEnumType, GraphQLSchema } from "graphql";
 import { SchemaComposer } from "graphql-compose";
-import getWhereFields from "../../../schema/get-where-fields";
-import { getJwtFields } from "./jwt-payload";
+import getWhereFields from "../../../schema/get-where-fields.js";
+import { getJwtFields } from "./jwt-payload.js";
 
 export const AUTHORIZATION_VALIDATE_STAGE = new GraphQLEnumType({
     name: "AuthorizationValidateStage",

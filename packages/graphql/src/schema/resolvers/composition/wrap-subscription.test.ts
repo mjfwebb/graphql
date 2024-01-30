@@ -18,8 +18,8 @@
  */
 
 import type { GraphQLResolveInfo } from "graphql";
-import type { Neo4jGraphQLComposedSubscriptionsContext } from "./wrap-subscription";
-import { wrapSubscription } from "./wrap-subscription";
+import type { Neo4jGraphQLComposedSubscriptionsContext } from "./wrap-subscription.js";
+import { wrapSubscription } from "./wrap-subscription.js";
 
 describe("subscription wrapper test", () => {
     test("should check JWT in subscription context", async () => {

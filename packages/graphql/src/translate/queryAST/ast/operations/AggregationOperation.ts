@@ -18,21 +18,21 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { RelationshipAdapter } from "../../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import { filterTruthy } from "../../../../utils/utils";
-import { createNodeFromEntity, createRelationshipFromEntity } from "../../utils/create-node-from-entity";
-import { wrapSubqueriesInCypherCalls } from "../../utils/wrap-subquery-in-calls";
-import { QueryASTContext } from "../QueryASTContext";
-import type { QueryASTNode } from "../QueryASTNode";
-import type { AggregationField } from "../fields/aggregation-fields/AggregationField";
-import type { Filter } from "../filters/Filter";
-import type { AuthorizationFilters } from "../filters/authorization-filters/AuthorizationFilters";
-import type { Pagination } from "../pagination/Pagination";
-import type { EntitySelection } from "../selection/EntitySelection";
-import type { Sort } from "../sort/Sort";
-import type { OperationTranspileResult } from "./operations";
-import { Operation } from "./operations";
+import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { RelationshipAdapter } from "../../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { filterTruthy } from "../../../../utils/utils.js";
+import { createNodeFromEntity, createRelationshipFromEntity } from "../../utils/create-node-from-entity.js";
+import { wrapSubqueriesInCypherCalls } from "../../utils/wrap-subquery-in-calls.js";
+import { QueryASTContext } from "../QueryASTContext.js";
+import type { QueryASTNode } from "../QueryASTNode.js";
+import type { AggregationField } from "../fields/aggregation-fields/AggregationField.js";
+import type { Filter } from "../filters/Filter.js";
+import type { AuthorizationFilters } from "../filters/authorization-filters/AuthorizationFilters.js";
+import type { Pagination } from "../pagination/Pagination.js";
+import type { EntitySelection } from "../selection/EntitySelection.js";
+import type { Sort } from "../sort/Sort.js";
+import type { OperationTranspileResult } from "./operations.js";
+import { Operation } from "./operations.js";
 
 // TODO: somewhat dupe of readOperation
 export class AggregationOperation extends Operation {

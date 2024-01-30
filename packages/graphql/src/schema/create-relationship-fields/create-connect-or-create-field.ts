@@ -19,11 +19,11 @@
 
 import type { DirectiveNode } from "graphql";
 import type { InputTypeComposer, InputTypeComposerFieldConfigMapDefinition, SchemaComposer } from "graphql-compose";
-import type { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import { ensureNonEmptyInput } from "../ensure-non-empty-input";
-import { withCreateInputType } from "../generation/create-input";
-import { concreteEntityToCreateInputFields } from "../to-compose";
+import type { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { ensureNonEmptyInput } from "../ensure-non-empty-input.js";
+import { withCreateInputType } from "../generation/create-input.js";
+import { concreteEntityToCreateInputFields } from "../to-compose.js";
 
 export function createOnCreateITC({
     schemaComposer,

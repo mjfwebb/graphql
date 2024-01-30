@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import type { Visitor } from "./types";
-import type { Node } from "../../../classes";
-import { UnwindASTNode } from "./UnwindASTNode";
+import type { Node } from "../../../classes/index.js";
+import { UnwindASTNode } from "./UnwindASTNode.js";
+import type { Visitor } from "./types.js";
 
 export class CreateAST extends UnwindASTNode {
     nodeProperties: string[];

@@ -25,15 +25,15 @@ import type {
     ObjectTypeComposerFieldConfigMapDefinition,
     SchemaComposer,
 } from "graphql-compose";
-import { AGGREGATION_COMPARISON_OPERATORS } from "../../constants";
-import type { AttributeAdapter } from "../../schema-model/attribute/model-adapters/AttributeAdapter";
-import { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import type { AggregationTypesMapper } from "../aggregations/aggregation-types-mapper";
-import { DEPRECATE_IMPLICIT_LENGTH_AGGREGATION_FILTERS, DEPRECATE_INVALID_AGGREGATION_FILTERS } from "../constants";
-import { numericalResolver } from "../resolvers/field/numerical";
-import { graphqlDirectivesToCompose } from "../to-compose";
+import { AGGREGATION_COMPARISON_OPERATORS } from "../../constants.js";
+import type { AttributeAdapter } from "../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import type { AggregationTypesMapper } from "../aggregations/aggregation-types-mapper.js";
+import { DEPRECATE_IMPLICIT_LENGTH_AGGREGATION_FILTERS, DEPRECATE_INVALID_AGGREGATION_FILTERS } from "../constants.js";
+import { numericalResolver } from "../resolvers/field/numerical.js";
+import { graphqlDirectivesToCompose } from "../to-compose.js";
 
 export function withAggregateSelectionType({
     entityAdapter,

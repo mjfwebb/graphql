@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import { upperFirst } from "../../../utils/upper-first";
-import type { ConcreteEntityAdapter } from "./ConcreteEntityAdapter";
+import { upperFirst } from "../../../utils/upper-first.js";
+import type { ConcreteEntityAdapter } from "./ConcreteEntityAdapter.js";
 
 type RootTypeFieldNames = {
     create: string;

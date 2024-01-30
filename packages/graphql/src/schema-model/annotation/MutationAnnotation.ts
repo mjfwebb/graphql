@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import type { MutationOperations } from "../../graphql/directives/mutation";
-import type { Annotation } from "./Annotation";
+import type { MutationOperations } from "../../graphql/directives/mutation.js";
+import type { Annotation } from "./Annotation.js";
 
 export class MutationAnnotation implements Annotation {
     readonly name = "mutation";

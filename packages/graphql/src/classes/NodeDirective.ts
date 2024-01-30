@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 
-import { Neo4jGraphQLError } from "./Error";
 import Cypher from "@neo4j/cypher-builder";
-import type { Neo4jGraphQLContext } from "../types/neo4j-graphql-context";
-import { mapLabelsWithContext } from "../schema-model/utils/map-labels-with-context";
+import { mapLabelsWithContext } from "../schema-model/utils/map-labels-with-context.js";
+import type { Neo4jGraphQLContext } from "../types/neo4j-graphql-context.js";
+import { Neo4jGraphQLError } from "./Error.js";
 
 export interface NodeDirectiveConstructor {
     labels?: string[];

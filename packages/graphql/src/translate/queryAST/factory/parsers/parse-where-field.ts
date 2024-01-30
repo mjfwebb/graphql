@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import type { LogicalOperators, WhereOperator } from "../../ast/filters/Filter";
+import type { LogicalOperators, WhereOperator } from "../../ast/filters/Filter.js";
 
 export type WhereRegexGroups = {
     fieldName: string;

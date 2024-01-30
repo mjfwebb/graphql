@@ -18,8 +18,8 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { QueryASTContext } from "../../QueryASTContext";
-import { RelationshipFilter } from "../RelationshipFilter";
+import type { QueryASTContext } from "../../QueryASTContext.js";
+import { RelationshipFilter } from "../RelationshipFilter.js";
 
 export class AuthRelationshipFilter extends RelationshipFilter {
     public getPredicate(queryASTContext: QueryASTContext): Cypher.Predicate | undefined {

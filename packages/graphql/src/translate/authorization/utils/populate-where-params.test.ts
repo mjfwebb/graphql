@@ -18,9 +18,9 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import { ContextBuilder } from "../../../../tests/utils/builders/context-builder";
-import { populateWhereParams } from "./populate-where-params";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
+import { ContextBuilder } from "../../../../tests/utils/builders/context-builder.js";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
+import { populateWhereParams } from "./populate-where-params.js";
 
 describe("populateWhereParams", () => {
     let context: Neo4jGraphQLTranslationContext;

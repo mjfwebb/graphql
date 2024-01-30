@@ -18,9 +18,9 @@
  */
 
 import dotProp from "dot-prop";
-import type { SubscriptionsAuthorizationWhere } from "../../../../../schema-model/annotation/SubscriptionsAuthorizationAnnotation";
-import type { GraphQLWhereArg } from "../../../../../types";
-import type { Neo4jGraphQLComposedSubscriptionsContext } from "../../../composition/wrap-subscription";
+import type { SubscriptionsAuthorizationWhere } from "../../../../../schema-model/annotation/SubscriptionsAuthorizationAnnotation.js";
+import type { GraphQLWhereArg } from "../../../../../types/index.js";
+import type { Neo4jGraphQLComposedSubscriptionsContext } from "../../../composition/wrap-subscription.js";
 
 export function populateWhereParams({
     where,

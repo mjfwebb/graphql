@@ -19,7 +19,7 @@
 
 import type { ListTypeNode, TypeNode } from "graphql";
 import { Kind } from "graphql";
-import type { TypeMeta } from "../types";
+import type { TypeMeta } from "../types/index.js";
 
 function getName(type: TypeNode): string {
     return type.kind === Kind.NAMED_TYPE ? type.name.value : getName(type.type);

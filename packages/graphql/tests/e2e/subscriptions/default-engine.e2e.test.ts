@@ -20,14 +20,14 @@
 import type { Driver } from "neo4j-driver";
 import type { Response } from "supertest";
 import supertest from "supertest";
-import { Neo4jGraphQL } from "../../../src/classes";
-import type { TestGraphQLServer } from "../setup/apollo-server";
-import { ApolloTestServer } from "../setup/apollo-server";
-import { WebSocketTestClient } from "../setup/ws-client";
-import Neo4j from "../setup/neo4j";
-import { delay } from "../../../src/utils/utils";
-import { UniqueType } from "../../utils/graphql-types";
-import { Neo4jGraphQLSubscriptionsDefaultEngine } from "../../../src/classes/subscription/Neo4jGraphQLSubscriptionsDefaultEngine";
+import { Neo4jGraphQL } from "../../../src/classes/index.js";
+import { Neo4jGraphQLSubscriptionsDefaultEngine } from "../../../src/classes/subscription/Neo4jGraphQLSubscriptionsDefaultEngine.js";
+import { delay } from "../../../src/utils/utils.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import type { TestGraphQLServer } from "../setup/apollo-server.js";
+import { ApolloTestServer } from "../setup/apollo-server.js";
+import Neo4j from "../setup/neo4j.js";
+import { WebSocketTestClient } from "../setup/ws-client.js";
 
 describe("Single instance Subscription", () => {
     let neo4j: Neo4j;

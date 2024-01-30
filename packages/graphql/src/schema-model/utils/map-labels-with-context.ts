@@ -18,7 +18,7 @@
  */
 
 import dotProp from "dot-prop";
-import type { Neo4jGraphQLContext } from "../../types/neo4j-graphql-context";
+import type { Neo4jGraphQLContext } from "../../types/neo4j-graphql-context.js";
 /**
  * Given a list of strings, representing labels, and a context, replace any labels that start with $ with the value from the context
  **/

@@ -17,8 +17,9 @@
  * limitations under the License.
  */
 
-import { upperFirst } from "../../../utils/upper-first";
-import type { UnionEntityAdapter } from "./UnionEntityAdapter";
+import { upperFirst } from "../../../utils/upper-first.js";
+import type { UnionEntityAdapter } from "./UnionEntityAdapter.js";
+
 type RootTypeFieldNames = {
     // create: string;
     read: string;

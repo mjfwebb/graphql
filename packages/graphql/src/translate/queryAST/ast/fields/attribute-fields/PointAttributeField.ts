@@ -18,8 +18,8 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import { AttributeField } from "./AttributeField";
+import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import { AttributeField } from "./AttributeField.js";
 
 export class PointAttributeField extends AttributeField {
     private crs: boolean;

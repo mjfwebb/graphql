@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import { NodeDirective } from "./NodeDirective";
-import { ContextBuilder } from "../../tests/utils/builders/context-builder";
+import { ContextBuilder } from "../../tests/utils/builders/context-builder.js";
+import { NodeDirective } from "./NodeDirective.js";
 
 describe("NodeDirective", () => {
     const defaultContext = new ContextBuilder().instance();

@@ -18,12 +18,12 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import { AttributeField } from "./AttributeField";
-import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import type { Field } from "../Field";
-import type { QueryASTContext } from "../../QueryASTContext";
-import { CypherAnnotationSubqueryGenerator } from "../../../cypher-generators/CypherAnnotationSubqueryGenerator";
-import type { QueryASTNode } from "../../QueryASTNode";
+import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import { CypherAnnotationSubqueryGenerator } from "../../../cypher-generators/CypherAnnotationSubqueryGenerator.js";
+import type { QueryASTContext } from "../../QueryASTContext.js";
+import type { QueryASTNode } from "../../QueryASTNode.js";
+import type { Field } from "../Field.js";
+import { AttributeField } from "./AttributeField.js";
 
 // Should Cypher be an operation?
 export class CypherAttributeField extends AttributeField {

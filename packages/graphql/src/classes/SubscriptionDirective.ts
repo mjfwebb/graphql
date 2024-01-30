@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { SubscriptionEvent } from "../graphql/directives/subscription";
+import { SubscriptionEvent } from "../graphql/directives/subscription.js";
 
 export class SubscriptionDirective {
     public created: boolean;

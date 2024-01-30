@@ -20,8 +20,8 @@
 import { astFromArg, astFromDirective } from "@graphql-tools/utils";
 import type { GraphQLArgument } from "graphql";
 import { GraphQLDirective, GraphQLError, GraphQLInt } from "graphql";
-import { mapError } from "./map-error";
-import { VALIDATION_ERROR_CODES } from "./validation-error-codes";
+import { mapError } from "./map-error.js";
+import { VALIDATION_ERROR_CODES } from "./validation-error-codes.js";
 
 describe("mapError", () => {
     const d = new GraphQLDirective({ name: "MyDir", locations: [], args: { intArg: { type: GraphQLInt } } });

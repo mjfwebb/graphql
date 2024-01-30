@@ -18,9 +18,9 @@
  */
 
 import type { ResolveTree } from "graphql-parse-resolve-info";
-import type { Node, Relationship } from "../../classes";
-import type { RelationField, ConnectionField } from "../../types";
-import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context";
+import type { Node, Relationship } from "../../classes/index.js";
+import type { ConnectionField, RelationField } from "../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context.js";
 
 export enum AggregationType {
     Int = "IntAggregateSelection",

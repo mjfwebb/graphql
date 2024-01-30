@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import type { CypherQueryOptions } from ".";
-import type { ExecutionContext, Neo4jGraphQLSessionConfig } from "../classes/Executor";
-import type { Neo4jGraphQLContextInterface } from "./neo4j-graphql-context-interface";
+import type { ExecutionContext, Neo4jGraphQLSessionConfig } from "../classes/Executor.js";
+import type { CypherQueryOptions } from "./index.js";
+import type { Neo4jGraphQLContextInterface } from "./neo4j-graphql-context-interface.js";
 
 export interface Neo4jGraphQLContext extends Neo4jGraphQLContextInterface {
     /**

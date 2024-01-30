@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { filterAsyncIterator } from "./filter-async-iterator";
+import { filterAsyncIterator } from "./filter-async-iterator.js";
 
 describe("FilterAsyncIterator", () => {
     // eslint-disable-next-line @typescript-eslint/require-await

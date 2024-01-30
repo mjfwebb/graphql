@@ -19,18 +19,26 @@
 
 import { makeDirectiveNode } from "@graphql-tools/utils";
 import type { DirectiveNode } from "graphql";
-import { parseFilterableAnnotation } from "./filterable-annotation";
-import { filterableDirective } from "../../../graphql/directives";
+import { filterableDirective } from "../../../graphql/directives/index.js";
+import { parseFilterableAnnotation } from "./filterable-annotation.js";
 
 describe("parseFilterableAnnotation", () => {
     it("should parse correctly when byValue is set to true and byAggregate is set to false", () => {
-        const directive: DirectiveNode = makeDirectiveNode("filterable", { byValue: true, byAggregate: false }, filterableDirective);
+        const directive: DirectiveNode = makeDirectiveNode(
+            "filterable",
+            { byValue: true, byAggregate: false },
+            filterableDirective
+        );
         const filterableAnnotation = parseFilterableAnnotation(directive);
         expect(filterableAnnotation.byValue).toBe(true);
         expect(filterableAnnotation.byAggregate).toBe(false);
     });
     it("should parse correctly when byValue is set to false and byAggregate is set to true", () => {
-        const directive: DirectiveNode = makeDirectiveNode("filterable", { byValue: false, byAggregate: true }, filterableDirective);
+        const directive: DirectiveNode = makeDirectiveNode(
+            "filterable",
+            { byValue: false, byAggregate: true },
+            filterableDirective
+        );
         const filterableAnnotation = parseFilterableAnnotation(directive);
         expect(filterableAnnotation.byValue).toBe(false);
         expect(filterableAnnotation.byAggregate).toBe(true);

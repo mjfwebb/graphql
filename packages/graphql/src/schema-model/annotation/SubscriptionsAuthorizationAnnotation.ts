@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import type { GraphQLWhereArg } from "../../types";
-import type { Annotation } from "./Annotation";
-import type { ValueOf } from "../../utils/value-of";
+import type { GraphQLWhereArg } from "../../types/index.js";
+import type { ValueOf } from "../../utils/value-of.js";
+import type { Annotation } from "./Annotation.js";
 
 export const SubscriptionsAuthorizationAnnotationArguments = ["filter"] as const;
 

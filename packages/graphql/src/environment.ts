@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import * as pack from "../package.json";
+import pack from "../package.json";
 
 const environment = {
     NPM_PACKAGE_VERSION: pack.version,

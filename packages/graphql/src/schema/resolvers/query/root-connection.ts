@@ -27,16 +27,16 @@ import {
 } from "graphql";
 import type { InputTypeComposer, SchemaComposer } from "graphql-compose";
 import type { PageInfo as PageInfoRelay } from "graphql-relay";
-import { PageInfo } from "../../../graphql/objects/PageInfo";
-import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { translateRead } from "../../../translate";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
-import { execute } from "../../../utils";
-import getNeo4jResolveTree from "../../../utils/get-neo4j-resolve-tree";
-import { isNeoInt } from "../../../utils/utils";
-import { createConnectionWithEdgeProperties } from "../../pagination";
-import { graphqlDirectivesToCompose } from "../../to-compose";
-import type { Neo4jGraphQLComposedContext } from "../composition/wrap-query-and-mutation";
+import { PageInfo } from "../../../graphql/objects/PageInfo.js";
+import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { translateRead } from "../../../translate/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
+import getNeo4jResolveTree from "../../../utils/get-neo4j-resolve-tree.js";
+import { execute } from "../../../utils/index.js";
+import { isNeoInt } from "../../../utils/utils.js";
+import { createConnectionWithEdgeProperties } from "../../pagination.js";
+import { graphqlDirectivesToCompose } from "../../to-compose.js";
+import type { Neo4jGraphQLComposedContext } from "../composition/wrap-query-and-mutation.js";
 
 export function rootConnectionResolver({
     composer,

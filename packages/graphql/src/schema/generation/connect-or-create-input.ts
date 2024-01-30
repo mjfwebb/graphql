@@ -24,11 +24,11 @@ import type {
     InputTypeComposerFieldConfigMapDefinition,
     SchemaComposer,
 } from "graphql-compose";
-import { RelationshipNestedOperationsOption } from "../../constants";
-import { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { UnionEntityAdapter } from "../../schema-model/entity/model-adapters/UnionEntityAdapter";
-import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import { createOnCreateITC } from "../create-relationship-fields/create-connect-or-create-field";
+import { RelationshipNestedOperationsOption } from "../../constants.js";
+import { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { UnionEntityAdapter } from "../../schema-model/entity/model-adapters/UnionEntityAdapter.js";
+import type { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { createOnCreateITC } from "../create-relationship-fields/create-connect-or-create-field.js";
 
 // TODO: refactor this
 export function withConnectOrCreateFieldInputType({

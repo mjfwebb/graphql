@@ -19,15 +19,15 @@
 
 import Cypher from "@neo4j/cypher-builder";
 import type { GraphQLFieldResolver, GraphQLResolveInfo } from "graphql";
-import type { Node } from "../../../classes";
-import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { InterfaceEntityAdapter } from "../../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import { translateRead } from "../../../translate";
-import type { FulltextContext } from "../../../types";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
-import { execute } from "../../../utils";
-import getNeo4jResolveTree from "../../../utils/get-neo4j-resolve-tree";
-import type { Neo4jGraphQLComposedContext } from "../composition/wrap-query-and-mutation";
+import type { Node } from "../../../classes/index.js";
+import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { InterfaceEntityAdapter } from "../../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import { translateRead } from "../../../translate/index.js";
+import type { FulltextContext } from "../../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
+import getNeo4jResolveTree from "../../../utils/get-neo4j-resolve-tree.js";
+import { execute } from "../../../utils/index.js";
+import type { Neo4jGraphQLComposedContext } from "../composition/wrap-query-and-mutation.js";
 
 export function fulltextResolver({
     node,

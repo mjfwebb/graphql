@@ -17,13 +17,13 @@
  * limitations under the License.
  */
 import type { DirectiveNode } from "graphql";
-import { parseArgumentsFromUnknownDirective } from "../parse-arguments";
+import { parseArgumentsFromUnknownDirective } from "../parse-arguments.js";
 
-import type { SubscriptionsAuthorizationFilterRuleConstructor } from "../../annotation/SubscriptionsAuthorizationAnnotation";
+import type { SubscriptionsAuthorizationFilterRuleConstructor } from "../../annotation/SubscriptionsAuthorizationAnnotation.js";
 import {
     SubscriptionsAuthorizationAnnotation,
     SubscriptionsAuthorizationFilterRule,
-} from "../../annotation/SubscriptionsAuthorizationAnnotation";
+} from "../../annotation/SubscriptionsAuthorizationAnnotation.js";
 
 export function parseSubscriptionsAuthorizationAnnotation(
     directive: DirectiveNode

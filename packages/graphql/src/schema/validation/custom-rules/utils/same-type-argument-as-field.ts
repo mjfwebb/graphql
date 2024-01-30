@@ -16,11 +16,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import type { EnumTypeDefinitionNode, ArgumentNode, FieldDefinitionNode, ValueNode } from "graphql";
+import type { ArgumentNode, EnumTypeDefinitionNode, FieldDefinitionNode, ValueNode } from "graphql";
 import { Kind } from "graphql";
-import { fromValueKind, getInnerTypeName, isArrayType } from "./utils";
-import { isSpatial, isTemporal } from "../../../../constants";
-import { DocumentValidationError } from "./document-validation-error";
+import { isSpatial, isTemporal } from "../../../../constants.js";
+import { DocumentValidationError } from "./document-validation-error.js";
+import { fromValueKind, getInnerTypeName, isArrayType } from "./utils.js";
 
 export function assertArgumentHasSameTypeAsField({
     directiveName,

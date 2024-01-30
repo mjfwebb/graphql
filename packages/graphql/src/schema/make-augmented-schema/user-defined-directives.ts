@@ -23,10 +23,10 @@ import type {
     InterfaceTypeDefinitionNode,
     ObjectTypeDefinitionNode,
 } from "graphql";
-import { PROPAGATED_DIRECTIVES } from "../../constants";
-import { FIELD_DIRECTIVES, INTERFACE_DIRECTIVES, OBJECT_DIRECTIVES } from "../../schema-model/library-directives";
-import { isInArray } from "../../utils/is-in-array";
-import type { DefinitionNodes } from "../get-definition-nodes";
+import { PROPAGATED_DIRECTIVES } from "../../constants.js";
+import { FIELD_DIRECTIVES, INTERFACE_DIRECTIVES, OBJECT_DIRECTIVES } from "../../schema-model/library-directives.js";
+import { isInArray } from "../../utils/is-in-array.js";
+import type { DefinitionNodes } from "../get-definition-nodes.js";
 
 function getUserDefinedMergedFieldDirectivesForDefinition(
     definitionNode: ObjectTypeDefinitionNode | InterfaceTypeDefinitionNode,

@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 
-import { ConcreteEntity } from "../../../../schema-model/entity/ConcreteEntity";
-import { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { SubscriptionsEvent } from "../../../../types";
-import { subscriptionWhere } from "./where";
+import { ConcreteEntity } from "../../../../schema-model/entity/ConcreteEntity.js";
+import { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { SubscriptionsEvent } from "../../../../types/index.js";
+import { subscriptionWhere } from "./where.js";
 
 describe("subscriptionWhere", () => {
     test("filters expected", () => {

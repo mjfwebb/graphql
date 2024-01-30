@@ -19,15 +19,19 @@
 
 import { makeDirectiveNode } from "@graphql-tools/utils";
 import type { DirectiveNode } from "graphql";
-import { parsePopulatedByAnnotation } from "./populated-by-annotation";
-import { populatedByDirective } from "../../../graphql/directives";
+import { populatedByDirective } from "../../../graphql/directives/index.js";
+import { parsePopulatedByAnnotation } from "./populated-by-annotation.js";
 
 describe("parsePopulatedByAnnotation", () => {
     it("should parse correctly", () => {
-        const directive: DirectiveNode = makeDirectiveNode("populatedBy", {
-            callback: "callback",
-            operations: ["CREATE", "UPDATE"],
-        }, populatedByDirective);
+        const directive: DirectiveNode = makeDirectiveNode(
+            "populatedBy",
+            {
+                callback: "callback",
+                operations: ["CREATE", "UPDATE"],
+            },
+            populatedByDirective
+        );
         const populatedByAnnotation = parsePopulatedByAnnotation(directive);
         expect(populatedByAnnotation.callback).toBe("callback");
         expect(populatedByAnnotation.operations).toEqual(["CREATE", "UPDATE"]);

@@ -17,54 +17,54 @@
  * limitations under the License.
  */
 
-import { GraphQLSchema, extendSchema, validateSchema, specifiedDirectives, Kind } from "graphql";
 import type {
     DefinitionNode,
     DocumentNode,
-    ObjectTypeDefinitionNode,
-    InputValueDefinitionNode,
+    EnumTypeDefinitionNode,
     FieldDefinitionNode,
-    TypeNode,
     GraphQLDirective,
     GraphQLNamedType,
-    EnumTypeDefinitionNode,
+    InputValueDefinitionNode,
     InterfaceTypeDefinitionNode,
+    ObjectTypeDefinitionNode,
+    TypeNode,
     UnionTypeDefinitionNode,
 } from "graphql";
+import { GraphQLSchema, Kind, extendSchema, specifiedDirectives, validateSchema } from "graphql";
+import { specifiedSDLRules } from "graphql/validation/specifiedRules.js";
 import pluralize from "pluralize";
-import * as scalars from "../../graphql/scalars";
-import * as directives from "../../graphql/directives";
-import { SortDirection } from "../../graphql/enums/SortDirection";
-import { Point } from "../../graphql/objects/Point";
-import { CartesianPoint } from "../../graphql/objects/CartesianPoint";
-import { PointInput } from "../../graphql/input-objects/PointInput";
-import { CartesianPointInput } from "../../graphql/input-objects/CartesianPointInput";
-import { PointDistance } from "../../graphql/input-objects/PointDistance";
-import { CartesianPointDistance } from "../../graphql/input-objects/CartesianPointDistance";
-import { isRootType } from "../../utils/is-root-type";
-import { validateSchemaCustomizations } from "./validate-schema-customizations";
-import type { Neo4jFeaturesSettings } from "../../types";
-import { validateSDL } from "./validate-sdl";
-import { specifiedSDLRules } from "graphql/validation/specifiedRules";
-import { DirectiveArgumentOfCorrectType } from "./custom-rules/directive-argument-of-correct-type";
+import * as directives from "../../graphql/directives/index.js";
+import { typeDependantDirectivesScaffolds } from "../../graphql/directives/type-dependant-directives/scaffolds.js";
+import { SortDirection } from "../../graphql/enums/SortDirection.js";
+import { CartesianPointDistance } from "../../graphql/input-objects/CartesianPointDistance.js";
+import { CartesianPointInput } from "../../graphql/input-objects/CartesianPointInput.js";
+import { PointDistance } from "../../graphql/input-objects/PointDistance.js";
+import { PointInput } from "../../graphql/input-objects/PointInput.js";
+import { CartesianPoint } from "../../graphql/objects/CartesianPoint.js";
+import { Point } from "../../graphql/objects/Point.js";
+import * as scalars from "../../graphql/scalars/index.js";
+import type { Neo4jFeaturesSettings } from "../../types/index.js";
+import { isRootType } from "../../utils/is-root-type.js";
+import { DirectiveArgumentOfCorrectType } from "./custom-rules/directive-argument-of-correct-type.js";
+import { ValidDirectiveAtFieldLocation } from "./custom-rules/directives/valid-directive-field-location.js";
+import { directiveIsValid } from "./custom-rules/directives/valid-directive.js";
+import { ValidJwtDirectives } from "./custom-rules/features/valid-jwt-directives.js";
+import { ValidRelationshipProperties } from "./custom-rules/features/valid-relationship-properties.js";
+import { ValidRelayID } from "./custom-rules/features/valid-relay-id.js";
+import { ValidDirectiveInheritance } from "./custom-rules/valid-types/directive-multiple-inheritance.js";
+import { ReservedTypeNames } from "./custom-rules/valid-types/reserved-type-names.js";
 import {
     DirectiveCombinationValid,
     SchemaOrTypeDirectives,
-} from "./custom-rules/valid-types/valid-directive-combination";
-import { ValidJwtDirectives } from "./custom-rules/features/valid-jwt-directives";
-import { ValidFieldTypes } from "./custom-rules/valid-types/valid-field-types";
-import { ReservedTypeNames } from "./custom-rules/valid-types/reserved-type-names";
-import { ValidRelayID } from "./custom-rules/features/valid-relay-id";
-import { ValidObjectType } from "./custom-rules/valid-types/valid-object-type";
-import { ValidDirectiveInheritance } from "./custom-rules/valid-types/directive-multiple-inheritance";
-import { directiveIsValid } from "./custom-rules/directives/valid-directive";
-import { ValidRelationshipProperties } from "./custom-rules/features/valid-relationship-properties";
-import { typeDependantDirectivesScaffolds } from "../../graphql/directives/type-dependant-directives/scaffolds";
-import { ValidDirectiveAtFieldLocation } from "./custom-rules/directives/valid-directive-field-location";
-import { WarnIfAuthorizationFeatureDisabled } from "./custom-rules/warnings/authorization-feature-disabled";
-import { WarnIfListOfListsFieldDefinition } from "./custom-rules/warnings/list-of-lists";
-import { WarnIfAMaxLimitCanBeBypassedThroughInterface } from "./custom-rules/warnings/limit-max-can-be-bypassed";
-import { WarnIfExperimentalMode } from "./custom-rules/warnings/experimental-mode";
+} from "./custom-rules/valid-types/valid-directive-combination.js";
+import { ValidFieldTypes } from "./custom-rules/valid-types/valid-field-types.js";
+import { ValidObjectType } from "./custom-rules/valid-types/valid-object-type.js";
+import { WarnIfAuthorizationFeatureDisabled } from "./custom-rules/warnings/authorization-feature-disabled.js";
+import { WarnIfExperimentalMode } from "./custom-rules/warnings/experimental-mode.js";
+import { WarnIfAMaxLimitCanBeBypassedThroughInterface } from "./custom-rules/warnings/limit-max-can-be-bypassed.js";
+import { WarnIfListOfListsFieldDefinition } from "./custom-rules/warnings/list-of-lists.js";
+import { validateSchemaCustomizations } from "./validate-schema-customizations.js";
+import { validateSDL } from "./validate-sdl.js";
 
 function filterDocument(document: DocumentNode): DocumentNode {
     const nodeNames = document.definitions

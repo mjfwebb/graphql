@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import { RelationshipQueryDirectionOption } from "../constants";
-import type { RelationshipAdapter } from "../schema-model/relationship/model-adapters/RelationshipAdapter";
-import { addDirectedArgument, getDirectedArgument } from "./directed-argument";
+import { RelationshipQueryDirectionOption } from "../constants.js";
+import type { RelationshipAdapter } from "../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { addDirectedArgument, getDirectedArgument } from "./directed-argument.js";
 
 describe("Directed argument", () => {
     describe("getDirectedArgument", () => {

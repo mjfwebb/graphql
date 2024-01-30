@@ -19,7 +19,7 @@
 
 import type { ValueNode } from "graphql";
 import { parse } from "graphql";
-import { parseValueNode } from "./parse-value-node";
+import { parseValueNode } from "./parse-value-node.js";
 
 describe("parseValueNode", () => {
     test("should return a correct nested object", () => {

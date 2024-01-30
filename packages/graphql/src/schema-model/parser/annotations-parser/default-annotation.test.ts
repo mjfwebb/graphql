@@ -20,8 +20,8 @@
 import { makeDirectiveNode } from "@graphql-tools/utils";
 import type { DirectiveNode } from "graphql";
 import { Kind } from "graphql";
-import { parseDefaultAnnotation } from "./default-annotation";
-import { defaultDirective } from "../../../graphql/directives";
+import { defaultDirective } from "../../../graphql/directives/index.js";
+import { parseDefaultAnnotation } from "./default-annotation.js";
 
 describe("parseDefaultAnnotation", () => {
     it("should parse correctly with string default value", () => {

@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import { type Annotations } from "../annotation/Annotation";
-import type { Argument } from "../argument/Argument";
-import type { AttributeType } from "./AttributeType";
+import { type Annotations } from "../annotation/Annotation.js";
+import type { Argument } from "../argument/Argument.js";
+import type { AttributeType } from "./AttributeType.js";
 
 export class Attribute {
     public readonly name: string;

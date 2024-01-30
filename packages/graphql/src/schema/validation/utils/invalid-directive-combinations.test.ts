@@ -21,7 +21,7 @@ import {
     invalidFieldCombinations,
     invalidInterfaceCombinations,
     invalidObjectCombinations,
-} from "./invalid-directive-combinations";
+} from "./invalid-directive-combinations.js";
 
 describe("invalid-directive-combinations", () => {
     // For example, if @alias is invalid with @cypher, then @cypher should be invalid with @alias

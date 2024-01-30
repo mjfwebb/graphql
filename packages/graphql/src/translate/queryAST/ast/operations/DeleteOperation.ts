@@ -18,16 +18,16 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { filterTruthy } from "../../../../utils/utils";
-import type { QueryASTContext } from "../QueryASTContext";
-import type { QueryASTNode } from "../QueryASTNode";
-import { MutationOperation } from "./operations";
-import type { OperationTranspileResult } from "./operations";
-import type { EntitySelection, SelectionClause } from "../selection/EntitySelection";
-import type { Filter } from "../filters/Filter";
-import { wrapSubqueriesInCypherCalls } from "../../utils/wrap-subquery-in-calls";
-import type { InterfaceEntityAdapter } from "../../../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
+import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { InterfaceEntityAdapter } from "../../../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import { filterTruthy } from "../../../../utils/utils.js";
+import { wrapSubqueriesInCypherCalls } from "../../utils/wrap-subquery-in-calls.js";
+import type { QueryASTContext } from "../QueryASTContext.js";
+import type { QueryASTNode } from "../QueryASTNode.js";
+import type { Filter } from "../filters/Filter.js";
+import type { EntitySelection, SelectionClause } from "../selection/EntitySelection.js";
+import type { OperationTranspileResult } from "./operations.js";
+import { MutationOperation } from "./operations.js";
 
 export class DeleteOperation extends MutationOperation {
     public readonly target: ConcreteEntityAdapter | InterfaceEntityAdapter;

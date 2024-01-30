@@ -18,10 +18,10 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import { filterFields, renameFields } from "../../../../../utils/utils";
-import type { QueryASTNode } from "../../QueryASTNode";
-import { AggregationField } from "./AggregationField";
+import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import { filterFields, renameFields } from "../../../../../utils/utils.js";
+import type { QueryASTNode } from "../../QueryASTNode.js";
+import { AggregationField } from "./AggregationField.js";
 
 export class AggregationAttributeField extends AggregationField {
     private attribute: AttributeAdapter;

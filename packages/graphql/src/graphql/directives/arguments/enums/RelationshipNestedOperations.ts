@@ -18,7 +18,7 @@
  */
 
 import { GraphQLEnumType } from "graphql";
-import { RelationshipNestedOperationsOption } from "../../../../constants";
+import { RelationshipNestedOperationsOption } from "../../../../constants.js";
 
 export const RelationshipNestedOperationsEnum = new GraphQLEnumType({
     name: "RelationshipNestedOperations",

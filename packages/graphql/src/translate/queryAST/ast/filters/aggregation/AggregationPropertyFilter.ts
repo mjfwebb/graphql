@@ -18,12 +18,12 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import type { AggregationLogicalOperator, AggregationOperator } from "../../../factory/parsers/parse-where-field";
-import { hasTarget } from "../../../utils/context-has-target";
-import type { QueryASTContext } from "../../QueryASTContext";
-import type { QueryASTNode } from "../../QueryASTNode";
-import { Filter } from "../Filter";
+import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import type { AggregationLogicalOperator, AggregationOperator } from "../../../factory/parsers/parse-where-field.js";
+import { hasTarget } from "../../../utils/context-has-target.js";
+import type { QueryASTContext } from "../../QueryASTContext.js";
+import type { QueryASTNode } from "../../QueryASTNode.js";
+import { Filter } from "../Filter.js";
 
 export class AggregationPropertyFilter extends Filter {
     protected attribute: AttributeAdapter;

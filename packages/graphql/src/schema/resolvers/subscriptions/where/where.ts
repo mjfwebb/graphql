@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 
-import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { SubscriptionsEvent } from "../../../../types";
-import type { RecordType, RelationshipType } from "../types";
-import { filterByProperties } from "./filters/filter-by-properties";
-import { filterByRelationshipProperties } from "./filters/filter-by-relationship-properties";
+import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { SubscriptionsEvent } from "../../../../types/index.js";
+import type { RecordType, RelationshipType } from "../types.js";
+import { filterByProperties } from "./filters/filter-by-properties.js";
+import { filterByRelationshipProperties } from "./filters/filter-by-relationship-properties.js";
 
 export function subscriptionWhere({
     where,

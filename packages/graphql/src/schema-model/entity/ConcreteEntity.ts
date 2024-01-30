@@ -17,13 +17,13 @@
  * limitations under the License.
  */
 
-import { Neo4jGraphQLSchemaValidationError } from "../../classes";
-import { setsAreEqual } from "../../utils/sets-are-equal";
-import type { Annotations } from "../annotation/Annotation";
-import type { Attribute } from "../attribute/Attribute";
-import type { Relationship } from "../relationship/Relationship";
-import type { CompositeEntity } from "./CompositeEntity";
-import type { Entity } from "./Entity";
+import { Neo4jGraphQLSchemaValidationError } from "../../classes/index.js";
+import { setsAreEqual } from "../../utils/sets-are-equal.js";
+import type { Annotations } from "../annotation/Annotation.js";
+import type { Attribute } from "../attribute/Attribute.js";
+import type { Relationship } from "../relationship/Relationship.js";
+import type { CompositeEntity } from "./CompositeEntity.js";
+import type { Entity } from "./Entity.js";
 
 export class ConcreteEntity implements Entity {
     public readonly name: string;

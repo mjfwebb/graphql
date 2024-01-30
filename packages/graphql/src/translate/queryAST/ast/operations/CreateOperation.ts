@@ -18,13 +18,13 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { filterTruthy } from "../../../../utils/utils";
-import type { QueryASTContext } from "../QueryASTContext";
-import type { QueryASTNode } from "../QueryASTNode";
-import type { ReadOperation } from "./ReadOperation";
-import type { OperationTranspileResult } from "./operations";
-import { MutationOperation } from "./operations";
+import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { filterTruthy } from "../../../../utils/utils.js";
+import type { QueryASTContext } from "../QueryASTContext.js";
+import type { QueryASTNode } from "../QueryASTNode.js";
+import type { ReadOperation } from "./ReadOperation.js";
+import type { OperationTranspileResult } from "./operations.js";
+import { MutationOperation } from "./operations.js";
 
 /**
  * This is currently just a dummy tree node,
@@ -63,4 +63,3 @@ export class CreateOperation extends MutationOperation {
         });
     }
 }
-

@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 import type { DirectiveNode } from "graphql";
-import { uniqueDirective } from "../../../graphql/directives";
-import { UniqueAnnotation } from "../../annotation/UniqueAnnotation";
-import { parseArguments } from "../parse-arguments";
+import { uniqueDirective } from "../../../graphql/directives/index.js";
+import { UniqueAnnotation } from "../../annotation/UniqueAnnotation.js";
+import { parseArguments } from "../parse-arguments.js";
 
 export function parseUniqueAnnotation(directive: DirectiveNode): UniqueAnnotation {
     const { constraintName } = parseArguments<{ constraintName: string }>(uniqueDirective, directive);

@@ -18,7 +18,7 @@
  */
 
 import type Cypher from "@neo4j/cypher-builder";
-import { Field } from "../Field";
+import { Field } from "../Field.js";
 
 export abstract class AggregationField extends Field {
     public abstract getProjectionField(_variable: Cypher.Variable): Record<string, Cypher.Expr>;

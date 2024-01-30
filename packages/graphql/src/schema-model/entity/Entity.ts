@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import type { CompositeEntity } from "./CompositeEntity";
-import type { ConcreteEntity } from "./ConcreteEntity";
+import type { CompositeEntity } from "./CompositeEntity.js";
+import type { ConcreteEntity } from "./ConcreteEntity.js";
 
 export interface Entity {
     readonly name: string;

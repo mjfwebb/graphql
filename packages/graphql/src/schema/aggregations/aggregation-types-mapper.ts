@@ -18,9 +18,9 @@
  */
 
 import type { ObjectTypeComposer, SchemaComposer } from "graphql-compose";
-import type { Subgraph } from "../../classes/Subgraph";
-import { idResolver } from "../resolvers/field/id";
-import { numericalResolver } from "../resolvers/field/numerical";
+import type { Subgraph } from "../../classes/Subgraph.js";
+import { idResolver } from "../resolvers/field/id.js";
+import { numericalResolver } from "../resolvers/field/numerical.js";
 
 export class AggregationTypesMapper {
     private requiredAggregationSelectionTypes: Record<string, ObjectTypeComposer<unknown, unknown>>;

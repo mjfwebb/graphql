@@ -18,12 +18,12 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { RelationshipAdapter } from "../../../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import { hasTarget } from "../../../utils/context-has-target";
-import type { QueryASTContext } from "../../QueryASTContext";
-import type { SelectionClause } from "../../selection/EntitySelection";
-import { ReadOperation } from "../ReadOperation";
-import type { OperationTranspileResult } from "../operations";
+import type { RelationshipAdapter } from "../../../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { hasTarget } from "../../../utils/context-has-target.js";
+import type { QueryASTContext } from "../../QueryASTContext.js";
+import type { SelectionClause } from "../../selection/EntitySelection.js";
+import { ReadOperation } from "../ReadOperation.js";
+import type { OperationTranspileResult } from "../operations.js";
 
 export class CompositeReadPartial extends ReadOperation {
     public transpile(context: QueryASTContext) {

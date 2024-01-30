@@ -18,17 +18,17 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { RelationshipWhereOperator } from "../../../where/types";
-import { Filter } from "./Filter";
-import type { QueryASTContext } from "../QueryASTContext";
-import type { RelationshipAdapter } from "../../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import type { QueryASTNode } from "../QueryASTNode";
-import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { InterfaceEntityAdapter } from "../../../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import { isConcreteEntity } from "../../utils/is-concrete-entity";
-import { isInterfaceEntity } from "../../utils/is-interface-entity";
-import { hasTarget } from "../../utils/context-has-target";
-import { createNodeFromEntity } from "../../utils/create-node-from-entity";
+import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { InterfaceEntityAdapter } from "../../../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import type { RelationshipAdapter } from "../../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import type { RelationshipWhereOperator } from "../../../where/types.js";
+import { hasTarget } from "../../utils/context-has-target.js";
+import { createNodeFromEntity } from "../../utils/create-node-from-entity.js";
+import { isConcreteEntity } from "../../utils/is-concrete-entity.js";
+import { isInterfaceEntity } from "../../utils/is-interface-entity.js";
+import type { QueryASTContext } from "../QueryASTContext.js";
+import type { QueryASTNode } from "../QueryASTNode.js";
+import { Filter } from "./Filter.js";
 
 export class ConnectionFilter extends Filter {
     protected innerFilters: Filter[] = [];

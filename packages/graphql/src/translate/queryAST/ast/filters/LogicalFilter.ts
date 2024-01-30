@@ -18,11 +18,11 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import { filterTruthy } from "../../../../utils/utils";
-import type { LogicalOperators } from "./Filter";
-import { Filter } from "./Filter";
-import type { QueryASTContext } from "../QueryASTContext";
-import type { QueryASTNode } from "../QueryASTNode";
+import { filterTruthy } from "../../../../utils/utils.js";
+import type { QueryASTContext } from "../QueryASTContext.js";
+import type { QueryASTNode } from "../QueryASTNode.js";
+import type { LogicalOperators } from "./Filter.js";
+import { Filter } from "./Filter.js";
 
 export class LogicalFilter extends Filter {
     private operation: LogicalOperators;

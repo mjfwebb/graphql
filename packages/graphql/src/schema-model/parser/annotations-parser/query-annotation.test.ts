@@ -18,16 +18,20 @@
  */
 
 import { makeDirectiveNode } from "@graphql-tools/utils";
-import { parseQueryAnnotation } from "./query-annotation";
-import { queryDirective } from "../../../graphql/directives";
+import { queryDirective } from "../../../graphql/directives/index.js";
+import { parseQueryAnnotation } from "./query-annotation.js";
 
 const tests = [
     {
         name: "should parse correctly when read is true and aggregate is false",
-        directive: makeDirectiveNode("query", {
-            read: true,
-            aggregate: false,
-        }, queryDirective),
+        directive: makeDirectiveNode(
+            "query",
+            {
+                read: true,
+                aggregate: false,
+            },
+            queryDirective
+        ),
         expected: {
             read: true,
             aggregate: false,
@@ -35,10 +39,14 @@ const tests = [
     },
     {
         name: "should parse correctly when read is false and aggregate is true",
-        directive: makeDirectiveNode("query", {
-            read: false,
-            aggregate: true,
-        }, queryDirective),
+        directive: makeDirectiveNode(
+            "query",
+            {
+                read: false,
+                aggregate: true,
+            },
+            queryDirective
+        ),
         expected: {
             read: false,
             aggregate: true,

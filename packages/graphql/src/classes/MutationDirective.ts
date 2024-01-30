@@ -17,14 +17,14 @@
  * limitations under the License.
  */
 
-import { MutationOperations } from "../graphql/directives/mutation";
+import { MutationOperations } from "../graphql/directives/mutation.js";
 
 export class MutationDirective {
     public create: boolean;
     public update: boolean;
     public delete: boolean;
 
-    constructor(operations?: (MutationOperations)[]) {
+    constructor(operations?: MutationOperations[]) {
         const operationsSet = new Set(operations);
         this.create = operationsSet.has(MutationOperations.CREATE);
         this.update = operationsSet.has(MutationOperations.UPDATE);

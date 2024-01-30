@@ -18,16 +18,20 @@
  */
 
 import { makeDirectiveNode } from "@graphql-tools/utils";
-import { parseSettableAnnotation } from "./settable-annotation";
-import { settableDirective } from "../../../graphql/directives";
+import { settableDirective } from "../../../graphql/directives/index.js";
+import { parseSettableAnnotation } from "./settable-annotation.js";
 
 const tests = [
     {
         name: "should parse correctly when onCreate is true and onUpdate is true",
-        directive: makeDirectiveNode("settable", {
-            onCreate: true,
-            onUpdate: true,
-        }, settableDirective),
+        directive: makeDirectiveNode(
+            "settable",
+            {
+                onCreate: true,
+                onUpdate: true,
+            },
+            settableDirective
+        ),
         expected: {
             onCreate: true,
             onUpdate: true,
@@ -35,10 +39,14 @@ const tests = [
     },
     {
         name: "should parse correctly when onCreate is true and onUpdate is false",
-        directive: makeDirectiveNode("settable", {
-            onCreate: true,
-            onUpdate: false,
-        }, settableDirective),
+        directive: makeDirectiveNode(
+            "settable",
+            {
+                onCreate: true,
+                onUpdate: false,
+            },
+            settableDirective
+        ),
         expected: {
             onCreate: true,
             onUpdate: false,

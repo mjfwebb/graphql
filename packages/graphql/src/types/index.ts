@@ -24,13 +24,13 @@ import type { Directive } from "graphql-compose";
 import type { ResolveTree } from "graphql-parse-resolve-info";
 import type { JWTVerifyOptions, RemoteJWKSetOptions } from "jose";
 import type { Integer } from "neo4j-driver";
-import type { RelationshipNestedOperationsOption, RelationshipQueryDirectionOption } from "../constants";
-import type { DefaultAnnotationValue } from "../schema-model/annotation/DefaultAnnotation";
-import type { JwtPayload } from "./jwt-payload";
-import type { Neo4jGraphQLContext } from "./neo4j-graphql-context";
-import type { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel";
+import type { RelationshipNestedOperationsOption, RelationshipQueryDirectionOption } from "../constants.js";
+import type { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel.js";
+import type { DefaultAnnotationValue } from "../schema-model/annotation/DefaultAnnotation.js";
+import type { JwtPayload } from "./jwt-payload.js";
+import type { Neo4jGraphQLContext } from "./neo4j-graphql-context.js";
 
-export { Node } from "../classes";
+export { Node } from "../classes/index.js";
 
 export type AuthorizationContext = {
     jwt?: JwtPayload;

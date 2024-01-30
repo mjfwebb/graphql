@@ -17,13 +17,13 @@
  * limitations under the License.
  */
 
-import { ConcreteEntity } from "../ConcreteEntity";
-import { Attribute } from "../../attribute/Attribute";
-import { GraphQLBuiltInScalarType, ScalarType } from "../../attribute/AttributeType";
-import { ConcreteEntityAdapter } from "./ConcreteEntityAdapter";
-import { AttributeAdapter } from "../../attribute/model-adapters/AttributeAdapter";
-import { CypherAnnotation } from "../../annotation/CypherAnnotation";
-import { UniqueAnnotation } from "../../annotation/UniqueAnnotation";
+import { CypherAnnotation } from "../../annotation/CypherAnnotation.js";
+import { UniqueAnnotation } from "../../annotation/UniqueAnnotation.js";
+import { Attribute } from "../../attribute/Attribute.js";
+import { GraphQLBuiltInScalarType, ScalarType } from "../../attribute/AttributeType.js";
+import { AttributeAdapter } from "../../attribute/model-adapters/AttributeAdapter.js";
+import { ConcreteEntity } from "../ConcreteEntity.js";
+import { ConcreteEntityAdapter } from "./ConcreteEntityAdapter.js";
 
 describe("ConcreteEntityAdapter", () => {
     let userAdapter: ConcreteEntityAdapter;

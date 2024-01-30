@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import type { ConcreteEntityAdapter } from "./model-adapters/ConcreteEntityAdapter";
-import type { InterfaceEntityAdapter } from "./model-adapters/InterfaceEntityAdapter";
-import type { UnionEntityAdapter } from "./model-adapters/UnionEntityAdapter";
+import type { ConcreteEntityAdapter } from "./model-adapters/ConcreteEntityAdapter.js";
+import type { InterfaceEntityAdapter } from "./model-adapters/InterfaceEntityAdapter.js";
+import type { UnionEntityAdapter } from "./model-adapters/UnionEntityAdapter.js";
 
 export type EntityAdapter = ConcreteEntityAdapter | InterfaceEntityAdapter | UnionEntityAdapter;

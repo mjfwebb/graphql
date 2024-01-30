@@ -17,11 +17,18 @@
  * limitations under the License.
  */
 
-import { DirectiveLocation, GraphQLBoolean, GraphQLDirective, GraphQLList, GraphQLNonNull, GraphQLString } from "graphql";
-import { RelationshipNestedOperationsOption, RelationshipQueryDirectionOption } from "../../constants";
-import { RelationshipDirectionEnum } from "./arguments/enums/RelationshipDirection";
-import { RelationshipNestedOperationsEnum } from "./arguments/enums/RelationshipNestedOperations";
-import { RelationshipQueryDirectionEnum } from "./arguments/enums/RelationshipQueryDirection";
+import {
+    DirectiveLocation,
+    GraphQLBoolean,
+    GraphQLDirective,
+    GraphQLList,
+    GraphQLNonNull,
+    GraphQLString,
+} from "graphql";
+import { RelationshipNestedOperationsOption, RelationshipQueryDirectionOption } from "../../constants.js";
+import { RelationshipDirectionEnum } from "./arguments/enums/RelationshipDirection.js";
+import { RelationshipNestedOperationsEnum } from "./arguments/enums/RelationshipNestedOperations.js";
+import { RelationshipQueryDirectionEnum } from "./arguments/enums/RelationshipQueryDirection.js";
 
 export const defaultNestedOperations = [
     RelationshipNestedOperationsOption.CREATE,

@@ -17,16 +17,16 @@
  * limitations under the License.
  */
 
-import type { RelationField } from "../../types";
-import type { GraphQLCreateInput, TreeDescriptor } from "./types";
-import { UnsupportedUnwindOptimization } from "./types";
-import type { GraphElement, Node, Relationship } from "../../classes";
-import { Neo4jGraphQLError } from "../../classes";
 import Cypher from "@neo4j/cypher-builder";
-import type { UnwindASTNode } from "./GraphQLInputAST/GraphQLInputAST";
-import { CreateAST, NestedCreateAST } from "./GraphQLInputAST/GraphQLInputAST";
-import mapToDbProperty from "../../utils/map-to-db-property";
-import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context";
+import type { GraphElement, Node, Relationship } from "../../classes/index.js";
+import { Neo4jGraphQLError } from "../../classes/index.js";
+import type { RelationField } from "../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context.js";
+import mapToDbProperty from "../../utils/map-to-db-property.js";
+import type { UnwindASTNode } from "./GraphQLInputAST/GraphQLInputAST.js";
+import { CreateAST, NestedCreateAST } from "./GraphQLInputAST/GraphQLInputAST.js";
+import type { GraphQLCreateInput, TreeDescriptor } from "./types.js";
+import { UnsupportedUnwindOptimization } from "./types.js";
 
 function getRelationshipFields(
     node: Node,

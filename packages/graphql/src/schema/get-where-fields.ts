@@ -19,8 +19,8 @@
 
 import type { DirectiveNode } from "graphql";
 import type { Directive } from "graphql-compose";
-import { DEPRECATED } from "../constants";
-import type { AttributeAdapter } from "../schema-model/attribute/model-adapters/AttributeAdapter";
+import { DEPRECATED } from "../constants.js";
+import type { AttributeAdapter } from "../schema-model/attribute/model-adapters/AttributeAdapter.js";
 import type {
     CustomEnumField,
     CustomScalarField,
@@ -28,9 +28,9 @@ import type {
     PointField,
     PrimitiveField,
     TemporalField,
-} from "../types";
-import { DEPRECATE_NOT } from "./constants";
-import { graphqlDirectivesToCompose } from "./to-compose";
+} from "../types/index.js";
+import { DEPRECATE_NOT } from "./constants.js";
+import { graphqlDirectivesToCompose } from "./to-compose.js";
 
 interface Fields {
     scalarFields: CustomScalarField[];

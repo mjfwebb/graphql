@@ -18,15 +18,15 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { Node } from "../../../types";
-import type { AuthorizationOperation } from "../../../schema-model/annotation/AuthorizationAnnotation";
+import type { AuthorizationOperation } from "../../../schema-model/annotation/AuthorizationAnnotation.js";
+import type { Node } from "../../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
 import {
-    createAuthorizationBeforePredicateField,
     createAuthorizationBeforePredicate,
-} from "../create-authorization-before-predicate";
-import type { NodeMap } from "../types/node-map";
-import { compilePredicateReturn } from "./compile-predicate-return";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
+    createAuthorizationBeforePredicateField,
+} from "../create-authorization-before-predicate.js";
+import type { NodeMap } from "../types/node-map.js";
+import { compilePredicateReturn } from "./compile-predicate-return.js";
 
 type AuthorizationBeforeAndParams = {
     cypher: string;

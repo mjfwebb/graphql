@@ -18,19 +18,19 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { InterfaceEntityAdapter } from "../../../../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import type { UnionEntityAdapter } from "../../../../../schema-model/entity/model-adapters/UnionEntityAdapter";
-import { filterTruthy } from "../../../../../utils/utils";
-import { QueryASTContext } from "../../QueryASTContext";
-import type { QueryASTNode } from "../../QueryASTNode";
-import type { AggregationField } from "../../fields/aggregation-fields/AggregationField";
-import type { Filter } from "../../filters/Filter";
-import type { AuthorizationFilters } from "../../filters/authorization-filters/AuthorizationFilters";
-import type { Pagination } from "../../pagination/Pagination";
-import type { Sort, SortField } from "../../sort/Sort";
-import type { OperationTranspileResult } from "../operations";
-import { Operation } from "../operations";
-import type { CompositeAggregationPartial } from "./CompositeAggregationPartial";
+import type { InterfaceEntityAdapter } from "../../../../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import type { UnionEntityAdapter } from "../../../../../schema-model/entity/model-adapters/UnionEntityAdapter.js";
+import { filterTruthy } from "../../../../../utils/utils.js";
+import { QueryASTContext } from "../../QueryASTContext.js";
+import type { QueryASTNode } from "../../QueryASTNode.js";
+import type { AggregationField } from "../../fields/aggregation-fields/AggregationField.js";
+import type { Filter } from "../../filters/Filter.js";
+import type { AuthorizationFilters } from "../../filters/authorization-filters/AuthorizationFilters.js";
+import type { Pagination } from "../../pagination/Pagination.js";
+import type { Sort, SortField } from "../../sort/Sort.js";
+import type { OperationTranspileResult } from "../operations.js";
+import { Operation } from "../operations.js";
+import type { CompositeAggregationPartial } from "./CompositeAggregationPartial.js";
 
 export class CompositeAggregationOperation extends Operation {
     private children: CompositeAggregationPartial[];

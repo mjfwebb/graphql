@@ -18,10 +18,10 @@
  */
 
 import { int } from "neo4j-driver";
-import { InterfaceEntityAdapter } from "../../../../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import type { RelationshipAdapter } from "../../../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import type { PrimitiveField } from "../../../../../types";
-import type { InterfaceSpecificType, InterfaceType, StandardType } from "../../types";
+import { InterfaceEntityAdapter } from "../../../../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import type { RelationshipAdapter } from "../../../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import type { PrimitiveField } from "../../../../../types/index.js";
+import type { InterfaceSpecificType, InterfaceType, StandardType } from "../../types.js";
 
 export function isFloatType(fieldMeta: PrimitiveField | undefined) {
     return fieldMeta?.typeMeta.name === "Float";

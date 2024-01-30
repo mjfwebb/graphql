@@ -17,7 +17,10 @@
  * limitations under the License.
  */
 
+import Cypher from "@neo4j/cypher-builder";
 import * as neo4j from "neo4j-driver";
+import type { GraphElement } from "../../../classes/index.js";
+import { SCORE_FIELD } from "../../../graphql/directives/fulltext.js";
 import type {
     CypherField,
     CypherFieldReferenceMap,
@@ -25,10 +28,7 @@ import type {
     GraphQLSortArg,
     NestedGraphQLSortArg,
     SortDirection,
-} from "../../../types";
-import Cypher from "@neo4j/cypher-builder";
-import { SCORE_FIELD } from "../../../graphql/directives/fulltext";
-import type { GraphElement } from "../../../classes";
+} from "../../../types/index.js";
 
 export function addLimitOrOffsetOptionsToClause({
     optionsInput,

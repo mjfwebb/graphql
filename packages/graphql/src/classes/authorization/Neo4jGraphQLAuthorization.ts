@@ -18,14 +18,14 @@
  */
 
 import Debug from "debug";
-import type { Key, Neo4jAuthorizationSettings, RemoteJWKS } from "../../types";
-
-import { DEBUG_AUTH } from "../../constants";
-import { createRemoteJWKSet, decodeJwt, jwtVerify } from "jose";
 import type { JWTPayload, JWTVerifyGetKey } from "jose";
-import { parseBearerToken } from "./parse-request-token";
-import type { Neo4jGraphQLContext } from "../../types/neo4j-graphql-context";
-import type { Neo4jGraphQLSubscriptionsConnectionParams } from "../../types/neo4j-graphql-subscriptions-context";
+import { createRemoteJWKSet, decodeJwt, jwtVerify } from "jose";
+
+import { DEBUG_AUTH } from "../../constants.js";
+import type { Key, Neo4jAuthorizationSettings, RemoteJWKS } from "../../types/index.js";
+import type { Neo4jGraphQLContext } from "../../types/neo4j-graphql-context.js";
+import type { Neo4jGraphQLSubscriptionsConnectionParams } from "../../types/neo4j-graphql-subscriptions-context.js";
+import { parseBearerToken } from "./parse-request-token.js";
 
 const debug = Debug(DEBUG_AUTH);
 

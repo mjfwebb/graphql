@@ -18,7 +18,7 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import { caseWhere } from "./case-where";
+import { caseWhere } from "./case-where.js";
 
 describe("caseWhere", () => {
     test("should translate a WHERE filter using the CASE operator", () => {

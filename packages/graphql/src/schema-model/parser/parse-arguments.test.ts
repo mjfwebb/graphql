@@ -29,8 +29,8 @@ import {
     Kind,
     parse,
 } from "graphql";
-import { parseArguments, parseArgumentsFromUnknownDirective } from "./parse-arguments";
-import { ScalarOrEnumType } from "../../graphql/directives/arguments/scalars/ScalarOrEnum";
+import { ScalarOrEnumType } from "../../graphql/directives/arguments/scalars/ScalarOrEnum.js";
+import { parseArguments, parseArgumentsFromUnknownDirective } from "./parse-arguments.js";
 
 describe("parseArguments", () => {
     let testDirectiveDefinition: GraphQLDirective;
@@ -87,7 +87,13 @@ describe("parseArguments", () => {
 
         const args = parseArguments(testDirectiveDefinition, nameCoalesceUsage);
 
-        expect(args).toEqual({ booleanArgument: false, intArgument: 2, floatArgument: 4.0, customScalar: "123", customListScalar: ["123"] });
+        expect(args).toEqual({
+            booleanArgument: false,
+            intArgument: 2,
+            floatArgument: 4.0,
+            customScalar: "123",
+            customListScalar: ["123"],
+        });
     });
 
     test("should use default values", () => {
@@ -112,7 +118,13 @@ describe("parseArguments", () => {
 
         const args = parseArguments(testDirectiveDefinition, nameCoalesceUsage);
 
-        expect(args).toEqual({ booleanArgument: false, intArgument: 2, floatArgument: 3.0, customScalar: "test", customListScalar: ["test"] });
+        expect(args).toEqual({
+            booleanArgument: false,
+            intArgument: 2,
+            floatArgument: 3.0,
+            customScalar: "test",
+            customListScalar: ["test"],
+        });
     });
 
     test("parseArgumentsFromUnknownDirective", () => {
@@ -137,7 +149,6 @@ describe("parseArguments", () => {
 
         const args = parseArgumentsFromUnknownDirective(nameCoalesceUsage);
 
-        expect(args).toEqual({ booleanArgument: false, intArgument: 2});
+        expect(args).toEqual({ booleanArgument: false, intArgument: 2 });
     });
-
 });

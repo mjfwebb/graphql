@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import type { AttributeType } from "../../attribute/AttributeType";
+import type { AttributeType } from "../../attribute/AttributeType.js";
 import {
     EnumType,
     GraphQLBuiltInScalarType,
@@ -32,8 +32,8 @@ import {
     ScalarType,
     UnionType,
     UserScalarType,
-} from "../../attribute/AttributeType";
-import type { Argument } from "../Argument";
+} from "../../attribute/AttributeType.js";
+import type { Argument } from "../Argument.js";
 
 // TODO: this file has a lot in common with AttributeAdapter
 // if going to use this, design a solution to avoid this code duplication

@@ -1,5 +1,5 @@
-const setTZ = require("set-tz");
-const neo4j = require("neo4j-driver");
+import neo4j from "neo4j-driver";
+import setTZ from "set-tz";
 
 const TZ = "Etc/UTC";
 const INT_TEST_DB_NAME = "neo4jgraphqlinttestdatabase";
@@ -7,7 +7,7 @@ const INT_TEST_DB_NAME = "neo4jgraphqlinttestdatabase";
 const cypherDropData = `MATCH (n) DETACH DELETE n`;
 const cypherDropIndexes = `CALL apoc.schema.assert({},{},true) YIELD label, key RETURN *`;
 
-module.exports = async function globalSetup() {
+export default async function globalSetup() {
     process.env.NODE_ENV = "test";
 
     setTZ(TZ);
@@ -51,7 +51,7 @@ module.exports = async function globalSetup() {
         if (session) await session.close();
         if (driver) await driver.close();
     }
-};
+}
 
 async function dropDataAndIndexes(session) {
     await session.run(cypherDropData);

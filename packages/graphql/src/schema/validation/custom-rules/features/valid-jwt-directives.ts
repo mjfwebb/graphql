@@ -19,12 +19,12 @@
 
 import type { ASTVisitor, DirectiveNode, ObjectTypeDefinitionNode, ObjectTypeExtensionNode } from "graphql";
 import { Kind } from "graphql";
-import type { SDLValidationContext } from "graphql/validation/ValidationContext";
-import { GRAPHQL_BUILTIN_SCALAR_TYPES } from "../../../../constants";
-import { DocumentValidationError, assertValid, createGraphQLError } from "../utils/document-validation-error";
-import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser";
-import { getPathToNode } from "../utils/path-parser";
-import { getInnerTypeName } from "../utils/utils";
+import type { SDLValidationContext } from "graphql/validation/ValidationContext.js";
+import { GRAPHQL_BUILTIN_SCALAR_TYPES } from "../../../../constants.js";
+import { DocumentValidationError, assertValid, createGraphQLError } from "../utils/document-validation-error.js";
+import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser.js";
+import { getPathToNode } from "../utils/path-parser.js";
+import { getInnerTypeName } from "../utils/utils.js";
 
 export function ValidJwtDirectives(context: SDLValidationContext): ASTVisitor {
     const jwtTypes = new Map<string, ObjectOrInterfaceWithExtensions[]>();

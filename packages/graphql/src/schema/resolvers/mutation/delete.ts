@@ -19,14 +19,14 @@
 
 import type { GraphQLResolveInfo } from "graphql";
 import type { SchemaComposer } from "graphql-compose";
-import type { Node } from "../../../classes";
-import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { translateDelete } from "../../../translate";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
-import { execute } from "../../../utils";
-import getNeo4jResolveTree from "../../../utils/get-neo4j-resolve-tree";
-import { publishEventsToSubscriptionMechanism } from "../../subscriptions/publish-events-to-subscription-mechanism";
-import type { Neo4jGraphQLComposedContext } from "../composition/wrap-query-and-mutation";
+import type { Node } from "../../../classes/index.js";
+import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { translateDelete } from "../../../translate/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
+import getNeo4jResolveTree from "../../../utils/get-neo4j-resolve-tree.js";
+import { execute } from "../../../utils/index.js";
+import { publishEventsToSubscriptionMechanism } from "../../subscriptions/publish-events-to-subscription-mechanism.js";
+import type { Neo4jGraphQLComposedContext } from "../composition/wrap-query-and-mutation.js";
 
 export function deleteResolver({
     node,

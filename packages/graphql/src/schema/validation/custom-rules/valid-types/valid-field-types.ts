@@ -18,14 +18,14 @@
  */
 
 import type { ASTVisitor, DirectiveNode } from "graphql";
-import type { SDLValidationContext } from "graphql/validation/ValidationContext";
-import { verifyId } from "../directives/id";
-import { verifyRelationshipFieldType } from "../directives/relationship";
-import { verifyTimestamp } from "../directives/timestamp";
-import { verifyUnique } from "../directives/unique";
-import type { ValidationFunction } from "../utils/document-validation-error";
-import { createGraphQLError, assertValid } from "../utils/document-validation-error";
-import { getPathToNode } from "../utils/path-parser";
+import type { SDLValidationContext } from "graphql/validation/ValidationContext.js";
+import { verifyId } from "../directives/id.js";
+import { verifyRelationshipFieldType } from "../directives/relationship.js";
+import { verifyTimestamp } from "../directives/timestamp.js";
+import { verifyUnique } from "../directives/unique.js";
+import type { ValidationFunction } from "../utils/document-validation-error.js";
+import { assertValid, createGraphQLError } from "../utils/document-validation-error.js";
+import { getPathToNode } from "../utils/path-parser.js";
 
 function getValidationFunction(directiveName: string): ValidationFunction | undefined {
     switch (directiveName) {

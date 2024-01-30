@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import { CypherAnnotation } from "../../annotation/CypherAnnotation";
-import { UniqueAnnotation } from "../../annotation/UniqueAnnotation";
-import { Attribute } from "../Attribute";
+import { CypherAnnotation } from "../../annotation/CypherAnnotation.js";
+import { UniqueAnnotation } from "../../annotation/UniqueAnnotation.js";
+import { Attribute } from "../Attribute.js";
 import {
     EnumType,
     GraphQLBuiltInScalarType,
@@ -33,8 +33,8 @@ import {
     ScalarType,
     UnionType,
     UserScalarType,
-} from "../AttributeType";
-import { AttributeAdapter } from "./AttributeAdapter";
+} from "../AttributeType.js";
+import { AttributeAdapter } from "./AttributeAdapter.js";
 
 describe("Attribute", () => {
     describe("type assertions", () => {

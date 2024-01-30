@@ -17,18 +17,18 @@
  * limitations under the License.
  */
 
-import Cypher from "@neo4j/cypher-builder";
-import type { AuthorizationOperation } from "../../schema-model/annotation/AuthorizationAnnotation";
-import type { NodeMap } from "./types/node-map";
-import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context";
-import { getEntityAdapterFromNode } from "../../utils/get-entity-adapter-from-node";
-import { QueryASTEnv, QueryASTContext } from "../queryAST/ast/QueryASTContext";
-import { QueryASTFactory } from "../queryAST/factory/QueryASTFactory";
 import { asArray } from "@graphql-tools/utils";
-import { wrapSubqueryInCall } from "../queryAST/utils/wrap-subquery-in-call";
-import { filterTruthy } from "../../utils/utils";
-import type { PredicateReturn } from "../../types";
-import { isConcreteEntity } from "../queryAST/utils/is-concrete-entity";
+import Cypher from "@neo4j/cypher-builder";
+import type { AuthorizationOperation } from "../../schema-model/annotation/AuthorizationAnnotation.js";
+import type { PredicateReturn } from "../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context.js";
+import { getEntityAdapterFromNode } from "../../utils/get-entity-adapter-from-node.js";
+import { filterTruthy } from "../../utils/utils.js";
+import { QueryASTContext, QueryASTEnv } from "../queryAST/ast/QueryASTContext.js";
+import { QueryASTFactory } from "../queryAST/factory/QueryASTFactory.js";
+import { isConcreteEntity } from "../queryAST/utils/is-concrete-entity.js";
+import { wrapSubqueryInCall } from "../queryAST/utils/wrap-subquery-in-call.js";
+import type { NodeMap } from "./types/node-map.js";
 
 export function createAuthorizationBeforePredicate({
     context,

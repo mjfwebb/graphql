@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 
-import { Attribute } from "../../../schema-model/attribute/Attribute";
-import { GraphQLBuiltInScalarType, ScalarType } from "../../../schema-model/attribute/AttributeType";
-import { AttributeAdapter } from "../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import type { CypherField } from "../../../types";
-import { cypherResolver } from "./cypher";
+import { Attribute } from "../../../schema-model/attribute/Attribute.js";
+import { GraphQLBuiltInScalarType, ScalarType } from "../../../schema-model/attribute/AttributeType.js";
+import { AttributeAdapter } from "../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import type { CypherField } from "../../../types/index.js";
+import { cypherResolver } from "./cypher.js";
 
 describe("Cypher resolver", () => {
     test("should return the correct; type, args and resolve", () => {

@@ -20,18 +20,18 @@
 import Debug from "debug";
 import type { GraphQLFieldResolver, GraphQLResolveInfo } from "graphql";
 import type { Driver } from "neo4j-driver";
-import type { Node, Relationship } from "../../../classes";
-import type { Neo4jDatabaseInfo } from "../../../classes/Neo4jDatabaseInfo";
-import { getNeo4jDatabaseInfo } from "../../../classes/Neo4jDatabaseInfo";
-import { Executor } from "../../../classes/Executor";
-import { DEBUG_GRAPHQL } from "../../../constants";
-import type { AuthorizationContext, ContextFeatures, FulltextContext } from "../../../types";
-import type { Neo4jGraphQLSchemaModel } from "../../../schema-model/Neo4jGraphQLSchemaModel";
-import type { Neo4jGraphQLAuthorization } from "../../../classes/authorization/Neo4jGraphQLAuthorization";
-import type { Neo4jGraphQLContext } from "../../../types/neo4j-graphql-context";
-import { getAuthorizationContext } from "./utils/get-authorization-context";
-import { debugGraphQLResolveInfo } from "../../../debug/debug-graphql-resolve-info";
-import { debugObject } from "../../../debug/debug-object";
+import { Executor } from "../../../classes/Executor.js";
+import type { Neo4jDatabaseInfo } from "../../../classes/Neo4jDatabaseInfo.js";
+import { getNeo4jDatabaseInfo } from "../../../classes/Neo4jDatabaseInfo.js";
+import type { Neo4jGraphQLAuthorization } from "../../../classes/authorization/Neo4jGraphQLAuthorization.js";
+import type { Node, Relationship } from "../../../classes/index.js";
+import { DEBUG_GRAPHQL } from "../../../constants.js";
+import { debugGraphQLResolveInfo } from "../../../debug/debug-graphql-resolve-info.js";
+import { debugObject } from "../../../debug/debug-object.js";
+import type { Neo4jGraphQLSchemaModel } from "../../../schema-model/Neo4jGraphQLSchemaModel.js";
+import type { AuthorizationContext, ContextFeatures, FulltextContext } from "../../../types/index.js";
+import type { Neo4jGraphQLContext } from "../../../types/neo4j-graphql-context.js";
+import { getAuthorizationContext } from "./utils/get-authorization-context.js";
 
 const debug = Debug(DEBUG_GRAPHQL);
 

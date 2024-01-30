@@ -29,7 +29,7 @@ import {
     GraphQLSchema,
     GraphQLString,
 } from "graphql";
-import { SUBSCRIPTIONS_AUTHORIZATION_FILTER_EVENT } from "./static-definitions";
+import { SUBSCRIPTIONS_AUTHORIZATION_FILTER_EVENT } from "./static-definitions.js";
 
 function createSubscriptionsAuthorizationWhere(
     typeDefinitionName: string,

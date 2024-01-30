@@ -20,19 +20,19 @@
 import type {
     ASTVisitor,
     DirectiveNode,
-    ObjectTypeDefinitionNode,
     InterfaceTypeDefinitionNode,
-    ObjectTypeExtensionNode,
     InterfaceTypeExtensionNode,
+    ObjectTypeDefinitionNode,
+    ObjectTypeExtensionNode,
 } from "graphql";
-import type { SDLValidationContext } from "graphql/validation/ValidationContext";
-import { assertValid, createGraphQLError, DocumentValidationError } from "../utils/document-validation-error";
+import type { SDLValidationContext } from "graphql/validation/ValidationContext.js";
+import { DocumentValidationError, assertValid, createGraphQLError } from "../utils/document-validation-error.js";
 import {
     getInheritedTypeNames,
     hydrateInterfaceWithImplementedTypesMap,
-} from "../utils/interface-to-implementing-types";
-import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser";
-import { getPathToNode } from "../utils/path-parser";
+} from "../utils/interface-to-implementing-types.js";
+import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser.js";
+import { getPathToNode } from "../utils/path-parser.js";
 
 export function ValidRelayID(context: SDLValidationContext): ASTVisitor {
     const typeNameToGlobalId = new Map<string, boolean>();

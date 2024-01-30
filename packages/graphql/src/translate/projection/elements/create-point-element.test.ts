@@ -19,9 +19,9 @@
 
 import Cypher from "@neo4j/cypher-builder";
 import type { ResolveTree } from "graphql-parse-resolve-info";
-import type { PointField } from "../../../types";
-import createPointElement from "./create-point-element";
-import { compileCypher } from "../../../utils/compile-cypher";
+import type { PointField } from "../../../types/index.js";
+import { compileCypher } from "../../../utils/compile-cypher.js";
+import createPointElement from "./create-point-element.js";
 
 describe("createPointElement", () => {
     test("returns projection element for single point value", () => {

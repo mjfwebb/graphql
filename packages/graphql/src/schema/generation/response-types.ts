@@ -19,10 +19,10 @@
 import type { DirectiveNode } from "graphql";
 import { GraphQLNonNull } from "graphql";
 import type { SchemaComposer } from "graphql-compose";
-import { CreateInfo } from "../../graphql/objects/CreateInfo";
-import { UpdateInfo } from "../../graphql/objects/UpdateInfo";
-import type { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { graphqlDirectivesToCompose } from "../to-compose";
+import { CreateInfo } from "../../graphql/objects/CreateInfo.js";
+import { UpdateInfo } from "../../graphql/objects/UpdateInfo.js";
+import type { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { graphqlDirectivesToCompose } from "../to-compose.js";
 
 export function withMutationResponseTypes({
     concreteEntityAdapter,

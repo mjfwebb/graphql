@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import { CreateInfo } from "../graphql/objects/CreateInfo";
-import { DeleteInfo } from "../graphql/objects/DeleteInfo";
-import { UpdateInfo } from "../graphql/objects/UpdateInfo";
+import { CreateInfo } from "../graphql/objects/CreateInfo.js";
+import { DeleteInfo } from "../graphql/objects/DeleteInfo.js";
+import { UpdateInfo } from "../graphql/objects/UpdateInfo.js";
 
 export const deprecationMap = new Map<
     string,

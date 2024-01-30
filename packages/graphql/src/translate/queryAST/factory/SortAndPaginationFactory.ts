@@ -18,19 +18,19 @@
  */
 
 import type Cypher from "@neo4j/cypher-builder";
-import { SCORE_FIELD } from "../../../graphql/directives/fulltext";
-import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { InterfaceEntityAdapter } from "../../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import type { UnionEntityAdapter } from "../../../schema-model/entity/model-adapters/UnionEntityAdapter";
-import type { RelationshipAdapter } from "../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import type { ConnectionSortArg, GraphQLOptionsArg, GraphQLSortArg } from "../../../types";
-import { Pagination } from "../ast/pagination/Pagination";
-import { CypherPropertySort } from "../ast/sort/CypherPropertySort";
-import { FulltextScoreSort } from "../ast/sort/FulltextScoreSort";
-import { PropertySort } from "../ast/sort/PropertySort";
-import type { Sort } from "../ast/sort/Sort";
-import { isConcreteEntity } from "../utils/is-concrete-entity";
-import { isUnionEntity } from "../utils/is-union-entity";
+import { SCORE_FIELD } from "../../../graphql/directives/fulltext.js";
+import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { InterfaceEntityAdapter } from "../../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import type { UnionEntityAdapter } from "../../../schema-model/entity/model-adapters/UnionEntityAdapter.js";
+import type { RelationshipAdapter } from "../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import type { ConnectionSortArg, GraphQLOptionsArg, GraphQLSortArg } from "../../../types/index.js";
+import { Pagination } from "../ast/pagination/Pagination.js";
+import { CypherPropertySort } from "../ast/sort/CypherPropertySort.js";
+import { FulltextScoreSort } from "../ast/sort/FulltextScoreSort.js";
+import { PropertySort } from "../ast/sort/PropertySort.js";
+import type { Sort } from "../ast/sort/Sort.js";
+import { isConcreteEntity } from "../utils/is-concrete-entity.js";
+import { isUnionEntity } from "../utils/is-union-entity.js";
 
 export class SortAndPaginationFactory {
     public createSortFields(

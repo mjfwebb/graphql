@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 import type { DirectiveNode } from "graphql";
-import { selectableDirective } from "../../../graphql/directives";
-import { SelectableAnnotation } from "../../annotation/SelectableAnnotation";
-import { parseArguments } from "../parse-arguments";
+import { selectableDirective } from "../../../graphql/directives/index.js";
+import { SelectableAnnotation } from "../../annotation/SelectableAnnotation.js";
+import { parseArguments } from "../parse-arguments.js";
 
 export function parseSelectableAnnotation(directive: DirectiveNode): SelectableAnnotation {
     const { onRead, onAggregate } = parseArguments<{

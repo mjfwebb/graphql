@@ -21,8 +21,8 @@ import type { Maybe } from "@graphql-tools/utils";
 import { inspect } from "@graphql-tools/utils";
 import type { DirectiveNode, FieldNode, GraphQLDirective, GraphQLField } from "graphql";
 import { Kind, isNonNullType, print, valueFromAST } from "graphql";
-import type { ObjMap } from "graphql/jsutils/ObjMap";
-import { parseValueNode } from "./parse-value-node";
+import type { ObjMap } from "graphql/jsutils/ObjMap.js";
+import { parseValueNode } from "./parse-value-node.js";
 
 export function parseArgumentsFromUnknownDirective(directive: DirectiveNode): Record<string, unknown> {
     return (directive.arguments || [])?.reduce((acc, argument) => {

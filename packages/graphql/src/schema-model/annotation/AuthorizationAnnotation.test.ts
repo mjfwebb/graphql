@@ -17,14 +17,14 @@
  * limitations under the License.
  */
 
-import type { AuthorizationValidateRuleConstructor } from "./AuthorizationAnnotation";
+import type { AuthorizationValidateRuleConstructor } from "./AuthorizationAnnotation.js";
 import {
     AuthorizationAnnotation,
     AuthorizationFilterOperationRule,
     AuthorizationFilterRule,
     AuthorizationValidateOperationRule,
     AuthorizationValidateRule,
-} from "./AuthorizationAnnotation";
+} from "./AuthorizationAnnotation.js";
 
 describe("AuthorizationAnnotation", () => {
     it("initialize class correctly", () => {

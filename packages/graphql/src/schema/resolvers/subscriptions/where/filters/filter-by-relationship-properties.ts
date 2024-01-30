@@ -17,14 +17,14 @@
  * limitations under the License.
  */
 
-import type { ConcreteEntityAdapter } from "../../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { RelationshipAdapter } from "../../../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import type { RelationshipSubscriptionsEvent } from "../../../../../types";
-import type { RecordType, RelationshipType } from "../../types";
-import { filterRelationshipKey } from "../utils/filter-relationship-key";
-import { multipleConditionsAggregationMap } from "../utils/multiple-conditions-aggregation-map";
-import { parseFilterProperty } from "../utils/parse-filter-property";
-import { filterByProperties } from "./filter-by-properties";
+import type { ConcreteEntityAdapter } from "../../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { RelationshipAdapter } from "../../../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import type { RelationshipSubscriptionsEvent } from "../../../../../types/index.js";
+import type { RecordType, RelationshipType } from "../../types.js";
+import { filterRelationshipKey } from "../utils/filter-relationship-key.js";
+import { multipleConditionsAggregationMap } from "../utils/multiple-conditions-aggregation-map.js";
+import { parseFilterProperty } from "../utils/parse-filter-property.js";
+import { filterByProperties } from "./filter-by-properties.js";
 
 export function filterByRelationshipProperties({
     entityAdapter,

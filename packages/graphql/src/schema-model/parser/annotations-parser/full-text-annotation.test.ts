@@ -19,8 +19,8 @@
 
 import { makeDirectiveNode } from "@graphql-tools/utils";
 import type { DirectiveNode } from "graphql";
-import { parseFullTextAnnotation } from "./full-text-annotation";
-import { fulltextDirective } from "../../../graphql/directives";
+import { fulltextDirective } from "../../../graphql/directives/index.js";
+import { parseFullTextAnnotation } from "./full-text-annotation.js";
 
 describe("parseFullTextAnnotation", () => {
     it("should parse correctly", () => {

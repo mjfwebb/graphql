@@ -20,15 +20,15 @@
 import type { Driver } from "neo4j-driver";
 import type { Response } from "supertest";
 import supertest from "supertest";
-import { Neo4jGraphQL } from "../../../../src/classes";
-import { Neo4jGraphQLSubscriptionsDefaultEngine } from "../../../../src/classes/subscription/Neo4jGraphQLSubscriptionsDefaultEngine";
-import { cleanNodes } from "../../../utils/clean-nodes";
-import { createBearerToken } from "../../../utils/create-bearer-token";
-import { UniqueType } from "../../../utils/graphql-types";
-import type { TestGraphQLServer } from "../../setup/apollo-server";
-import { ApolloTestServer } from "../../setup/apollo-server";
-import Neo4j from "../../setup/neo4j";
-import { WebSocketTestClient } from "../../setup/ws-client";
+import { Neo4jGraphQL } from "../../../../src/classes/index.js";
+import { Neo4jGraphQLSubscriptionsDefaultEngine } from "../../../../src/classes/subscription/Neo4jGraphQLSubscriptionsDefaultEngine.js";
+import { cleanNodes } from "../../../utils/clean-nodes.js";
+import { createBearerToken } from "../../../utils/create-bearer-token.js";
+import { UniqueType } from "../../../utils/graphql-types.js";
+import type { TestGraphQLServer } from "../../setup/apollo-server.js";
+import { ApolloTestServer } from "../../setup/apollo-server.js";
+import Neo4j from "../../setup/neo4j.js";
+import { WebSocketTestClient } from "../../setup/ws-client.js";
 
 describe("Subscription authentication", () => {
     const typeMovie = new UniqueType("Movie");

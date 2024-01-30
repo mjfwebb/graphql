@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 
-import { Neo4jGraphQLError } from "../../../classes";
-import { AUTHORIZATION_UNAUTHENTICATED } from "../../../constants";
-import type { Annotation } from "../../../schema-model/annotation/Annotation";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
-import { filterByValues } from "./filter-by-values";
+import { Neo4jGraphQLError } from "../../../classes/index.js";
+import { AUTHORIZATION_UNAUTHENTICATED } from "../../../constants.js";
+import type { Annotation } from "../../../schema-model/annotation/Annotation.js";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
+import { filterByValues } from "./filter-by-values.js";
 
 export function applyAuthentication({
     context,

@@ -18,7 +18,7 @@
  */
 
 import type { FieldNode, GraphQLResolveInfo } from "graphql";
-import type { Neo4jGraphQLContext } from "../../../types/neo4j-graphql-context";
+import type { Neo4jGraphQLContext } from "../../../types/neo4j-graphql-context.js";
 
 /**
  * Based on the default field resolver used by graphql-js that accounts for aliased fields

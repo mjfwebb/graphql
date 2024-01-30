@@ -18,13 +18,13 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import { CypherAnnotationSubqueryGenerator } from "../../../cypher-generators/CypherAnnotationSubqueryGenerator";
-import type { QueryASTContext } from "../../QueryASTContext";
-import type { QueryASTNode } from "../../QueryASTNode";
-import { CypherAttributeField } from "./CypherAttributeField";
-import type { CypherUnionAttributePartial } from "./CypherUnionAttributePartial";
-import { filterTruthy } from "../../../../../utils/utils";
+import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import { filterTruthy } from "../../../../../utils/utils.js";
+import { CypherAnnotationSubqueryGenerator } from "../../../cypher-generators/CypherAnnotationSubqueryGenerator.js";
+import type { QueryASTContext } from "../../QueryASTContext.js";
+import type { QueryASTNode } from "../../QueryASTNode.js";
+import { CypherAttributeField } from "./CypherAttributeField.js";
+import type { CypherUnionAttributePartial } from "./CypherUnionAttributePartial.js";
 
 // Should Cypher be an operation?
 export class CypherUnionAttributeField extends CypherAttributeField {

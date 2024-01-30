@@ -1,8 +1,12 @@
-const path = require("path");
-const globalConf = require("../../jest.config.base");
+import path from "path";
+import { fileURLToPath } from "url";
+import globalConfig from "../../jest.config.base.js";
 
-module.exports = {
-    ...globalConf,
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default {
+    ...globalConfig,
     displayName: "@neo4j/graphql",
     globalSetup: path.join(__dirname, "jest.global-setup.js"),
     setupFilesAfterEnv: ["jest-extended/all"],

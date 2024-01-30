@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 import { offsetToCursor } from "graphql-relay";
-import { createConnectionWithEdgeProperties } from "./pagination";
+import { createConnectionWithEdgeProperties } from "./pagination.js";
 
 describe("cursor-pagination", () => {
     describe("createConnectionWithEdgeProperties", () => {

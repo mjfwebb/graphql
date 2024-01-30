@@ -17,35 +17,35 @@
  * limitations under the License.
  */
 
+import Debug from "debug";
+import type { GraphQLResolveInfo } from "graphql";
+import { print } from "graphql";
 import type {
     Driver,
+    ManagedTransaction,
     QueryResult,
+    Result,
     Session,
+    SessionConfig,
     SessionMode,
     Transaction,
-    SessionConfig,
-    ManagedTransaction,
-    Result,
 } from "neo4j-driver";
 import { Neo4jError } from "neo4j-driver";
-import Debug from "debug";
-import environment from "../environment";
-import {
-    Neo4jGraphQLAuthenticationError,
-    Neo4jGraphQLConstraintValidationError,
-    Neo4jGraphQLForbiddenError,
-    Neo4jGraphQLRelationshipValidationError,
-} from "./Error";
 import {
     AUTH_FORBIDDEN_ERROR,
     AUTH_UNAUTHENTICATED_ERROR,
     DEBUG_EXECUTE,
     RELATIONSHIP_REQUIREMENT_PREFIX,
-} from "../constants";
-import type { CypherQueryOptions } from "../types";
-import type { GraphQLResolveInfo } from "graphql";
-import { print } from "graphql";
-import { debugCypherAndParams } from "../debug/debug-cypher-and-params";
+} from "../constants.js";
+import { debugCypherAndParams } from "../debug/debug-cypher-and-params.js";
+import environment from "../environment.js";
+import type { CypherQueryOptions } from "../types/index.js";
+import {
+    Neo4jGraphQLAuthenticationError,
+    Neo4jGraphQLConstraintValidationError,
+    Neo4jGraphQLForbiddenError,
+    Neo4jGraphQLRelationshipValidationError,
+} from "./Error.js";
 
 const debug = Debug(DEBUG_EXECUTE);
 

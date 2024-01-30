@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import type { Neo4jGraphQLContextInterface } from "./neo4j-graphql-context-interface";
+import type { Neo4jGraphQLContextInterface } from "./neo4j-graphql-context-interface.js";
 
 export interface Neo4jGraphQLSubscriptionsConnectionParams extends Neo4jGraphQLContextInterface {}
 

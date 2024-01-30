@@ -17,22 +17,22 @@
  * limitations under the License.
  */
 
-import type { ResolveTree } from "graphql-parse-resolve-info";
-import type { GraphElement, Node } from "../../classes";
-import type { GraphQLWhereArg } from "../../types";
-import { getFieldType, AggregationType, getReferenceNode, getFieldByName, getReferenceRelation } from "./utils";
-import * as AggregationSubQueries from "./aggregation-sub-queries";
-import { createFieldAggregationAuth } from "./field-aggregations-auth";
-import { createMatchWherePattern } from "./aggregation-sub-queries";
-import mapToDbProperty from "../../utils/map-to-db-property";
-import { FieldAggregationSchemaTypes } from "../../schema/aggregations/field-aggregation-composer";
-import { upperFirst } from "../../utils/upper-first";
-import { getCypherRelationshipDirection } from "../../utils/get-relationship-direction";
 import Cypher from "@neo4j/cypher-builder";
-import { createWhereNodePredicate } from "../where/create-where-predicate";
-import { checkAuthentication } from "../authorization/check-authentication";
-import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context";
-import { getEntityAdapterFromNode } from "../../utils/get-entity-adapter-from-node";
+import type { ResolveTree } from "graphql-parse-resolve-info";
+import type { GraphElement, Node } from "../../classes/index.js";
+import { FieldAggregationSchemaTypes } from "../../schema/aggregations/field-aggregation-composer.js";
+import type { GraphQLWhereArg } from "../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context.js";
+import { getEntityAdapterFromNode } from "../../utils/get-entity-adapter-from-node.js";
+import { getCypherRelationshipDirection } from "../../utils/get-relationship-direction.js";
+import mapToDbProperty from "../../utils/map-to-db-property.js";
+import { upperFirst } from "../../utils/upper-first.js";
+import { checkAuthentication } from "../authorization/check-authentication.js";
+import { createWhereNodePredicate } from "../where/create-where-predicate.js";
+import * as AggregationSubQueries from "./aggregation-sub-queries.js";
+import { createMatchWherePattern } from "./aggregation-sub-queries.js";
+import { createFieldAggregationAuth } from "./field-aggregations-auth.js";
+import { AggregationType, getFieldByName, getFieldType, getReferenceNode, getReferenceRelation } from "./utils.js";
 
 type AggregationFields = {
     count?: ResolveTree;

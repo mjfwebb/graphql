@@ -18,8 +18,8 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { PredicateReturn } from "../../../types";
-import { compileCypher } from "../../../utils/compile-cypher";
+import type { PredicateReturn } from "../../../types/index.js";
+import { compileCypher } from "../../../utils/compile-cypher.js";
 
 type CompiledPredicateReturn = {
     cypher: string;

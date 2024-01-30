@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 import type { InputTypeComposer, InputTypeComposerFieldConfigMapDefinition, SchemaComposer } from "graphql-compose";
-import type { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import { ensureNonEmptyInput } from "../ensure-non-empty-input";
+import type { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import { ensureNonEmptyInput } from "../ensure-non-empty-input.js";
 
 export function makeImplementationsDisconnectInput({
     interfaceEntityAdapter,

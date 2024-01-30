@@ -19,7 +19,7 @@
 
 import type { DirectiveNode, InterfaceTypeDefinitionNode, ObjectTypeDefinitionNode } from "graphql";
 import { Kind } from "graphql";
-import type { Unique } from "../../types";
+import type { Unique } from "../../types/index.js";
 
 function getUniqueMeta(
     directives: DirectiveNode[],

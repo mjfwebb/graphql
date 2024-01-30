@@ -19,21 +19,21 @@
 
 import { mergeTypeDefs } from "@graphql-tools/merge";
 import { gql } from "graphql-tag";
+import type { Neo4jGraphQLSchemaModel } from "./Neo4jGraphQLSchemaModel.js";
+import { AuthenticationAnnotation } from "./annotation/AuthenticationAnnotation.js";
 import {
     AuthorizationFilterOperationRule,
     AuthorizationValidateOperationRule,
-} from "./annotation/AuthorizationAnnotation";
-import { generateModel } from "./generate-model";
-import type { Neo4jGraphQLSchemaModel } from "./Neo4jGraphQLSchemaModel";
-import { SubscriptionsAuthorizationFilterEventRule } from "./annotation/SubscriptionsAuthorizationAnnotation";
-import { AuthenticationAnnotation } from "./annotation/AuthenticationAnnotation";
-import type { ConcreteEntityAdapter } from "./entity/model-adapters/ConcreteEntityAdapter";
-import type { RelationshipAdapter } from "./relationship/model-adapters/RelationshipAdapter";
-import type { ConcreteEntity } from "./entity/ConcreteEntity";
-import { InterfaceEntity } from "./entity/InterfaceEntity";
-import { UnionEntity } from "./entity/UnionEntity";
-import { GraphQLBuiltInScalarType, ListType, ObjectType } from "./attribute/AttributeType";
-import type { AttributeTypeHelper } from "./attribute/AttributeTypeHelper";
+} from "./annotation/AuthorizationAnnotation.js";
+import { SubscriptionsAuthorizationFilterEventRule } from "./annotation/SubscriptionsAuthorizationAnnotation.js";
+import { GraphQLBuiltInScalarType, ListType, ObjectType } from "./attribute/AttributeType.js";
+import type { AttributeTypeHelper } from "./attribute/AttributeTypeHelper.js";
+import type { ConcreteEntity } from "./entity/ConcreteEntity.js";
+import { InterfaceEntity } from "./entity/InterfaceEntity.js";
+import { UnionEntity } from "./entity/UnionEntity.js";
+import type { ConcreteEntityAdapter } from "./entity/model-adapters/ConcreteEntityAdapter.js";
+import { generateModel } from "./generate-model.js";
+import type { RelationshipAdapter } from "./relationship/model-adapters/RelationshipAdapter.js";
 
 describe("Schema model generation", () => {
     test("parses @authentication directive with no arguments", () => {

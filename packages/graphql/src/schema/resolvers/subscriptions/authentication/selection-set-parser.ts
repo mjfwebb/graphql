@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 
-import type { ConcreteEntity } from "../../../../schema-model/entity/ConcreteEntity";
 import type { FieldsByTypeName, ResolveTree } from "graphql-parse-resolve-info";
-import { upperFirst } from "../../../../utils/upper-first";
-import type { Neo4jGraphQLComposedSubscriptionsContext } from "../../composition/wrap-subscription";
-import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
+import type { ConcreteEntity } from "../../../../schema-model/entity/ConcreteEntity.js";
+import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { upperFirst } from "../../../../utils/upper-first.js";
+import type { Neo4jGraphQLComposedSubscriptionsContext } from "../../composition/wrap-subscription.js";
 
 export type SelectionFields = { [k: string]: ResolveTree };
 export function parseSelectionSetForAuthenticated({

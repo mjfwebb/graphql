@@ -18,10 +18,10 @@
  */
 import type { DirectiveNode, FieldDefinitionNode } from "graphql";
 import { Kind } from "graphql";
-import { parseValueNode } from "../../../../schema-model/parser/parse-value-node";
-import type { FulltextContext } from "../../../../types";
-import { DocumentValidationError } from "../utils/document-validation-error";
-import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser";
+import { parseValueNode } from "../../../../schema-model/parser/parse-value-node.js";
+import type { FulltextContext } from "../../../../types/index.js";
+import { DocumentValidationError } from "../utils/document-validation-error.js";
+import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser.js";
 
 export function verifyFulltext({
     directiveNode,

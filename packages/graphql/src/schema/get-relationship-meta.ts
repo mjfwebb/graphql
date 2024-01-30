@@ -18,9 +18,9 @@
  */
 
 import type { DirectiveNode, FieldDefinitionNode } from "graphql";
-import type { RelationshipNestedOperationsOption, RelationshipQueryDirectionOption } from "../constants";
-import { relationshipDirective } from "../graphql/directives/relationship";
-import { parseArguments } from "../schema-model/parser/parse-arguments";
+import type { RelationshipNestedOperationsOption, RelationshipQueryDirectionOption } from "../constants.js";
+import { relationshipDirective } from "../graphql/directives/relationship.js";
+import { parseArguments } from "../schema-model/parser/parse-arguments.js";
 
 import Cypher from "@neo4j/cypher-builder";
 

@@ -24,11 +24,11 @@ import type {
     UnionTypeDefinitionNode,
 } from "graphql";
 import { gql } from "graphql-tag";
-import { NoErrorThrownError, getError } from "../../../tests/utils/get-error";
-import { RESERVED_TYPE_NAMES } from "../../constants";
-import { AuthorizationAnnotationArguments } from "../../schema-model/annotation/AuthorizationAnnotation";
-import type { Neo4jGraphQLCallback } from "../../types";
-import validateDocument from "./validate-document";
+import { NoErrorThrownError, getError } from "../../../tests/utils/get-error.js";
+import { RESERVED_TYPE_NAMES } from "../../constants.js";
+import { AuthorizationAnnotationArguments } from "../../schema-model/annotation/AuthorizationAnnotation.js";
+import type { Neo4jGraphQLCallback } from "../../types/index.js";
+import validateDocument from "./validate-document.js";
 
 const additionalDefinitions = {
     enums: [] as EnumTypeDefinitionNode[],

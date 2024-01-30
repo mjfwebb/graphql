@@ -20,7 +20,7 @@
 import type { GraphQLResolveInfo } from "graphql";
 import type { Integer } from "neo4j-driver";
 import { integer, isInt } from "neo4j-driver";
-import { defaultFieldResolver } from "./defaultField";
+import { defaultFieldResolver } from "./defaultField.js";
 
 function isIntegerable(value: unknown): value is number | string | Integer | { low: number; high: number } | bigint {
     if (!value) {

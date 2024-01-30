@@ -18,7 +18,7 @@
  */
 
 import type { InputTypeComposer, SchemaComposer } from "graphql-compose";
-import { isString } from "../utils/utils";
+import { isString } from "../utils/utils.js";
 
 export function ensureNonEmptyInput(composer: SchemaComposer, nameOrInput: string | InputTypeComposer<any>): void {
     const input = isString(nameOrInput) ? composer.getITC(nameOrInput) : nameOrInput;

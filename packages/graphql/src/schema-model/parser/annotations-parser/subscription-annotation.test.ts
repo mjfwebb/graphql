@@ -18,8 +18,8 @@
  */
 
 import { makeDirectiveNode } from "@graphql-tools/utils";
-import { parseSubscriptionAnnotation } from "./subscription-annotation";
-import { subscriptionDirective } from "../../../graphql/directives";
+import { subscriptionDirective } from "../../../graphql/directives/index.js";
+import { parseSubscriptionAnnotation } from "./subscription-annotation.js";
 
 const tests = [
     {

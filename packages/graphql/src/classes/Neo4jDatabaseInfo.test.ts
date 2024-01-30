@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { Neo4jDatabaseInfo } from "./Neo4jDatabaseInfo";
+import { Neo4jDatabaseInfo } from "./Neo4jDatabaseInfo.js";
 
 describe("Neo4jDatabaseInfo", () => {
     test("should construct", () => {

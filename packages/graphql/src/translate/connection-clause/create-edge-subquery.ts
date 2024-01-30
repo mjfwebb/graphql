@@ -17,19 +17,19 @@
  * limitations under the License.
  */
 
-import type { ResolveTree } from "graphql-parse-resolve-info";
-import type { ConnectionField, ConnectionWhereArg, CypherFieldReferenceMap } from "../../types";
-import type { Node } from "../../classes";
-import type Relationship from "../../classes/Relationship";
 import Cypher from "@neo4j/cypher-builder";
-import { createConnectionWherePropertyOperation } from "../where/property-operations/create-connection-operation";
-import { getOrCreateCypherNode } from "../utils/get-or-create-cypher-variable";
-import { createEdgeProjection } from "./connection-projection";
-import { getEdgeSortFieldKeys } from "./get-sort-fields";
-import { createSortAndLimitProjection } from "./create-sort-and-limit";
-import { getCypherRelationshipDirection } from "../../utils/get-relationship-direction";
-import { createAuthorizationBeforePredicate } from "../authorization/create-authorization-before-predicate";
-import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context";
+import type { ResolveTree } from "graphql-parse-resolve-info";
+import type Relationship from "../../classes/Relationship.js";
+import type { Node } from "../../classes/index.js";
+import type { ConnectionField, ConnectionWhereArg, CypherFieldReferenceMap } from "../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context.js";
+import { getCypherRelationshipDirection } from "../../utils/get-relationship-direction.js";
+import { createAuthorizationBeforePredicate } from "../authorization/create-authorization-before-predicate.js";
+import { getOrCreateCypherNode } from "../utils/get-or-create-cypher-variable.js";
+import { createConnectionWherePropertyOperation } from "../where/property-operations/create-connection-operation.js";
+import { createEdgeProjection } from "./connection-projection.js";
+import { createSortAndLimitProjection } from "./create-sort-and-limit.js";
+import { getEdgeSortFieldKeys } from "./get-sort-fields.js";
 
 /** Create the match, filtering and projection of the edge and the nested node */
 export function createEdgeSubquery({

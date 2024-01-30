@@ -18,15 +18,15 @@
  */
 
 import type {
-    CypherField,
-    PrimitiveField,
-    CustomEnumField,
-    CustomScalarField,
-    TemporalField,
-    PointField,
-    CustomResolverField,
     BaseField,
-} from "../types";
+    CustomEnumField,
+    CustomResolverField,
+    CustomScalarField,
+    CypherField,
+    PointField,
+    PrimitiveField,
+    TemporalField,
+} from "../types/index.js";
 
 export interface GraphElementConstructor {
     name: string;

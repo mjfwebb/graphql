@@ -19,26 +19,26 @@
 
 import { asArray } from "@graphql-tools/utils";
 import Cypher from "@neo4j/cypher-builder";
-import type { AttributeAdapter } from "../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { InterfaceEntityAdapter } from "../../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import type { RelationshipAdapter } from "../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import type { GraphQLWhereArg } from "../../../types";
-import type { AuthorizationOperation } from "../../../schema-model/annotation/AuthorizationAnnotation";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
-import { isLogicalOperator } from "../../utils/logical-operators";
-import type { RelationshipWhereOperator, WhereOperator } from "../../where/types";
-import type { ConnectionFilter } from "../ast/filters/ConnectionFilter";
-import type { Filter } from "../ast/filters/Filter";
-import { LogicalFilter } from "../ast/filters/LogicalFilter";
-import type { RelationshipFilter } from "../ast/filters/RelationshipFilter";
-import { AuthConnectionFilter } from "../ast/filters/authorization-filters/AuthConnectionFilter";
-import { AuthRelationshipFilter } from "../ast/filters/authorization-filters/AuthRelationshipFilter";
-import { JWTFilter } from "../ast/filters/authorization-filters/JWTFilter";
-import { ParamPropertyFilter } from "../ast/filters/property-filters/ParamPropertyFilter";
-import { PropertyFilter } from "../ast/filters/property-filters/PropertyFilter";
-import { FilterFactory } from "./FilterFactory";
-import { parseWhereField } from "./parsers/parse-where-field";
+import type { AuthorizationOperation } from "../../../schema-model/annotation/AuthorizationAnnotation.js";
+import type { AttributeAdapter } from "../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { InterfaceEntityAdapter } from "../../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import type { RelationshipAdapter } from "../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import type { GraphQLWhereArg } from "../../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
+import { isLogicalOperator } from "../../utils/logical-operators.js";
+import type { RelationshipWhereOperator, WhereOperator } from "../../where/types.js";
+import type { ConnectionFilter } from "../ast/filters/ConnectionFilter.js";
+import type { Filter } from "../ast/filters/Filter.js";
+import { LogicalFilter } from "../ast/filters/LogicalFilter.js";
+import type { RelationshipFilter } from "../ast/filters/RelationshipFilter.js";
+import { AuthConnectionFilter } from "../ast/filters/authorization-filters/AuthConnectionFilter.js";
+import { AuthRelationshipFilter } from "../ast/filters/authorization-filters/AuthRelationshipFilter.js";
+import { JWTFilter } from "../ast/filters/authorization-filters/JWTFilter.js";
+import { ParamPropertyFilter } from "../ast/filters/property-filters/ParamPropertyFilter.js";
+import { PropertyFilter } from "../ast/filters/property-filters/PropertyFilter.js";
+import { FilterFactory } from "./FilterFactory.js";
+import { parseWhereField } from "./parsers/parse-where-field.js";
 
 export class AuthFilterFactory extends FilterFactory {
     // PopulatedWhere has the values as Cypher variables

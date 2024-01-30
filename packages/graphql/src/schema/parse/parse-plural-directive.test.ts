@@ -19,7 +19,7 @@
 
 import type { DirectiveNode, ObjectTypeDefinitionNode } from "graphql";
 import { parse } from "graphql";
-import parsePluralDirective from "./parse-plural-directive";
+import parsePluralDirective from "./parse-plural-directive.js";
 
 describe("parsePluralDirective", () => {
     test("Should return the custom plural string", () => {

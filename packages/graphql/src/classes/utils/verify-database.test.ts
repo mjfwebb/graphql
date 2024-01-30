@@ -18,10 +18,10 @@
  */
 
 import type { Driver, Session } from "neo4j-driver";
-import checkNeo4jCompat from "./verify-database";
-import { REQUIRED_APOC_FUNCTIONS, MIN_NEO4J_VERSION } from "../../constants";
-import { Neo4jDatabaseInfo } from "../Neo4jDatabaseInfo";
-import type { Neo4jGraphQLSessionConfig } from "../Executor";
+import { MIN_NEO4J_VERSION, REQUIRED_APOC_FUNCTIONS } from "../../constants.js";
+import type { Neo4jGraphQLSessionConfig } from "../Executor.js";
+import { Neo4jDatabaseInfo } from "../Neo4jDatabaseInfo.js";
+import checkNeo4jCompat from "./verify-database.js";
 
 describe("checkNeo4jCompat", () => {
     test("should add driver config to session", async () => {

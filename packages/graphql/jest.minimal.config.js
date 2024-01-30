@@ -1,7 +1,7 @@
-const path = require("path");
-const graphQLJestConfig = require("./jest.config");
+import path from "path";
+import graphQLJestConfig from "./jest.config";
 
-module.exports = {
+export default {
     ...graphQLJestConfig,
     displayName: "@neo4j/graphql",
     globalSetup: path.join(__dirname, "jest.minimal.global-setup.js"),

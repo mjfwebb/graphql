@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import type { GraphQLWhereArg } from "../../types";
-import type { Annotation } from "./Annotation";
+import type { GraphQLWhereArg } from "../../types/index.js";
+import type { Annotation } from "./Annotation.js";
 
 export type AuthenticationOperation =
     | "READ"

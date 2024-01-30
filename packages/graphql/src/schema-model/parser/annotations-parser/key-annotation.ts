@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 import type { DirectiveNode } from "graphql";
-import { Neo4jGraphQLSchemaValidationError } from "../../../classes";
-import { KeyAnnotation } from "../../annotation/KeyAnnotation";
-import { parseArgumentsFromUnknownDirective } from "../parse-arguments";
+import { Neo4jGraphQLSchemaValidationError } from "../../../classes/index.js";
+import { KeyAnnotation } from "../../annotation/KeyAnnotation.js";
+import { parseArgumentsFromUnknownDirective } from "../parse-arguments.js";
 
 export function parseKeyAnnotation(_: DirectiveNode, directives: readonly DirectiveNode[]): KeyAnnotation {
     let isResolvable = false;

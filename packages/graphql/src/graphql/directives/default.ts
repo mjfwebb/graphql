@@ -18,7 +18,7 @@
  */
 
 import { DirectiveLocation, GraphQLDirective, GraphQLNonNull } from "graphql";
-import { ScalarOrEnumType } from "./arguments/scalars/ScalarOrEnum";
+import { ScalarOrEnumType } from "./arguments/scalars/ScalarOrEnum.js";
 
 export const defaultDirective = new GraphQLDirective({
     name: "default",

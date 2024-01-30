@@ -18,7 +18,7 @@
  */
 
 import type { ResolveTree } from "graphql-parse-resolve-info";
-import type { Neo4jGraphQLComposedContext } from "../schema/resolvers/composition/wrap-query-and-mutation";
+import type { Neo4jGraphQLComposedContext } from "../schema/resolvers/composition/wrap-query-and-mutation.js";
 
 /**
  * A small extension to {@link Neo4jGraphQLComposedContext}, adding the {@link resolveTree} field.

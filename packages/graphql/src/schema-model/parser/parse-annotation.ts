@@ -18,8 +18,8 @@
  */
 
 import type { DirectiveNode } from "graphql";
-import type { Annotations } from "../annotation/Annotation";
-import { annotationsParsers } from "../annotation/Annotation";
+import type { Annotations } from "../annotation/Annotation.js";
+import { annotationsParsers } from "../annotation/Annotation.js";
 
 export function parseAnnotations(directives: readonly DirectiveNode[]): Partial<Annotations> {
     const groupedDirectives = new Map<string, DirectiveNode[]>();

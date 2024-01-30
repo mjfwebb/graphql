@@ -18,8 +18,8 @@
  */
 
 import type { ValueNode } from "graphql";
-import type { AttributeType } from "../attribute/AttributeType";
-import { parseValueNode } from "../parser/parse-value-node";
+import type { AttributeType } from "../attribute/AttributeType.js";
+import { parseValueNode } from "../parser/parse-value-node.js";
 
 export class Argument {
     public readonly name: string;

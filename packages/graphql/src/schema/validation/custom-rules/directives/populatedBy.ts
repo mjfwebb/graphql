@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 import type { DirectiveNode } from "graphql";
-import { parseValueNode } from "../../../../schema-model/parser/parse-value-node";
-import type { Neo4jGraphQLCallbacks } from "../../../../types";
-import { DocumentValidationError } from "../utils/document-validation-error";
+import { parseValueNode } from "../../../../schema-model/parser/parse-value-node.js";
+import type { Neo4jGraphQLCallbacks } from "../../../../types/index.js";
+import { DocumentValidationError } from "../utils/document-validation-error.js";
 
 export function verifyPopulatedBy(callbacks?: Neo4jGraphQLCallbacks) {
     return function ({ directiveNode }: { directiveNode: DirectiveNode }) {

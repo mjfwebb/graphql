@@ -18,8 +18,8 @@
  */
 
 import { Kind } from "graphql";
-import { DocumentValidationError } from "../utils/document-validation-error";
-import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser";
+import { DocumentValidationError } from "../utils/document-validation-error.js";
+import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser.js";
 
 export function verifyUnique({ parentDef }: { parentDef?: ObjectOrInterfaceWithExtensions }) {
     if (!parentDef) {

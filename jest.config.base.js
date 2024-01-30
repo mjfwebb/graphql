@@ -1,8 +1,11 @@
-const path = require("path");
+import "dotenv/config";
+import path from "path";
+import { fileURLToPath } from "url";
 
-require("dotenv").config({ path: path.join(__dirname, ".env") });
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-module.exports = {
+const globalConfig = {
     globalSetup: path.join(__dirname, "jest.global-setup.js"),
     rootDir: __dirname,
     verbose: true,
@@ -18,8 +21,7 @@ module.exports = {
         "@neo4j/graphql/dist/types": "<rootDir>/packages/graphql/src/types",
         "@neo4j/introspector(.*)$": "<rootDir>/packages/introspector/src/$1",
         "@neo4j/graphql-ogm(.*)$": "<rootDir>/packages/ogm/src/$1",
-        "@neo4j/graphql-amqp-subscriptions-engine(.*)$":
-            "<rootDir>/packages/graphql-amqp-subscriptions-engine/src/$1",
+        "@neo4j/graphql-amqp-subscriptions-engine(.*)$": "<rootDir>/packages/graphql-amqp-subscriptions-engine/src/$1",
         "@neo4j/graphql(.*)$": "<rootDir>/packages/graphql/src/$1",
     },
     snapshotFormat: {
@@ -27,3 +29,5 @@ module.exports = {
         printBasicPrototype: true,
     },
 };
+
+export default globalConfig;

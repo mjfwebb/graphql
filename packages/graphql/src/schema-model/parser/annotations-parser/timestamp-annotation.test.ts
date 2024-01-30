@@ -18,8 +18,8 @@
  */
 
 import { makeDirectiveNode } from "@graphql-tools/utils";
-import { timestampDirective } from "../../../graphql/directives";
-import { parseTimestampAnnotation } from "./timestamp-annotation";
+import { timestampDirective } from "../../../graphql/directives/index.js";
+import { parseTimestampAnnotation } from "./timestamp-annotation.js";
 
 const tests = [
     {

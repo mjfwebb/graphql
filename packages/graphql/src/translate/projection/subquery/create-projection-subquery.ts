@@ -17,16 +17,16 @@
  * limitations under the License.
  */
 
-import type { Node } from "../../../classes";
-import type { GraphQLOptionsArg, GraphQLWhereArg, RelationField } from "../../../types";
 import Cypher from "@neo4j/cypher-builder";
-import { createWhereNodePredicate } from "../../where/create-where-predicate";
-import type { CypherRelationshipDirection } from "../../../utils/get-relationship-direction";
-import { addSortAndLimitOptionsToClause } from "./add-sort-and-limit-to-clause";
-import { createAuthorizationBeforePredicate } from "../../authorization/create-authorization-before-predicate";
-import { compileCypher } from "../../../utils/compile-cypher";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
-import { getEntityAdapterFromNode } from "../../../utils/get-entity-adapter-from-node";
+import type { Node } from "../../../classes/index.js";
+import type { GraphQLOptionsArg, GraphQLWhereArg, RelationField } from "../../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
+import { compileCypher } from "../../../utils/compile-cypher.js";
+import { getEntityAdapterFromNode } from "../../../utils/get-entity-adapter-from-node.js";
+import type { CypherRelationshipDirection } from "../../../utils/get-relationship-direction.js";
+import { createAuthorizationBeforePredicate } from "../../authorization/create-authorization-before-predicate.js";
+import { createWhereNodePredicate } from "../../where/create-where-predicate.js";
+import { addSortAndLimitOptionsToClause } from "./add-sort-and-limit-to-clause.js";
 
 export function createProjectionSubquery({
     parentNode,

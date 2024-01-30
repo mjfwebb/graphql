@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import type { SubscriptionEvent } from "../../graphql/directives/subscription";
-import type { Annotation } from "./Annotation";
+import type { SubscriptionEvent } from "../../graphql/directives/subscription.js";
+import type { Annotation } from "./Annotation.js";
 
 export class SubscriptionAnnotation implements Annotation {
     readonly name = "subscription";

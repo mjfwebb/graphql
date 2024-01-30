@@ -29,15 +29,15 @@ import type {
     SchemaExtensionNode,
 } from "graphql";
 import { Kind, parse, print } from "graphql";
-import type { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel";
-import { translateResolveReference } from "../translate/translate-resolve-reference";
-import type { Node } from "../types";
-import { execute } from "../utils";
-import getNeo4jResolveTree from "../utils/get-neo4j-resolve-tree";
-import { isInArray } from "../utils/is-in-array";
-import type { Neo4jGraphQLComposedContext } from "../schema/resolvers/composition/wrap-query-and-mutation";
-import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context";
-import type { ValueOf } from "../utils/value-of";
+import type { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel.js";
+import type { Neo4jGraphQLComposedContext } from "../schema/resolvers/composition/wrap-query-and-mutation.js";
+import { translateResolveReference } from "../translate/translate-resolve-reference.js";
+import type { Node } from "../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context.js";
+import getNeo4jResolveTree from "../utils/get-neo4j-resolve-tree.js";
+import { execute } from "../utils/index.js";
+import { isInArray } from "../utils/is-in-array.js";
+import type { ValueOf } from "../utils/value-of.js";
 
 // TODO fetch the directive names from the spec
 const federationDirectiveNames = [

@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import { createBearerToken } from "../../../../../tests/utils/create-bearer-token";
-import { Neo4jGraphQLAuthorization } from "../../../../classes/authorization/Neo4jGraphQLAuthorization";
-import { getAuthorizationContext } from "./get-authorization-context";
+import { createBearerToken } from "../../../../../tests/utils/create-bearer-token.js";
+import { Neo4jGraphQLAuthorization } from "../../../../classes/authorization/Neo4jGraphQLAuthorization.js";
+import { getAuthorizationContext } from "./get-authorization-context.js";
 
 describe("getAuthorizationContext", () => {
     const secret = "secret";

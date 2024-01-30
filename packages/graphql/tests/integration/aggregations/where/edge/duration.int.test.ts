@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 
-import type { Driver, Session } from "neo4j-driver";
 import { graphql } from "graphql";
-import Neo4j from "../../../neo4j";
-import { Neo4jGraphQL } from "../../../../../src/classes";
-import { UniqueType } from "../../../../utils/graphql-types";
+import type { Driver, Session } from "neo4j-driver";
+import { Neo4jGraphQL } from "../../../../../src/classes/index.js";
+import { UniqueType } from "../../../../utils/graphql-types.js";
+import Neo4j from "../../../neo4j.js";
 
 describe("aggregations-where-edge-duration", () => {
     let driver: Driver;

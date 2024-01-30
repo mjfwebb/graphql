@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { isSameType, haveSameLength } from "../../../../utils/utils";
+import { haveSameLength, isSameType } from "../../../../utils/utils.js";
 
 /**
  * Returns true if all properties in obj1 exists in obj2, false otherwise.

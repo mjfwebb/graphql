@@ -18,9 +18,9 @@
  */
 
 import { Kind, type FieldNode, type GraphQLResolveInfo, type SelectionSetNode } from "graphql";
-import { getOffsetWithDefault, offsetToCursor } from "graphql-relay/connection/arrayConnection";
-import type { ConnectionQueryArgs } from "../types";
-import { isNeoInt } from "../utils/utils";
+import { getOffsetWithDefault, offsetToCursor } from "graphql-relay/connection/arrayConnection.js";
+import type { ConnectionQueryArgs } from "../types/index.js";
+import { isNeoInt } from "../utils/utils.js";
 
 function getAliasKey({ selectionSet, key }: { selectionSet: SelectionSetNode | undefined; key: string }): string {
     for (const field of selectionSet?.selections || []) {

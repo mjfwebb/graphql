@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 import type { DirectiveNode } from "graphql";
-import { AuthorizationAnnotationArguments } from "../../../../schema-model/annotation/AuthorizationAnnotation";
-import { DocumentValidationError } from "../utils/document-validation-error";
+import { AuthorizationAnnotationArguments } from "../../../../schema-model/annotation/AuthorizationAnnotation.js";
+import { DocumentValidationError } from "../utils/document-validation-error.js";
 
 export function verifyAuthorization() {
     return function ({ directiveNode }: { directiveNode: DirectiveNode }) {

@@ -20,9 +20,13 @@
 import { EventEmitter } from "events";
 import type { Driver, QueryConfig } from "neo4j-driver";
 import { Memoize } from "typescript-memoize";
-import type { Neo4jGraphQLSubscriptionsEngine, SubscriptionEngineContext, SubscriptionsEvent } from "../../types";
-import { CDCApi } from "./cdc/cdc-api";
-import { CDCEventParser } from "./cdc/cdc-event-parser";
+import type {
+    Neo4jGraphQLSubscriptionsEngine,
+    SubscriptionEngineContext,
+    SubscriptionsEvent,
+} from "../../types/index.js";
+import { CDCApi } from "./cdc/cdc-api.js";
+import { CDCEventParser } from "./cdc/cdc-event-parser.js";
 
 export class Neo4jGraphQLSubscriptionsCDCEngine implements Neo4jGraphQLSubscriptionsEngine {
     public events: EventEmitter = new EventEmitter();

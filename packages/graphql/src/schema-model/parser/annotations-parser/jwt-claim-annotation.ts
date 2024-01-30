@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 import type { DirectiveNode } from "graphql";
-import { jwtClaim } from "../../../graphql/directives";
-import { JWTClaimAnnotation } from "../../annotation/JWTClaimAnnotation";
-import { parseArguments } from "../parse-arguments";
+import { jwtClaim } from "../../../graphql/directives/index.js";
+import { JWTClaimAnnotation } from "../../annotation/JWTClaimAnnotation.js";
+import { parseArguments } from "../parse-arguments.js";
 
 export function parseJWTClaimAnnotation(directive: DirectiveNode): JWTClaimAnnotation {
     const { path } = parseArguments<{ path: string }>(jwtClaim, directive);

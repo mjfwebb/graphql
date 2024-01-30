@@ -18,7 +18,7 @@
  */
 
 import { GraphQLDirective, GraphQLScalarType } from "graphql";
-import { directives, scalars } from ".";
+import { directives, scalars } from "./index.js";
 
 describe("Library exports", () => {
     test("directives", () => {

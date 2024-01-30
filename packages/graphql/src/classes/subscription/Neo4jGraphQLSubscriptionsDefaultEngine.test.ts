@@ -18,7 +18,7 @@
  */
 
 import { EventEmitter } from "events";
-import { Neo4jGraphQLSubscriptionsDefaultEngine } from "./Neo4jGraphQLSubscriptionsDefaultEngine";
+import { Neo4jGraphQLSubscriptionsDefaultEngine } from "./Neo4jGraphQLSubscriptionsDefaultEngine.js";
 
 describe("Neo4jGraphQLSubscriptionsDefaultEngine", () => {
     test("should construct without arguments", () => {

@@ -19,12 +19,12 @@
 
 import Cypher from "@neo4j/cypher-builder";
 import Debug from "debug";
-import type { Neo4jGraphQLAuthorization } from "../../../../classes/authorization/Neo4jGraphQLAuthorization";
-import type { AuthorizationContext } from "../../../../types";
-import type { Neo4jGraphQLContext } from "../../../../types/neo4j-graphql-context";
-import type { Neo4jGraphQLSubscriptionsConnectionParams } from "../../../../types/neo4j-graphql-subscriptions-context";
-import { DEBUG_AUTH } from "../../../../constants";
-import { debugObject } from "../../../../debug/debug-object";
+import type { Neo4jGraphQLAuthorization } from "../../../../classes/authorization/Neo4jGraphQLAuthorization.js";
+import { DEBUG_AUTH } from "../../../../constants.js";
+import { debugObject } from "../../../../debug/debug-object.js";
+import type { AuthorizationContext } from "../../../../types/index.js";
+import type { Neo4jGraphQLContext } from "../../../../types/neo4j-graphql-context.js";
+import type { Neo4jGraphQLSubscriptionsConnectionParams } from "../../../../types/neo4j-graphql-subscriptions-context.js";
 
 const debug = Debug(DEBUG_AUTH);
 

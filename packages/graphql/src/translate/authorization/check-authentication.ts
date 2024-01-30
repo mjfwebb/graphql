@@ -17,14 +17,14 @@
  * limitations under the License.
  */
 
-import type { Node } from "../../classes";
-import type { ConcreteEntity } from "../../schema-model/entity/ConcreteEntity";
+import type { Node } from "../../classes/index.js";
 import type {
     AuthenticationAnnotation,
     AuthenticationOperation,
-} from "../../schema-model/annotation/AuthenticationAnnotation";
-import { applyAuthentication } from "./utils/apply-authentication";
-import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context";
+} from "../../schema-model/annotation/AuthenticationAnnotation.js";
+import type { ConcreteEntity } from "../../schema-model/entity/ConcreteEntity.js";
+import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context.js";
+import { applyAuthentication } from "./utils/apply-authentication.js";
 
 export function checkAuthentication({
     context,

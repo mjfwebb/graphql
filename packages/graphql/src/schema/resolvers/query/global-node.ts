@@ -20,13 +20,13 @@
 import type { GraphQLResolveInfo } from "graphql";
 import type { FieldsByTypeName } from "graphql-parse-resolve-info";
 import { parseResolveInfo } from "graphql-parse-resolve-info";
-import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { translateRead } from "../../../translate";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
-import { execute } from "../../../utils";
-import getNeo4jResolveTree from "../../../utils/get-neo4j-resolve-tree";
-import { fromGlobalId } from "../../../utils/global-ids";
-import type { Neo4jGraphQLComposedContext } from "../composition/wrap-query-and-mutation";
+import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { translateRead } from "../../../translate/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
+import getNeo4jResolveTree from "../../../utils/get-neo4j-resolve-tree.js";
+import { fromGlobalId } from "../../../utils/global-ids.js";
+import { execute } from "../../../utils/index.js";
+import type { Neo4jGraphQLComposedContext } from "../composition/wrap-query-and-mutation.js";
 
 export function globalNodeResolver({ entities }: { entities: ConcreteEntityAdapter[] }) {
     async function resolve(

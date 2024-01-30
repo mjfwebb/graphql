@@ -20,49 +20,49 @@
 import type { IResolvers } from "@graphql-tools/utils";
 import type {
     BooleanValueNode,
+    DirectiveNode,
     EnumTypeDefinitionNode,
+    EnumValueNode,
     InterfaceTypeDefinitionNode,
     ListValueNode,
     NamedTypeNode,
     ObjectTypeDefinitionNode,
     ScalarTypeDefinitionNode,
     StringValueNode,
-    EnumValueNode,
     UnionTypeDefinitionNode,
-    DirectiveNode,
 } from "graphql";
 import { Kind } from "graphql";
-import getAliasMeta from "./get-alias-meta";
-import { getCypherMeta } from "./get-cypher-meta";
-import getFieldTypeMeta from "./get-field-type-meta";
-import { getCustomResolverMeta } from "./get-custom-resolver-meta";
-import getRelationshipMeta from "./get-relationship-meta";
-import getUniqueMeta from "./parse/get-unique-meta";
-import { SCALAR_TYPES, SPATIAL_TYPES, TEMPORAL_SCALAR_TYPES } from "../constants";
+import { SCALAR_TYPES, SPATIAL_TYPES, TEMPORAL_SCALAR_TYPES } from "../constants.js";
+import { parseArgumentsFromUnknownDirective } from "../schema-model/parser/parse-arguments.js";
+import { parseValueNode } from "../schema-model/parser/parse-value-node.js";
 import type {
-    RelationField,
-    CypherField,
-    PrimitiveField,
     BaseField,
-    CustomEnumField,
-    CustomScalarField,
-    UnionField,
-    InterfaceField,
-    ObjectField,
-    TemporalField,
-    PointField,
-    TimeStampOperations,
     ConnectionField,
+    CustomEnumField,
     CustomResolverField,
+    CustomScalarField,
+    CypherField,
+    FilterableOptions,
+    InterfaceField,
     Neo4jGraphQLCallbacks,
+    ObjectField,
+    PointField,
+    PrimitiveField,
+    RelationField,
     SelectableOptions,
     SettableOptions,
-    FilterableOptions,
-} from "../types";
-import { parseValueNode } from "../schema-model/parser/parse-value-node";
-import { upperFirst } from "../utils/upper-first";
-import { getPopulatedByMeta } from "./get-populated-by-meta";
-import { parseArgumentsFromUnknownDirective } from "../schema-model/parser/parse-arguments";
+    TemporalField,
+    TimeStampOperations,
+    UnionField,
+} from "../types/index.js";
+import { upperFirst } from "../utils/upper-first.js";
+import getAliasMeta from "./get-alias-meta.js";
+import { getCustomResolverMeta } from "./get-custom-resolver-meta.js";
+import { getCypherMeta } from "./get-cypher-meta.js";
+import getFieldTypeMeta from "./get-field-type-meta.js";
+import { getPopulatedByMeta } from "./get-populated-by-meta.js";
+import getRelationshipMeta from "./get-relationship-meta.js";
+import getUniqueMeta from "./parse/get-unique-meta.js";
 
 export interface ObjectFields {
     relationFields: RelationField[];

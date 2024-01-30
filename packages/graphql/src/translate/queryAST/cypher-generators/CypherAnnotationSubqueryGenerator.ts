@@ -18,14 +18,14 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { CypherAnnotation } from "../../../schema-model/annotation/CypherAnnotation";
-import type { AttributeAdapter } from "../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import { QueryASTContext } from "../ast/QueryASTContext";
-import type { Field } from "../ast/fields/Field";
-import type { CypherUnionAttributePartial } from "../ast/fields/attribute-fields/CypherUnionAttributePartial";
-import { assertIsCypherNode } from "../utils/is-cypher-node";
-import { wrapSubqueryInCall } from "../utils/wrap-subquery-in-call";
-import { hasTarget } from "../utils/context-has-target";
+import type { CypherAnnotation } from "../../../schema-model/annotation/CypherAnnotation.js";
+import type { AttributeAdapter } from "../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import { QueryASTContext } from "../ast/QueryASTContext.js";
+import type { Field } from "../ast/fields/Field.js";
+import type { CypherUnionAttributePartial } from "../ast/fields/attribute-fields/CypherUnionAttributePartial.js";
+import { hasTarget } from "../utils/context-has-target.js";
+import { assertIsCypherNode } from "../utils/is-cypher-node.js";
+import { wrapSubqueryInCall } from "../utils/wrap-subquery-in-call.js";
 
 /** Variable exposed to the user in their custom cypher */
 const CYPHER_TARGET_VARIABLE = new Cypher.NamedVariable("this");

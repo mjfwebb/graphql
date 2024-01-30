@@ -17,16 +17,16 @@
  * limitations under the License.
  */
 
-import { Neo4jGraphQL, Neo4jGraphQLConstructor } from "./classes";
-import { Neo4jGraphQLContext } from "./types/neo4j-graphql-context";
-import * as directives from "./graphql/directives";
-import { CartesianPoint } from "./graphql/objects/CartesianPoint";
-import { Point } from "./graphql/objects/Point";
-import * as scalars from "./graphql/scalars";
+import { Neo4jGraphQL, Neo4jGraphQLConstructor } from "./classes/index.js";
+import * as directives from "./graphql/directives/index.js";
+import { CartesianPoint } from "./graphql/objects/CartesianPoint.js";
+import { Point } from "./graphql/objects/Point.js";
+import * as scalars from "./graphql/scalars/index.js";
+import { Neo4jGraphQLContext } from "./types/neo4j-graphql-context.js";
 const objects = { Point, CartesianPoint };
 
-import { Neo4jGraphQLSubscriptionsCDCEngine } from "./classes/subscription/Neo4jGraphQLSubscriptionsCDCEngine";
-import { Neo4jGraphQLSubscriptionsEngine, SubscriptionsEvent } from "./types";
+import { Neo4jGraphQLSubscriptionsCDCEngine } from "./classes/subscription/Neo4jGraphQLSubscriptionsCDCEngine.js";
+import { Neo4jGraphQLSubscriptionsEngine, SubscriptionsEvent } from "./types/index.js";
 
 /**
  * Core library functionality.

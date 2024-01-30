@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import type { Annotations } from "./annotation/Annotation";
-import type { DEPRECATED } from "../constants";
-import { SHAREABLE } from "../constants";
-import type { ValueOf } from "../utils/value-of";
+import type { DEPRECATED } from "../constants.js";
+import { SHAREABLE } from "../constants.js";
+import type { ValueOf } from "../utils/value-of.js";
+import type { Annotations } from "./annotation/Annotation.js";
 
 const additionalDirectives = ["alias", "relationship", "relationshipProperties", "node", SHAREABLE] as const;
 

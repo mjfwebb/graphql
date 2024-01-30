@@ -17,16 +17,16 @@
  * limitations under the License.
  */
 
-import { gql } from "graphql-tag";
-import { GatewayServer } from "../setup/gateway-server";
-import type { Server } from "../setup/server";
-import { TestSubgraph } from "../setup/subgraph";
-import { SubgraphServer } from "../setup/subgraph-server";
-import { Neo4j } from "../setup/neo4j";
-import { schema as inventory } from "./subgraphs/inventory";
-import { schema as users } from "./subgraphs/users";
-import { graphqlRequest } from "./utils/client";
 import { stripIgnoredCharacters } from "graphql";
+import { gql } from "graphql-tag";
+import { GatewayServer } from "../setup/gateway-server.js";
+import { Neo4j } from "../setup/neo4j.js";
+import type { Server } from "../setup/server.js";
+import { SubgraphServer } from "../setup/subgraph-server.js";
+import { TestSubgraph } from "../setup/subgraph.js";
+import { schema as inventory } from "./subgraphs/inventory.js";
+import { schema as users } from "./subgraphs/users.js";
+import { graphqlRequest } from "./utils/client.js";
 
 describe("Tests copied from https://github.com/apollographql/apollo-federation-subgraph-compatibility", () => {
     let inventoryServer: Server;

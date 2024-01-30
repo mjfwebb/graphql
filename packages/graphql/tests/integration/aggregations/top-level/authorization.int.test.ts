@@ -20,10 +20,10 @@
 import { graphql } from "graphql";
 import type { Driver } from "neo4j-driver";
 import { generate } from "randomstring";
-import { Neo4jGraphQL } from "../../../../src/classes";
-import { createBearerToken } from "../../../utils/create-bearer-token";
-import { UniqueType } from "../../../utils/graphql-types";
-import Neo4j from "../../neo4j";
+import { Neo4jGraphQL } from "../../../../src/classes/index.js";
+import { createBearerToken } from "../../../utils/create-bearer-token.js";
+import { UniqueType } from "../../../utils/graphql-types.js";
+import Neo4j from "../../neo4j.js";
 
 describe("aggregations-top_level authorization", () => {
     let driver: Driver;

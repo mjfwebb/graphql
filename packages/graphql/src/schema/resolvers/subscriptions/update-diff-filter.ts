@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import type { SubscriptionsEvent } from "../../../types";
-import { compareProperties } from "./utils/compare-properties";
-import { haveSameLength } from "../../../utils/utils";
+import type { SubscriptionsEvent } from "../../../types/index.js";
+import { haveSameLength } from "../../../utils/utils.js";
+import { compareProperties } from "./utils/compare-properties.js";
 
 export function updateDiffFilter(event: SubscriptionsEvent): boolean {
     if (event.event !== "update") {

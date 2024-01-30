@@ -19,9 +19,9 @@
 
 import type { ArgumentNode, DirectiveNode, ObjectTypeDefinitionNode } from "graphql";
 import * as neo4j from "neo4j-driver";
-import { LimitDirective } from "../../classes/LimitDirective";
-import { Neo4jGraphQLError } from "../../classes/Error";
-import { parseValueNode } from "../../schema-model/parser/parse-value-node";
+import { Neo4jGraphQLError } from "../../classes/Error.js";
+import { LimitDirective } from "../../classes/LimitDirective.js";
+import { parseValueNode } from "../../schema-model/parser/parse-value-node.js";
 
 export function parseLimitDirective({
     directive,

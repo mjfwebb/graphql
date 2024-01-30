@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 import type { DirectiveNode } from "graphql";
-import { customResolverDirective } from "../../../graphql/directives";
-import { CustomResolverAnnotation } from "../../annotation/CustomResolverAnnotation";
-import { parseArguments } from "../parse-arguments";
+import { customResolverDirective } from "../../../graphql/directives/index.js";
+import { CustomResolverAnnotation } from "../../annotation/CustomResolverAnnotation.js";
+import { parseArguments } from "../parse-arguments.js";
 
 export function parseCustomResolverAnnotation(directive: DirectiveNode): CustomResolverAnnotation {
     const { requires } = parseArguments<{ requires: string | undefined }>(customResolverDirective, directive);

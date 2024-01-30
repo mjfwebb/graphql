@@ -20,7 +20,7 @@
 import { astFromValueUntyped } from "@graphql-tools/utils";
 import type { ASTVisitor, GraphQLSchema, ObjectTypeDefinitionNode, TypeNode, ValueNode } from "graphql";
 import { Kind } from "graphql";
-import { getStandardJwtDefinition } from "../../../graphql/directives/type-dependant-directives/jwt-payload";
+import { getStandardJwtDefinition } from "../../../graphql/directives/type-dependant-directives/jwt-payload.js";
 
 type DefaultValue = false | 0 | never[] | "" | null;
 

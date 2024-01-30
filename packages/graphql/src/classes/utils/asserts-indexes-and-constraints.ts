@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 
-import type { Driver, Session } from "neo4j-driver";
 import Debug from "debug";
-import type Node from "../Node";
-import { DEBUG_EXECUTE } from "../../constants";
-import type { Neo4jGraphQLSessionConfig } from "../Executor";
+import type { Driver, Session } from "neo4j-driver";
+import { DEBUG_EXECUTE } from "../../constants.js";
+import type { Neo4jGraphQLSessionConfig } from "../Executor.js";
+import type Node from "../Node.js";
 
 const debug = Debug(DEBUG_EXECUTE);
 

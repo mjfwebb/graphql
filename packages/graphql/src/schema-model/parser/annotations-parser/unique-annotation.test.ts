@@ -19,12 +19,16 @@
 
 import { makeDirectiveNode } from "@graphql-tools/utils";
 import type { DirectiveNode } from "graphql";
-import { parseUniqueAnnotation } from "./unique-annotation";
-import { uniqueDirective } from "../../../graphql/directives";
+import { uniqueDirective } from "../../../graphql/directives/index.js";
+import { parseUniqueAnnotation } from "./unique-annotation.js";
 
 describe("parseUniqueAnnotation", () => {
     test("should correctly parse unique constraint name", () => {
-        const directive: DirectiveNode = makeDirectiveNode("unique", { constraintName: "uniqueConstraintName" }, uniqueDirective);
+        const directive: DirectiveNode = makeDirectiveNode(
+            "unique",
+            { constraintName: "uniqueConstraintName" },
+            uniqueDirective
+        );
         const uniqueAnnotation = parseUniqueAnnotation(directive);
 
         expect(uniqueAnnotation.constraintName).toBe("uniqueConstraintName");

@@ -17,13 +17,13 @@
  * limitations under the License.
  */
 
-import { leadingUnderscores } from "./leading-underscore";
+import { leadingUnderscores } from "./leading-underscore.js";
 
 describe("leadingUnderscores", () => {
     test("should return empty string if no leading underscores", () => {
         expect(leadingUnderscores("test")).toBe("");
     });
-    
+
     test("should return single underscore if single leading underscore", () => {
         expect(leadingUnderscores("_test")).toBe("_");
     });

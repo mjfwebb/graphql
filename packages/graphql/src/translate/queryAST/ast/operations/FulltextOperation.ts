@@ -18,15 +18,15 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { RelationshipAdapter } from "../../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import { filterTruthy } from "../../../../utils/utils";
-import type { QueryASTContext } from "../QueryASTContext";
-import type { QueryASTNode } from "../QueryASTNode";
-import type { FulltextScoreField } from "../fields/FulltextScoreField";
-import type { EntitySelection } from "../selection/EntitySelection";
-import { ReadOperation } from "./ReadOperation";
-import type { OperationTranspileResult } from "./operations";
+import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { RelationshipAdapter } from "../../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { filterTruthy } from "../../../../utils/utils.js";
+import type { QueryASTContext } from "../QueryASTContext.js";
+import type { QueryASTNode } from "../QueryASTNode.js";
+import type { FulltextScoreField } from "../fields/FulltextScoreField.js";
+import type { EntitySelection } from "../selection/EntitySelection.js";
+import { ReadOperation } from "./ReadOperation.js";
+import type { OperationTranspileResult } from "./operations.js";
 
 export type FulltextOptions = {
     index: string;

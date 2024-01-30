@@ -18,8 +18,8 @@
  */
 
 import type Cypher from "@neo4j/cypher-builder";
-import { QueryASTNode } from "../QueryASTNode";
-import type { QueryASTContext } from "../QueryASTContext";
+import type { QueryASTContext } from "../QueryASTContext.js";
+import { QueryASTNode } from "../QueryASTNode.js";
 
 export type SortField = [Cypher.Expr, Cypher.Order] | [Cypher.Expr];
 

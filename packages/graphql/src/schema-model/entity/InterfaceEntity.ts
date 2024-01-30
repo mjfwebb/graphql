@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
-import { Neo4jGraphQLSchemaValidationError } from "../../classes";
-import type { Annotations } from "../annotation/Annotation";
-import type { Attribute } from "../attribute/Attribute";
-import type { Relationship } from "../relationship/Relationship";
-import type { CompositeEntity } from "./CompositeEntity";
-import type { ConcreteEntity } from "./ConcreteEntity";
+import { Neo4jGraphQLSchemaValidationError } from "../../classes/index.js";
+import type { Annotations } from "../annotation/Annotation.js";
+import type { Attribute } from "../attribute/Attribute.js";
+import type { Relationship } from "../relationship/Relationship.js";
+import type { CompositeEntity } from "./CompositeEntity.js";
+import type { ConcreteEntity } from "./ConcreteEntity.js";
 
 export class InterfaceEntity implements CompositeEntity {
     public readonly name: string;

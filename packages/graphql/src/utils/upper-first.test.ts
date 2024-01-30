@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { upperFirst } from "./upper-first";
+import { upperFirst } from "./upper-first.js";
 
 describe("upperFirst", () => {
     test("should replace first letter with uppercase", () => {

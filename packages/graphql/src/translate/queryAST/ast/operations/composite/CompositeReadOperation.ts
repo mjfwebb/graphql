@@ -18,16 +18,16 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { InterfaceEntityAdapter } from "../../../../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import type { UnionEntityAdapter } from "../../../../../schema-model/entity/model-adapters/UnionEntityAdapter";
-import type { RelationshipAdapter } from "../../../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import type { QueryASTContext } from "../../QueryASTContext";
-import type { QueryASTNode } from "../../QueryASTNode";
-import type { Pagination } from "../../pagination/Pagination";
-import type { Sort, SortField } from "../../sort/Sort";
-import type { OperationTranspileResult } from "../operations";
-import { Operation } from "../operations";
-import type { CompositeReadPartial } from "./CompositeReadPartial";
+import type { InterfaceEntityAdapter } from "../../../../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import type { UnionEntityAdapter } from "../../../../../schema-model/entity/model-adapters/UnionEntityAdapter.js";
+import type { RelationshipAdapter } from "../../../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import type { QueryASTContext } from "../../QueryASTContext.js";
+import type { QueryASTNode } from "../../QueryASTNode.js";
+import type { Pagination } from "../../pagination/Pagination.js";
+import type { Sort, SortField } from "../../sort/Sort.js";
+import type { OperationTranspileResult } from "../operations.js";
+import { Operation } from "../operations.js";
+import type { CompositeReadPartial } from "./CompositeReadPartial.js";
 
 export class CompositeReadOperation extends Operation {
     private children: CompositeReadPartial[];

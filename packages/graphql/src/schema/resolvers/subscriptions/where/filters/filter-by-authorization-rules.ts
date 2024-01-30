@@ -17,16 +17,16 @@
  * limitations under the License.
  */
 
-import type { SubscriptionsAuthorizationWhere } from "../../../../../schema-model/annotation/SubscriptionsAuthorizationAnnotation";
-import type { ConcreteEntityAdapter } from "../../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { RelationshipAdapter } from "../../../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import { filterByValues } from "../../../../../translate/authorization/utils/filter-by-values";
-import type { RelationshipSubscriptionsEvent, SubscriptionsEvent } from "../../../../../types";
-import type { Neo4jGraphQLComposedSubscriptionsContext } from "../../../composition/wrap-subscription";
-import type { RecordType, RelationshipType } from "../../types";
-import { filterRelationshipKey } from "../utils/filter-relationship-key";
-import { multipleConditionsAggregationMap } from "../utils/multiple-conditions-aggregation-map";
-import { filterByProperties } from "./filter-by-properties";
+import type { SubscriptionsAuthorizationWhere } from "../../../../../schema-model/annotation/SubscriptionsAuthorizationAnnotation.js";
+import type { ConcreteEntityAdapter } from "../../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { RelationshipAdapter } from "../../../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { filterByValues } from "../../../../../translate/authorization/utils/filter-by-values.js";
+import type { RelationshipSubscriptionsEvent, SubscriptionsEvent } from "../../../../../types/index.js";
+import type { Neo4jGraphQLComposedSubscriptionsContext } from "../../../composition/wrap-subscription.js";
+import type { RecordType, RelationshipType } from "../../types.js";
+import { filterRelationshipKey } from "../utils/filter-relationship-key.js";
+import { multipleConditionsAggregationMap } from "../utils/multiple-conditions-aggregation-map.js";
+import { filterByProperties } from "./filter-by-properties.js";
 
 function isRelationshipSubscriptionsEvent(event: SubscriptionsEvent): event is RelationshipSubscriptionsEvent {
     return ["create_relationship", "delete_relationship"].includes(event.event);

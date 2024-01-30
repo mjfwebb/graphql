@@ -18,10 +18,10 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { createNodeFromEntity } from "../../utils/create-node-from-entity";
-import { QueryASTContext } from "../QueryASTContext";
-import { EntitySelection, type SelectionClause } from "./EntitySelection";
+import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { createNodeFromEntity } from "../../utils/create-node-from-entity.js";
+import { QueryASTContext } from "../QueryASTContext.js";
+import { EntitySelection, type SelectionClause } from "./EntitySelection.js";
 
 export class NodeSelection extends EntitySelection {
     private target: ConcreteEntityAdapter;

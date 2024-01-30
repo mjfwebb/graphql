@@ -19,8 +19,8 @@
 
 import Cypher from "@neo4j/cypher-builder";
 import type { ResolveTree } from "graphql-parse-resolve-info";
-import type { TemporalField } from "../../../types";
-import { compileCypher } from "../../../utils/compile-cypher";
+import type { TemporalField } from "../../../types/index.js";
+import { compileCypher } from "../../../utils/compile-cypher.js";
 
 /** Deprecated in favor of createDatetimeExpression */
 export function createDatetimeElement({

@@ -18,15 +18,15 @@
  */
 
 import type { GraphQLResolveInfo } from "graphql";
-import { QueryOptions } from "../../../graphql/input-objects/QueryOptions";
-import type { EntityAdapter } from "../../../schema-model/entity/EntityAdapter";
-import { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { UnionEntityAdapter } from "../../../schema-model/entity/model-adapters/UnionEntityAdapter";
-import { translateRead } from "../../../translate";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
-import { execute } from "../../../utils";
-import getNeo4jResolveTree from "../../../utils/get-neo4j-resolve-tree";
-import type { Neo4jGraphQLComposedContext } from "../composition/wrap-query-and-mutation";
+import { QueryOptions } from "../../../graphql/input-objects/QueryOptions.js";
+import type { EntityAdapter } from "../../../schema-model/entity/EntityAdapter.js";
+import { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { UnionEntityAdapter } from "../../../schema-model/entity/model-adapters/UnionEntityAdapter.js";
+import { translateRead } from "../../../translate/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
+import getNeo4jResolveTree from "../../../utils/get-neo4j-resolve-tree.js";
+import { execute } from "../../../utils/index.js";
+import type { Neo4jGraphQLComposedContext } from "../composition/wrap-query-and-mutation.js";
 
 export function findResolver({ entityAdapter }: { entityAdapter: EntityAdapter }) {
     async function resolve(_root: any, args: any, context: Neo4jGraphQLComposedContext, info: GraphQLResolveInfo) {

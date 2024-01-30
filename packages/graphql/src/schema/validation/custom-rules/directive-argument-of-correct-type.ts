@@ -19,19 +19,19 @@
 
 import type {
     ASTVisitor,
+    ArgumentNode,
     DirectiveNode,
     GraphQLArgument,
-    ArgumentNode,
     GraphQLDirective,
     GraphQLSchema,
 } from "graphql";
-import { coerceInputValue, valueFromASTUntyped, buildASTSchema } from "graphql";
-import type { Maybe } from "graphql/jsutils/Maybe";
-import type { SDLValidationContext } from "graphql/validation/ValidationContext";
-import { VALIDATION_ERROR_CODES } from "../utils/validation-error-codes";
-import type { AssertionResponse } from "./utils/document-validation-error";
-import { createGraphQLError } from "./utils/document-validation-error";
-import { getPathToNode } from "./utils/path-parser";
+import { buildASTSchema, coerceInputValue, valueFromASTUntyped } from "graphql";
+import type { Maybe } from "graphql/jsutils/Maybe.js";
+import type { SDLValidationContext } from "graphql/validation/ValidationContext.js";
+import { VALIDATION_ERROR_CODES } from "../utils/validation-error-codes.js";
+import type { AssertionResponse } from "./utils/document-validation-error.js";
+import { createGraphQLError } from "./utils/document-validation-error.js";
+import { getPathToNode } from "./utils/path-parser.js";
 
 export function DirectiveArgumentOfCorrectType(includeAuthorizationDirectives: boolean = true) {
     return function (context: SDLValidationContext): ASTVisitor {

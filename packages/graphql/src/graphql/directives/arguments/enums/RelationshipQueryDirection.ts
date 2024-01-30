@@ -18,7 +18,7 @@
  */
 
 import { GraphQLEnumType } from "graphql";
-import { RelationshipQueryDirectionOption } from "../../../../constants";
+import { RelationshipQueryDirectionOption } from "../../../../constants.js";
 
 export const RelationshipQueryDirectionEnum = new GraphQLEnumType({
     name: "RelationshipQueryDirection",

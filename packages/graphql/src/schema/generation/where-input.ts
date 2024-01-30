@@ -25,17 +25,17 @@ import type {
     InputTypeComposerFieldConfigMapDefinition,
     SchemaComposer,
 } from "graphql-compose";
-import type { EntityAdapter } from "../../schema-model/entity/EntityAdapter";
-import { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import { UnionEntityAdapter } from "../../schema-model/entity/model-adapters/UnionEntityAdapter";
-import { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import type { Neo4jFeaturesSettings } from "../../types";
-import { DEPRECATE_NOT } from "../constants";
-import { getWhereFieldsForAttributes } from "../get-where-fields";
-import { withAggregateInputType } from "./aggregate-types";
-import { augmentWhereInputTypeWithRelationshipFields } from "./augment-where-input";
-import { makeImplementationsWhereInput } from "./implementation-inputs";
+import type { EntityAdapter } from "../../schema-model/entity/EntityAdapter.js";
+import { ConcreteEntityAdapter } from "../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { InterfaceEntityAdapter } from "../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import { UnionEntityAdapter } from "../../schema-model/entity/model-adapters/UnionEntityAdapter.js";
+import { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import type { Neo4jFeaturesSettings } from "../../types/index.js";
+import { DEPRECATE_NOT } from "../constants.js";
+import { getWhereFieldsForAttributes } from "../get-where-fields.js";
+import { withAggregateInputType } from "./aggregate-types.js";
+import { augmentWhereInputTypeWithRelationshipFields } from "./augment-where-input.js";
+import { makeImplementationsWhereInput } from "./implementation-inputs.js";
 
 export function withUniqueWhereInputType({
     concreteEntityAdapter,

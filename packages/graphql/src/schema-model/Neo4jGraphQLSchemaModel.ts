@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
-import type { Operation } from "./Operation";
-import type { Annotations } from "./annotation/Annotation";
-import type { CompositeEntity } from "./entity/CompositeEntity";
-import type { ConcreteEntity } from "./entity/ConcreteEntity";
-import type { Entity } from "./entity/Entity";
-import { ConcreteEntityAdapter } from "./entity/model-adapters/ConcreteEntityAdapter";
+import type { Operation } from "./Operation.js";
+import type { Annotations } from "./annotation/Annotation.js";
+import type { CompositeEntity } from "./entity/CompositeEntity.js";
+import type { ConcreteEntity } from "./entity/ConcreteEntity.js";
+import type { Entity } from "./entity/Entity.js";
+import { ConcreteEntityAdapter } from "./entity/model-adapters/ConcreteEntityAdapter.js";
 
 export type Operations = {
     Query?: Operation;

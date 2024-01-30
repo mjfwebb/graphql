@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 
-import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter";
-import type { QueryASTNode } from "../../QueryASTNode";
-import { Field } from "../Field";
 import type Cypher from "@neo4j/cypher-builder";
+import type { AttributeAdapter } from "../../../../../schema-model/attribute/model-adapters/AttributeAdapter.js";
+import type { QueryASTNode } from "../../QueryASTNode.js";
+import { Field } from "../Field.js";
 
 export class AttributeField extends Field {
     protected attribute: AttributeAdapter;

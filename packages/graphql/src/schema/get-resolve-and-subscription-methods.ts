@@ -18,7 +18,7 @@
  */
 
 import type { SchemaComposer } from "graphql-compose";
-import type { GraphQLToolsResolveMethods } from "graphql-compose/lib/SchemaComposer";
+import type { GraphQLToolsResolveMethods } from "graphql-compose/lib/SchemaComposer.js";
 
 export function getResolveAndSubscriptionMethods(composer: SchemaComposer): GraphQLToolsResolveMethods<any> {
     const resolveMethods: GraphQLToolsResolveMethods<any> = composer.getResolveMethods();

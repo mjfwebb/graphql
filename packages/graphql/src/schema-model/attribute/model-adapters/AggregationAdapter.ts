@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 
-import type { AttributeAdapter } from "./AttributeAdapter";
+import type { AttributeAdapter } from "./AttributeAdapter.js";
 
-import { AGGREGATION_COMPARISON_OPERATORS } from "../../../constants";
-import type { ValueOf } from "../../../utils/value-of";
+import { AGGREGATION_COMPARISON_OPERATORS } from "../../../constants.js";
+import type { ValueOf } from "../../../utils/value-of.js";
 
 type ComparisonOperator = ValueOf<typeof AGGREGATION_COMPARISON_OPERATORS>;
 

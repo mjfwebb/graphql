@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 
-import type { PredicateReturn } from "../../types";
-import type { Node } from "../../classes";
 import Cypher from "@neo4j/cypher-builder";
-import { createAuthorizationBeforePredicateField } from "../authorization/create-authorization-before-predicate";
-import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context";
+import type { Node } from "../../classes/index.js";
+import type { PredicateReturn } from "../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context.js";
+import { createAuthorizationBeforePredicateField } from "../authorization/create-authorization-before-predicate.js";
 
 export function createFieldAggregationAuth({
     node,

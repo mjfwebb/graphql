@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 
-import { compileCypher } from "../../utils/compile-cypher";
-import { wrapApocConvertDate } from "../projection/elements/create-datetime-element";
-import { stringifyObject } from "../utils/stringify-object";
 import Cypher from "@neo4j/cypher-builder";
 import { dedent } from "graphql-compose";
+import { compileCypher } from "../../utils/compile-cypher.js";
+import { wrapApocConvertDate } from "../projection/elements/create-datetime-element.js";
+import { stringifyObject } from "../utils/stringify-object.js";
 
 export function createMatchWherePattern(
     matchPattern: Cypher.Pattern,

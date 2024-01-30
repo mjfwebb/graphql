@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import type { WhereRegexGroups } from "../../../../../translate/where/utils";
-import { whereRegEx } from "../../../../../translate/where/utils";
+import type { WhereRegexGroups } from "../../../../../translate/where/utils.js";
+import { whereRegEx } from "../../../../../translate/where/utils.js";
 
 export function parseFilterProperty(key: string): { fieldName: string; operator: string | undefined } {
     const match = whereRegEx.exec(key);

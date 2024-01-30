@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 
-import * as semver from "semver";
 import type { GraphQLResolveInfo, GraphQLSchema } from "graphql";
-import type { Session, Driver } from "neo4j-driver";
-import { Neo4jDatabaseInfo } from "../../../classes/Neo4jDatabaseInfo";
-import type { Neo4jGraphQLComposedContext } from "./wrap-query-and-mutation";
+import type { Driver, Session } from "neo4j-driver";
+import * as semver from "semver";
+import { Neo4jDatabaseInfo } from "../../../classes/Neo4jDatabaseInfo.js";
+import type { Neo4jGraphQLComposedContext } from "./wrap-query-and-mutation.js";
 
 describe("wrapper test", () => {
     let fakeSession: Session;
@@ -31,7 +31,7 @@ describe("wrapper test", () => {
     let wrapResolver;
 
     beforeEach(async () => {
-        const module = await import("./wrap-query-and-mutation");
+        const module = await import("./wrap-query-and-mutation.js");
         wrapResolver = module.wrapQueryAndMutation;
         jest.resetModules();
         executeRead.mockReset();

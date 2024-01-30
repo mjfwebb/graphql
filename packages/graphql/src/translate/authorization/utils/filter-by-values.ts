@@ -18,9 +18,9 @@
  */
 
 import dotProp from "dot-prop";
-import { getFilteringFn } from "../../../schema/resolvers/subscriptions/where/utils/get-filtering-fn";
-import { multipleConditionsAggregationMap } from "../../../schema/resolvers/subscriptions/where/utils/multiple-conditions-aggregation-map";
-import { parseFilterProperty } from "../../../schema/resolvers/subscriptions/where/utils/parse-filter-property";
+import { getFilteringFn } from "../../../schema/resolvers/subscriptions/where/utils/get-filtering-fn.js";
+import { multipleConditionsAggregationMap } from "../../../schema/resolvers/subscriptions/where/utils/multiple-conditions-aggregation-map.js";
+import { parseFilterProperty } from "../../../schema/resolvers/subscriptions/where/utils/parse-filter-property.js";
 
 export function filterByValues<T>(
     whereInput: Record<string, T | Array<Record<string, T>> | Record<string, T>>,

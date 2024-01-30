@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 
-import type { Annotations } from "./annotation/Annotation";
-import type { Attribute } from "./attribute/Attribute";
-import { AttributeAdapter } from "./attribute/model-adapters/AttributeAdapter";
-import type { Operation } from "./Operation";
+import type { Annotations } from "./annotation/Annotation.js";
+import type { Attribute } from "./attribute/Attribute.js";
+import { AttributeAdapter } from "./attribute/model-adapters/AttributeAdapter.js";
+import type { Operation } from "./Operation.js";
 
 export class OperationAdapter {
     public readonly name: string;

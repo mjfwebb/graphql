@@ -18,15 +18,14 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { QueryASTContext } from "../../QueryASTContext";
-import { ConnectionFilter } from "../ConnectionFilter";
+import type { QueryASTContext } from "../../QueryASTContext.js";
+import { ConnectionFilter } from "../ConnectionFilter.js";
 
 export class AuthConnectionFilter extends ConnectionFilter {
     protected createRelationshipOperation(
         pattern: Cypher.Pattern,
         queryASTContext: QueryASTContext
     ): Cypher.Predicate | undefined {
-        
         const connectionFilter = this.innerFilters.map((c) => c.getPredicate(queryASTContext));
         const labelPredicate = this.getLabelPredicate(queryASTContext);
         const innerPredicate = Cypher.and(...connectionFilter, labelPredicate);
@@ -58,7 +57,7 @@ export class AuthConnectionFilter extends ConnectionFilter {
                     const sizeFunction = Cypher.size(patternComprehension.where(innerPredicate));
                     return Cypher.gt(sizeFunction, new Cypher.Literal(0));
                 }
-                
+
                 const match = new Cypher.Match(pattern).where(innerPredicate);
                 return new Cypher.Exists(match);
             }

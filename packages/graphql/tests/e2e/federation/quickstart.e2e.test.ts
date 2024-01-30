@@ -18,12 +18,12 @@
  */
 
 import supertest from "supertest";
-import { UniqueType } from "../../utils/graphql-types";
-import { GatewayServer } from "./setup/gateway-server";
-import type { Server } from "./setup/server";
-import { TestSubgraph } from "./setup/subgraph";
-import { SubgraphServer } from "./setup/subgraph-server";
-import { Neo4j } from "./setup/neo4j";
+import { UniqueType } from "../../utils/graphql-types.js";
+import { GatewayServer } from "./setup/gateway-server.js";
+import { Neo4j } from "./setup/neo4j.js";
+import type { Server } from "./setup/server.js";
+import { SubgraphServer } from "./setup/subgraph-server.js";
+import { TestSubgraph } from "./setup/subgraph.js";
 
 describe("Federation 2 quickstart (https://www.apollographql.com/docs/federation/quickstart/setup/)", () => {
     let locationsServer: Server;

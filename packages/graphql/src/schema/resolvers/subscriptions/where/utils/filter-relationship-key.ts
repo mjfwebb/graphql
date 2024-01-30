@@ -17,14 +17,14 @@
  * limitations under the License.
  */
 
-import type { ConcreteEntityAdapter } from "../../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { InterfaceEntityAdapter } from "../../../../../schema-model/entity/model-adapters/InterfaceEntityAdapter";
-import { UnionEntityAdapter } from "../../../../../schema-model/entity/model-adapters/UnionEntityAdapter";
-import type { RelationshipAdapter } from "../../../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import type { RelationshipSubscriptionsEvent } from "../../../../../types";
-import type { InterfaceType, RecordType, RelationshipType, StandardType, UnionType } from "../../types";
-import { filterByProperties } from "../filters/filter-by-properties";
-import { isInterfaceSpecificFieldType, isInterfaceType, isStandardType } from "./type-checks";
+import type { ConcreteEntityAdapter } from "../../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { InterfaceEntityAdapter } from "../../../../../schema-model/entity/model-adapters/InterfaceEntityAdapter.js";
+import { UnionEntityAdapter } from "../../../../../schema-model/entity/model-adapters/UnionEntityAdapter.js";
+import type { RelationshipAdapter } from "../../../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import type { RelationshipSubscriptionsEvent } from "../../../../../types/index.js";
+import type { InterfaceType, RecordType, RelationshipType, StandardType, UnionType } from "../../types.js";
+import { filterByProperties } from "../filters/filter-by-properties.js";
+import { isInterfaceSpecificFieldType, isInterfaceType, isStandardType } from "./type-checks.js";
 
 type EventProperties = {
     from: Record<string, unknown>;

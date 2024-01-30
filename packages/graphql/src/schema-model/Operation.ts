@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 
-import { Neo4jGraphQLSchemaValidationError } from "../classes";
+import { Neo4jGraphQLSchemaValidationError } from "../classes/index.js";
 
-import type { Annotations } from "./annotation/Annotation";
-import type { Attribute } from "./attribute/Attribute";
+import type { Annotations } from "./annotation/Annotation.js";
+import type { Attribute } from "./attribute/Attribute.js";
 
 export class Operation {
     public readonly name: string;

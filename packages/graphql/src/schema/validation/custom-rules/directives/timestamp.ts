@@ -18,9 +18,9 @@
  */
 import type { FieldDefinitionNode } from "graphql";
 import { Kind } from "graphql";
-import { getInnerTypeName } from "../utils/utils";
-import { DocumentValidationError } from "../utils/document-validation-error";
-import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser";
+import { DocumentValidationError } from "../utils/document-validation-error.js";
+import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser.js";
+import { getInnerTypeName } from "../utils/utils.js";
 
 export function verifyTimestamp({
     traversedDef,

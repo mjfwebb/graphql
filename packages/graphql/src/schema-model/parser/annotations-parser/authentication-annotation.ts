@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 import type { DirectiveNode } from "graphql";
-import type { GraphQLWhereArg } from "../../../types";
-import type { AuthenticationOperation } from "../../annotation/AuthenticationAnnotation";
-import { AuthenticationAnnotation } from "../../annotation/AuthenticationAnnotation";
-import { parseArgumentsFromUnknownDirective } from "../parse-arguments";
+import type { GraphQLWhereArg } from "../../../types/index.js";
+import type { AuthenticationOperation } from "../../annotation/AuthenticationAnnotation.js";
+import { AuthenticationAnnotation } from "../../annotation/AuthenticationAnnotation.js";
+import { parseArgumentsFromUnknownDirective } from "../parse-arguments.js";
 
 const authenticationDefaultOperations: AuthenticationOperation[] = [
     "READ",

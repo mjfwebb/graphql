@@ -33,16 +33,16 @@ import type {
     RelationField,
     TemporalField,
     UnionField,
-} from "../types";
-import type { DecodedGlobalId } from "../utils/global-ids";
-import { fromGlobalId, toGlobalId } from "../utils/global-ids";
-import { upperFirst } from "../utils/upper-first";
-import type { GraphElementConstructor } from "./GraphElement";
-import { GraphElement } from "./GraphElement";
-import type { NodeDirective } from "./NodeDirective";
-import type { LimitDirective } from "./LimitDirective";
-import { leadingUnderscores } from "../utils/leading-underscore";
-import type { Neo4jGraphQLContext } from "../types/neo4j-graphql-context";
+} from "../types/index.js";
+import type { Neo4jGraphQLContext } from "../types/neo4j-graphql-context.js";
+import type { DecodedGlobalId } from "../utils/global-ids.js";
+import { fromGlobalId, toGlobalId } from "../utils/global-ids.js";
+import { leadingUnderscores } from "../utils/leading-underscore.js";
+import { upperFirst } from "../utils/upper-first.js";
+import type { GraphElementConstructor } from "./GraphElement.js";
+import { GraphElement } from "./GraphElement.js";
+import type { LimitDirective } from "./LimitDirective.js";
+import type { NodeDirective } from "./NodeDirective.js";
 
 export interface NodeConstructor extends GraphElementConstructor {
     name: string;

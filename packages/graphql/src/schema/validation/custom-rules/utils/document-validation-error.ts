@@ -16,9 +16,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import type { DirectiveNode, FieldDefinitionNode, ASTNode, GraphQLErrorExtensions } from "graphql";
+import type { ASTNode, DirectiveNode, FieldDefinitionNode, GraphQLErrorExtensions } from "graphql";
 import { GraphQLError } from "graphql";
-import type { ObjectOrInterfaceWithExtensions } from "./path-parser";
+import type { ObjectOrInterfaceWithExtensions } from "./path-parser.js";
 
 export type AssertionResponse = {
     isValid: boolean;

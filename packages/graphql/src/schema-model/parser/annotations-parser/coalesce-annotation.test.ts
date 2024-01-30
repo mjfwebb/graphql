@@ -20,8 +20,8 @@
 import { makeDirectiveNode } from "@graphql-tools/utils";
 import type { DirectiveNode } from "graphql";
 import { Kind } from "graphql";
-import { parseCoalesceAnnotation } from "./coalesce-annotation";
-import { coalesceDirective } from "../../../graphql/directives";
+import { coalesceDirective } from "../../../graphql/directives/index.js";
+import { parseCoalesceAnnotation } from "./coalesce-annotation.js";
 
 describe("parseCoalesceAnnotation", () => {
     it("should parse correctly with string coalesce value", () => {

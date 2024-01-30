@@ -16,13 +16,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import type { DirectiveNode, FieldDefinitionNode, EnumTypeDefinitionNode, StringValueNode } from "graphql";
+import type { DirectiveNode, EnumTypeDefinitionNode, FieldDefinitionNode, StringValueNode } from "graphql";
 import { Kind } from "graphql";
-import { assertArgumentHasSameTypeAsField } from "../utils/same-type-argument-as-field";
-import { getInnerTypeName, isArrayType } from "../utils/utils";
-import { DocumentValidationError } from "../utils/document-validation-error";
-import { GRAPHQL_BUILTIN_SCALAR_TYPES, isSpatial, isTemporal } from "../../../../constants";
-import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser";
+import { GRAPHQL_BUILTIN_SCALAR_TYPES, isSpatial, isTemporal } from "../../../../constants.js";
+import { DocumentValidationError } from "../utils/document-validation-error.js";
+import type { ObjectOrInterfaceWithExtensions } from "../utils/path-parser.js";
+import { assertArgumentHasSameTypeAsField } from "../utils/same-type-argument-as-field.js";
+import { getInnerTypeName, isArrayType } from "../utils/utils.js";
 
 // TODO: schema-generation: save enums as map
 

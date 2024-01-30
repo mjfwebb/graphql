@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import type { Neo4jGraphQLSchemaModel } from "../../schema-model/Neo4jGraphQLSchemaModel";
+import type { Neo4jGraphQLSchemaModel } from "../../schema-model/Neo4jGraphQLSchemaModel.js";
 import type {
     EventMeta,
     Neo4jGraphQLSubscriptionsEngine,
@@ -26,9 +26,9 @@ import type {
     RelationshipSubscriptionMetaLabelsParameters,
     RelationshipSubscriptionMetaTypenameParameters,
     SubscriptionsEvent,
-} from "../../types";
-import type { ExecuteResult } from "../../utils/execute";
-import { serializeNeo4jValue } from "../../utils/neo4j-serializers";
+} from "../../types/index.js";
+import type { ExecuteResult } from "../../utils/execute.js";
+import { serializeNeo4jValue } from "../../utils/neo4j-serializers.js";
 
 export function publishEventsToSubscriptionMechanism(
     executeResult: ExecuteResult,

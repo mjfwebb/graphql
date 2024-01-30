@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import { QueryASTNode } from "../QueryASTNode";
 import type Cypher from "@neo4j/cypher-builder";
-import type { QueryASTContext } from "../QueryASTContext";
+import type { QueryASTContext } from "../QueryASTContext.js";
+import { QueryASTNode } from "../QueryASTNode.js";
 
 export type NumericalWhereOperator = "GT" | "GTE" | "LT" | "LTE";
 export type SpatialWhereOperator = "DISTANCE";

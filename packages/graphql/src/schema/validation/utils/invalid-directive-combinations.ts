@@ -22,8 +22,8 @@ import type {
     InterfaceDirective,
     ObjectDirective,
     UnionDirective,
-} from "../../../schema-model/library-directives";
-import { FIELD_DIRECTIVES } from "../../../schema-model/library-directives";
+} from "../../../schema-model/library-directives.js";
+import { FIELD_DIRECTIVES } from "../../../schema-model/library-directives.js";
 
 type InvalidFieldCombinations = Record<FieldDirective, ReadonlyArray<FieldDirective | "private">>;
 

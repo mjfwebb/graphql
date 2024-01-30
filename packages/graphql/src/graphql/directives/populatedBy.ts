@@ -18,7 +18,7 @@
  */
 
 import { DirectiveLocation, GraphQLDirective, GraphQLList, GraphQLNonNull, GraphQLString } from "graphql";
-import { PopulatedByOperationEnum } from "./arguments/enums/PopulatedByOperation";
+import { PopulatedByOperationEnum } from "./arguments/enums/PopulatedByOperation.js";
 
 export const populatedByDirective = new GraphQLDirective({
     name: "populatedBy",

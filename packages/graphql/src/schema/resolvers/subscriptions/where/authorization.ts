@@ -17,14 +17,14 @@
  * limitations under the License.
  */
 
-import type { SubscriptionsAuthorizationFilterEvent } from "../../../../schema-model/annotation/SubscriptionsAuthorizationAnnotation";
-import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { SubscriptionsEvent } from "../../../../types";
-import type { Neo4jGraphQLComposedSubscriptionsContext } from "../../composition/wrap-subscription";
-import type { SubscriptionEventType } from "../types";
-import { filterByAuthorizationRules } from "./filters/filter-by-authorization-rules";
-import { multipleConditionsAggregationMap } from "./utils/multiple-conditions-aggregation-map";
-import { populateWhereParams } from "./utils/populate-where-params";
+import type { SubscriptionsAuthorizationFilterEvent } from "../../../../schema-model/annotation/SubscriptionsAuthorizationAnnotation.js";
+import type { ConcreteEntityAdapter } from "../../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { SubscriptionsEvent } from "../../../../types/index.js";
+import type { Neo4jGraphQLComposedSubscriptionsContext } from "../../composition/wrap-subscription.js";
+import type { SubscriptionEventType } from "../types.js";
+import { filterByAuthorizationRules } from "./filters/filter-by-authorization-rules.js";
+import { multipleConditionsAggregationMap } from "./utils/multiple-conditions-aggregation-map.js";
+import { populateWhereParams } from "./utils/populate-where-params.js";
 
 export function subscriptionAuthorization({
     event,

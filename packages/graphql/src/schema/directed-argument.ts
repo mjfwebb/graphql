@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import { RelationshipQueryDirectionOption } from "../constants";
-import type { RelationshipAdapter } from "../schema-model/relationship/model-adapters/RelationshipAdapter";
+import { RelationshipQueryDirectionOption } from "../constants.js";
+import type { RelationshipAdapter } from "../schema-model/relationship/model-adapters/RelationshipAdapter.js";
 
 type DirectedArgument = {
     type: "Boolean";

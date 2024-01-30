@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import { authenticationDirectiveScaffold } from "./authentication";
-import { authorizationDirectiveScaffold } from "./authorization";
-import { subscriptionsAuthorizationDirectiveScaffold } from "./subscriptions-authorization";
+import { authenticationDirectiveScaffold } from "./authentication.js";
+import { authorizationDirectiveScaffold } from "./authorization.js";
+import { subscriptionsAuthorizationDirectiveScaffold } from "./subscriptions-authorization.js";
 
 export const typeDependantDirectivesScaffolds = [
     authenticationDirectiveScaffold,

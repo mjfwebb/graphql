@@ -24,28 +24,28 @@ import type {
     ObjectTypeDefinitionNode,
     UnionTypeDefinitionNode,
 } from "graphql";
-import { Neo4jGraphQLSchemaValidationError } from "../classes";
-import { SCHEMA_CONFIGURATION_OBJECT_DIRECTIVES } from "./library-directives";
-import { nodeDirective, privateDirective, relationshipDirective } from "../graphql/directives";
-import getFieldTypeMeta from "../schema/get-field-type-meta";
-import { filterTruthy } from "../utils/utils";
-import type { Operations } from "./Neo4jGraphQLSchemaModel";
-import { Neo4jGraphQLSchemaModel } from "./Neo4jGraphQLSchemaModel";
-import { Operation } from "./Operation";
-import type { Attribute } from "./attribute/Attribute";
-import type { CompositeEntity } from "./entity/CompositeEntity";
-import { ConcreteEntity } from "./entity/ConcreteEntity";
-import { InterfaceEntity } from "./entity/InterfaceEntity";
-import { UnionEntity } from "./entity/UnionEntity";
-import type { DefinitionCollection } from "./parser/definition-collection";
-import { getDefinitionCollection } from "./parser/definition-collection";
-import { parseAnnotations } from "./parser/parse-annotation";
-import { parseArguments } from "./parser/parse-arguments";
-import { parseAttribute, parseAttributeArguments } from "./parser/parse-attribute";
-import { findDirective } from "./parser/utils";
-import type { NestedOperation, QueryDirection, RelationshipDirection } from "./relationship/Relationship";
-import { Relationship } from "./relationship/Relationship";
-import { isInArray } from "../utils/is-in-array";
+import { Neo4jGraphQLSchemaValidationError } from "../classes/index.js";
+import { nodeDirective, privateDirective, relationshipDirective } from "../graphql/directives/index.js";
+import getFieldTypeMeta from "../schema/get-field-type-meta.js";
+import { isInArray } from "../utils/is-in-array.js";
+import { filterTruthy } from "../utils/utils.js";
+import type { Operations } from "./Neo4jGraphQLSchemaModel.js";
+import { Neo4jGraphQLSchemaModel } from "./Neo4jGraphQLSchemaModel.js";
+import { Operation } from "./Operation.js";
+import type { Attribute } from "./attribute/Attribute.js";
+import type { CompositeEntity } from "./entity/CompositeEntity.js";
+import { ConcreteEntity } from "./entity/ConcreteEntity.js";
+import { InterfaceEntity } from "./entity/InterfaceEntity.js";
+import { UnionEntity } from "./entity/UnionEntity.js";
+import { SCHEMA_CONFIGURATION_OBJECT_DIRECTIVES } from "./library-directives.js";
+import type { DefinitionCollection } from "./parser/definition-collection.js";
+import { getDefinitionCollection } from "./parser/definition-collection.js";
+import { parseAnnotations } from "./parser/parse-annotation.js";
+import { parseArguments } from "./parser/parse-arguments.js";
+import { parseAttribute, parseAttributeArguments } from "./parser/parse-attribute.js";
+import { findDirective } from "./parser/utils.js";
+import type { NestedOperation, QueryDirection, RelationshipDirection } from "./relationship/Relationship.js";
+import { Relationship } from "./relationship/Relationship.js";
 
 export function generateModel(document: DocumentNode): Neo4jGraphQLSchemaModel {
     const definitionCollection: DefinitionCollection = getDefinitionCollection(document);

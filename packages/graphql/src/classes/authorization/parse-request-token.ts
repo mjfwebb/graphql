@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import { DEBUG_AUTH } from "../../constants";
 import Debug from "debug";
+import { DEBUG_AUTH } from "../../constants.js";
 
 const debug = Debug(DEBUG_AUTH);
 
