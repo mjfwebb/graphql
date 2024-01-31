@@ -11,6 +11,7 @@
         "0-9-1",
         "qpid"
     ],
+    "type": "module",
     "license": "Apache-2.0",
     "bugs": {
         "url": "https://github.com/neo4j/graphql/issues"

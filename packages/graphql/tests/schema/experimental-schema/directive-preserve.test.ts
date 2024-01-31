@@ -18,9 +18,9 @@
  */
 
 import { printSchemaWithDirectives } from "@graphql-tools/utils";
-import { lexicographicSortSchema } from "graphql/utilities";
 import { gql } from "graphql-tag";
-import { Neo4jGraphQL } from "../../../src";
+import { lexicographicSortSchema } from "graphql/utilities";
+import { Neo4jGraphQL } from "../../../src/index.js";
 
 describe("Directive-preserve", () => {
     test("Custom directives preserved", async () => {

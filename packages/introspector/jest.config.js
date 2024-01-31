@@ -1,6 +1,6 @@
-const globalConf = require("../../jest.config.base");
+import globalConf from "../../jest.config.base.js";
 
-module.exports = {
+const config = {
     ...globalConf,
     displayName: "@neo4j/introspector",
     roots: ["<rootDir>/packages/introspector/src/", "<rootDir>/packages/introspector/tests/"],
@@ -14,3 +14,5 @@ module.exports = {
         ],
     },
 };
+
+export default config;

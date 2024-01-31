@@ -7,7 +7,7 @@ const INT_TEST_DB_NAME = "neo4jgraphqlinttestdatabase";
 const cypherDropData = `MATCH (n) DETACH DELETE n`;
 const cypherDropIndexes = `CALL apoc.schema.assert({},{},true) YIELD label, key RETURN *`;
 
-export default async function globalSetup() {
+async function globalSetup() {
     process.env.NODE_ENV = "test";
 
     setTZ(TZ);
@@ -57,3 +57,5 @@ async function dropDataAndIndexes(session) {
     await session.run(cypherDropData);
     await session.run(cypherDropIndexes);
 }
+
+export default globalSetup;

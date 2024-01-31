@@ -1,6 +1,6 @@
-const globalConf = require("../../jest.config.base");
+import globalConf from "../../jest.config.base.js";
 
-module.exports = {
+const config = {
     ...globalConf,
     displayName: "@neo4j/graphql-ogm",
     roots: ["<rootDir>/packages/ogm/src", "<rootDir>/packages/ogm/tests"],
@@ -14,3 +14,5 @@ module.exports = {
         ],
     },
 };
+
+export default config;

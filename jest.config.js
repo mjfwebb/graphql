@@ -1,6 +1,6 @@
 import baseConfig from "./jest.config.base.js";
 
-export default {
+const config = {
     ...baseConfig,
     projects: [
         "<rootDir>/packages/graphql/jest.config.js",
@@ -12,3 +12,5 @@ export default {
     coverageDirectory: "<rootDir>/coverage/",
     collectCoverageFrom: ["<rootDir>/packages/*/src/**/*.{ts,tsx}"],
 };
+
+export default config;

@@ -1,10 +1,11 @@
- 
-const setTZ = require("set-tz");
+import setTZ from "set-tz";
 
 const TZ = "Etc/UTC";
 
-module.exports = function globalSetup() {
+function globalSetup() {
     process.env.NODE_ENV = "test";
 
     setTZ(TZ);
-};
+}
+
+export default globalSetup;

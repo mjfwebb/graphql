@@ -28,6 +28,7 @@
     "scripts": {
         "clean": "cd src/ && tsc --build --clean",
         "test": "jest",
+        "vitest": "vitest",
         "test:unit": "jest src --coverage=true -c jest.minimal.config.js",
         "test:unit:watch": "jest src --watch -c jest.minimal.config.js",
         "test:tck": "jest tests/tck -c jest.minimal.config.js",

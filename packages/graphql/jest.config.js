@@ -5,7 +5,7 @@ import globalConfig from "../../jest.config.base.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default {
+const config = {
     ...globalConfig,
     displayName: "@neo4j/graphql",
     globalSetup: path.join(__dirname, "jest.global-setup.js"),
@@ -20,4 +20,13 @@ export default {
             },
         ],
     },
+    // moduleFileExtensions: ["js", "json", "ts"],
+    // testEnvironment: "node",
+    // "testRegex": ".\\.spec.ts$",
+    // transform: {
+    //     "^.+\\.(t|j)s$": "ts-jest",
+    // },
+    // moduleDirectories: ["<rootDir>/../", "node_modules"],
 };
+
+export default config;
