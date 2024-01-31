@@ -19,11 +19,11 @@
 
 import { graphql } from "graphql";
 import type { Driver, Session } from "neo4j-driver";
-import { Neo4jGraphQL } from "../../../src";
-import { cleanNodes } from "../../utils/clean-nodes";
-import { createBearerToken } from "../../utils/create-bearer-token";
-import { UniqueType } from "../../utils/graphql-types";
-import Neo4j from "../neo4j";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import { cleanNodes } from "../../utils/clean-nodes.js";
+import { createBearerToken } from "../../utils/create-bearer-token.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import Neo4j from "../neo4j.js";
 
 describe("https://github.com/neo4j/graphql/issues/4110", () => {
     let driver: Driver;

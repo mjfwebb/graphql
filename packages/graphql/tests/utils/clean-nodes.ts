@@ -19,8 +19,8 @@
 
 import Cypher from "@neo4j/cypher-builder";
 import type { Result, Session } from "neo4j-driver";
-import type { UniqueType } from "./graphql-types";
-import { runCypher } from "./run-cypher";
+import type { UniqueType } from "./graphql-types.js";
+import { runCypher } from "./run-cypher.js";
 
 /** Removes all nodes with the given labels from the database */
 export async function cleanNodes(session: Session, labels: Array<string | UniqueType>): Promise<Result> {

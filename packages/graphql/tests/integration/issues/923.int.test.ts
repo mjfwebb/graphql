@@ -19,12 +19,12 @@
 
 import type { GraphQLSchema } from "graphql";
 import { graphql } from "graphql";
-import type { Driver, Session, Integer } from "neo4j-driver";
 import { gql } from "graphql-tag";
-import Neo4j from "../neo4j";
-import { getQuerySource } from "../../utils/get-query-source";
-import { UniqueType } from "../../utils/graphql-types";
-import { Neo4jGraphQL } from "../../../src";
+import type { Driver, Integer, Session } from "neo4j-driver";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import { getQuerySource } from "../../utils/get-query-source.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import Neo4j from "../neo4j.js";
 
 describe("https://github.com/neo4j/graphql/issues/923", () => {
     const testBlogpost = new UniqueType("BlogPost");

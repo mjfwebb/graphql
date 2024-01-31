@@ -19,9 +19,9 @@
 
 import { graphql } from "graphql";
 import type { Driver, Session } from "neo4j-driver";
-import Neo4j from "../neo4j";
-import { Neo4jGraphQL } from "../../../src/classes";
-import { UniqueType } from "../../utils/graphql-types";
+import { Neo4jGraphQL } from "../../../src/classes/index.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import Neo4j from "../neo4j.js";
 
 describe("Single relationship (1-*) filtering", () => {
     const Person = new UniqueType("Person");

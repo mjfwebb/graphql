@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 
-import type { Driver } from "neo4j-driver";
 import { graphql } from "graphql";
 import { gql } from "graphql-tag";
-import Neo4j from "../neo4j";
-import { Neo4jGraphQL } from "../../../src/classes";
+import type { Driver } from "neo4j-driver";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import Neo4j from "../neo4j.js";
 
 describe("Connections -> Unions", () => {
     let driver: Driver;

@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
+import { graphql } from "graphql";
 import type { Driver, Integer } from "neo4j-driver";
 import { isTime } from "neo4j-driver";
-import { graphql } from "graphql";
 import { generate } from "randomstring";
-import Neo4j from "../../neo4j";
-import { Neo4jGraphQL } from "../../../../src/classes";
+import { Neo4jGraphQL } from "../../../../src/classes/index.js";
+import Neo4j from "../../neo4j.js";
 
 describe("timestamp/time", () => {
     let driver: Driver;

@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
-import type { Driver } from "neo4j-driver";
-import Neo4j from "../neo4j";
-import { Neo4jGraphQL } from "../../../src/classes";
-import { UniqueType } from "../../utils/graphql-types";
-import { graphql } from "graphql";
 import type { GraphQLSchema } from "graphql";
+import { graphql } from "graphql";
+import type { Driver } from "neo4j-driver";
+import { Neo4jGraphQL } from "../../../src/classes/index.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import Neo4j from "../neo4j.js";
 
 describe("Top-level union query fields", () => {
     let driver: Driver;

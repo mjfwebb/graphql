@@ -18,7 +18,7 @@
  */
 
 import { gql } from "graphql-tag";
-import { Neo4jGraphQL } from "../../../src/classes";
+import { Neo4jGraphQL } from "../../../src/index.js";
 
 describe("https://github.com/neo4j/graphql/issues/586", () => {
     test("should not throw when using values in BigInt", () => {

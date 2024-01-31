@@ -17,14 +17,14 @@
  * limitations under the License.
  */
 
-import type { Driver } from "neo4j-driver";
 import { graphql } from "graphql";
 import type { JWKSMock } from "mock-jwks";
 import createJWKSMock from "mock-jwks";
-import Neo4j from "../neo4j";
-import { Neo4jGraphQL } from "../../../src/classes";
-import type { Neo4jGraphQLAuthenticationError } from "../../../src/classes";
-import { UniqueType } from "../../utils/graphql-types";
+import type { Driver } from "neo4j-driver";
+import type { Neo4jGraphQLAuthenticationError } from "../../../src/classes/index.js";
+import { Neo4jGraphQL } from "../../../src/classes/index.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import Neo4j from "../neo4j.js";
 
 describe("Global authentication - Authorization JWKS plugin", () => {
     let jwksMock: JWKSMock;

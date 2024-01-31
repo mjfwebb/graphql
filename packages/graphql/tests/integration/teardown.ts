@@ -23,7 +23,7 @@
  *   `ts-node tests/integration/teardown.ts`
  */
 
-import Neo4j from "./neo4j";
+import Neo4j from "./neo4j.js";
 
 const teardown = async () => {
     const neo4j = new Neo4j();

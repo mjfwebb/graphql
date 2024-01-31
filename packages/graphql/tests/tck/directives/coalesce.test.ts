@@ -18,8 +18,14 @@
  */
 
 import { gql } from "graphql-tag";
-import { Neo4jGraphQL } from "../../../src";
-import { formatCypher, translateQuery, formatParams, setTestEnvVars, unsetTestEnvVars } from "../utils/tck-test-utils";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import {
+    formatCypher,
+    formatParams,
+    setTestEnvVars,
+    translateQuery,
+    unsetTestEnvVars,
+} from "../utils/tck-test-utils.js";
 
 describe("Cypher coalesce()", () => {
     beforeAll(() => {

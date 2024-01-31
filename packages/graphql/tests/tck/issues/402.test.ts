@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 
-import { gql } from "graphql-tag";
 import type { DocumentNode } from "graphql";
-import { Neo4jGraphQL } from "../../../src";
-import { formatCypher, translateQuery, formatParams } from "../utils/tck-test-utils";
+import { gql } from "graphql-tag";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import { formatCypher, formatParams, translateQuery } from "../utils/tck-test-utils.js";
 
 describe("#402", () => {
     let typeDefs: DocumentNode;

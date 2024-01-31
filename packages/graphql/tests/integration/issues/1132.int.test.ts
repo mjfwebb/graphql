@@ -18,14 +18,14 @@
  */
 
 import { graphql } from "graphql";
+import { gql } from "graphql-tag";
 import type { Driver, Session } from "neo4j-driver";
 import { generate } from "randomstring";
-import { gql } from "graphql-tag";
-import Neo4j from "../neo4j";
-import { getQuerySource } from "../../utils/get-query-source";
-import { UniqueType } from "../../utils/graphql-types";
-import { Neo4jGraphQL } from "../../../src";
-import { createBearerToken } from "../../utils/create-bearer-token";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import { createBearerToken } from "../../utils/create-bearer-token.js";
+import { getQuerySource } from "../../utils/get-query-source.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import Neo4j from "../neo4j.js";
 
 describe("https://github.com/neo4j/graphql/issues/1132", () => {
     const secret = "secret";

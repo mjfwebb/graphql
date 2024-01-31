@@ -22,10 +22,10 @@ import { graphql } from "graphql";
 import { gql } from "graphql-tag";
 import type { Driver, Session } from "neo4j-driver";
 import { generate } from "randomstring";
-import { Neo4jGraphQL } from "../../src";
-import Neo4j from "./neo4j";
-import { UniqueType } from "../utils/graphql-types";
-import { cleanNodes } from "../utils/clean-nodes";
+import { Neo4jGraphQL } from "../../src/index.js";
+import { cleanNodes } from "../utils/clean-nodes.js";
+import { UniqueType } from "../utils/graphql-types.js";
+import Neo4j from "./neo4j.js";
 
 describe("delete union relationships", () => {
     let driver: Driver;

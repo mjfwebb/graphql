@@ -19,14 +19,14 @@
 
 import type { GraphQLSchema } from "graphql";
 import { graphql } from "graphql";
-import gql from "graphql-tag";
+import { gql } from "graphql-tag";
 import type { Driver } from "neo4j-driver";
-import { Neo4jGraphQL } from "../../../src/classes";
-import { INVALID_REQUIRED_FIELD_ERROR } from "../../../src/schema/get-custom-resolver-meta";
-import { cleanNodes } from "../../utils/clean-nodes";
-import { UniqueType } from "../../utils/graphql-types";
-import Neo4j from "../neo4j";
-import { createBearerToken } from "../../utils/create-bearer-token";
+import { Neo4jGraphQL } from "../../../src/classes/index.js";
+import { INVALID_REQUIRED_FIELD_ERROR } from "../../../src/schema/get-custom-resolver-meta.js";
+import { cleanNodes } from "../../utils/clean-nodes.js";
+import { createBearerToken } from "../../utils/create-bearer-token.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import Neo4j from "../neo4j.js";
 
 describe("@customResolver directive", () => {
     let driver: Driver;

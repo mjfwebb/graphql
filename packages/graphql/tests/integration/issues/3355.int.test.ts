@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
-import type { Driver } from "neo4j-driver";
 import { graphql } from "graphql";
+import type { Driver } from "neo4j-driver";
 import { generate } from "randomstring";
-import Neo4j from "../neo4j";
-import { Neo4jGraphQL } from "../../../src/classes";
-import { TestSubscriptionsEngine } from "../../utils/TestSubscriptionsEngine";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import { TestSubscriptionsEngine } from "../../utils/TestSubscriptionsEngine.js";
+import Neo4j from "../neo4j.js";
 
 describe("https://github.com/neo4j/graphql/issues/3355", () => {
     let driver: Driver;

@@ -17,13 +17,13 @@
  * limitations under the License.
  */
 
-import { gql } from "graphql-tag";
 import { graphql } from "graphql";
+import { gql } from "graphql-tag";
 import type { Driver, Session } from "neo4j-driver";
-import { Neo4jGraphQL } from "../../../../src";
-import { UniqueType } from "../../../utils/graphql-types";
-import { TestSubscriptionsEngine } from "../../../utils/TestSubscriptionsEngine";
-import Neo4j from "../../neo4j";
+import { Neo4jGraphQL } from "../../../../src/index.js";
+import { TestSubscriptionsEngine } from "../../../utils/TestSubscriptionsEngine.js";
+import { UniqueType } from "../../../utils/graphql-types.js";
+import Neo4j from "../../neo4j.js";
 
 describe("Subscriptions delete", () => {
     let driver: Driver;

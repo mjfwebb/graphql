@@ -21,9 +21,9 @@ import { graphql } from "graphql";
 import type { Driver } from "neo4j-driver";
 import neo4jDriver from "neo4j-driver";
 import { generate } from "randomstring";
-import Neo4j from "../neo4j";
-import { Neo4jGraphQL } from "../../../src/classes";
-import { parseDuration } from "../../../src/graphql/scalars/Duration";
+import { parseDuration } from "../../../src/graphql/scalars/Duration.js";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import Neo4j from "../neo4j.js";
 
 describe("Duration", () => {
     let driver: Driver;

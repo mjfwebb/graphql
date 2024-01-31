@@ -21,8 +21,8 @@ import { graphql } from "graphql";
 import { gql } from "graphql-tag";
 import type { Driver } from "neo4j-driver";
 import { generate } from "randomstring";
-import { Neo4jGraphQL } from "../../src/classes";
-import Neo4j from "./neo4j";
+import { Neo4jGraphQL } from "../../src/index.js";
+import Neo4j from "./neo4j.js";
 
 describe("update", () => {
     let driver: Driver;

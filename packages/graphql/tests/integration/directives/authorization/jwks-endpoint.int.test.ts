@@ -17,18 +17,18 @@
  * limitations under the License.
  */
 
-import type { Driver } from "neo4j-driver";
 import { graphql } from "graphql";
-import { generate } from "randomstring";
+import jwksRsa from "jwks-rsa";
+import Koa from "koa";
+import jwt from "koa-jwt";
+import Router from "koa-router";
 import type { JWKSMock } from "mock-jwks";
 import createJWKSMock from "mock-jwks";
+import type { Driver } from "neo4j-driver";
+import { generate } from "randomstring";
 import supertest from "supertest";
-import Koa from "koa";
-import Router from "koa-router";
-import jwt from "koa-jwt";
-import jwksRsa from "jwks-rsa";
-import Neo4j from "../../neo4j";
-import { Neo4jGraphQL } from "../../../../src/classes";
+import { Neo4jGraphQL } from "../../../../src/index.js";
+import Neo4j from "../../neo4j.js";
 
 describe("auth/jwks-endpoint", () => {
     let jwksMock: JWKSMock;

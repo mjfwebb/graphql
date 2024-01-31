@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 
-import type { NodeConstructor } from "../../../src/classes";
-import { Node } from "../../../src/classes";
-import type { NodeDirectiveConstructor } from "../../../src/classes/NodeDirective";
-import { NodeDirective } from "../../../src/classes/NodeDirective";
-import { Builder } from "./builder";
+import type { NodeConstructor } from "../../../src/classes/index.js";
+import { Node } from "../../../src/classes/index.js";
+import type { NodeDirectiveConstructor } from "../../../src/classes/NodeDirective.js";
+import { NodeDirective } from "../../../src/classes/NodeDirective.js";
+import { Builder } from "./builder.js";
 
 export class NodeBuilder extends Builder<Node, NodeConstructor> {
     constructor(newOptions: Partial<NodeConstructor> = {}) {

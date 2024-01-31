@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 
-import { generate } from "randomstring";
-import pluralize from "pluralize";
 import camelcase from "camelcase";
-import { upperFirst } from "../../src/utils/upper-first";
-import { leadingUnderscores } from "../../src/utils/leading-underscore";
+import pluralize from "pluralize";
+import { generate } from "randomstring";
+import { leadingUnderscores } from "../../src/utils/leading-underscore.js";
+import { upperFirst } from "../../src/utils/upper-first.js";
 
 type UniqueTypeOperations = {
     create: string;
@@ -97,7 +97,6 @@ export class UniqueType {
     public toString(): string {
         return this.name;
     }
-
 }
 
 /** Generates unique type

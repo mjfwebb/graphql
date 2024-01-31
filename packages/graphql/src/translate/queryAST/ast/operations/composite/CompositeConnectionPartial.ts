@@ -80,7 +80,8 @@ export class CompositeConnectionPartial extends ConnectionReadOperation {
 
         const edgeProjectionMap = new Cypher.Map();
 
-        const edgeProjectionFields = this.edgeFields.map((f) => f.getProjectionField(nestedContext.relationship));
+        // TODO: should not need to assert non-null here
+        const edgeProjectionFields = this.edgeFields.map((f) => f.getProjectionField(nestedContext.relationship!));
         const edgeSortProjectionFields = this.sortFields.flatMap((f) =>
             f.edge.map((ef) => ef.getProjectionField(nestedContext))
         );

@@ -17,14 +17,14 @@
  * limitations under the License.
  */
 
-import type { Driver } from "neo4j-driver";
-import { gql } from "graphql-tag";
+import { MapperKind, getDirective, mapSchema } from "@graphql-tools/utils";
 import type { GraphQLSchema } from "graphql";
-import { graphql, defaultFieldResolver } from "graphql";
-import { getDirective, MapperKind, mapSchema } from "@graphql-tools/utils";
+import { defaultFieldResolver, graphql } from "graphql";
+import { gql } from "graphql-tag";
+import type { Driver } from "neo4j-driver";
 import { generate } from "randomstring";
-import { Neo4jGraphQL } from "../../src/classes";
-import Neo4j from "./neo4j";
+import { Neo4jGraphQL } from "../../src/index.js";
+import Neo4j from "./neo4j.js";
 
 describe("Custom Directives", () => {
     let driver: Driver;

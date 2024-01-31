@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 
-import { Socket } from "net";
 import { IncomingMessage } from "http";
 import jsonwebtoken from "jsonwebtoken";
-import { createBearerToken } from "./create-bearer-token";
+import { Socket } from "net";
+import { createBearerToken } from "./create-bearer-token.js";
 
 /** Creates a JWT valid request with the given secret and the extraData in the JWT token */
 

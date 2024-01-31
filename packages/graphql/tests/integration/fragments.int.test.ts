@@ -23,9 +23,9 @@ import { graphql } from "graphql";
 import { gql } from "graphql-tag";
 import type { Driver } from "neo4j-driver";
 import { generate } from "randomstring";
-import { Neo4jGraphQL } from "../../src/classes";
-import { getQuerySource } from "../utils/get-query-source";
-import Neo4j from "./neo4j";
+import { Neo4jGraphQL } from "../../src/index.js";
+import { getQuerySource } from "../utils/get-query-source.js";
+import Neo4j from "./neo4j.js";
 
 const testLabel = generate({ charset: "alphabetic" });
 

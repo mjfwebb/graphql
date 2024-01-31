@@ -19,8 +19,8 @@
 
 import { graphql } from "graphql";
 import type { Session } from "neo4j-driver";
-import { Neo4jGraphQL } from "../../../src/classes";
-import Neo4j from "../neo4j";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import Neo4j from "../neo4j.js";
 
 describe("https://github.com/neo4j/graphql/issues/3009", () => {
     let neo4j: Neo4j;

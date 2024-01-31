@@ -17,16 +17,16 @@
  * limitations under the License.
  */
 
+import type { ValueNode } from "graphql";
+import { GraphQLError, GraphQLScalarType, Kind, graphql } from "graphql";
+import { gql } from "graphql-tag";
 import type { Driver } from "neo4j-driver";
 import { int, isInt } from "neo4j-driver";
 import { generate } from "randomstring";
-import type { ValueNode } from "graphql";
-import { graphql, GraphQLError, GraphQLScalarType, Kind } from "graphql";
-import { gql } from "graphql-tag";
-import Neo4j from "../neo4j";
-import { Neo4jGraphQL } from "../../../src/classes";
-import { delay } from "../../../src/utils/utils";
-import { isMultiDbUnsupportedError } from "../../utils/is-multi-db-unsupported-error";
+import { Neo4jGraphQL } from "../../../src/classes/index.js";
+import { delay } from "../../../src/utils/utils.js";
+import { isMultiDbUnsupportedError } from "../../utils/is-multi-db-unsupported-error.js";
+import Neo4j from "../neo4j.js";
 
 // Adapted from BigInt
 const PositiveInt = new GraphQLScalarType({

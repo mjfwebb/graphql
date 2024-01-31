@@ -17,14 +17,14 @@
  * limitations under the License.
  */
 
-import { gql } from "graphql-tag";
-import type { Driver, Session, Integer } from "neo4j-driver";
 import type { DocumentNode } from "graphql";
 import { graphql } from "graphql";
-import Neo4j from "../neo4j";
-import { Neo4jGraphQL } from "../../../src";
-import { UniqueType } from "../../utils/graphql-types";
-import { getQuerySource } from "../../utils/get-query-source";
+import { gql } from "graphql-tag";
+import type { Driver, Integer, Session } from "neo4j-driver";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import { getQuerySource } from "../../utils/get-query-source.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import Neo4j from "../neo4j.js";
 
 describe("Update -> ConnectOrCreate Top Level", () => {
     let driver: Driver;

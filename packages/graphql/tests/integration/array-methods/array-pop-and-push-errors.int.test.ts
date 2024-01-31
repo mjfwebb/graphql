@@ -17,17 +17,17 @@
  * limitations under the License.
  */
 
-import { gql } from "graphql-tag";
 import type { GraphQLError } from "graphql";
 import { graphql } from "graphql";
-import type { Driver, Session } from "neo4j-driver";
-import { generate } from "randomstring";
+import { gql } from "graphql-tag";
 import { IncomingMessage } from "http";
+import type { Driver, Session } from "neo4j-driver";
 import { Socket } from "net";
+import { generate } from "randomstring";
 
-import { Neo4jGraphQL } from "../../../src/classes";
-import Neo4j from "../neo4j";
-import { UniqueType } from "../../utils/graphql-types";
+import { Neo4jGraphQL } from "../../../src/classes/index.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import Neo4j from "../neo4j.js";
 
 describe("array-pop-and-push", () => {
     let driver: Driver;

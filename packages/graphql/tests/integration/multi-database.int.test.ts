@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
-import type { Driver } from "neo4j-driver";
 import { graphql } from "graphql";
+import type { Driver } from "neo4j-driver";
 import { generate } from "randomstring";
-import Neo4j from "./neo4j";
-import { Neo4jGraphQL } from "../../src/classes";
-import { isMultiDbUnsupportedError } from "../utils/is-multi-db-unsupported-error";
+import { Neo4jGraphQL } from "../../src/index.js";
+import { isMultiDbUnsupportedError } from "../utils/is-multi-db-unsupported-error.js";
+import Neo4j from "./neo4j.js";
 
 describe("multi-database", () => {
     let driver: Driver;

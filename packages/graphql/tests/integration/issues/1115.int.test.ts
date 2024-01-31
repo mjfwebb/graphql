@@ -20,11 +20,11 @@
 import type { GraphQLSchema } from "graphql";
 import { graphql } from "graphql";
 import type { Driver } from "neo4j-driver";
-import Neo4j from "../neo4j";
-import { Neo4jGraphQL } from "../../../src";
-import { UniqueType } from "../../utils/graphql-types";
-import { runCypher } from "../../utils/run-cypher";
-import { createBearerToken } from "../../utils/create-bearer-token";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import { createBearerToken } from "../../utils/create-bearer-token.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import { runCypher } from "../../utils/run-cypher.js";
+import Neo4j from "../neo4j.js";
 
 describe("https://github.com/neo4j/graphql/issues/1115", () => {
     const parentType = new UniqueType("Parent");

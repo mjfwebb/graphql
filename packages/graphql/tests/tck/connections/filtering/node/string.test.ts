@@ -17,16 +17,16 @@
  * limitations under the License.
  */
 
-import { gql } from "graphql-tag";
 import type { DocumentNode } from "graphql";
-import { Neo4jGraphQL } from "../../../../../src";
+import { gql } from "graphql-tag";
+import { Neo4jGraphQL } from "../../../../../src/index.js";
 import {
     formatCypher,
-    translateQuery,
     formatParams,
     setTestEnvVars,
+    translateQuery,
     unsetTestEnvVars,
-} from "../../../utils/tck-test-utils";
+} from "../../../utils/tck-test-utils.js";
 
 describe("Cypher -> Connections -> Filtering -> Node -> String", () => {
     let typeDefs: DocumentNode;

@@ -20,12 +20,12 @@
 import type { GraphQLSchema } from "graphql";
 import { graphql } from "graphql";
 import type { Driver, Session } from "neo4j-driver";
-import Neo4j from "../../neo4j";
-import { Neo4jGraphQL } from "../../../../src";
-import { UniqueType } from "../../../utils/graphql-types";
-import { toGlobalId } from "../../../../src/utils/global-ids";
-import { cleanNodes } from "../../../utils/clean-nodes";
 import { generate } from "randomstring";
+import { Neo4jGraphQL } from "../../../../src/index.js";
+import { toGlobalId } from "../../../../src/utils/global-ids.js";
+import { cleanNodes } from "../../../utils/clean-nodes.js";
+import { UniqueType } from "../../../utils/graphql-types.js";
+import Neo4j from "../../neo4j.js";
 
 describe("RelayId projection with different database name", () => {
     let schema: GraphQLSchema;

@@ -19,11 +19,11 @@
 
 import { graphql } from "graphql";
 import type { Driver } from "neo4j-driver";
-import { cleanNodes } from "../../../utils/clean-nodes";
-import { Neo4jGraphQL } from "../../../../src";
-import { UniqueType } from "../../../utils/graphql-types";
-import { TestSubscriptionsEngine } from "../../../utils/TestSubscriptionsEngine";
-import Neo4j from "../../neo4j";
+import { Neo4jGraphQL } from "../../../../src/index.js";
+import { TestSubscriptionsEngine } from "../../../utils/TestSubscriptionsEngine.js";
+import { cleanNodes } from "../../../utils/clean-nodes.js";
+import { UniqueType } from "../../../utils/graphql-types.js";
+import Neo4j from "../../neo4j.js";
 
 describe("Subscriptions connect with create", () => {
     let driver: Driver;

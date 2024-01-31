@@ -17,14 +17,14 @@
  * limitations under the License.
  */
 
-import type { Driver } from "neo4j-driver";
 import { graphql } from "graphql";
 import { gql } from "graphql-tag";
-import Neo4j from "./neo4j";
-import { Neo4jGraphQL } from "../../src/classes";
-import { toGlobalId } from "../../src/utils/global-ids";
-import { UniqueType } from "../utils/graphql-types";
-import { createBearerToken } from "../utils/create-bearer-token";
+import type { Driver } from "neo4j-driver";
+import { Neo4jGraphQL } from "../../src/classes/index.js";
+import { toGlobalId } from "../../src/utils/global-ids.js";
+import { createBearerToken } from "../utils/create-bearer-token.js";
+import { UniqueType } from "../utils/graphql-types.js";
+import Neo4j from "./neo4j.js";
 
 describe("Global node resolution", () => {
     let driver: Driver;

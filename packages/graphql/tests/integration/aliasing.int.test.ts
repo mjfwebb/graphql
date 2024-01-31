@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
-import type { Driver } from "neo4j-driver";
 import type { GraphQLSchema } from "graphql";
 import { graphql } from "graphql";
+import type { Driver } from "neo4j-driver";
 import { generate } from "randomstring";
-import Neo4j from "./neo4j";
-import { Neo4jGraphQL } from "../../src/classes";
+import { Neo4jGraphQL } from "../../src/index.js";
+import Neo4j from "./neo4j.js";
 
 const testLabel = generate({ charset: "alphabetic" });
 

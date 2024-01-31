@@ -23,9 +23,9 @@ import { graphql } from "graphql";
 import { gql } from "graphql-tag";
 import type { Driver, Session } from "neo4j-driver";
 import { generate } from "randomstring";
-import { Neo4jGraphQL } from "../../../../src/classes";
-import { TestSubscriptionsEngine } from "../../../utils/TestSubscriptionsEngine";
-import Neo4j from "../../neo4j";
+import { Neo4jGraphQL } from "../../../../src/index.js";
+import { TestSubscriptionsEngine } from "../../../utils/TestSubscriptionsEngine.js";
+import Neo4j from "../../neo4j.js";
 
 describe("interface relationships", () => {
     let driver: Driver;

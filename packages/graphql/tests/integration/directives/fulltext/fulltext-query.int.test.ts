@@ -19,17 +19,17 @@
 
 import type { GraphQLSchema } from "graphql";
 import { graphql } from "graphql";
+import { upperFirst } from "graphql-compose";
 import { gql } from "graphql-tag";
 import type { Driver, Session } from "neo4j-driver";
 import { generate } from "randomstring";
-import { Neo4jGraphQL } from "../../../../src/classes";
-import { SCORE_FIELD } from "../../../../src/graphql/directives/fulltext";
-import { upperFirst } from "../../../../src/utils/upper-first";
-import { delay } from "../../../../src/utils/utils";
-import { createBearerToken } from "../../../utils/create-bearer-token";
-import { UniqueType } from "../../../utils/graphql-types";
-import { isMultiDbUnsupportedError } from "../../../utils/is-multi-db-unsupported-error";
-import Neo4j from "../../neo4j";
+import { SCORE_FIELD } from "../../../../src/graphql/directives/fulltext.js";
+import { Neo4jGraphQL } from "../../../../src/index.js";
+import { delay } from "../../../../src/utils/utils.js";
+import { createBearerToken } from "../../../utils/create-bearer-token.js";
+import { UniqueType } from "../../../utils/graphql-types.js";
+import { isMultiDbUnsupportedError } from "../../../utils/is-multi-db-unsupported-error.js";
+import Neo4j from "../../neo4j.js";
 
 function generatedTypeDefs(personType: UniqueType, movieType: UniqueType): string {
     return `

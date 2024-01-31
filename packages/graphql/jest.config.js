@@ -12,21 +12,21 @@ const config = {
     setupFilesAfterEnv: ["jest-extended/all"],
     roots: ["<rootDir>/packages/graphql/src/", "<rootDir>/packages/graphql/tests/"],
     coverageDirectory: "<rootDir>/packages/graphql/coverage/",
+    extensionsToTreatAsEsm: [".ts"],
+    moduleNameMapper: {
+        "^(\\.{1,2}/.*)\\.js$": "$1",
+    },
     transform: {
         "^.+\\.ts$": [
             "ts-jest",
             {
                 tsconfig: "<rootDir>/packages/graphql/tsconfig.json",
             },
+            {
+                useESM: true,
+            },
         ],
     },
-    // moduleFileExtensions: ["js", "json", "ts"],
-    // testEnvironment: "node",
-    // "testRegex": ".\\.spec.ts$",
-    // transform: {
-    //     "^.+\\.(t|j)s$": "ts-jest",
-    // },
-    // moduleDirectories: ["<rootDir>/../", "node_modules"],
 };
 
 export default config;

@@ -17,13 +17,13 @@
  * limitations under the License.
  */
 
+import { graphql } from "graphql";
 import type { Driver } from "neo4j-driver";
-import Neo4j from "../neo4j";
-import { Neo4jGraphQL } from "../../../src";
-import { UniqueType } from "../../utils/graphql-types";
-import { cleanNodes } from "../../utils/clean-nodes";
-import { graphql } from "graphql/index";
 import { generate } from "randomstring";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import { cleanNodes } from "../../utils/clean-nodes.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import Neo4j from "../neo4j.js";
 
 const testLabel = generate({ charset: "alphabetic" });
 

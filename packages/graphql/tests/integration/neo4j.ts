@@ -19,7 +19,7 @@
 
 import * as neo4j from "neo4j-driver";
 import * as util from "util";
-import type { Neo4jGraphQLContext } from "../../src";
+import type { Neo4jGraphQLContext } from "../../src/index.js";
 
 const INT_TEST_DB_NAME = "neo4jgraphqlinttestdatabase";
 
@@ -40,7 +40,12 @@ class Neo4j {
             return this.driver;
         }
 
-        const { NEO_USER = "neo4j", NEO_PASSWORD = "password", NEO_URL = "neo4j://localhost:7687/neo4j" } = process.env;
+        console.log(process.env);
+        const {
+            NEO_USER = "neo4j",
+            NEO_PASSWORD = "longerpassword",
+            NEO_URL = "neo4j://localhost:7687/neo4j",
+        } = process.env;
 
         if (process.env.NEO_WAIT && !this.driver) {
             await util.promisify(setTimeout)(Number(process.env.NEO_WAIT));

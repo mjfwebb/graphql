@@ -22,11 +22,11 @@ import { graphql } from "graphql";
 import { gql } from "graphql-tag";
 import type { Driver, Session } from "neo4j-driver";
 import { int } from "neo4j-driver";
-import { Neo4jGraphQL } from "../../../src";
-import { cleanNodes } from "../../utils/clean-nodes";
-import { UniqueType } from "../../utils/graphql-types";
-import { TestSubscriptionsEngine } from "../../utils/TestSubscriptionsEngine";
-import Neo4j from "../neo4j";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import { TestSubscriptionsEngine } from "../../utils/TestSubscriptionsEngine.js";
+import { cleanNodes } from "../../utils/clean-nodes.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import Neo4j from "../neo4j.js";
 
 describe("Subscriptions to spatial types", () => {
     let driver: Driver;

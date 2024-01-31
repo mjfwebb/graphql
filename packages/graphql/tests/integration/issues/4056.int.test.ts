@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
-import type { Driver } from "neo4j-driver";
-import Neo4j from "../neo4j";
-import { Neo4jGraphQL } from "../../../src/classes";
 import type { GraphQLResponse } from "@apollo/server";
 import { ApolloServer } from "@apollo/server";
-import gql from "graphql-tag";
+import { gql } from "graphql-tag";
+import type { Driver } from "neo4j-driver";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import Neo4j from "../neo4j.js";
 
 describe("https://github.com/neo4j/graphql/issues/4056", () => {
     let driver: Driver;

@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
-import type { Driver } from "neo4j-driver";
 import { graphql } from "graphql";
-import Neo4j from "../neo4j";
-import { Neo4jGraphQL } from "../../../src/classes";
-import { UniqueType } from "../../utils/graphql-types";
-import { createBearerToken } from "../../utils/create-bearer-token";
+import type { Driver } from "neo4j-driver";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import { createBearerToken } from "../../utils/create-bearer-token.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import Neo4j from "../neo4j.js";
 
 describe("https://github.com/neo4j/graphql/issues/2100", () => {
     let driver: Driver;

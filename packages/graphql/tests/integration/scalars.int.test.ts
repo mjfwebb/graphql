@@ -17,13 +17,13 @@
  * limitations under the License.
  */
 
-import type { Driver } from "neo4j-driver";
 import { graphql, GraphQLScalarType } from "graphql";
 import { Kind } from "graphql/language";
+import type { Driver } from "neo4j-driver";
 import { generate } from "randomstring";
-import Neo4j from "./neo4j";
-import { Neo4jGraphQL } from "../../src/classes";
-import { UniqueType } from "../utils/graphql-types";
+import { Neo4jGraphQL } from "../../src/classes/index.js";
+import { UniqueType } from "../utils/graphql-types.js";
+import Neo4j from "./neo4j.js";
 
 const GraphQLUpperCaseString = new GraphQLScalarType({
     name: "UpperCaseString",

@@ -17,14 +17,14 @@
  * limitations under the License.
  */
 
-import { gql } from "graphql-tag";
 import { graphql } from "graphql";
+import { gql } from "graphql-tag";
 import type { Driver } from "neo4j-driver";
-import { Neo4jGraphQL } from "../../../src";
-import { Neo4jGraphQLSubscriptionsDefaultEngine } from "../../../src/classes/subscription/Neo4jGraphQLSubscriptionsDefaultEngine";
-import { UniqueType } from "../../utils/graphql-types";
-import Neo4j from "../neo4j";
-import type { EventMeta } from "../../../src/types";
+import { Neo4jGraphQLSubscriptionsDefaultEngine } from "../../../src/classes/subscription/Neo4jGraphQLSubscriptionsDefaultEngine.js";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import type { EventMeta } from "../../../src/types/index.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import Neo4j from "../neo4j.js";
 
 describe("Subscriptions Single Instance Plugin", () => {
     let driver: Driver;

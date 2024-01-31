@@ -21,8 +21,8 @@ import { faker } from "@faker-js/faker";
 import { graphql } from "graphql";
 import type { Driver, Session } from "neo4j-driver";
 import { int } from "neo4j-driver";
-import { Neo4jGraphQL } from "../../../src/classes";
-import Neo4j from "../neo4j";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import Neo4j from "../neo4j.js";
 
 describe("CartesianPoint", () => {
     let driver: Driver;

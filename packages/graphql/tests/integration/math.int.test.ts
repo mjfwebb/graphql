@@ -17,14 +17,14 @@
  * limitations under the License.
  */
 
-import type { Driver, Session } from "neo4j-driver";
-import { int } from "neo4j-driver";
 import type { GraphQLError } from "graphql";
 import { graphql } from "graphql";
+import type { Driver, Session } from "neo4j-driver";
+import { int } from "neo4j-driver";
 import { generate } from "randomstring";
-import Neo4j from "./neo4j";
-import { Neo4jGraphQL } from "../../src/classes";
-import { UniqueType } from "../utils/graphql-types";
+import { Neo4jGraphQL } from "../../src/classes/index.js";
+import { UniqueType } from "../utils/graphql-types.js";
+import Neo4j from "./neo4j.js";
 
 describe("Mathematical operations tests", () => {
     let driver: Driver;

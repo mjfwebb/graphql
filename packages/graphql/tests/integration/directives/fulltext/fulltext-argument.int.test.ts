@@ -17,15 +17,15 @@
  * limitations under the License.
  */
 
-import type { Driver } from "neo4j-driver";
-import { generate } from "randomstring";
 import { graphql } from "graphql";
 import { gql } from "graphql-tag";
-import Neo4j from "../../neo4j";
-import { Neo4jGraphQL } from "../../../../src/classes";
-import { UniqueType } from "../../../utils/graphql-types";
-import { delay } from "../../../../src/utils/utils";
-import { isMultiDbUnsupportedError } from "../../../utils/is-multi-db-unsupported-error";
+import type { Driver } from "neo4j-driver";
+import { generate } from "randomstring";
+import { Neo4jGraphQL } from "../../../../src/index.js";
+import { delay } from "../../../../src/utils/utils.js";
+import { UniqueType } from "../../../utils/graphql-types.js";
+import { isMultiDbUnsupportedError } from "../../../utils/is-multi-db-unsupported-error.js";
+import Neo4j from "../../neo4j.js";
 
 describe("@fulltext directive", () => {
     let driver: Driver;

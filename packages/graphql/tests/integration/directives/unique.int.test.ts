@@ -17,17 +17,17 @@
  * limitations under the License.
  */
 
-import type { Driver } from "neo4j-driver";
-import { generate } from "randomstring";
 import { graphql } from "graphql";
 import { gql } from "graphql-tag";
-import Neo4j from "../neo4j";
-import { Neo4jGraphQL } from "../../../src/classes";
-import { UniqueType } from "../../utils/graphql-types";
-import { isMultiDbUnsupportedError } from "../../utils/is-multi-db-unsupported-error";
-import type { Neo4jDatabaseInfo } from "../../../src/classes/Neo4jDatabaseInfo";
-import { getNeo4jDatabaseInfo } from "../../../src/classes/Neo4jDatabaseInfo";
-import { Executor } from "../../../src/classes/Executor";
+import type { Driver } from "neo4j-driver";
+import { generate } from "randomstring";
+import { Executor } from "../../../src/classes/Executor.js";
+import type { Neo4jDatabaseInfo } from "../../../src/classes/Neo4jDatabaseInfo.js";
+import { getNeo4jDatabaseInfo } from "../../../src/classes/Neo4jDatabaseInfo.js";
+import { Neo4jGraphQL } from "../../../src/classes/index.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import { isMultiDbUnsupportedError } from "../../utils/is-multi-db-unsupported-error.js";
+import Neo4j from "../neo4j.js";
 
 describe("assertIndexesAndConstraints/unique", () => {
     let driver: Driver;

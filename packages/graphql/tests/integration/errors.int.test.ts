@@ -19,7 +19,7 @@
 
 import type { GraphQLError } from "graphql";
 import { graphql } from "graphql";
-import { Neo4jGraphQL } from "../../src/classes";
+import { Neo4jGraphQL } from "../../src/index.js";
 
 describe("Errors", () => {
     test("An error should be thrown if no driver is supplied", async () => {

@@ -18,8 +18,8 @@
  */
 
 import type { DocumentNode } from "graphql";
-import type { Neo4jGraphQLSchemaModel } from "../../../src/schema-model/Neo4jGraphQLSchemaModel";
-import { generateModel } from "../../../src/schema-model/generate-model";
+import type { Neo4jGraphQLSchemaModel } from "../../../src/schema-model/Neo4jGraphQLSchemaModel.js";
+import { generateModel } from "../../../src/schema-model/generate-model.js";
 
 export class SchemaModelBuilder {
     private schemaModel: Neo4jGraphQLSchemaModel;

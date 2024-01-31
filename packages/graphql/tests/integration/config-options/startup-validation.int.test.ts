@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 
-import type { Driver } from "neo4j-driver";
-import Neo4j from "../neo4j";
-import { Neo4jGraphQL } from "../../../src/classes";
 import { GraphQLError } from "graphql";
+import type { Driver } from "neo4j-driver";
+import { Neo4jGraphQL } from "../../../src/classes/index.js";
+import Neo4j from "../neo4j.js";
 
 describe("Startup Validation", () => {
     let driver: Driver;

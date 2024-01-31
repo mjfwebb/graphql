@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
+import { graphql } from "graphql";
 import type { Driver } from "neo4j-driver";
 import { int } from "neo4j-driver";
-import { graphql } from "graphql";
 import { generate } from "randomstring";
-import Neo4j from "../neo4j";
-import { Neo4jGraphQL } from "../../../src/classes";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import Neo4j from "../neo4j.js";
 
 describe("Float", () => {
     let driver: Driver;

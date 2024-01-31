@@ -17,18 +17,18 @@
  * limitations under the License.
  */
 
-import type { Driver } from "neo4j-driver";
 import { graphql } from "graphql";
 import { IncomingMessage } from "http";
+import type { Driver } from "neo4j-driver";
 import { Socket } from "net";
 import { generate } from "randomstring";
-import Neo4j from "../../neo4j";
-import { Neo4jGraphQL } from "../../../../src/classes";
-import { runCypher } from "../../../utils/run-cypher";
-import { UniqueType } from "../../../utils/graphql-types";
-import { TestSubscriptionsEngine } from "../../../utils/TestSubscriptionsEngine";
-import { createBearerToken } from "../../../utils/create-bearer-token";
-import { cleanNodes } from "../../../utils/clean-nodes";
+import { Neo4jGraphQL } from "../../../../src/index.js";
+import { TestSubscriptionsEngine } from "../../../utils/TestSubscriptionsEngine.js";
+import { cleanNodes } from "../../../utils/clean-nodes.js";
+import { createBearerToken } from "../../../utils/create-bearer-token.js";
+import { UniqueType } from "../../../utils/graphql-types.js";
+import { runCypher } from "../../../utils/run-cypher.js";
+import Neo4j from "../../neo4j.js";
 
 describe("auth/is-authenticated", () => {
     let driver: Driver;

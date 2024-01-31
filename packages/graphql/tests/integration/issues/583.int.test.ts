@@ -17,14 +17,14 @@
  * limitations under the License.
  */
 
-import { gql } from "graphql-tag";
 import type { GraphQLSchema } from "graphql";
 import { graphql } from "graphql";
+import { gql } from "graphql-tag";
 import type { Driver } from "neo4j-driver";
 import { generate } from "randomstring";
-import { Neo4jGraphQL } from "../../../src/classes";
-import Neo4j from "../neo4j";
-import { getQuerySource } from "../../utils/get-query-source";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import { getQuerySource } from "../../utils/get-query-source.js";
+import Neo4j from "../neo4j.js";
 
 const testLabel = generate({ charset: "alphabetic" });
 

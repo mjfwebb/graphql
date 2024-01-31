@@ -19,13 +19,13 @@
 
 import type { GraphQLSchema } from "graphql";
 import { graphql } from "graphql";
-import type { Driver, Session } from "neo4j-driver";
 import { gql } from "graphql-tag";
-import Neo4j from "../neo4j";
-import { getQuerySource } from "../../utils/get-query-source";
-import { UniqueType } from "../../utils/graphql-types";
-import { Neo4jGraphQL } from "../../../src";
-import { createBearerToken } from "../../utils/create-bearer-token";
+import type { Driver, Session } from "neo4j-driver";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import { createBearerToken } from "../../utils/create-bearer-token.js";
+import { getQuerySource } from "../../utils/get-query-source.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import Neo4j from "../neo4j.js";
 
 describe("https://github.com/neo4j/graphql/issues/1050", () => {
     const testUser = new UniqueType("User");

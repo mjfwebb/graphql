@@ -23,9 +23,9 @@ import { gql } from "graphql-tag";
 import type { Driver, Session } from "neo4j-driver";
 import { generate } from "randomstring";
 
-import { Neo4jGraphQL } from "../../../src/classes";
-import { UniqueType } from "../../utils/graphql-types";
-import Neo4j from "../neo4j";
+import { Neo4jGraphQL } from "../../../src/classes/index.js";
+import { UniqueType } from "../../utils/graphql-types.js";
+import Neo4j from "../neo4j.js";
 
 describe("array-push", () => {
     let driver: Driver;
@@ -270,11 +270,11 @@ describe("array-push", () => {
 
             await session.run(cypher, { movieTitle });
 
-        const gqlResult = await graphql({
-            schema: await neoSchema.getSchema(),
-            source: update,
-            contextValue: neo4j.getContextValues(),
-        });
+            const gqlResult = await graphql({
+                schema: await neoSchema.getSchema(),
+                source: update,
+                contextValue: neo4j.getContextValues(),
+            });
 
             if (gqlResult.errors) {
                 console.log(JSON.stringify(gqlResult.errors, null, 2));
@@ -352,12 +352,12 @@ describe("array-push", () => {
 
             await session.run(cypher, { movieTitle });
 
-        const gqlResult = await graphql({
-            schema: await neoSchema.getSchema(),
-            source: update,
-            contextValue: neo4j.getContextValues(),
-            variableValues: { inputValue },
-        });
+            const gqlResult = await graphql({
+                schema: await neoSchema.getSchema(),
+                source: update,
+                contextValue: neo4j.getContextValues(),
+                variableValues: { inputValue },
+            });
 
             if (gqlResult.errors) {
                 console.log(JSON.stringify(gqlResult.errors, null, 2));
@@ -433,12 +433,12 @@ describe("array-push", () => {
 
             await session.run(cypher, { movieTitle });
 
-        const gqlResult = await graphql({
-            schema: await neoSchema.getSchema(),
-            source: update,
-            contextValue: neo4j.getContextValues(),
-            variableValues: { inputValue },
-        });
+            const gqlResult = await graphql({
+                schema: await neoSchema.getSchema(),
+                source: update,
+                contextValue: neo4j.getContextValues(),
+                variableValues: { inputValue },
+            });
 
             if (gqlResult.errors) {
                 console.log(JSON.stringify(gqlResult.errors, null, 2));
