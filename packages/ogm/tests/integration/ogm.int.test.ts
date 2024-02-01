@@ -20,11 +20,11 @@
 import { gql } from "graphql-tag";
 import type { Driver } from "neo4j-driver";
 import { generate } from "randomstring";
-import type { Model } from "../../src";
-import { OGM } from "../../src";
-import { cleanNodes } from "../utils/clean-nodes";
-import { UniqueType } from "../utils/utils";
-import neo4j from "./neo4j";
+import type { Model } from "../../src/index.js";
+import { OGM } from "../../src/index.js";
+import { cleanNodes } from "../utils/clean-nodes.js";
+import { UniqueType } from "../utils/utils.js";
+import neo4j from "./neo4j.js";
 
 describe("OGM", () => {
     let driver: Driver;

@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import pascalCase from "./pascal-case";
+import pascalCase from "./pascal-case.js";
 
 type Args = [string, string];
 

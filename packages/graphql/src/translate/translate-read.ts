@@ -19,10 +19,10 @@
 
 import type Cypher from "@neo4j/cypher-builder";
 import Debug from "debug";
-import { DEBUG_TRANSLATE } from "../constants";
-import type { EntityAdapter } from "../schema-model/entity/EntityAdapter";
-import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context";
-import { QueryASTFactory } from "./queryAST/factory/QueryASTFactory";
+import { DEBUG_TRANSLATE } from "../constants.js";
+import type { EntityAdapter } from "../schema-model/entity/EntityAdapter.js";
+import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context.js";
+import { QueryASTFactory } from "./queryAST/factory/QueryASTFactory.js";
 
 const debug = Debug(DEBUG_TRANSLATE);
 

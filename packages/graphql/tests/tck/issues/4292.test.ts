@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 
-import gql from "graphql-tag";
-import { Neo4jGraphQL } from "../../../src";
-import { createBearerToken } from "../../utils/create-bearer-token";
-import { translateQuery, formatCypher, formatParams } from "../utils/tck-test-utils";
+import { gql } from "graphql-tag";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import { createBearerToken } from "../../utils/create-bearer-token.js";
+import { formatCypher, formatParams, translateQuery } from "../utils/tck-test-utils.js";
 
 describe("https://github.com/neo4j/graphql/issues/4292", () => {
     test("authorization subqueries should be wrapped in a Cypher.CALL", async () => {

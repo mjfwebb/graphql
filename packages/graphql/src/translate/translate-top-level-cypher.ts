@@ -17,13 +17,13 @@
  * limitations under the License.
  */
 
-import createProjectionAndParams from "./create-projection-and-params";
-import type { CypherField } from "../types";
-import { AUTH_FORBIDDEN_ERROR } from "../constants";
 import Cypher from "@neo4j/cypher-builder";
-import { compileCypher } from "../utils/compile-cypher";
-import { applyAuthentication } from "./authorization/utils/apply-authentication";
-import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context";
+import { AUTH_FORBIDDEN_ERROR } from "../constants.js";
+import type { CypherField } from "../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context.js";
+import { compileCypher } from "../utils/compile-cypher.js";
+import { applyAuthentication } from "./authorization/utils/apply-authentication.js";
+import createProjectionAndParams from "./create-projection-and-params.js";
 
 export function translateTopLevelCypher({
     context,

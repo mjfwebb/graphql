@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import type { Node } from "../classes";
-import { RELATIONSHIP_REQUIREMENT_PREFIX } from "../constants";
-import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context";
+import type { Node } from "../classes/index.js";
+import { RELATIONSHIP_REQUIREMENT_PREFIX } from "../constants.js";
+import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context.js";
 
 function createRelationshipValidationString({
     node,

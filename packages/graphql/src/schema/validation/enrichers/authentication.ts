@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import type { EnricherContext } from "../EnricherContext";
-import type { Enricher } from "../types";
-import { directiveEnricher } from "./directive/directive";
+import type { EnricherContext } from "../EnricherContext.js";
+import type { Enricher } from "../types.js";
+import { directiveEnricher } from "./directive/directive.js";
 
 export function authenticationDirectiveEnricher(enricherContext: EnricherContext): Enricher {
     return directiveEnricher(

@@ -17,22 +17,22 @@
  * limitations under the License.
  */
 
-import type { RelationField, PrimitiveField, PredicateReturn } from "../types";
-import type { Node, Relationship } from "../classes";
-import { Neo4jGraphQLError } from "../classes";
-import type { CallbackBucket } from "../classes/CallbackBucket";
-import { asArray, omitFields } from "../utils/utils";
 import Cypher from "@neo4j/cypher-builder";
-import { addCallbackAndSetParamCypher } from "./utils/callback-utils";
-import { findConflictingProperties } from "../utils/is-property-clash";
-import { createConnectionEventMeta } from "./subscriptions/create-connection-event-meta";
-import { filterMetaVariable } from "./subscriptions/filter-meta-variable";
-import { getCypherRelationshipDirection } from "../utils/get-relationship-direction";
-import { createAuthorizationBeforePredicate } from "./authorization/create-authorization-before-predicate";
-import { createAuthorizationAfterPredicate } from "./authorization/create-authorization-after-predicate";
-import { checkAuthentication } from "./authorization/check-authentication";
-import { compileCypher } from "../utils/compile-cypher";
-import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context";
+import type { CallbackBucket } from "../classes/CallbackBucket.js";
+import type { Node, Relationship } from "../classes/index.js";
+import { Neo4jGraphQLError } from "../classes/index.js";
+import type { PredicateReturn, PrimitiveField, RelationField } from "../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context.js";
+import { compileCypher } from "../utils/compile-cypher.js";
+import { getCypherRelationshipDirection } from "../utils/get-relationship-direction.js";
+import { findConflictingProperties } from "../utils/is-property-clash.js";
+import { asArray, omitFields } from "../utils/utils.js";
+import { checkAuthentication } from "./authorization/check-authentication.js";
+import { createAuthorizationAfterPredicate } from "./authorization/create-authorization-after-predicate.js";
+import { createAuthorizationBeforePredicate } from "./authorization/create-authorization-before-predicate.js";
+import { createConnectionEventMeta } from "./subscriptions/create-connection-event-meta.js";
+import { filterMetaVariable } from "./subscriptions/filter-meta-variable.js";
+import { addCallbackAndSetParamCypher } from "./utils/callback-utils.js";
 
 type CreateOrConnectInput = {
     where?: {

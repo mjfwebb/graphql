@@ -18,9 +18,9 @@
  */
 
 import { gql } from "graphql-tag";
-import { toGlobalId } from "../../src/utils/global-ids";
-import { Neo4jGraphQL } from "../../src";
-import { formatCypher, formatParams, translateQuery } from "./utils/tck-test-utils";
+import { Neo4jGraphQL } from "../../src/index.js";
+import { toGlobalId } from "../../src/utils/global-ids.js";
+import { formatCypher, formatParams, translateQuery } from "./utils/tck-test-utils.js";
 
 describe("Global nodes", () => {
     test("it should fetch the correct node and fields", async () => {

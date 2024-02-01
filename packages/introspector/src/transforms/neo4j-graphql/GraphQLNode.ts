@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import type { Directive } from "./types";
-import type { NodeField } from "./NodeField";
+import type { NodeField } from "./NodeField.js";
+import type { Directive } from "./types.js";
 
 type NodeType = "type" | "interface";
 

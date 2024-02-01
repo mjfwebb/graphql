@@ -17,24 +17,24 @@
  * limitations under the License.
  */
 
-import type { Node, Relationship } from "../classes";
-import { Neo4jGraphQLError } from "../classes/Error";
-import type { CallbackBucket } from "../classes/CallbackBucket";
-import createConnectAndParams from "./create-connect-and-params";
-import createSetRelationshipPropertiesAndParams from "./create-set-relationship-properties-and-params";
-import mapToDbProperty from "../utils/map-to-db-property";
-import { createConnectOrCreateAndParams } from "./create-connect-or-create-and-params";
-import createRelationshipValidationStr from "./create-relationship-validation-string";
-import { createEventMeta } from "./subscriptions/create-event-meta";
-import { createConnectionEventMeta } from "./subscriptions/create-connection-event-meta";
-import { addCallbackAndSetParam } from "./utils/callback-utils";
-import { findConflictingProperties } from "../utils/is-property-clash";
+import type { CallbackBucket } from "../classes/CallbackBucket.js";
+import { Neo4jGraphQLError } from "../classes/Error.js";
+import type { Node, Relationship } from "../classes/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context.js";
+import { findConflictingProperties } from "../utils/is-property-clash.js";
+import mapToDbProperty from "../utils/map-to-db-property.js";
+import { checkAuthentication } from "./authorization/check-authentication.js";
 import {
-    createAuthorizationAfterAndParamsField,
     createAuthorizationAfterAndParams,
-} from "./authorization/compatibility/create-authorization-after-and-params";
-import { checkAuthentication } from "./authorization/check-authentication";
-import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context";
+    createAuthorizationAfterAndParamsField,
+} from "./authorization/compatibility/create-authorization-after-and-params.js";
+import createConnectAndParams from "./create-connect-and-params.js";
+import { createConnectOrCreateAndParams } from "./create-connect-or-create-and-params.js";
+import createRelationshipValidationStr from "./create-relationship-validation-string.js";
+import createSetRelationshipPropertiesAndParams from "./create-set-relationship-properties-and-params.js";
+import { createConnectionEventMeta } from "./subscriptions/create-connection-event-meta.js";
+import { createEventMeta } from "./subscriptions/create-event-meta.js";
+import { addCallbackAndSetParam } from "./utils/callback-utils.js";
 
 interface Res {
     creates: string[];

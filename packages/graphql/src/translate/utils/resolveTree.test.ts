@@ -24,7 +24,7 @@ import {
     generateResolveTree,
     getAliasedResolveTreeByFieldName,
     getResolveTreeByFieldName,
-} from "./resolveTree";
+} from "./resolveTree.js";
 
 describe("resolveTree", () => {
     const names = ["field1", "field2", "field3"] as const;

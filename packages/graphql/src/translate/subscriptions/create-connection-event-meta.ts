@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { META_CYPHER_VARIABLE } from "../../constants";
+import { META_CYPHER_VARIABLE } from "../../constants.js";
 
 type SubscriptionsEventType = "create_relationship" | "delete_relationship";
 

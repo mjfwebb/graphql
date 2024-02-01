@@ -18,7 +18,7 @@
  */
 
 import camelcase from "camelcase";
-import pascalCase from "../../../utils/pascal-case";
+import pascalCase from "../../../utils/pascal-case.js";
 
 export default function generateRelationshipPropsName(relType: string): string {
     return pascalCase(camelcase(`${relType}-properties`));

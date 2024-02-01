@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import type { Directive } from "../types";
+import type { Directive } from "../types.js";
 
 export class RelationshipPropertiesDirective implements Directive {
     toString(): string {

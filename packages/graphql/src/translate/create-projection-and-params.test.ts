@@ -17,16 +17,16 @@
  * limitations under the License.
  */
 
-import type { ResolveTree } from "graphql-parse-resolve-info";
-import createProjectionAndParams from "./create-projection-and-params";
-import { ContextBuilder } from "../../tests/utils/builders/context-builder";
-import { NodeBuilder } from "../../tests/utils/builders/node-builder";
 import Cypher from "@neo4j/cypher-builder";
-import { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel";
-import { ConcreteEntity } from "../schema-model/entity/ConcreteEntity";
-import { compileCypher } from "../utils/compile-cypher";
-import { Attribute } from "../schema-model/attribute/Attribute";
-import { GraphQLBuiltInScalarType, ScalarType } from "../schema-model/attribute/AttributeType";
+import type { ResolveTree } from "graphql-parse-resolve-info";
+import { ContextBuilder } from "../../tests/utils/builders/context-builder.js";
+import { NodeBuilder } from "../../tests/utils/builders/node-builder.js";
+import { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel.js";
+import { Attribute } from "../schema-model/attribute/Attribute.js";
+import { GraphQLBuiltInScalarType, ScalarType } from "../schema-model/attribute/AttributeType.js";
+import { ConcreteEntity } from "../schema-model/entity/ConcreteEntity.js";
+import { compileCypher } from "../utils/compile-cypher.js";
+import createProjectionAndParams from "./create-projection-and-params.js";
 
 describe("createProjectionAndParams", () => {
     test("should be a function", () => {

@@ -19,9 +19,9 @@
 
 import type { DocumentNode } from "graphql";
 import { gql } from "graphql-tag";
-import { Neo4jGraphQL } from "../../../src";
-import { TestSubscriptionsEngine } from "../../utils/TestSubscriptionsEngine";
-import { formatCypher, formatParams, translateQuery } from "../utils/tck-test-utils";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import { TestSubscriptionsEngine } from "../../utils/TestSubscriptionsEngine.js";
+import { formatCypher, formatParams, translateQuery } from "../utils/tck-test-utils.js";
 
 describe("Subscriptions metadata on create", () => {
     let typeDefs: DocumentNode;

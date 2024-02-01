@@ -17,6 +17,6 @@
  * limitations under the License.
  */
 
-import formatter from "./graphql";
+import formatter from "./graphql.js";
 
 export default formatter;

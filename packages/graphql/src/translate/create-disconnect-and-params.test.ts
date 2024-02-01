@@ -17,17 +17,17 @@
  * limitations under the License.
  */
 
-import { ContextBuilder } from "../../tests/utils/builders/context-builder";
-import { NodeBuilder } from "../../tests/utils/builders/node-builder";
-import { Neo4jDatabaseInfo } from "../classes/Neo4jDatabaseInfo";
-import { RelationshipQueryDirectionOption } from "../constants";
-import { defaultNestedOperations } from "../graphql/directives/relationship";
-import { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel";
-import { Attribute } from "../schema-model/attribute/Attribute";
-import { GraphQLBuiltInScalarType, ScalarType } from "../schema-model/attribute/AttributeType";
-import { ConcreteEntity } from "../schema-model/entity/ConcreteEntity";
-import type { RelationField } from "../types";
-import createDisconnectAndParams from "./create-disconnect-and-params";
+import { ContextBuilder } from "../../tests/utils/builders/context-builder.js";
+import { NodeBuilder } from "../../tests/utils/builders/node-builder.js";
+import { Neo4jDatabaseInfo } from "../classes/Neo4jDatabaseInfo.js";
+import { RelationshipQueryDirectionOption } from "../constants.js";
+import { defaultNestedOperations } from "../graphql/directives/relationship.js";
+import { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel.js";
+import { Attribute } from "../schema-model/attribute/Attribute.js";
+import { GraphQLBuiltInScalarType, ScalarType } from "../schema-model/attribute/AttributeType.js";
+import { ConcreteEntity } from "../schema-model/entity/ConcreteEntity.js";
+import type { RelationField } from "../types/index.js";
+import createDisconnectAndParams from "./create-disconnect-and-params.js";
 
 describe("createDisconnectAndParams", () => {
     test("should return the correct disconnect", () => {

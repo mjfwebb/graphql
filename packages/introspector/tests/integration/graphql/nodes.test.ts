@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 
-import * as neo4j from "neo4j-driver";
 import { Neo4jGraphQL } from "@neo4j/graphql";
-import { toGraphQLTypeDefs } from "../../../src/index";
-import createDriver from "../neo4j";
+import * as neo4j from "neo4j-driver";
+import { toGraphQLTypeDefs } from "../../../src/index.js";
+import createDriver from "../neo4j.js";
 
 describe("GraphQL - Infer Schema nodes basic tests", () => {
     const dbName = "introspectToNeo4jGrahqlTypeDefsITDb";

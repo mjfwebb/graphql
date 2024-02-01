@@ -17,15 +17,15 @@
  * limitations under the License.
  */
 
-import type { GraphQLWhereArg } from "../types";
-import type { Node } from "../classes";
 import Cypher from "@neo4j/cypher-builder";
-import { createWhereNodePredicate } from "./where/create-where-predicate";
-import { SCORE_FIELD } from "../graphql/directives/fulltext";
-import { createAuthorizationBeforePredicate } from "./authorization/create-authorization-before-predicate";
-import type { AuthorizationOperation } from "../schema-model/annotation/AuthorizationAnnotation";
-import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context";
-import { getEntityAdapterFromNode } from "../utils/get-entity-adapter-from-node";
+import type { Node } from "../classes/index.js";
+import { SCORE_FIELD } from "../graphql/directives/fulltext.js";
+import type { AuthorizationOperation } from "../schema-model/annotation/AuthorizationAnnotation.js";
+import type { GraphQLWhereArg } from "../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context.js";
+import { getEntityAdapterFromNode } from "../utils/get-entity-adapter-from-node.js";
+import { createAuthorizationBeforePredicate } from "./authorization/create-authorization-before-predicate.js";
+import { createWhereNodePredicate } from "./where/create-where-predicate.js";
 
 export function translateTopLevelMatch({
     matchNode,

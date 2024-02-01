@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import uniqueString from "./unique-string";
+import uniqueString from "./unique-string.js";
 
 type Args = [string, string[], string];
 

@@ -17,14 +17,14 @@
  * limitations under the License.
  */
 
-import type { GraphQLWhereArg } from "../../types";
 import Cypher from "@neo4j/cypher-builder";
-import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context";
-import type { EntityAdapter } from "../../schema-model/entity/EntityAdapter";
-import { QueryASTEnv, QueryASTContext } from "../queryAST/ast/QueryASTContext";
-import { QueryASTFactory } from "../queryAST/factory/QueryASTFactory";
-import { wrapSubqueriesInCypherCalls } from "../queryAST/utils/wrap-subquery-in-calls";
-import { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter";
+import type { EntityAdapter } from "../../schema-model/entity/EntityAdapter.js";
+import { RelationshipAdapter } from "../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import type { GraphQLWhereArg } from "../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context.js";
+import { QueryASTContext, QueryASTEnv } from "../queryAST/ast/QueryASTContext.js";
+import { QueryASTFactory } from "../queryAST/factory/QueryASTFactory.js";
+import { wrapSubqueriesInCypherCalls } from "../queryAST/utils/wrap-subquery-in-calls.js";
 
 function createWherePredicate({
     factory,

@@ -18,13 +18,13 @@
  */
 
 import type { Session } from "neo4j-driver";
-import Node from "./classes/Node";
-import Property from "./classes/Property";
-import Relationship from "./classes/Relationship";
-import type { Neo4jStruct, NodeMap, PropertyRecord, RelationshipMap } from "./types";
-import cleanTypeName from "./utils/clean-type-name";
-import { escapeLabel } from "./utils/escape-label";
-import nodeKey from "./utils/node-key";
+import Node from "./classes/Node.js";
+import Property from "./classes/Property.js";
+import Relationship from "./classes/Relationship.js";
+import type { Neo4jStruct, NodeMap, PropertyRecord, RelationshipMap } from "./types.js";
+import cleanTypeName from "./utils/clean-type-name.js";
+import { escapeLabel } from "./utils/escape-label.js";
+import nodeKey from "./utils/node-key.js";
 
 interface NodeTypePropertiesRecord extends PropertyRecord {
     nodeType: string;

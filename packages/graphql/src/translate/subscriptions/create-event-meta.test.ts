@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { createEventMeta } from "./create-event-meta";
+import { createEventMeta } from "./create-event-meta.js";
 
 describe("createEventMeta", () => {
     test("create", () => {

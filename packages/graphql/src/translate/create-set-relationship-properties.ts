@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 
-import type { CallbackBucket } from "../classes/CallbackBucket";
-import type { Relationship } from "../classes";
-import mapToDbProperty from "../utils/map-to-db-property";
-import { addCallbackAndSetParam } from "./utils/callback-utils";
-import { matchMathField, mathDescriptorBuilder, buildMathStatements } from "./utils/math";
+import type { CallbackBucket } from "../classes/CallbackBucket.js";
+import type { Relationship } from "../classes/index.js";
+import mapToDbProperty from "../utils/map-to-db-property.js";
+import { addCallbackAndSetParam } from "./utils/callback-utils.js";
+import { buildMathStatements, matchMathField, mathDescriptorBuilder } from "./utils/math.js";
 
 /*
     TODO - lets reuse this function for setting either node or rel properties.

@@ -17,28 +17,28 @@
  * limitations under the License.
  */
 
-import type { Node, Relationship } from "../classes";
-import type { GraphQLWhereArg, RelationField } from "../types";
-import createCreateAndParams from "./create-create-and-params";
-import createUpdateAndParams from "./create-update-and-params";
-import createConnectAndParams from "./create-connect-and-params";
-import createDisconnectAndParams from "./create-disconnect-and-params";
-import { DEBUG_TRANSLATE, META_CYPHER_VARIABLE } from "../constants";
-import createDeleteAndParams from "./create-delete-and-params";
-import createSetRelationshipPropertiesAndParams from "./create-set-relationship-properties-and-params";
-import { translateTopLevelMatch } from "./translate-top-level-match";
-import { createConnectOrCreateAndParams } from "./create-connect-or-create-and-params";
-import createRelationshipValidationStr from "./create-relationship-validation-string";
-import { CallbackBucket } from "../classes/CallbackBucket";
 import Cypher from "@neo4j/cypher-builder";
-import { createConnectionEventMeta } from "../translate/subscriptions/create-connection-event-meta";
-import { filterMetaVariable } from "../translate/subscriptions/filter-meta-variable";
-import { compileCypher } from "../utils/compile-cypher";
-import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context";
-import { getAuthorizationStatements } from "./utils/get-authorization-statements";
 import Debug from "debug";
-import { QueryASTEnv, QueryASTContext } from "./queryAST/ast/QueryASTContext";
-import { QueryASTFactory } from "./queryAST/factory/QueryASTFactory";
+import { CallbackBucket } from "../classes/CallbackBucket.js";
+import type { Node, Relationship } from "../classes/index.js";
+import { DEBUG_TRANSLATE, META_CYPHER_VARIABLE } from "../constants.js";
+import { createConnectionEventMeta } from "../translate/subscriptions/create-connection-event-meta.js";
+import { filterMetaVariable } from "../translate/subscriptions/filter-meta-variable.js";
+import type { GraphQLWhereArg, RelationField } from "../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context.js";
+import { compileCypher } from "../utils/compile-cypher.js";
+import createConnectAndParams from "./create-connect-and-params.js";
+import { createConnectOrCreateAndParams } from "./create-connect-or-create-and-params.js";
+import createCreateAndParams from "./create-create-and-params.js";
+import createDeleteAndParams from "./create-delete-and-params.js";
+import createDisconnectAndParams from "./create-disconnect-and-params.js";
+import createRelationshipValidationStr from "./create-relationship-validation-string.js";
+import createSetRelationshipPropertiesAndParams from "./create-set-relationship-properties-and-params.js";
+import createUpdateAndParams from "./create-update-and-params.js";
+import { QueryASTContext, QueryASTEnv } from "./queryAST/ast/QueryASTContext.js";
+import { QueryASTFactory } from "./queryAST/factory/QueryASTFactory.js";
+import { translateTopLevelMatch } from "./translate-top-level-match.js";
+import { getAuthorizationStatements } from "./utils/get-authorization-statements.js";
 
 const debug = Debug(DEBUG_TRANSLATE);
 

@@ -18,9 +18,9 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import { filterTruthy } from "../../../utils/utils";
-import type { QueryASTContext } from "../ast/QueryASTContext";
-import type { QueryASTNode } from "../ast/QueryASTNode";
+import { filterTruthy } from "../../../utils/utils.js";
+import type { QueryASTContext } from "../ast/QueryASTContext.js";
+import type { QueryASTNode } from "../ast/QueryASTNode.js";
 
 /** Gets subqueries from fields and map these to Call statements with inner target */
 export function wrapSubqueriesInCypherCalls(

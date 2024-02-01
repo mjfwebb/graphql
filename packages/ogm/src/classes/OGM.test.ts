@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import OGM from "./OGM";
+import OGM from "./OGM.js";
 
 describe("OGM", () => {
     test("should construct", () => {

@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import type { EntityAdapter } from "../../../schema-model/entity/EntityAdapter";
-import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import { isConcreteEntity } from "./is-concrete-entity";
+import type { EntityAdapter } from "../../../schema-model/entity/EntityAdapter.js";
+import type { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import { isConcreteEntity } from "./is-concrete-entity.js";
 
 export function getConcreteEntities(entity: EntityAdapter): ConcreteEntityAdapter[] {
     if (isConcreteEntity(entity)) return [entity];

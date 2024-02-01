@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { stringifyObject } from "./stringify-object";
+import { stringifyObject } from "./stringify-object.js";
 
 describe("stringifyObject", () => {
     test("creates a valid cypher object from a js object", () => {

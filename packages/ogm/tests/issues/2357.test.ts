@@ -19,9 +19,9 @@
 
 import { Neo4jGraphQL } from "@neo4j/graphql";
 import type { Driver } from "neo4j-driver";
-import { OGM } from "../../src";
-import neo4j from "../integration/neo4j";
-import { UniqueType } from "../utils/utils";
+import { OGM } from "../../src/index.js";
+import neo4j from "../integration/neo4j.js";
+import { UniqueType } from "../utils/utils.js";
 
 describe("https://github.com/neo4j/graphql/issues/2357", () => {
     let driver: Driver;

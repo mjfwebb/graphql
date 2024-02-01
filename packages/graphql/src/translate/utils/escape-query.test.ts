@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { escapeQuery } from "./escape-query";
+import { escapeQuery } from "./escape-query.js";
 
 describe("escapeQuery", () => {
     test("escape query with normal text", () => {

@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-export { translateAggregate } from "./translate-aggregate";
-export { default as translateCreate } from "./translate-create";
-export { translateDelete } from "./translate-delete";
-export { translateRead } from "./translate-read";
-export { translateTopLevelCypher } from "./translate-top-level-cypher";
-export { default as translateUpdate } from "./translate-update";
+export { translateAggregate } from "./translate-aggregate.js";
+export { default as translateCreate } from "./translate-create.js";
+export { translateDelete } from "./translate-delete.js";
+export { translateRead } from "./translate-read.js";
+export { translateTopLevelCypher } from "./translate-top-level-cypher.js";
+export { default as translateUpdate } from "./translate-update.js";

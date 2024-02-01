@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import type Property from "./Property";
-import type Relationship from "./Relationship";
+import type Property from "./Property.js";
+import type Relationship from "./Relationship.js";
 
 export default class Node {
     typeId: string;

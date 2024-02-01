@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import neo4jTokenEscape from "./neo4j-token-escape";
+import neo4jTokenEscape from "./neo4j-token-escape.js";
 
 type Args = [string, string];
 

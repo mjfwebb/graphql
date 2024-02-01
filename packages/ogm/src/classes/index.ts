@@ -17,5 +17,5 @@
  * limitations under the License.
  */
 
-export { default as Model } from "./Model";
-export { default as OGM } from "./OGM";
+export { default as Model } from "./Model.js";
+export { default as OGM } from "./OGM.js";

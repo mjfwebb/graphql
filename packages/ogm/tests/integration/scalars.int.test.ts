@@ -20,9 +20,9 @@
 import { gql } from "graphql-tag";
 import type { Driver, Session } from "neo4j-driver";
 import { DateTime, Duration, LocalDateTime, LocalTime, Date as Neo4jDate, Time } from "neo4j-driver";
-import { OGM } from "../../src";
-import { UniqueType } from "../utils/utils";
-import neo4j from "./neo4j";
+import { OGM } from "../../src/index.js";
+import { UniqueType } from "../utils/utils.js";
+import neo4j from "./neo4j.js";
 
 describe("Neo4j native types used with OGM", () => {
     const TestType = new UniqueType("TestType");

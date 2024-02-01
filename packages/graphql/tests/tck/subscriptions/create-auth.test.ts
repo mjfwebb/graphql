@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
-import { gql } from "graphql-tag";
 import type { DocumentNode } from "graphql";
-import { TestSubscriptionsEngine } from "../../utils/TestSubscriptionsEngine";
-import { Neo4jGraphQL } from "../../../src";
-import { formatCypher, translateQuery, formatParams } from "../utils/tck-test-utils";
-import { createBearerToken } from "../../utils/create-bearer-token";
+import { gql } from "graphql-tag";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import { TestSubscriptionsEngine } from "../../utils/TestSubscriptionsEngine.js";
+import { createBearerToken } from "../../utils/create-bearer-token.js";
+import { formatCypher, formatParams, translateQuery } from "../utils/tck-test-utils.js";
 
 describe("Subscriptions metadata on create", () => {
     let typeDefs: DocumentNode;

@@ -17,16 +17,16 @@
  * limitations under the License.
  */
 
-import createUpdateAndParams from "./create-update-and-params";
-import { CallbackBucket } from "../classes/CallbackBucket";
-import type { BaseField } from "../types";
-import { trimmer } from "../utils";
-import { NodeBuilder } from "../../tests/utils/builders/node-builder";
-import { ContextBuilder } from "../../tests/utils/builders/context-builder";
-import { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel";
-import { ConcreteEntity } from "../schema-model/entity/ConcreteEntity";
-import { Attribute } from "../schema-model/attribute/Attribute";
-import { GraphQLBuiltInScalarType, ScalarType } from "../schema-model/attribute/AttributeType";
+import { ContextBuilder } from "../../tests/utils/builders/context-builder.js";
+import { NodeBuilder } from "../../tests/utils/builders/node-builder.js";
+import { CallbackBucket } from "../classes/CallbackBucket.js";
+import { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel.js";
+import { Attribute } from "../schema-model/attribute/Attribute.js";
+import { GraphQLBuiltInScalarType, ScalarType } from "../schema-model/attribute/AttributeType.js";
+import { ConcreteEntity } from "../schema-model/entity/ConcreteEntity.js";
+import type { BaseField } from "../types/index.js";
+import { trimmer } from "../utils/index.js";
+import createUpdateAndParams from "./create-update-and-params.js";
 
 describe("createUpdateAndParams", () => {
     test("should return the correct update and params", () => {

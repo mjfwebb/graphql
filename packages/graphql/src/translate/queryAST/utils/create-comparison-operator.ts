@@ -18,7 +18,7 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { FilterOperator } from "../ast/filters/Filter";
+import type { FilterOperator } from "../ast/filters/Filter.js";
 
 /** Returns the default operation for a given filter */
 export function createComparisonOperation({

@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { generate, OGM } from "../../src";
+import { generate, OGM } from "../../src/index.js";
 
 describe("issues/3591", () => {
     test("should correctly generate types and ignore all the schema configuration directives", async () => {

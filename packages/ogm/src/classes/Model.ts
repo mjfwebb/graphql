@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 
+import type { Neo4jGraphQLContext } from "@neo4j/graphql";
 import type { DocumentNode, GraphQLSchema, SelectionSetNode } from "graphql";
 import { graphql, parse, print } from "graphql";
-import type { GraphQLOptionsArg, GraphQLWhereArg, DeleteInfo } from "../types";
-import type { Neo4jGraphQLContext } from "@neo4j/graphql";
+import type { DeleteInfo, GraphQLOptionsArg, GraphQLWhereArg } from "../types.js";
 
 type Neo4jGraphQLOGMContext = Omit<Neo4jGraphQLContext, "jwt" | "token">;
 

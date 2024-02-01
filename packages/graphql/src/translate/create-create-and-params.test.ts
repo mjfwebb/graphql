@@ -17,15 +17,15 @@
  * limitations under the License.
  */
 
-import { ContextBuilder } from "../../tests/utils/builders/context-builder";
-import { NodeBuilder } from "../../tests/utils/builders/node-builder";
-import { CallbackBucket } from "../classes/CallbackBucket";
-import { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel";
-import { Attribute } from "../schema-model/attribute/Attribute";
-import { GraphQLBuiltInScalarType, ScalarType } from "../schema-model/attribute/AttributeType";
-import { ConcreteEntity } from "../schema-model/entity/ConcreteEntity";
-import { trimmer } from "../utils";
-import createCreateAndParams from "./create-create-and-params";
+import { ContextBuilder } from "../../tests/utils/builders/context-builder.js";
+import { NodeBuilder } from "../../tests/utils/builders/node-builder.js";
+import { CallbackBucket } from "../classes/CallbackBucket.js";
+import { Neo4jGraphQLSchemaModel } from "../schema-model/Neo4jGraphQLSchemaModel.js";
+import { Attribute } from "../schema-model/attribute/Attribute.js";
+import { GraphQLBuiltInScalarType, ScalarType } from "../schema-model/attribute/AttributeType.js";
+import { ConcreteEntity } from "../schema-model/entity/ConcreteEntity.js";
+import { trimmer } from "../utils/index.js";
+import createCreateAndParams from "./create-create-and-params.js";
 
 describe("createCreateAndParams", () => {
     test("should return the correct projection with 1 selection", () => {

@@ -18,9 +18,9 @@
  */
 
 import { gql } from "graphql-tag";
-import { Neo4jGraphQL } from "../../../src";
-import { createBearerToken } from "../../utils/create-bearer-token";
-import { formatCypher, formatParams, translateQuery } from "../utils/tck-test-utils";
+import { Neo4jGraphQL } from "../../../src/index.js";
+import { createBearerToken } from "../../utils/create-bearer-token.js";
+import { formatCypher, formatParams, translateQuery } from "../utils/tck-test-utils.js";
 
 describe("https://github.com/neo4j/graphql/issues/4214", () => {
     const secret = "sssh!";

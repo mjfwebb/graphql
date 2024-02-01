@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { lowerFirst } from "./lower-first";
+import { lowerFirst } from "./lower-first.js";
 
 describe("lowerFirst", () => {
     test("should replace first letter with uppercase", () => {

@@ -20,11 +20,11 @@
 import type { DocumentNode, GraphQLArgs } from "graphql";
 import { graphql } from "graphql";
 import { Neo4jError } from "neo4j-driver";
-import type { Neo4jGraphQL } from "../../../src";
-import { DriverBuilder } from "../../utils/builders/driver-builder";
-import { getQuerySource } from "../../utils/get-query-source";
-import { Neo4jDatabaseInfo } from "../../../src/classes/Neo4jDatabaseInfo";
-import Neo4j from "../../integration/neo4j";
+import { Neo4jDatabaseInfo } from "../../../src/classes/Neo4jDatabaseInfo.js";
+import type { Neo4jGraphQL } from "../../../src/index.js";
+import Neo4j from "../../integration/neo4j.js";
+import { DriverBuilder } from "../../utils/builders/driver-builder.js";
+import { getQuerySource } from "../../utils/get-query-source.js";
 
 export function setTestEnvVars(envVars: string | undefined): void {
     if (envVars) {

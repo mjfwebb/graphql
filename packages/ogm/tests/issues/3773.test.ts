@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
-import gql from "graphql-tag";
-import { OGM } from "../../src";
-import neo4j from "../integration/neo4j";
+import type { Neo4jGraphQLContext } from "@neo4j/graphql";
+import { gql } from "graphql-tag";
 import type { Driver, Session } from "neo4j-driver";
-import type { Neo4jGraphQLContext } from "@neo4j/graphql/src";
-import { UniqueType } from "../utils/utils";
+import { OGM } from "../../src/index.js";
+import neo4j from "../integration/neo4j.js";
+import { UniqueType } from "../utils/utils.js";
 
 describe("https://github.com/neo4j/graphql/issues/3773", () => {
     let driver: Driver;

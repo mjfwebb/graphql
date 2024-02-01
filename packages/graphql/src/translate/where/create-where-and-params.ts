@@ -17,13 +17,13 @@
  * limitations under the License.
  */
 
-import type { GraphQLWhereArg } from "../../types";
-import type { Node } from "../../classes";
-import { createWhereNodePredicate } from "./create-where-predicate";
 import Cypher from "@neo4j/cypher-builder";
-import { compileCypherIfExists } from "../../utils/compile-cypher";
-import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context";
-import { getEntityAdapterFromNode } from "../../utils/get-entity-adapter-from-node";
+import type { Node } from "../../classes/index.js";
+import type { GraphQLWhereArg } from "../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context.js";
+import { compileCypherIfExists } from "../../utils/compile-cypher.js";
+import { getEntityAdapterFromNode } from "../../utils/get-entity-adapter-from-node.js";
+import { createWhereNodePredicate } from "./create-where-predicate.js";
 
 // TODO: Remove this method and replace for directly using createWhereNodePredicate
 /** Wraps createCypherWhereParams with the old interface for compatibility with old way of composing cypher */

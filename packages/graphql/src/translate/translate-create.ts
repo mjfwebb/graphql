@@ -19,18 +19,18 @@
 
 import Cypher from "@neo4j/cypher-builder";
 import Debug from "debug";
-import type { Node } from "../classes";
-import { CallbackBucket } from "../classes/CallbackBucket";
-import { DEBUG_TRANSLATE, META_CYPHER_VARIABLE } from "../constants";
-import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context";
-import { compileCypherIfExists } from "../utils/compile-cypher";
-import { filterTruthy } from "../utils/utils";
-import { UnsupportedUnwindOptimization } from "./batch-create/types";
-import createCreateAndParams from "./create-create-and-params";
-import { QueryASTContext, QueryASTEnv } from "./queryAST/ast/QueryASTContext";
-import { QueryASTFactory } from "./queryAST/factory/QueryASTFactory";
-import unwindCreate from "./unwind-create";
-import { getAuthorizationStatements } from "./utils/get-authorization-statements";
+import { CallbackBucket } from "../classes/CallbackBucket.js";
+import type { Node } from "../classes/index.js";
+import { DEBUG_TRANSLATE, META_CYPHER_VARIABLE } from "../constants.js";
+import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context.js";
+import { compileCypherIfExists } from "../utils/compile-cypher.js";
+import { filterTruthy } from "../utils/utils.js";
+import { UnsupportedUnwindOptimization } from "./batch-create/types.js";
+import createCreateAndParams from "./create-create-and-params.js";
+import { QueryASTContext, QueryASTEnv } from "./queryAST/ast/QueryASTContext.js";
+import { QueryASTFactory } from "./queryAST/factory/QueryASTFactory.js";
+import unwindCreate from "./unwind-create.js";
+import { getAuthorizationStatements } from "./utils/get-authorization-statements.js";
 
 const debug = Debug(DEBUG_TRANSLATE);
 

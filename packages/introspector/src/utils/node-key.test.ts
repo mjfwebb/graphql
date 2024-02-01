@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import nodeKey from "./node-key";
+import nodeKey from "./node-key.js";
 
 type Args = [string[], string];
 

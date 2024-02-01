@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import { RelationshipDirective } from "../directives/Relationship";
-import { NodeField } from "../NodeField";
-import generateRelationshipFieldName from "./generate-relationship-field-name";
+import { RelationshipDirective } from "../directives/Relationship.js";
+import { NodeField } from "../NodeField.js";
+import generateRelationshipFieldName from "./generate-relationship-field-name.js";
 
 export default function createRelationshipFields(
     fromTypeName: string,

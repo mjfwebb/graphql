@@ -18,10 +18,10 @@
  */
 
 import Debug from "debug";
-import type Property from "../../../classes/Property";
-import { NodeField } from "../NodeField";
-import { DEBUG_INFER_SCHEMA } from "../../../constants";
-import mapNeo4jToGraphQLType from "./map-neo4j-to-graphql-type";
+import type Property from "../../../classes/Property.js";
+import { DEBUG_INFER_SCHEMA } from "../../../constants.js";
+import { NodeField } from "../NodeField.js";
+import mapNeo4jToGraphQLType from "./map-neo4j-to-graphql-type.js";
 
 const debug = Debug(DEBUG_INFER_SCHEMA);
 

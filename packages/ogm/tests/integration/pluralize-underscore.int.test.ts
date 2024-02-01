@@ -20,9 +20,9 @@
 import { gql } from "graphql-tag";
 import type { Driver, Session } from "neo4j-driver";
 import { generate } from "randomstring";
-import { OGM } from "../../src";
-import { UniqueType } from "../utils/utils";
-import neo4j from "./neo4j";
+import { OGM } from "../../src/index.js";
+import { UniqueType } from "../utils/utils.js";
+import neo4j from "./neo4j.js";
 
 describe("pluralize with underscore", () => {
     const taskType = new UniqueType("super_task");

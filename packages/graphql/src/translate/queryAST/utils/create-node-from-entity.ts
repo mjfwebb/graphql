@@ -18,11 +18,11 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { EntityAdapter } from "../../../schema-model/entity/EntityAdapter";
-import { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter";
-import type { RelationshipAdapter } from "../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-import { mapLabelsWithContext } from "../../../schema-model/utils/map-labels-with-context";
-import type { Neo4jGraphQLContext } from "../../../types/neo4j-graphql-context";
+import type { EntityAdapter } from "../../../schema-model/entity/EntityAdapter.js";
+import { ConcreteEntityAdapter } from "../../../schema-model/entity/model-adapters/ConcreteEntityAdapter.js";
+import type { RelationshipAdapter } from "../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import { mapLabelsWithContext } from "../../../schema-model/utils/map-labels-with-context.js";
+import type { Neo4jGraphQLContext } from "../../../types/neo4j-graphql-context.js";
 
 export function createNodeFromEntity(
     entity: EntityAdapter,

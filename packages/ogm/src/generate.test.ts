@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
-import { generate as randomstring } from "randomstring";
 import * as fs from "fs";
+import { gql } from "graphql-tag";
 import * as path from "path";
-import generate from "./generate";
-import { OGM } from "./index";
-import gql from "graphql-tag";
+import { generate as randomstring } from "randomstring";
+import generate from "./generate.js";
+import { OGM } from "./index.js";
 
 describe("generate", () => {
     const filesToDelete: string[] = [];

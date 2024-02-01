@@ -17,27 +17,27 @@
  * limitations under the License.
  */
 
-import type { ResolveTree } from "graphql-parse-resolve-info";
 import { mergeDeep } from "@graphql-tools/utils";
 import Cypher from "@neo4j/cypher-builder";
-import type { Node } from "../classes";
-import type { GraphQLOptionsArg, GraphQLWhereArg, GraphQLSortArg, CypherFieldReferenceMap } from "../types";
-import { createDatetimeExpression } from "./projection/elements/create-datetime-element";
-import { createPointExpression } from "./projection/elements/create-point-element";
-import mapToDbProperty from "../utils/map-to-db-property";
-import { createFieldAggregation } from "./field-aggregations/create-field-aggregation";
-import { addGlobalIdField } from "../utils/global-node-projection";
-import { getCypherRelationshipDirection } from "../utils/get-relationship-direction";
-import { generateMissingOrAliasedFields, filterFieldsInSelection, generateResolveTree } from "./utils/resolveTree";
-import { filterTruthy, removeDuplicates } from "../utils/utils";
-import { createProjectionSubquery } from "./projection/subquery/create-projection-subquery";
-import { collectUnionSubqueriesResults } from "./projection/subquery/collect-union-subqueries-results";
-import { createConnectionClause } from "./connection-clause/create-connection-clause";
-import { translateCypherDirectiveProjection } from "./projection/subquery/translate-cypher-directive-projection";
-import { createAuthorizationBeforePredicateField } from "./authorization/create-authorization-before-predicate";
-import { checkAuthentication } from "./authorization/check-authentication";
-import { compileCypher } from "../utils/compile-cypher";
-import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context";
+import type { ResolveTree } from "graphql-parse-resolve-info";
+import type { Node } from "../classes/index.js";
+import type { CypherFieldReferenceMap, GraphQLOptionsArg, GraphQLSortArg, GraphQLWhereArg } from "../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context.js";
+import { compileCypher } from "../utils/compile-cypher.js";
+import { getCypherRelationshipDirection } from "../utils/get-relationship-direction.js";
+import { addGlobalIdField } from "../utils/global-node-projection.js";
+import mapToDbProperty from "../utils/map-to-db-property.js";
+import { filterTruthy, removeDuplicates } from "../utils/utils.js";
+import { checkAuthentication } from "./authorization/check-authentication.js";
+import { createAuthorizationBeforePredicateField } from "./authorization/create-authorization-before-predicate.js";
+import { createConnectionClause } from "./connection-clause/create-connection-clause.js";
+import { createFieldAggregation } from "./field-aggregations/create-field-aggregation.js";
+import { createDatetimeExpression } from "./projection/elements/create-datetime-element.js";
+import { createPointExpression } from "./projection/elements/create-point-element.js";
+import { collectUnionSubqueriesResults } from "./projection/subquery/collect-union-subqueries-results.js";
+import { createProjectionSubquery } from "./projection/subquery/create-projection-subquery.js";
+import { translateCypherDirectiveProjection } from "./projection/subquery/translate-cypher-directive-projection.js";
+import { filterFieldsInSelection, generateMissingOrAliasedFields, generateResolveTree } from "./utils/resolveTree.js";
 
 interface Res {
     projection: Cypher.Expr[];

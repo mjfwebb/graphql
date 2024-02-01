@@ -17,16 +17,16 @@
  * limitations under the License.
  */
 
-import type { Neo4jStruct, NodeMap, RelationshipMap } from "../../types";
-import createNodeFields from "./utils/create-node-fields";
-import uniqueString from "../../utils/unique-string";
-import { NodeDirective } from "./directives/Node";
-import { GraphQLNode } from "./GraphQLNode";
-import generateRelationshipPropsName from "./utils/generate-relationship-props-name";
-import { RelationshipPropertiesDirective } from "./directives/RelationshipProperties";
-import createRelationshipFields from "./utils/create-relationship-fields";
-import generateGraphQLSafeName from "./utils/generate-graphql-safe-name";
-import nodeKey from "../../utils/node-key";
+import type { Neo4jStruct, NodeMap, RelationshipMap } from "../../types.js";
+import nodeKey from "../../utils/node-key.js";
+import uniqueString from "../../utils/unique-string.js";
+import { GraphQLNode } from "./GraphQLNode.js";
+import { NodeDirective } from "./directives/Node.js";
+import { RelationshipPropertiesDirective } from "./directives/RelationshipProperties.js";
+import createNodeFields from "./utils/create-node-fields.js";
+import createRelationshipFields from "./utils/create-relationship-fields.js";
+import generateGraphQLSafeName from "./utils/generate-graphql-safe-name.js";
+import generateRelationshipPropsName from "./utils/generate-relationship-props-name.js";
 
 type GraphQLNodeMap = {
     [key: string]: GraphQLNode;

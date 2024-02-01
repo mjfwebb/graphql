@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
-import type { Node } from "../classes";
-import createProjectionAndParams from "./create-projection-and-params";
-import { createMatchClause } from "./translate-top-level-match";
 import Cypher from "@neo4j/cypher-builder";
-import { compileCypher } from "../utils/compile-cypher";
-import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context";
+import type { Node } from "../classes/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context.js";
+import { compileCypher } from "../utils/compile-cypher.js";
+import createProjectionAndParams from "./create-projection-and-params.js";
+import { createMatchClause } from "./translate-top-level-match.js";
 
 export function translateResolveReference({
     node,

@@ -17,42 +17,42 @@
  * limitations under the License.
  */
 
-import pluralize from "pluralize";
-import type { Node, Relationship } from "../classes";
-import { Neo4jGraphQLError } from "../classes";
-import type { BaseField } from "../types";
-import createConnectAndParams from "./create-connect-and-params";
-import createDisconnectAndParams from "./create-disconnect-and-params";
-import createCreateAndParams from "./create-create-and-params";
-import { META_CYPHER_VARIABLE, META_OLD_PROPS_CYPHER_VARIABLE } from "../constants";
-import createDeleteAndParams from "./create-delete-and-params";
-import createSetRelationshipProperties from "./create-set-relationship-properties";
-import createConnectionWhereAndParams from "./where/create-connection-where-and-params";
-import mapToDbProperty from "../utils/map-to-db-property";
-import { createConnectOrCreateAndParams } from "./create-connect-or-create-and-params";
-import createRelationshipValidationStr from "./create-relationship-validation-string";
-import { createEventMeta } from "./subscriptions/create-event-meta";
-import { createConnectionEventMeta } from "./subscriptions/create-connection-event-meta";
-import { filterMetaVariable } from "./subscriptions/filter-meta-variable";
-import type { CallbackBucket } from "../classes/CallbackBucket";
-import { addCallbackAndSetParam } from "./utils/callback-utils";
-import { buildMathStatements, matchMathField, mathDescriptorBuilder } from "./utils/math";
-import { indentBlock } from "./utils/indent-block";
-import { wrapStringInApostrophes } from "../utils/wrap-string-in-apostrophes";
-import { findConflictingProperties } from "../utils/is-property-clash";
 import Cypher from "@neo4j/cypher-builder";
-import { caseWhere } from "../utils/case-where";
+import pluralize from "pluralize";
+import type { CallbackBucket } from "../classes/CallbackBucket.js";
+import type { Node, Relationship } from "../classes/index.js";
+import { Neo4jGraphQLError } from "../classes/index.js";
+import { META_CYPHER_VARIABLE, META_OLD_PROPS_CYPHER_VARIABLE } from "../constants.js";
+import type { BaseField } from "../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context.js";
+import { caseWhere } from "../utils/case-where.js";
+import { findConflictingProperties } from "../utils/is-property-clash.js";
+import mapToDbProperty from "../utils/map-to-db-property.js";
+import { wrapStringInApostrophes } from "../utils/wrap-string-in-apostrophes.js";
+import { checkAuthentication } from "./authorization/check-authentication.js";
+import {
+    createAuthorizationAfterAndParams,
+    createAuthorizationAfterAndParamsField,
+} from "./authorization/compatibility/create-authorization-after-and-params.js";
 import {
     createAuthorizationBeforeAndParams,
     createAuthorizationBeforeAndParamsField,
-} from "./authorization/compatibility/create-authorization-before-and-params";
-import {
-    createAuthorizationAfterAndParamsField,
-    createAuthorizationAfterAndParams,
-} from "./authorization/compatibility/create-authorization-after-and-params";
-import { checkAuthentication } from "./authorization/check-authentication";
-import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context";
-import { getAuthorizationStatements } from "./utils/get-authorization-statements";
+} from "./authorization/compatibility/create-authorization-before-and-params.js";
+import createConnectAndParams from "./create-connect-and-params.js";
+import { createConnectOrCreateAndParams } from "./create-connect-or-create-and-params.js";
+import createCreateAndParams from "./create-create-and-params.js";
+import createDeleteAndParams from "./create-delete-and-params.js";
+import createDisconnectAndParams from "./create-disconnect-and-params.js";
+import createRelationshipValidationStr from "./create-relationship-validation-string.js";
+import createSetRelationshipProperties from "./create-set-relationship-properties.js";
+import { createConnectionEventMeta } from "./subscriptions/create-connection-event-meta.js";
+import { createEventMeta } from "./subscriptions/create-event-meta.js";
+import { filterMetaVariable } from "./subscriptions/filter-meta-variable.js";
+import { addCallbackAndSetParam } from "./utils/callback-utils.js";
+import { getAuthorizationStatements } from "./utils/get-authorization-statements.js";
+import { indentBlock } from "./utils/indent-block.js";
+import { buildMathStatements, matchMathField, mathDescriptorBuilder } from "./utils/math.js";
+import createConnectionWhereAndParams from "./where/create-connection-where-and-params.js";
 
 interface Res {
     strs: string[];

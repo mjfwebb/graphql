@@ -18,8 +18,8 @@
  */
 
 import type { ResolveTree } from "graphql-parse-resolve-info";
-import type { BaseField } from "../../types";
-import { removeDuplicates } from "../../utils/utils";
+import type { BaseField } from "../../types/index.js";
+import { removeDuplicates } from "../../utils/utils.js";
 
 /** Finds a resolve tree of selection based on field name */
 export function getResolveTreeByFieldName({

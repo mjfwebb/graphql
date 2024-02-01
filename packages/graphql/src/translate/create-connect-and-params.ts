@@ -17,20 +17,20 @@
  * limitations under the License.
  */
 
-import type { Node, Relationship } from "../classes";
-import type { RelationField } from "../types";
-import createWhereAndParams from "./where/create-where-and-params";
-import createSetRelationshipPropertiesAndParams from "./create-set-relationship-properties-and-params";
-import createRelationshipValidationString from "./create-relationship-validation-string";
-import type { CallbackBucket } from "../classes/CallbackBucket";
-import { createConnectionEventMetaObject } from "./subscriptions/create-connection-event-meta";
-import { filterMetaVariable } from "./subscriptions/filter-meta-variable";
 import Cypher from "@neo4j/cypher-builder";
-import { caseWhere } from "../utils/case-where";
-import { createAuthorizationBeforeAndParams } from "./authorization/compatibility/create-authorization-before-and-params";
-import { createAuthorizationAfterAndParams } from "./authorization/compatibility/create-authorization-after-and-params";
-import { checkAuthentication } from "./authorization/check-authentication";
-import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context";
+import type { CallbackBucket } from "../classes/CallbackBucket.js";
+import type { Node, Relationship } from "../classes/index.js";
+import type { RelationField } from "../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context.js";
+import { caseWhere } from "../utils/case-where.js";
+import { checkAuthentication } from "./authorization/check-authentication.js";
+import { createAuthorizationAfterAndParams } from "./authorization/compatibility/create-authorization-after-and-params.js";
+import { createAuthorizationBeforeAndParams } from "./authorization/compatibility/create-authorization-before-and-params.js";
+import createRelationshipValidationString from "./create-relationship-validation-string.js";
+import createSetRelationshipPropertiesAndParams from "./create-set-relationship-properties-and-params.js";
+import { createConnectionEventMetaObject } from "./subscriptions/create-connection-event-meta.js";
+import { filterMetaVariable } from "./subscriptions/filter-meta-variable.js";
+import createWhereAndParams from "./where/create-where-and-params.js";
 
 interface Res {
     connects: string[];

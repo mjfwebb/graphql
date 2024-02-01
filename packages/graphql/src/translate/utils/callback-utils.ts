@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 
-import type { CallbackBucket } from "../../classes/CallbackBucket";
-import type { PrimitiveField } from "../../types";
 import Cypher from "@neo4j/cypher-builder";
-import { compileCypher } from "../../utils/compile-cypher";
+import type { CallbackBucket } from "../../classes/CallbackBucket.js";
+import type { PrimitiveField } from "../../types/index.js";
+import { compileCypher } from "../../utils/compile-cypher.js";
 
 export const addCallbackAndSetParam = (
     field: PrimitiveField,

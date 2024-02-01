@@ -19,16 +19,16 @@
 
 import Cypher from "@neo4j/cypher-builder";
 import Debug from "debug";
-import type { Node } from "../classes";
-import { CallbackBucket } from "../classes/CallbackBucket";
-import { DEBUG_TRANSLATE } from "../constants";
-import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context";
-import { getTreeDescriptor, mergeTreeDescriptors, parseCreate } from "./batch-create/parser";
-import type { GraphQLCreateInput } from "./batch-create/types";
-import { UnsupportedUnwindOptimization } from "./batch-create/types";
-import { UnwindCreateVisitor } from "./batch-create/unwind-create-visitors/UnwindCreateVisitor";
-import { QueryASTContext, QueryASTEnv } from "./queryAST/ast/QueryASTContext";
-import { QueryASTFactory } from "./queryAST/factory/QueryASTFactory";
+import { CallbackBucket } from "../classes/CallbackBucket.js";
+import type { Node } from "../classes/index.js";
+import { DEBUG_TRANSLATE } from "../constants.js";
+import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context.js";
+import { getTreeDescriptor, mergeTreeDescriptors, parseCreate } from "./batch-create/parser.js";
+import type { GraphQLCreateInput } from "./batch-create/types.js";
+import { UnsupportedUnwindOptimization } from "./batch-create/types.js";
+import { UnwindCreateVisitor } from "./batch-create/unwind-create-visitors/UnwindCreateVisitor.js";
+import { QueryASTContext, QueryASTEnv } from "./queryAST/ast/QueryASTContext.js";
+import { QueryASTFactory } from "./queryAST/factory/QueryASTFactory.js";
 
 const debug = Debug(DEBUG_TRANSLATE);
 

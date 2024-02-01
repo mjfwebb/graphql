@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import type Node from "./classes/Node";
-import type Relationship from "./classes/Relationship";
+import type Node from "./classes/Node.js";
+import type Relationship from "./classes/Relationship.js";
 
 export type Neo4jStruct = {
     nodes: Record<string, Node>;

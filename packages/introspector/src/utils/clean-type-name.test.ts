@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import cleanTypeName from "./clean-type-name";
+import cleanTypeName from "./clean-type-name.js";
 
 type Args = [string, string];
 

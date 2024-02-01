@@ -17,12 +17,12 @@
  * limitations under the License.
  */
 
-import type { Node, Relationship } from "../../classes";
-import type { ConnectionWhereArg } from "../../types";
 import Cypher from "@neo4j/cypher-builder";
-import { createConnectionWherePropertyOperation } from "./property-operations/create-connection-operation";
-import { compileCypher } from "../../utils/compile-cypher";
-import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context";
+import type { Node, Relationship } from "../../classes/index.js";
+import type { ConnectionWhereArg } from "../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context.js";
+import { compileCypher } from "../../utils/compile-cypher.js";
+import { createConnectionWherePropertyOperation } from "./property-operations/create-connection-operation.js";
 
 export default function createConnectionWhereAndParams({
     whereInput,

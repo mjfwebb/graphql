@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { META_CYPHER_VARIABLE } from "../../constants";
+import { META_CYPHER_VARIABLE } from "../../constants.js";
 
 export function filterMetaVariable(withVars: string[]): string[] {
     return withVars.filter((w) => w !== META_CYPHER_VARIABLE);

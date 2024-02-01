@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-import mapToDbProperty from "../../utils/map-to-db-property";
-import type { GraphElement } from "../../classes";
+import type { GraphElement } from "../../classes/index.js";
+import mapToDbProperty from "../../utils/map-to-db-property.js";
 
 /** Maps Neo4jGraphQL Math operator to Cypher symbol */
 const CypherOperatorMap = new Map<string, string>([
@@ -37,8 +37,7 @@ function mathOperatorToSymbol(mathOperator: string): string {
     throw new Error(`${mathOperator} is not a valid math operator`);
 }
 
-const MATH_FIELD_REGX =
-    /(?<propertyName>\w*)(?<operatorName>_INCREMENT|_DECREMENT|_ADD|_SUBTRACT|_DIVIDE|_MULTIPLY)\b/;
+const MATH_FIELD_REGX = /(?<propertyName>\w*)(?<operatorName>_INCREMENT|_DECREMENT|_ADD|_SUBTRACT|_DIVIDE|_MULTIPLY)\b/;
 
 type MatchRegexMatchGroups = {
     propertyName: string;

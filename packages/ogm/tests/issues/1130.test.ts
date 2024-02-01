@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { generate, OGM } from "../../src";
+import { generate, OGM } from "../../src/index.js";
 
 describe("issues/1130", () => {
     test("should re-create issue and return types without throwing", async () => {

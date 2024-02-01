@@ -17,13 +17,13 @@
  * limitations under the License.
  */
 
-import createWhereAndParams from "./create-where-and-params";
-import { ContextBuilder } from "../../../tests/utils/builders/context-builder";
-import { NodeBuilder } from "../../../tests/utils/builders/node-builder";
-import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context";
-import type { Node } from "../../../src/classes";
-import { SchemaModelBuilder } from "../../../tests/utils/builders/schema-model-builder";
 import { gql } from "graphql-tag";
+import type { Node } from "../../../src/classes/index.js";
+import { ContextBuilder } from "../../../tests/utils/builders/context-builder.js";
+import { NodeBuilder } from "../../../tests/utils/builders/node-builder.js";
+import { SchemaModelBuilder } from "../../../tests/utils/builders/schema-model-builder.js";
+import type { Neo4jGraphQLTranslationContext } from "../../types/neo4j-graphql-translation-context.js";
+import createWhereAndParams from "./create-where-and-params.js";
 
 describe("createWhereAndParams", () => {
     let context: Neo4jGraphQLTranslationContext;

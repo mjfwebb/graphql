@@ -17,21 +17,20 @@
  * limitations under the License.
  */
 
-import type { Node } from "../classes";
-import type { GraphQLWhereArg } from "../types";
-import { DEBUG_TRANSLATE, META_CYPHER_VARIABLE } from "../constants";
-import createDeleteAndParams from "./create-delete-and-params";
-import { translateTopLevelMatch } from "./translate-top-level-match";
-import { createEventMeta } from "./subscriptions/create-event-meta";
 import Cypher from "@neo4j/cypher-builder";
-import { createConnectionEventMetaObject } from "./subscriptions/create-connection-event-meta";
-import { checkAuthentication } from "./authorization/check-authentication";
-import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context";
 import Debug from "debug";
-import { QueryASTFactory } from "./queryAST/factory/QueryASTFactory";
-import type { EntityAdapter } from "../schema-model/entity/EntityAdapter";
-
 import type { ResolveTree } from "graphql-parse-resolve-info";
+import type { Node } from "../classes/index.js";
+import { DEBUG_TRANSLATE, META_CYPHER_VARIABLE } from "../constants.js";
+import type { EntityAdapter } from "../schema-model/entity/EntityAdapter.js";
+import type { GraphQLWhereArg } from "../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../types/neo4j-graphql-translation-context.js";
+import { checkAuthentication } from "./authorization/check-authentication.js";
+import createDeleteAndParams from "./create-delete-and-params.js";
+import { QueryASTFactory } from "./queryAST/factory/QueryASTFactory.js";
+import { createConnectionEventMetaObject } from "./subscriptions/create-connection-event-meta.js";
+import { createEventMeta } from "./subscriptions/create-event-meta.js";
+import { translateTopLevelMatch } from "./translate-top-level-match.js";
 
 const debug = Debug(DEBUG_TRANSLATE);
 

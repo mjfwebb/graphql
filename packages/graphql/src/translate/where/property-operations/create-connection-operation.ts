@@ -18,17 +18,16 @@
  */
 
 import Cypher from "@neo4j/cypher-builder";
-import type { ConnectionWhereArg, PredicateReturn } from "../../../types";
-import type { Node, Relationship } from "../../../classes";
+import type { Node, Relationship } from "../../../classes/index.js";
+import type { RelationshipAdapter } from "../../../schema-model/relationship/model-adapters/RelationshipAdapter.js";
+import type { ConnectionWhereArg, PredicateReturn } from "../../../types/index.js";
+import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context.js";
+import { getEntityAdapterFromNode } from "../../../utils/get-entity-adapter-from-node.js";
+import { asArray, filterTruthy } from "../../../utils/utils.js";
+import { getLogicalPredicate, isLogicalOperator } from "../../utils/logical-operators.js";
+import { createWhereEdgePredicate, createWhereNodePredicate } from "../create-where-predicate.js";
+
 // Recursive function
-
-import { createWhereNodePredicate, createWhereEdgePredicate } from "../create-where-predicate";
-import { asArray, filterTruthy } from "../../../utils/utils";
-import { getLogicalPredicate, isLogicalOperator } from "../../utils/logical-operators";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
-import { getEntityAdapterFromNode } from "../../../utils/get-entity-adapter-from-node";
-import type { RelationshipAdapter } from "../../../schema-model/relationship/model-adapters/RelationshipAdapter";
-
 export function createConnectionWherePropertyOperation({
     context,
     whereInput,
