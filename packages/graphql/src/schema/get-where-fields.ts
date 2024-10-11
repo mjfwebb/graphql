@@ -21,6 +21,7 @@ import type { DirectiveNode } from "graphql";
 import type { Directive } from "graphql-compose";
 import { DEPRECATED } from "../constants";
 import type { AttributeAdapter } from "../schema-model/attribute/model-adapters/AttributeAdapter";
+import { ConcreteEntityAdapter } from "../schema-model/entity/model-adapters/ConcreteEntityAdapter";
 import type { Neo4jFeaturesSettings } from "../types";
 import { DEPRECATE_NOT } from "./constants";
 import { shouldAddDeprecatedFields } from "./generation/utils";
@@ -67,6 +68,22 @@ export function getWhereFieldsForAttributes({
 
             // If the field is a cypher field with arguments, skip it
             if (field.args.length > 0) {
+                continue;
+            }
+
+            if (field.annotations.cypher.targetEntity) {
+                const targetEntityAdapter = new ConcreteEntityAdapter(field.annotations.cypher.targetEntity);
+                result[field.name] = {
+                    type: targetEntityAdapter.operations.whereInputTypeName,
+                    directives: deprecatedDirectives,
+                };
+
+                if (shouldAddDeprecatedFields(features, "negationFilters")) {
+                    result[`${field.name}_NOT`] = {
+                        type: targetEntityAdapter.operations.whereInputTypeName,
+                        directives: deprecatedDirectives.length ? deprecatedDirectives : [DEPRECATE_NOT],
+                    };
+                }
                 continue;
             }
         }

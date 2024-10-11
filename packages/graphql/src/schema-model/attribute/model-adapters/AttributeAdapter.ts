@@ -133,7 +133,10 @@ export class AttributeAdapter {
 
     isWhereField(): boolean {
         return (
-            (this.typeHelper.isEnum() || this.typeHelper.isSpatial() || this.typeHelper.isScalar()) &&
+            (this.typeHelper.isEnum() ||
+                this.typeHelper.isSpatial() ||
+                this.typeHelper.isScalar() ||
+                (this.isCypher() && Boolean(this.annotations.cypher?.targetEntity))) &&
             this.isFilterable() &&
             !this.isCustomResolvable()
         );

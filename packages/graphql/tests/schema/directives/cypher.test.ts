@@ -772,14 +772,23 @@ describe("Cypher", () => {
         `);
     });
 
-    test("Filters should not be generated on Relationship/Object custom cypher fields", async () => {
-        const typeDefs = gql`
+    test("Filters should be generated on Relationship/Object custom cypher fields", async () => {
+        const typeDefs = /* GraphQL */ `
             type Movie {
                 actors: [Actor]
                     @cypher(
                         statement: """
                         MATCH (this)-[:ACTED_IN]->(actor:Actor)
                         RETURN actor
+                        """
+                        columnName: "actor"
+                    )
+                actor: Actor
+                    @cypher(
+                        statement: """
+                        MATCH (this)-[:ACTED_IN]->(actor:Actor)
+                        RETURN actor
+                        LIMIT 1
                         """
                         columnName: "actor"
                     )
@@ -795,6 +804,15 @@ describe("Cypher", () => {
                         """
                         columnName: "movie"
                     )
+                movie: Movie
+                    @cypher(
+                        statement: """
+                        MATCH (this)-[:ACTED_IN]->(movie:Movie)
+                        RETURN movie
+                        LIMIT 1
+                        """
+                        columnName: "movie"
+                    )
             }
         `;
         const neoSchema = new Neo4jGraphQL({ typeDefs });
@@ -807,6 +825,7 @@ describe("Cypher", () => {
             }
 
             type Actor {
+              movie: Movie
               movies: [Movie]
               name: String
             }
@@ -838,6 +857,7 @@ describe("Cypher", () => {
             Fields to sort Actors by. The order in which sorts are applied is not guaranteed when specifying many fields in one ActorSort object.
             \\"\\"\\"
             input ActorSort {
+              movie: SortDirection
               name: SortDirection
             }
 
@@ -849,6 +869,8 @@ describe("Cypher", () => {
               AND: [ActorWhere!]
               NOT: ActorWhere
               OR: [ActorWhere!]
+              movie: MovieWhere
+              movie_NOT: MovieWhere @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
               name: String
               name_CONTAINS: String
               name_ENDS_WITH: String
@@ -896,6 +918,7 @@ describe("Cypher", () => {
             }
 
             type Movie {
+              actor: Actor
               actors: [Actor]
             }
 
@@ -918,6 +941,17 @@ describe("Cypher", () => {
             input MovieOptions {
               limit: Int
               offset: Int
+              \\"\\"\\"
+              Specify one or more MovieSort objects to sort Movies by. The sorts will be applied in the order in which they are arranged in the array.
+              \\"\\"\\"
+              sort: [MovieSort!]
+            }
+
+            \\"\\"\\"
+            Fields to sort Movies by. The order in which sorts are applied is not guaranteed when specifying many fields in one MovieSort object.
+            \\"\\"\\"
+            input MovieSort {
+              actor: SortDirection
             }
 
             input MovieUpdateInput {
@@ -931,6 +965,8 @@ describe("Cypher", () => {
               AND: [MovieWhere!]
               NOT: MovieWhere
               OR: [MovieWhere!]
+              actor: ActorWhere
+              actor_NOT: ActorWhere @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
             }
 
             type MoviesConnection {
@@ -962,7 +998,7 @@ describe("Cypher", () => {
               actorsConnection(after: String, first: Int, sort: [ActorSort], where: ActorWhere): ActorsConnection!
               movies(options: MovieOptions, where: MovieWhere): [Movie!]!
               moviesAggregate(where: MovieWhere): MovieAggregateSelection!
-              moviesConnection(after: String, first: Int, where: MovieWhere): MoviesConnection!
+              moviesConnection(after: String, first: Int, sort: [MovieSort], where: MovieWhere): MoviesConnection!
             }
 
             \\"\\"\\"An enum for sorting in either ascending or descending order.\\"\\"\\"
