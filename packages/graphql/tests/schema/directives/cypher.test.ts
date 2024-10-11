@@ -18,18 +18,17 @@
  */
 
 import { printSchemaWithDirectives } from "@graphql-tools/utils";
-import { gql } from "graphql-tag";
 import { lexicographicSortSchema } from "graphql/utilities";
 import { Neo4jGraphQL } from "../../../src";
 
 describe("Cypher", () => {
     test("Custom Directive Simple", async () => {
-        const typeDefs = gql`
-            type Actor {
+        const typeDefs = /* GraphQL */ `
+            type Actor @node {
                 name: String
             }
 
-            type Movie {
+            type Movie @node {
                 id: ID
                 custom_string: String @cypher(statement: "RETURN 'custom!' as c", columnName: "c")
                 list_of_custom_strings: [String]
@@ -633,8 +632,8 @@ describe("Cypher", () => {
     });
 
     test("Filters should not be generated on custom cypher fields with arguments", async () => {
-        const typeDefs = gql`
-            type Movie {
+        const typeDefs = /* GraphQL */ `
+            type Movie @node {
                 custom_string_with_param(param: String): String
                     @cypher(statement: "RETURN $param as c", columnName: "c")
             }
@@ -772,9 +771,9 @@ describe("Cypher", () => {
         `);
     });
 
-    test("Filters should be generated on Relationship/Object custom cypher fields", async () => {
+    test("Filters should be generated only on 1:1 Relationship/Object custom cypher fields", async () => {
         const typeDefs = /* GraphQL */ `
-            type Movie {
+            type Movie @node {
                 actors: [Actor]
                     @cypher(
                         statement: """
@@ -794,7 +793,7 @@ describe("Cypher", () => {
                     )
             }
 
-            type Actor {
+            type Actor @node {
                 name: String
                 movies: [Movie]
                     @cypher(
@@ -1038,8 +1037,8 @@ describe("Cypher", () => {
     });
 
     test("Sort On Primitive Field", async () => {
-        const typeDefs = gql`
-            type Actor {
+        const typeDefs = /* GraphQL */ `
+            type Actor @node {
                 name: String
                 totalScreenTime: Int!
                     @cypher(
@@ -1051,7 +1050,7 @@ describe("Cypher", () => {
                     )
             }
 
-            type Movie {
+            type Movie @node {
                 id: ID
                 actors(title: String): [Actor]
                     @cypher(
@@ -1300,8 +1299,8 @@ describe("Cypher", () => {
     });
 
     test("Filters should not be generated on custom cypher fields for subscriptions", async () => {
-        const typeDefs = gql`
-            type Movie {
+        const typeDefs = /* GraphQL */ `
+            type Movie @node {
                 title: String
                 custom_title: String @cypher(statement: "RETURN 'hello' as t", columnName: "t")
             }
