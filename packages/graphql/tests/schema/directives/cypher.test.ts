@@ -771,9 +771,665 @@ describe("Cypher", () => {
         `);
     });
 
+    test("Union: Filters should not be generated for Relationship/Object custom cypher fields", async () => {
+        const typeDefs = /* GraphQL */ `
+            union Content = Blog | Post
+
+            type Blog @node {
+                title: String
+                posts: [Post!]!
+                    @cypher(
+                        statement: """
+                        MATCH (this)-[:HAS_POST]->(post)
+                        RETURN post
+                        """
+                        columnName: "post"
+                    )
+                post: Post
+                    @cypher(
+                        statement: """
+                        MATCH (this)-[:HAS_POST]->(post)
+                        RETURN post
+                        LIMIT 1
+                        """
+                        columnName: "post"
+                    )
+            }
+
+            type Post @node {
+                thing: String
+            }
+        `;
+
+        const neoSchema = new Neo4jGraphQL({ typeDefs });
+        const printedSchema = printSchemaWithDirectives(lexicographicSortSchema(await neoSchema.getSchema()));
+
+        expect(printedSchema).toMatchInlineSnapshot(`
+            "schema {
+              query: Query
+              mutation: Mutation
+            }
+
+            type Blog {
+              post: Post
+              posts: [Post!]!
+              title: String
+            }
+
+            type BlogAggregateSelection {
+              count: Int!
+              title: StringAggregateSelection!
+            }
+
+            input BlogCreateInput {
+              title: String
+            }
+
+            type BlogEdge {
+              cursor: String!
+              node: Blog!
+            }
+
+            input BlogOptions {
+              limit: Int
+              offset: Int
+              \\"\\"\\"
+              Specify one or more BlogSort objects to sort Blogs by. The sorts will be applied in the order in which they are arranged in the array.
+              \\"\\"\\"
+              sort: [BlogSort!]
+            }
+
+            \\"\\"\\"
+            Fields to sort Blogs by. The order in which sorts are applied is not guaranteed when specifying many fields in one BlogSort object.
+            \\"\\"\\"
+            input BlogSort {
+              post: SortDirection
+              title: SortDirection
+            }
+
+            input BlogUpdateInput {
+              title: String
+            }
+
+            input BlogWhere {
+              AND: [BlogWhere!]
+              NOT: BlogWhere
+              OR: [BlogWhere!]
+              post: PostWhere
+              post_NOT: PostWhere @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              title: String
+              title_CONTAINS: String
+              title_ENDS_WITH: String
+              title_IN: [String]
+              title_NOT: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              title_NOT_CONTAINS: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              title_NOT_ENDS_WITH: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              title_NOT_IN: [String] @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              title_NOT_STARTS_WITH: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              title_STARTS_WITH: String
+            }
+
+            type BlogsConnection {
+              edges: [BlogEdge!]!
+              pageInfo: PageInfo!
+              totalCount: Int!
+            }
+
+            union Content = Blog | Post
+
+            input ContentWhere {
+              Blog: BlogWhere
+              Post: PostWhere
+            }
+
+            type CreateBlogsMutationResponse {
+              blogs: [Blog!]!
+              info: CreateInfo!
+            }
+
+            \\"\\"\\"
+            Information about the number of nodes and relationships created during a create mutation
+            \\"\\"\\"
+            type CreateInfo {
+              bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
+              nodesCreated: Int!
+              relationshipsCreated: Int!
+            }
+
+            type CreatePostsMutationResponse {
+              info: CreateInfo!
+              posts: [Post!]!
+            }
+
+            type CreateUsersMutationResponse {
+              info: CreateInfo!
+              users: [User!]!
+            }
+
+            \\"\\"\\"
+            Information about the number of nodes and relationships deleted during a delete mutation
+            \\"\\"\\"
+            type DeleteInfo {
+              bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
+              nodesDeleted: Int!
+              relationshipsDeleted: Int!
+            }
+
+            type Mutation {
+              createBlogs(input: [BlogCreateInput!]!): CreateBlogsMutationResponse!
+              createPosts(input: [PostCreateInput!]!): CreatePostsMutationResponse!
+              createUsers(input: [UserCreateInput!]!): CreateUsersMutationResponse!
+              deleteBlogs(where: BlogWhere): DeleteInfo!
+              deletePosts(where: PostWhere): DeleteInfo!
+              deleteUsers(where: UserWhere): DeleteInfo!
+              updateBlogs(update: BlogUpdateInput, where: BlogWhere): UpdateBlogsMutationResponse!
+              updatePosts(update: PostUpdateInput, where: PostWhere): UpdatePostsMutationResponse!
+              updateUsers(update: UserUpdateInput, where: UserWhere): UpdateUsersMutationResponse!
+            }
+
+            \\"\\"\\"Pagination information (Relay)\\"\\"\\"
+            type PageInfo {
+              endCursor: String
+              hasNextPage: Boolean!
+              hasPreviousPage: Boolean!
+              startCursor: String
+            }
+
+            type Post {
+              content: String
+            }
+
+            type PostAggregateSelection {
+              content: StringAggregateSelection!
+              count: Int!
+            }
+
+            input PostCreateInput {
+              content: String
+            }
+
+            type PostEdge {
+              cursor: String!
+              node: Post!
+            }
+
+            input PostOptions {
+              limit: Int
+              offset: Int
+              \\"\\"\\"
+              Specify one or more PostSort objects to sort Posts by. The sorts will be applied in the order in which they are arranged in the array.
+              \\"\\"\\"
+              sort: [PostSort!]
+            }
+
+            \\"\\"\\"
+            Fields to sort Posts by. The order in which sorts are applied is not guaranteed when specifying many fields in one PostSort object.
+            \\"\\"\\"
+            input PostSort {
+              content: SortDirection
+            }
+
+            input PostUpdateInput {
+              content: String
+            }
+
+            input PostWhere {
+              AND: [PostWhere!]
+              NOT: PostWhere
+              OR: [PostWhere!]
+              content: String
+              content_CONTAINS: String
+              content_ENDS_WITH: String
+              content_IN: [String]
+              content_NOT: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              content_NOT_CONTAINS: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              content_NOT_ENDS_WITH: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              content_NOT_IN: [String] @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              content_NOT_STARTS_WITH: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              content_STARTS_WITH: String
+            }
+
+            type PostsConnection {
+              edges: [PostEdge!]!
+              pageInfo: PageInfo!
+              totalCount: Int!
+            }
+
+            type Query {
+              blogs(options: BlogOptions, where: BlogWhere): [Blog!]!
+              blogsAggregate(where: BlogWhere): BlogAggregateSelection!
+              blogsConnection(after: String, first: Int, sort: [BlogSort], where: BlogWhere): BlogsConnection!
+              contents(options: QueryOptions, where: ContentWhere): [Content!]!
+              posts(options: PostOptions, where: PostWhere): [Post!]!
+              postsAggregate(where: PostWhere): PostAggregateSelection!
+              postsConnection(after: String, first: Int, sort: [PostSort], where: PostWhere): PostsConnection!
+              users(options: UserOptions, where: UserWhere): [User!]!
+              usersAggregate(where: UserWhere): UserAggregateSelection!
+              usersConnection(after: String, first: Int, sort: [UserSort], where: UserWhere): UsersConnection!
+            }
+
+            \\"\\"\\"Input type for options that can be specified on a query operation.\\"\\"\\"
+            input QueryOptions {
+              limit: Int
+              offset: Int
+            }
+
+            \\"\\"\\"An enum for sorting in either ascending or descending order.\\"\\"\\"
+            enum SortDirection {
+              \\"\\"\\"Sort by field values in ascending order.\\"\\"\\"
+              ASC
+              \\"\\"\\"Sort by field values in descending order.\\"\\"\\"
+              DESC
+            }
+
+            type StringAggregateSelection {
+              longest: String
+              shortest: String
+            }
+
+            type UpdateBlogsMutationResponse {
+              blogs: [Blog!]!
+              info: UpdateInfo!
+            }
+
+            \\"\\"\\"
+            Information about the number of nodes and relationships created and deleted during an update mutation
+            \\"\\"\\"
+            type UpdateInfo {
+              bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
+              nodesCreated: Int!
+              nodesDeleted: Int!
+              relationshipsCreated: Int!
+              relationshipsDeleted: Int!
+            }
+
+            type UpdatePostsMutationResponse {
+              info: UpdateInfo!
+              posts: [Post!]!
+            }
+
+            type UpdateUsersMutationResponse {
+              info: UpdateInfo!
+              users: [User!]!
+            }
+
+            type User {
+              content: Content
+              contents: [Content!]!
+              name: String
+            }
+
+            type UserAggregateSelection {
+              count: Int!
+              name: StringAggregateSelection!
+            }
+
+            input UserCreateInput {
+              name: String
+            }
+
+            type UserEdge {
+              cursor: String!
+              node: User!
+            }
+
+            input UserOptions {
+              limit: Int
+              offset: Int
+              \\"\\"\\"
+              Specify one or more UserSort objects to sort Users by. The sorts will be applied in the order in which they are arranged in the array.
+              \\"\\"\\"
+              sort: [UserSort!]
+            }
+
+            \\"\\"\\"
+            Fields to sort Users by. The order in which sorts are applied is not guaranteed when specifying many fields in one UserSort object.
+            \\"\\"\\"
+            input UserSort {
+              content: SortDirection
+              name: SortDirection
+            }
+
+            input UserUpdateInput {
+              name: String
+            }
+
+            input UserWhere {
+              AND: [UserWhere!]
+              NOT: UserWhere
+              OR: [UserWhere!]
+              name: String
+              name_CONTAINS: String
+              name_ENDS_WITH: String
+              name_IN: [String]
+              name_NOT: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              name_NOT_CONTAINS: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              name_NOT_ENDS_WITH: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              name_NOT_IN: [String] @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              name_NOT_STARTS_WITH: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              name_STARTS_WITH: String
+            }
+
+            type UsersConnection {
+              edges: [UserEdge!]!
+              pageInfo: PageInfo!
+              totalCount: Int!
+            }"
+        `);
+    });
+
+    test("Interface: Filters should not be generated for Relationship/Object custom cypher fields", async () => {
+        const typeDefs = /* GraphQL */ `
+            interface Production {
+                actor: Actor
+                actors: [Actor]
+            }
+
+            type Movie implements Production @node {
+                actors: [Actor]
+                    @cypher(
+                        statement: """
+                        MATCH (this)-[:ACTED_IN]->(actor:Actor)
+                        RETURN actor
+                        """
+                        columnName: "actor"
+                    )
+                actor: Actor
+                    @cypher(
+                        statement: """
+                        MATCH (this)-[:ACTED_IN]->(actor:Actor)
+                        RETURN actor
+                        LIMIT 1
+                        """
+                        columnName: "actor"
+                    )
+            }
+
+            type Actor @node {
+                name: String
+                movies: [Movie]
+                    @cypher(
+                        statement: """
+                        MATCH (this)-[:ACTED_IN]->(movie:Movie)
+                        RETURN movie
+                        """
+                        columnName: "movie"
+                    )
+                movie: Movie
+                    @cypher(
+                        statement: """
+                        MATCH (this)-[:ACTED_IN]->(movie:Movie)
+                        RETURN movie
+                        LIMIT 1
+                        """
+                        columnName: "movie"
+                    )
+            }
+        `;
+        const neoSchema = new Neo4jGraphQL({ typeDefs });
+        const printedSchema = printSchemaWithDirectives(lexicographicSortSchema(await neoSchema.getSchema()));
+
+        expect(printedSchema).toMatchInlineSnapshot(`
+            "schema {
+              query: Query
+              mutation: Mutation
+            }
+
+            type Actor {
+              movie: Movie
+              movies: [Movie]
+              name: String
+            }
+
+            type ActorAggregateSelection {
+              count: Int!
+              name: StringAggregateSelection!
+            }
+
+            input ActorCreateInput {
+              name: String
+            }
+
+            type ActorEdge {
+              cursor: String!
+              node: Actor!
+            }
+
+            input ActorOptions {
+              limit: Int
+              offset: Int
+              \\"\\"\\"
+              Specify one or more ActorSort objects to sort Actors by. The sorts will be applied in the order in which they are arranged in the array.
+              \\"\\"\\"
+              sort: [ActorSort!]
+            }
+
+            \\"\\"\\"
+            Fields to sort Actors by. The order in which sorts are applied is not guaranteed when specifying many fields in one ActorSort object.
+            \\"\\"\\"
+            input ActorSort {
+              movie: SortDirection
+              name: SortDirection
+            }
+
+            input ActorUpdateInput {
+              name: String
+            }
+
+            input ActorWhere {
+              AND: [ActorWhere!]
+              NOT: ActorWhere
+              OR: [ActorWhere!]
+              movie: MovieWhere
+              movie_NOT: MovieWhere @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              name: String
+              name_CONTAINS: String
+              name_ENDS_WITH: String
+              name_IN: [String]
+              name_NOT: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              name_NOT_CONTAINS: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              name_NOT_ENDS_WITH: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              name_NOT_IN: [String] @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              name_NOT_STARTS_WITH: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+              name_STARTS_WITH: String
+            }
+
+            type ActorsConnection {
+              edges: [ActorEdge!]!
+              pageInfo: PageInfo!
+              totalCount: Int!
+            }
+
+            type CreateActorsMutationResponse {
+              actors: [Actor!]!
+              info: CreateInfo!
+            }
+
+            \\"\\"\\"
+            Information about the number of nodes and relationships created during a create mutation
+            \\"\\"\\"
+            type CreateInfo {
+              bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
+              nodesCreated: Int!
+              relationshipsCreated: Int!
+            }
+
+            type CreateMoviesMutationResponse {
+              info: CreateInfo!
+              movies: [Movie!]!
+            }
+
+            \\"\\"\\"
+            Information about the number of nodes and relationships deleted during a delete mutation
+            \\"\\"\\"
+            type DeleteInfo {
+              bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
+              nodesDeleted: Int!
+              relationshipsDeleted: Int!
+            }
+
+            type Movie implements Production {
+              actor: Actor
+              actors: [Actor]
+            }
+
+            type MovieAggregateSelection {
+              count: Int!
+            }
+
+            input MovieCreateInput {
+              \\"\\"\\"
+              Appears because this input type would be empty otherwise because this type is composed of just generated and/or relationship properties. See https://neo4j.com/docs/graphql-manual/current/troubleshooting/faqs/
+              \\"\\"\\"
+              _emptyInput: Boolean
+            }
+
+            type MovieEdge {
+              cursor: String!
+              node: Movie!
+            }
+
+            input MovieOptions {
+              limit: Int
+              offset: Int
+              \\"\\"\\"
+              Specify one or more MovieSort objects to sort Movies by. The sorts will be applied in the order in which they are arranged in the array.
+              \\"\\"\\"
+              sort: [MovieSort!]
+            }
+
+            \\"\\"\\"
+            Fields to sort Movies by. The order in which sorts are applied is not guaranteed when specifying many fields in one MovieSort object.
+            \\"\\"\\"
+            input MovieSort {
+              actor: SortDirection
+            }
+
+            input MovieUpdateInput {
+              \\"\\"\\"
+              Appears because this input type would be empty otherwise because this type is composed of just generated and/or relationship properties. See https://neo4j.com/docs/graphql-manual/current/troubleshooting/faqs/
+              \\"\\"\\"
+              _emptyInput: Boolean
+            }
+
+            input MovieWhere {
+              AND: [MovieWhere!]
+              NOT: MovieWhere
+              OR: [MovieWhere!]
+              actor: ActorWhere
+              actor_NOT: ActorWhere @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
+            }
+
+            type MoviesConnection {
+              edges: [MovieEdge!]!
+              pageInfo: PageInfo!
+              totalCount: Int!
+            }
+
+            type Mutation {
+              createActors(input: [ActorCreateInput!]!): CreateActorsMutationResponse!
+              createMovies(input: [MovieCreateInput!]!): CreateMoviesMutationResponse!
+              deleteActors(where: ActorWhere): DeleteInfo!
+              deleteMovies(where: MovieWhere): DeleteInfo!
+              updateActors(update: ActorUpdateInput, where: ActorWhere): UpdateActorsMutationResponse!
+              updateMovies(update: MovieUpdateInput, where: MovieWhere): UpdateMoviesMutationResponse!
+            }
+
+            \\"\\"\\"Pagination information (Relay)\\"\\"\\"
+            type PageInfo {
+              endCursor: String
+              hasNextPage: Boolean!
+              hasPreviousPage: Boolean!
+              startCursor: String
+            }
+
+            interface Production {
+              actor: Actor
+              actors: [Actor]
+            }
+
+            type ProductionAggregateSelection {
+              count: Int!
+            }
+
+            type ProductionEdge {
+              cursor: String!
+              node: Production!
+            }
+
+            enum ProductionImplementation {
+              Movie
+            }
+
+            input ProductionOptions {
+              limit: Int
+              offset: Int
+            }
+
+            input ProductionWhere {
+              AND: [ProductionWhere!]
+              NOT: ProductionWhere
+              OR: [ProductionWhere!]
+              typename_IN: [ProductionImplementation!]
+            }
+
+            type ProductionsConnection {
+              edges: [ProductionEdge!]!
+              pageInfo: PageInfo!
+              totalCount: Int!
+            }
+
+            type Query {
+              actors(options: ActorOptions, where: ActorWhere): [Actor!]!
+              actorsAggregate(where: ActorWhere): ActorAggregateSelection!
+              actorsConnection(after: String, first: Int, sort: [ActorSort], where: ActorWhere): ActorsConnection!
+              movies(options: MovieOptions, where: MovieWhere): [Movie!]!
+              moviesAggregate(where: MovieWhere): MovieAggregateSelection!
+              moviesConnection(after: String, first: Int, sort: [MovieSort], where: MovieWhere): MoviesConnection!
+              productions(options: ProductionOptions, where: ProductionWhere): [Production!]!
+              productionsAggregate(where: ProductionWhere): ProductionAggregateSelection!
+              productionsConnection(after: String, first: Int, where: ProductionWhere): ProductionsConnection!
+            }
+
+            \\"\\"\\"An enum for sorting in either ascending or descending order.\\"\\"\\"
+            enum SortDirection {
+              \\"\\"\\"Sort by field values in ascending order.\\"\\"\\"
+              ASC
+              \\"\\"\\"Sort by field values in descending order.\\"\\"\\"
+              DESC
+            }
+
+            type StringAggregateSelection {
+              longest: String
+              shortest: String
+            }
+
+            type UpdateActorsMutationResponse {
+              actors: [Actor!]!
+              info: UpdateInfo!
+            }
+
+            \\"\\"\\"
+            Information about the number of nodes and relationships created and deleted during an update mutation
+            \\"\\"\\"
+            type UpdateInfo {
+              bookmark: String @deprecated(reason: \\"This field has been deprecated because bookmarks are now handled by the driver.\\")
+              nodesCreated: Int!
+              nodesDeleted: Int!
+              relationshipsCreated: Int!
+              relationshipsDeleted: Int!
+            }
+
+            type UpdateMoviesMutationResponse {
+              info: UpdateInfo!
+              movies: [Movie!]!
+            }"
+        `);
+    });
+
     test("Filters should be generated only on 1:1 Relationship/Object custom cypher fields", async () => {
         const typeDefs = /* GraphQL */ `
-            type Movie @node {
+            type Movie implements Production @node {
                 actors: [Actor]
                     @cypher(
                         statement: """
