@@ -383,7 +383,6 @@ describe("cypher directive filtering - Relationship", () => {
             CREATE (a)-[:ACTED_IN]->(m2)
             CREATE (a5:${Person} { name: "Lilly Wachowski" })
             CREATE (a5)-[:DIRECTED]->(m)
-            CREATE (a5)-[:DIRECTED]->(m2)
             `,
             {}
         );
@@ -456,7 +455,6 @@ describe("cypher directive filtering - Relationship", () => {
             CREATE (a)-[:ACTED_IN]->(m2)
             CREATE (a5:${Person} { name: "Lilly Wachowski" })
             CREATE (a5)-[:DIRECTED]->(m)
-            CREATE (a5)-[:DIRECTED]->(m2)
             `,
             {}
         );
@@ -541,7 +539,6 @@ describe("cypher directive filtering - Relationship", () => {
             CREATE (a)-[:ACTED_IN]->(m2)
             CREATE (a5:${Person} { name: "Lilly Wachowski" })
             CREATE (a5)-[:DIRECTED]->(m)
-            CREATE (a5)-[:DIRECTED]->(m2)
             `,
             {}
         );
@@ -611,9 +608,11 @@ describe("cypher directive filtering - Relationship", () => {
             CREATE (a2:${Person} { name: "Jada Pinkett Smith" })
             CREATE (a2)-[:ACTED_IN]->(m2)
             CREATE (a2)-[:ACTED_IN]->(m3)
+            CREATE (a3:${Person} { name: "Director Person" })
+            CREATE (a3)-[:DIRECTED]->(m)
+            CREATE (a4:${Person} { name: "Lana Wachowski" })
+            CREATE (a4)-[:DIRECTED]->(m2)
             CREATE (a5:${Person} { name: "Lilly Wachowski" })
-            CREATE (a5)-[:DIRECTED]->(m)
-            CREATE (a5)-[:DIRECTED]->(m2)
             CREATE (a5)-[:DIRECTED]->(m3)
             `,
             {}
@@ -650,7 +649,7 @@ describe("cypher directive filtering - Relationship", () => {
                     directed: {
                         title: "The Matrix",
                         directed_by: {
-                            name: "Lilly Wachowski",
+                            name: "Director Person",
                         },
                         actors: expect.toIncludeSameMembers([
                             {
@@ -658,13 +657,13 @@ describe("cypher directive filtering - Relationship", () => {
                                 movies: expect.toIncludeSameMembers([
                                     {
                                         directed_by: {
-                                            name: "Lilly Wachowski",
+                                            name: "Director Person",
                                         },
                                         title: "The Matrix",
                                     },
                                     {
                                         directed_by: {
-                                            name: "Lilly Wachowski",
+                                            name: "Lana Wachowski",
                                         },
                                         title: "The Matrix Reloaded",
                                     },
