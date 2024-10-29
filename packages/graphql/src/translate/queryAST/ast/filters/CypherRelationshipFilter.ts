@@ -31,7 +31,7 @@ export class CypherRelationshipFilter extends Filter {
     private selection: CustomCypherSelection;
     private operator: RelationshipWhereOperator;
     private targetNodeFilters: Filter[] = [];
-    private isNot: boolean; // TODO: remove this when name_NOT is removed
+    private isNot: boolean;
 
     constructor({
         selection,
@@ -87,7 +87,7 @@ export class CypherRelationshipFilter extends Filter {
     }
 
     private getSubqueryReturnValue(returnVariable: Cypher.Variable): Cypher.Expr {
-        if (this.isNullableSingle() && this.operator === "SOME" && this.isNot) {
+        if (this.isNullableSingle() && this.isNot) {
             return Cypher.head(Cypher.collect(returnVariable));
         }
         return returnVariable;

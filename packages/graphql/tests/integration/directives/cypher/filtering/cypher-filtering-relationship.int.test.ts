@@ -299,7 +299,6 @@ describe("cypher directive filtering - Relationship", () => {
             CREATE (a)-[:ACTED_IN]->(m2)
             CREATE (a5:${Person} { name: "Lilly Wachowski" })
             CREATE (a5)-[:DIRECTED]->(m)
-            CREATE (a5)-[:DIRECTED]->(m2)
             `,
             {}
         );
@@ -323,7 +322,7 @@ describe("cypher directive filtering - Relationship", () => {
         expect(gqlResult?.data).toEqual({
             [Person.plural]: [
                 {
-                    ["directed"]: {
+                    directed: {
                         title: "The Matrix",
                         directed_by: {
                             name: "Lilly Wachowski",
@@ -481,7 +480,7 @@ describe("cypher directive filtering - Relationship", () => {
         expect(gqlResult?.data).toEqual({
             [Person.plural]: [
                 {
-                    ["directed"]: {
+                    directed: {
                         title: "The Matrix",
                         directed_by: {
                             name: "Lilly Wachowski",
@@ -648,7 +647,7 @@ describe("cypher directive filtering - Relationship", () => {
         expect(gqlResult?.data).toEqual({
             [Person.plural]: [
                 {
-                    ["directed"]: {
+                    directed: {
                         title: "The Matrix",
                         directed_by: {
                             name: "Lilly Wachowski",
