@@ -357,6 +357,8 @@ describe("Cypher", () => {
               AND: [MovieWhere!]
               NOT: MovieWhere
               OR: [MovieWhere!]
+              actor: ActorWhere
+              actor_NOT: ActorWhere @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
               custom_big_int: BigInt
               custom_big_int_GT: BigInt
               custom_big_int_GTE: BigInt
@@ -797,7 +799,7 @@ describe("Cypher", () => {
             }
 
             type Post @node {
-                thing: String
+                content: String
             }
         `;
 
@@ -901,11 +903,6 @@ describe("Cypher", () => {
               posts: [Post!]!
             }
 
-            type CreateUsersMutationResponse {
-              info: CreateInfo!
-              users: [User!]!
-            }
-
             \\"\\"\\"
             Information about the number of nodes and relationships deleted during a delete mutation
             \\"\\"\\"
@@ -918,13 +915,10 @@ describe("Cypher", () => {
             type Mutation {
               createBlogs(input: [BlogCreateInput!]!): CreateBlogsMutationResponse!
               createPosts(input: [PostCreateInput!]!): CreatePostsMutationResponse!
-              createUsers(input: [UserCreateInput!]!): CreateUsersMutationResponse!
               deleteBlogs(where: BlogWhere): DeleteInfo!
               deletePosts(where: PostWhere): DeleteInfo!
-              deleteUsers(where: UserWhere): DeleteInfo!
               updateBlogs(update: BlogUpdateInput, where: BlogWhere): UpdateBlogsMutationResponse!
               updatePosts(update: PostUpdateInput, where: PostWhere): UpdatePostsMutationResponse!
-              updateUsers(update: UserUpdateInput, where: UserWhere): UpdateUsersMutationResponse!
             }
 
             \\"\\"\\"Pagination information (Relay)\\"\\"\\"
@@ -1003,9 +997,6 @@ describe("Cypher", () => {
               posts(options: PostOptions, where: PostWhere): [Post!]!
               postsAggregate(where: PostWhere): PostAggregateSelection!
               postsConnection(after: String, first: Int, sort: [PostSort], where: PostWhere): PostsConnection!
-              users(options: UserOptions, where: UserWhere): [User!]!
-              usersAggregate(where: UserWhere): UserAggregateSelection!
-              usersConnection(after: String, first: Int, sort: [UserSort], where: UserWhere): UsersConnection!
             }
 
             \\"\\"\\"Input type for options that can be specified on a query operation.\\"\\"\\"
@@ -1046,74 +1037,6 @@ describe("Cypher", () => {
             type UpdatePostsMutationResponse {
               info: UpdateInfo!
               posts: [Post!]!
-            }
-
-            type UpdateUsersMutationResponse {
-              info: UpdateInfo!
-              users: [User!]!
-            }
-
-            type User {
-              content: Content
-              contents: [Content!]!
-              name: String
-            }
-
-            type UserAggregateSelection {
-              count: Int!
-              name: StringAggregateSelection!
-            }
-
-            input UserCreateInput {
-              name: String
-            }
-
-            type UserEdge {
-              cursor: String!
-              node: User!
-            }
-
-            input UserOptions {
-              limit: Int
-              offset: Int
-              \\"\\"\\"
-              Specify one or more UserSort objects to sort Users by. The sorts will be applied in the order in which they are arranged in the array.
-              \\"\\"\\"
-              sort: [UserSort!]
-            }
-
-            \\"\\"\\"
-            Fields to sort Users by. The order in which sorts are applied is not guaranteed when specifying many fields in one UserSort object.
-            \\"\\"\\"
-            input UserSort {
-              content: SortDirection
-              name: SortDirection
-            }
-
-            input UserUpdateInput {
-              name: String
-            }
-
-            input UserWhere {
-              AND: [UserWhere!]
-              NOT: UserWhere
-              OR: [UserWhere!]
-              name: String
-              name_CONTAINS: String
-              name_ENDS_WITH: String
-              name_IN: [String]
-              name_NOT: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
-              name_NOT_CONTAINS: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
-              name_NOT_ENDS_WITH: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
-              name_NOT_IN: [String] @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
-              name_NOT_STARTS_WITH: String @deprecated(reason: \\"Negation filters will be deprecated, use the NOT operator to achieve the same behavior\\")
-              name_STARTS_WITH: String
-            }
-
-            type UsersConnection {
-              edges: [UserEdge!]!
-              pageInfo: PageInfo!
-              totalCount: Int!
             }"
         `);
     });
@@ -1429,7 +1352,7 @@ describe("Cypher", () => {
 
     test("Filters should be generated only on 1:1 Relationship/Object custom cypher fields", async () => {
         const typeDefs = /* GraphQL */ `
-            type Movie implements Production @node {
+            type Movie @node {
                 actors: [Actor]
                     @cypher(
                         statement: """
