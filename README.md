@@ -2,6 +2,9 @@
 
 💡 Welcome to the Monorepo for [Neo4j](https://neo4j.com/) + [GraphQL](https://graphql.org/).
 
+> [!IMPORTANT]  
+> This branch contains the source code the Long Term Support version of the Neo4j GraphQL Library. 
+
 ___
 
 **GraphQL API for Aura**  
