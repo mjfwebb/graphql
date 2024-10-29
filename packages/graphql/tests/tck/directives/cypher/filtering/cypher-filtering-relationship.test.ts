@@ -489,10 +489,10 @@ describe("cypher directive filtering - Relationship", () => {
                         RETURN director
                     }
                     WITH director AS this5
-                    RETURN this5 AS var6
+                    RETURN this5 AS this6
                 }
                 WITH *
-                WHERE ($isAuthenticated = true AND var6 = $param2)
+                WHERE ($isAuthenticated = true AND ($jwt.custom_value IS NOT NULL AND this6.name = $jwt.custom_value))
                 WITH this2 { .title, directed_by: var4 } AS this2
                 RETURN head(collect(this2)) AS var7
             }
@@ -506,7 +506,7 @@ describe("cypher directive filtering - Relationship", () => {
                 \\"jwt\\": {
                     \\"roles\\": [],
                     \\"custom_value\\": \\"Lilly Wachowski\\"
-                },
+                }
             }"
         `);
     });
@@ -612,10 +612,10 @@ describe("cypher directive filtering - Relationship", () => {
                         RETURN director
                     }
                     WITH director AS this5
-                    RETURN this5 AS var6
+                    RETURN this5 AS this6
                 }
                 WITH *
-                WHERE ($isAuthenticated = true AND var6 = $param2)
+                WHERE ($isAuthenticated = true AND ($jwt.custom_value IS NOT NULL AND this6.name = $jwt.custom_value))
                 WITH this2 { .title, directed_by: var4 } AS this2
                 RETURN head(collect(this2)) AS var7
             }
@@ -629,7 +629,7 @@ describe("cypher directive filtering - Relationship", () => {
                 \\"jwt\\": {
                     \\"roles\\": [],
                     \\"custom_value\\": \\"Something Incorrect\\"
-                },
+                }
             }"
         `);
     });
@@ -735,10 +735,10 @@ describe("cypher directive filtering - Relationship", () => {
                         RETURN director
                     }
                     WITH director AS this5
-                    RETURN this5 AS var6
+                    RETURN this5 AS this6
                 }
                 WITH *
-                WHERE apoc.util.validatePredicate(NOT ($isAuthenticated = true AND var6 = $param2), \\"@neo4j/graphql/FORBIDDEN\\", [0])
+                WHERE apoc.util.validatePredicate(NOT ($isAuthenticated = true AND ($jwt.custom_value IS NOT NULL AND this6.name = $jwt.custom_value)), \\"@neo4j/graphql/FORBIDDEN\\", [0])
                 WITH this2 { .title, directed_by: var4 } AS this2
                 RETURN head(collect(this2)) AS var7
             }
@@ -752,7 +752,7 @@ describe("cypher directive filtering - Relationship", () => {
                 \\"jwt\\": {
                     \\"roles\\": [],
                     \\"custom_value\\": \\"Lilly Wachowski\\"
-                },
+                }
             }"
         `);
     });
@@ -858,10 +858,10 @@ describe("cypher directive filtering - Relationship", () => {
                         RETURN director
                     }
                     WITH director AS this5
-                    RETURN this5 AS var6
+                    RETURN this5 AS this6
                 }
                 WITH *
-                WHERE apoc.util.validatePredicate(NOT ($isAuthenticated = true AND var6 = $param2), \\"@neo4j/graphql/FORBIDDEN\\", [0])
+                WHERE apoc.util.validatePredicate(NOT ($isAuthenticated = true AND ($jwt.custom_value IS NOT NULL AND this6.name = $jwt.custom_value)), \\"@neo4j/graphql/FORBIDDEN\\", [0])
                 WITH this2 { .title, directed_by: var4 } AS this2
                 RETURN head(collect(this2)) AS var7
             }
@@ -875,7 +875,7 @@ describe("cypher directive filtering - Relationship", () => {
                 \\"jwt\\": {
                     \\"roles\\": [],
                     \\"custom_value\\": \\"Something Wrong\\"
-                },
+                }
             }"
         `);
     });

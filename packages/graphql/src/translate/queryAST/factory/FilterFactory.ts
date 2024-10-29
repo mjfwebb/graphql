@@ -312,7 +312,7 @@ export class FilterFactory {
         return this.wrapMultipleFiltersInLogical(relationshipFilters, logicalOp);
     }
 
-    private createCypherRelationshipFilter({
+    protected createCypherRelationshipFilter({
         selection,
         target,
         where,
@@ -467,8 +467,6 @@ export class FilterFactory {
         if (isUnionEntity(entity)) {
             return [];
         }
-
-        console.log("whereFields", whereFields);
 
         const filters = filterTruthy(
             Object.entries(whereFields).flatMap(([key, value]): Filter | Filter[] | undefined => {
