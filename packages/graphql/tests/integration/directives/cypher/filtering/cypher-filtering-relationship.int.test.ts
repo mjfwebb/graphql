@@ -249,7 +249,7 @@ describe("cypher directive filtering - Relationship", () => {
         });
     });
 
-    test("1 to 1 relationship with auth filter PASS", async () => {
+    test("1 to 1 relationship with auth filter on type PASS", async () => {
         const Movie = testHelper.createUniqueType("Movie");
         const Person = testHelper.createUniqueType("Person");
 
@@ -333,7 +333,7 @@ describe("cypher directive filtering - Relationship", () => {
         });
     });
 
-    test("1 to 1 relationship with auth filter FAIL", async () => {
+    test("1 to 1 relationship with auth filter on type FAIL", async () => {
         const Movie = testHelper.createUniqueType("Movie");
         const Person = testHelper.createUniqueType("Person");
 
@@ -405,7 +405,163 @@ describe("cypher directive filtering - Relationship", () => {
         expect(gqlResult.errors).toBeTruthy();
     });
 
-    test("1 to 1 relationship with auth validate PASS", async () => {
+    test("1 to 1 relationship with auth filter on field PASS", async () => {
+        const Movie = testHelper.createUniqueType("Movie");
+        const Person = testHelper.createUniqueType("Person");
+
+        const typeDefs = /* GraphQL */ `
+            type ${Movie} @node {
+                title: String
+                released: Int
+                directed_by: ${Person}! @authorization(filter: [{ where: { node: { directed_by: { name: "$jwt.custom_value" } } } }])
+                    @cypher(
+                        statement: """
+                        MATCH (this)<-[:DIRECTED]-(director:${Person})
+                        RETURN director
+                        """
+                        columnName: "director"
+                    )
+            }
+
+            type ${Person} @node {
+                name: String
+                directed: ${Movie}!
+                    @cypher(
+                        statement: """
+                        MATCH (this)-[:DIRECTED]->(movie:${Movie})
+                        RETURN movie
+                        """
+                        columnName: "movie"
+                    )
+            }
+        `;
+
+        const token = testHelper.createBearerToken("secret", { custom_value: "Lilly Wachowski" });
+
+        await testHelper.initNeo4jGraphQL({
+            typeDefs,
+            features: {
+                authorization: {
+                    key: "secret",
+                },
+            },
+        });
+        await testHelper.executeCypher(
+            `
+            CREATE (m:${Movie} { title: "The Matrix", released: 1999 })
+            CREATE (m2:${Movie} { title: "The Matrix Reloaded", released: 2003 })
+            CREATE (a:${Person} { name: "Keanu Reeves" })
+            CREATE (a)-[:ACTED_IN]->(m)
+            CREATE (a)-[:ACTED_IN]->(m2)
+            CREATE (a5:${Person} { name: "Lilly Wachowski" })
+            CREATE (a5)-[:DIRECTED]->(m)
+            `,
+            {}
+        );
+
+        const query = /* GraphQL */ `
+            query {
+                ${Person.plural}(where: { directed: { title: "The Matrix" } }) {
+                    directed {
+                        title
+                        directed_by {
+                            name
+                        }
+                    }
+                }
+            }
+        `;
+
+        const gqlResult = await testHelper.executeGraphQLWithToken(query, token);
+
+        expect(gqlResult.errors).toBeFalsy();
+        expect(gqlResult?.data).toEqual({
+            [Person.plural]: [
+                {
+                    directed: {
+                        title: "The Matrix",
+                        directed_by: {
+                            name: "Lilly Wachowski",
+                        },
+                    },
+                },
+            ],
+        });
+    });
+
+    test("1 to 1 relationship with auth filter on field FAIL", async () => {
+        const Movie = testHelper.createUniqueType("Movie");
+        const Person = testHelper.createUniqueType("Person");
+
+        const typeDefs = /* GraphQL */ `
+            type ${Movie} @node {
+                title: String
+                released: Int
+                directed_by: ${Person}! @authorization(filter: [{ where: { node: { directed_by: { name: "$jwt.custom_value" } } } }])
+                    @cypher(
+                        statement: """
+                        MATCH (this)<-[:DIRECTED]-(director:${Person})
+                        RETURN director
+                        """
+                        columnName: "director"
+                    )
+            }
+
+            type ${Person} @node {
+                name: String
+                directed: ${Movie}!
+                    @cypher(
+                        statement: """
+                        MATCH (this)-[:DIRECTED]->(movie:${Movie})
+                        RETURN movie
+                        """
+                        columnName: "movie"
+                    )
+            }
+        `;
+
+        const token = testHelper.createBearerToken("secret", { custom_value: "Something Incorrect" });
+
+        await testHelper.initNeo4jGraphQL({
+            typeDefs,
+            features: {
+                authorization: {
+                    key: "secret",
+                },
+            },
+        });
+        await testHelper.executeCypher(
+            `
+            CREATE (m:${Movie} { title: "The Matrix", released: 1999 })
+            CREATE (m2:${Movie} { title: "The Matrix Reloaded", released: 2003 })
+            CREATE (a:${Person} { name: "Keanu Reeves" })
+            CREATE (a)-[:ACTED_IN]->(m)
+            CREATE (a)-[:ACTED_IN]->(m2)
+            CREATE (a5:${Person} { name: "Lilly Wachowski" })
+            CREATE (a5)-[:DIRECTED]->(m)
+            `,
+            {}
+        );
+
+        const query = /* GraphQL */ `
+            query {
+                ${Person.plural}(where: { directed: { title: "The Matrix" } }) {
+                    directed {
+                        title
+                        directed_by {
+                            name
+                        }
+                    }
+                }
+            }
+        `;
+
+        const gqlResult = await testHelper.executeGraphQLWithToken(query, token);
+
+        expect(gqlResult.errors).toBeTruthy();
+    });
+
+    test("1 to 1 relationship with auth validate type PASS", async () => {
         const Movie = testHelper.createUniqueType("Movie");
         const Person = testHelper.createUniqueType("Person");
 
@@ -489,7 +645,7 @@ describe("cypher directive filtering - Relationship", () => {
         });
     });
 
-    test("1 to 1 relationship with auth validate FAIL", async () => {
+    test("1 to 1 relationship with auth validate type FAIL", async () => {
         const Movie = testHelper.createUniqueType("Movie");
         const Person = testHelper.createUniqueType("Person");
 
@@ -498,6 +654,163 @@ describe("cypher directive filtering - Relationship", () => {
                 title: String
                 released: Int
                 directed_by: ${Person}!
+                    @cypher(
+                        statement: """
+                        MATCH (this)<-[:DIRECTED]-(director:${Person})
+                        RETURN director
+                        """
+                        columnName: "director"
+                    )
+            }
+
+            type ${Person} @node {
+                name: String
+                directed: ${Movie}!
+                    @cypher(
+                        statement: """
+                        MATCH (this)-[:DIRECTED]->(movie:${Movie})
+                        RETURN movie
+                        """
+                        columnName: "movie"
+                    )
+            }
+        `;
+
+        const token = testHelper.createBearerToken("secret", { custom_value: "Something Wrong" });
+
+        await testHelper.initNeo4jGraphQL({
+            typeDefs,
+            features: {
+                authorization: {
+                    key: "secret",
+                },
+            },
+        });
+        await testHelper.executeCypher(
+            `
+            CREATE (m:${Movie} { title: "The Matrix", released: 1999 })
+            CREATE (m2:${Movie} { title: "The Matrix Reloaded", released: 2003 })
+            CREATE (a:${Person} { name: "Keanu Reeves" })
+            CREATE (a)-[:ACTED_IN]->(m)
+            CREATE (a)-[:ACTED_IN]->(m2)
+            CREATE (a5:${Person} { name: "Lilly Wachowski" })
+            CREATE (a5)-[:DIRECTED]->(m)
+            `,
+            {}
+        );
+
+        const query = /* GraphQL */ `
+            query {
+                ${Person.plural}(where: { directed: { title: "The Matrix" } }) {
+                    directed {
+                        title
+                        directed_by {
+                            name
+                        }
+                    }
+                }
+            }
+        `;
+
+        const gqlResult = await testHelper.executeGraphQLWithToken(query, token);
+
+        expect(gqlResult.errors).toHaveLength(1);
+        expect(gqlResult.errors?.[0]?.message).toBe("Forbidden");
+    });
+
+    test("1 to 1 relationship with auth validate field PASS", async () => {
+        const Movie = testHelper.createUniqueType("Movie");
+        const Person = testHelper.createUniqueType("Person");
+
+        const typeDefs = /* GraphQL */ `
+            type ${Movie} @node {
+                title: String
+                released: Int
+                directed_by: ${Person}! @authorization(validate: [{ where: { node: { directed_by: { name: "$jwt.custom_value" } } } }])
+                    @cypher(
+                        statement: """
+                        MATCH (this)<-[:DIRECTED]-(director:${Person})
+                        RETURN director
+                        """
+                        columnName: "director"
+                    )
+            }
+
+            type ${Person} @node {
+                name: String
+                directed: ${Movie}!
+                    @cypher(
+                        statement: """
+                        MATCH (this)-[:DIRECTED]->(movie:${Movie})
+                        RETURN movie
+                        """
+                        columnName: "movie"
+                    )
+            }
+        `;
+
+        const token = testHelper.createBearerToken("secret", { custom_value: "Lilly Wachowski" });
+
+        await testHelper.initNeo4jGraphQL({
+            typeDefs,
+            features: {
+                authorization: {
+                    key: "secret",
+                },
+            },
+        });
+        await testHelper.executeCypher(
+            `
+            CREATE (m:${Movie} { title: "The Matrix", released: 1999 })
+            CREATE (m2:${Movie} { title: "The Matrix Reloaded", released: 2003 })
+            CREATE (a:${Person} { name: "Keanu Reeves" })
+            CREATE (a)-[:ACTED_IN]->(m)
+            CREATE (a)-[:ACTED_IN]->(m2)
+            CREATE (a5:${Person} { name: "Lilly Wachowski" })
+            CREATE (a5)-[:DIRECTED]->(m)
+            `,
+            {}
+        );
+
+        const query = /* GraphQL */ `
+            query {
+                ${Person.plural}(where: { directed: { title: "The Matrix" } }) {
+                    directed {
+                        title
+                        directed_by {
+                            name
+                        }
+                    }
+                }
+            }
+        `;
+
+        const gqlResult = await testHelper.executeGraphQLWithToken(query, token);
+
+        expect(gqlResult.errors).toBeFalsy();
+        expect(gqlResult?.data).toEqual({
+            [Person.plural]: [
+                {
+                    directed: {
+                        title: "The Matrix",
+                        directed_by: {
+                            name: "Lilly Wachowski",
+                        },
+                    },
+                },
+            ],
+        });
+    });
+
+    test("1 to 1 relationship with auth validate field FAIL", async () => {
+        const Movie = testHelper.createUniqueType("Movie");
+        const Person = testHelper.createUniqueType("Person");
+
+        const typeDefs = /* GraphQL */ `
+            type ${Movie} @node {
+                title: String
+                released: Int
+                directed_by: ${Person}! @authorization(validate: [{ where: { node: { directed_by: { name: "$jwt.custom_value" } } } }])
                     @cypher(
                         statement: """
                         MATCH (this)<-[:DIRECTED]-(director:${Person})
