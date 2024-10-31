@@ -25,31 +25,35 @@ import type { QueryASTNode } from "../QueryASTNode";
 import type { CustomCypherSelection } from "../selection/CustomCypherSelection";
 import { Filter } from "./Filter";
 
-export class CypherRelationshipFilter extends Filter {
+export class CypherOneToOneRelationshipFilter extends Filter {
     private returnVariable: Cypher.Node;
     private attribute: AttributeAdapter;
     private selection: CustomCypherSelection;
     private operator: RelationshipWhereOperator;
     private targetNodeFilters: Filter[] = [];
     private isNot: boolean;
+    private isNull: boolean;
 
     constructor({
         selection,
         attribute,
         operator,
         isNot,
+        isNull,
         returnVariable,
     }: {
         selection: CustomCypherSelection;
         attribute: AttributeAdapter;
         operator: RelationshipWhereOperator;
         isNot: boolean;
+        isNull: boolean;
         returnVariable: Cypher.Node;
     }) {
         super();
         this.selection = selection;
         this.attribute = attribute;
         this.isNot = isNot;
+        this.isNull = isNull;
         this.operator = operator;
         this.returnVariable = returnVariable;
     }
@@ -70,7 +74,7 @@ export class CypherRelationshipFilter extends Filter {
         const { selection, nestedContext } = this.selection.apply(context);
 
         const cypherSubquery = selection.return([
-            this.getSubqueryReturnValue(nestedContext.returnVariable),
+            Cypher.head(Cypher.collect(nestedContext.returnVariable)),
             this.returnVariable,
         ]);
 
@@ -86,35 +90,19 @@ export class CypherRelationshipFilter extends Filter {
         }
     }
 
-    private getSubqueryReturnValue(returnVariable: Cypher.Variable): Cypher.Expr {
-        if (this.isNullableSingle() && this.isNot) {
-            return Cypher.head(Cypher.collect(returnVariable));
-        }
-        return returnVariable;
-    }
-
     private createRelationshipOperation(queryASTContext: QueryASTContext): Cypher.Predicate | undefined {
         const targetNodePredicates = this.targetNodeFilters.map((c) => c.getPredicate(queryASTContext));
         const innerPredicate = Cypher.and(...targetNodePredicates);
 
-        if (this.isNot && this.isNullableSingle()) {
-            // If the relationship is nullable and the operator is NOT SOME, we need to check if the relationship is null
-            // Note that NOT SOME is equivalent to NONE
+        if (this.isNull) {
             return Cypher.and(innerPredicate, Cypher.isNull(this.returnVariable));
         }
 
         return innerPredicate;
     }
 
-    private isNullableSingle(): boolean {
-        return !this.attribute.typeHelper.isList() && !this.attribute.typeHelper.isRequired();
-    }
-
     private wrapInNotIfNeeded(predicate: Cypher.Predicate): Cypher.Predicate {
-        // Cypher.not is not desired when the relationship is a nullable not-list
-        // This is because we want to check IS NULL, rather than NOT IS NULL,
-        // even though this.isNot is set to true
-        if (this.isNot && !this.isNullableSingle()) {
+        if (this.isNot) {
             return Cypher.not(predicate);
         }
 

@@ -19,7 +19,7 @@
 
 import { TestHelper } from "../../../../utils/tests-helper";
 
-describe("cypher directive filtering - Relationship", () => {
+describe("cypher directive filtering - One To One Relationship", () => {
     const testHelper = new TestHelper();
 
     afterEach(async () => {
@@ -108,6 +108,83 @@ describe("cypher directive filtering - Relationship", () => {
                     title: "The Matrix Revolutions",
                     actor: {
                         name: "Keanu Reeves",
+                    },
+                },
+            ]),
+        });
+    });
+
+    test("1 to 1 relationship with single property filter with non-deterministic result", async () => {
+        const Movie = testHelper.createUniqueType("Movie");
+        const Actor = testHelper.createUniqueType("Actor");
+
+        const typeDefs = /* GraphQL */ `
+            type ${Movie} @node {
+                title: String
+                actor: ${Actor}!
+                    @cypher(
+                        statement: """
+                        MATCH (this)<-[:ACTED_IN]-(actor:${Actor})
+                        RETURN actor
+                        """
+                        columnName: "actor"
+                    )
+            }
+
+            type ${Actor} @node {
+                name: String
+                movie: ${Movie}!
+                    @cypher(
+                        statement: """
+                        MATCH (this)-[:ACTED_IN]->(movie:${Movie})
+                        RETURN movie
+                        """
+                        columnName: "movie"
+                    )
+            }
+        `;
+
+        await testHelper.initNeo4jGraphQL({ typeDefs });
+        await testHelper.executeCypher(
+            `
+            CREATE (m:${Movie} { title: "The Matrix" })
+            CREATE (m2:${Movie} { title: "The Matrix Reloaded" })
+            CREATE (m3:${Movie} { title: "The Matrix Revolutions" })
+            CREATE (a:${Actor} { name: "Keanu Reeves" })
+            CREATE (a)-[:ACTED_IN]->(m)
+            CREATE (a)-[:ACTED_IN]->(m2)
+            CREATE (a)-[:ACTED_IN]->(m3)
+            `,
+            {}
+        );
+
+        const query = /* GraphQL */ `
+            query {
+                ${Actor.plural}(
+                    where: {
+                        movie: {
+                            title_STARTS_WITH: "The Matrix"
+                        } 
+                    }
+                ) {
+                    name
+                    movie {
+                        title
+                    }
+                }
+            }
+        `;
+
+        const gqlResult = await testHelper.executeGraphQL(query);
+
+        expect(gqlResult.errors).toBeFalsy();
+        expect(gqlResult?.data).toEqual({
+            [Actor.plural]: expect.toIncludeSameMembers([
+                {
+                    name: "Keanu Reeves",
+                    movie: {
+                        // The result is non-deterministic, so we can potentially match any of the movies
+                        title: expect.toStartWith("The Matrix"),
                     },
                 },
             ]),
@@ -221,6 +298,8 @@ describe("cypher directive filtering - Relationship", () => {
             CREATE (m2:${Movie} { title: "The Matrix Reloaded", released: 2003 })
             CREATE (m3:${Movie} { title: "The Matrix Revolutions", released: 2003 })
             CREATE (a:${Actor} { name: "Keanu Reeves" })
+            CREATE (a2:${Actor} { name: "Jada Pinkett Smith" })
+            CREATE (a2)-[:ACTED_IN]->(m3)
             CREATE (a)-[:ACTED_IN]->(m)
             CREATE (a)-[:ACTED_IN]->(m2)
             `,
@@ -230,7 +309,7 @@ describe("cypher directive filtering - Relationship", () => {
         const query = /* GraphQL */ `
             query {
                 ${Movie.plural}(
-                    where: { AND: [{ released_IN: [2003], actor: { NOT: null } }] }
+                    where: { AND: [{ released_IN: [2003], NOT: { actor: null } }] }
                 ) {
                     title
                 }
@@ -244,6 +323,9 @@ describe("cypher directive filtering - Relationship", () => {
             [Movie.plural]: expect.toIncludeSameMembers([
                 {
                     title: "The Matrix Reloaded",
+                },
+                {
+                    title: "The Matrix Revolutions",
                 },
             ]),
         });

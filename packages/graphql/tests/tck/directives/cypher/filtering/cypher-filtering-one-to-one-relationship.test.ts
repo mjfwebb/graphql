@@ -21,7 +21,7 @@ import { Neo4jGraphQL } from "../../../../../src";
 import { createBearerToken } from "../../../../utils/create-bearer-token";
 import { formatCypher, formatParams, translateQuery } from "../../../utils/tck-test-utils";
 
-describe("cypher directive filtering - Relationship", () => {
+describe("cypher directive filtering - One To One Relationship", () => {
     test("1 to 1 relationship", async () => {
         const typeDefs = /* GraphQL */ `
             type Movie @node {
@@ -75,7 +75,7 @@ describe("cypher directive filtering - Relationship", () => {
                     RETURN actor
                 }
                 WITH actor AS this0
-                RETURN this0 AS this1
+                RETURN head(collect(this0)) AS this1
             }
             WITH *
             WHERE this1.name = $param0
@@ -143,7 +143,7 @@ describe("cypher directive filtering - Relationship", () => {
                     RETURN actor
                 }
                 WITH actor AS this0
-                RETURN this0 AS this1
+                RETURN head(collect(this0)) AS this1
             }
             WITH *
             WHERE (this.released = $param0 AND (this1.name = $param1 AND this1.age > $param2))
@@ -220,7 +220,7 @@ describe("cypher directive filtering - Relationship", () => {
                     RETURN actor
                 }
                 WITH actor AS this0
-                RETURN this0 AS this1
+                RETURN head(collect(this0)) AS this1
             }
             WITH *
             WHERE this1.name = $param0
@@ -350,7 +350,7 @@ describe("cypher directive filtering - Relationship", () => {
 
         const query = /* GraphQL */ `
             query {
-                movies(where: { AND: [{ released_IN: [2003], actor: { NOT: null } }] }) {
+                movies(where: { AND: [{ released_IN: [2003], NOT: { actor: null } }] }) {
                     title
                 }
             }
@@ -369,10 +369,10 @@ describe("cypher directive filtering - Relationship", () => {
                     RETURN actor
                 }
                 WITH actor AS this0
-                RETURN this0 AS this1
+                RETURN head(collect(this0)) AS this1
             }
             WITH *
-            WHERE this.released IN $param0
+            WHERE (this.released IN $param0 AND this1 IS NOT NULL)
             RETURN this { .title } AS this"
         `);
 
@@ -455,7 +455,7 @@ describe("cypher directive filtering - Relationship", () => {
                     RETURN movie
                 }
                 WITH movie AS this0
-                RETURN this0 AS this1
+                RETURN head(collect(this0)) AS this1
             }
             WITH *
             WHERE this1.title = $param0
@@ -489,7 +489,7 @@ describe("cypher directive filtering - Relationship", () => {
                         RETURN director
                     }
                     WITH director AS this5
-                    RETURN this5 AS this6
+                    RETURN head(collect(this5)) AS this6
                 }
                 WITH *
                 WHERE ($isAuthenticated = true AND ($jwt.custom_value IS NOT NULL AND this6.name = $jwt.custom_value))
@@ -578,7 +578,7 @@ describe("cypher directive filtering - Relationship", () => {
                     RETURN movie
                 }
                 WITH movie AS this0
-                RETURN this0 AS this1
+                RETURN head(collect(this0)) AS this1
             }
             WITH *
             WHERE this1.title = $param0
@@ -612,7 +612,7 @@ describe("cypher directive filtering - Relationship", () => {
                         RETURN director
                     }
                     WITH director AS this5
-                    RETURN this5 AS this6
+                    RETURN head(collect(this5)) AS this6
                 }
                 WITH *
                 WHERE ($isAuthenticated = true AND ($jwt.custom_value IS NOT NULL AND this6.name = $jwt.custom_value))
@@ -700,7 +700,7 @@ describe("cypher directive filtering - Relationship", () => {
                     RETURN movie
                 }
                 WITH movie AS this0
-                RETURN this0 AS this1
+                RETURN head(collect(this0)) AS this1
             }
             WITH *
             WHERE this1.title = $param0
@@ -734,7 +734,7 @@ describe("cypher directive filtering - Relationship", () => {
                         RETURN director
                     }
                     WITH director AS this5
-                    RETURN this5 AS this6
+                    RETURN head(collect(this5)) AS this6
                 }
                 WITH *
                 WHERE ($isAuthenticated = true AND ($jwt.custom_value IS NOT NULL AND this6.name = $jwt.custom_value))
@@ -822,7 +822,7 @@ describe("cypher directive filtering - Relationship", () => {
                     RETURN movie
                 }
                 WITH movie AS this0
-                RETURN this0 AS this1
+                RETURN head(collect(this0)) AS this1
             }
             WITH *
             WHERE this1.title = $param0
@@ -856,7 +856,7 @@ describe("cypher directive filtering - Relationship", () => {
                         RETURN director
                     }
                     WITH director AS this5
-                    RETURN this5 AS this6
+                    RETURN head(collect(this5)) AS this6
                 }
                 WITH *
                 WHERE ($isAuthenticated = true AND ($jwt.custom_value IS NOT NULL AND this6.name = $jwt.custom_value))
@@ -945,7 +945,7 @@ describe("cypher directive filtering - Relationship", () => {
                     RETURN movie
                 }
                 WITH movie AS this0
-                RETURN this0 AS this1
+                RETURN head(collect(this0)) AS this1
             }
             WITH *
             WHERE this1.title = $param0
@@ -979,7 +979,7 @@ describe("cypher directive filtering - Relationship", () => {
                         RETURN director
                     }
                     WITH director AS this5
-                    RETURN this5 AS this6
+                    RETURN head(collect(this5)) AS this6
                 }
                 WITH *
                 WHERE apoc.util.validatePredicate(NOT ($isAuthenticated = true AND ($jwt.custom_value IS NOT NULL AND this6.name = $jwt.custom_value)), \\"@neo4j/graphql/FORBIDDEN\\", [0])
@@ -1068,7 +1068,7 @@ describe("cypher directive filtering - Relationship", () => {
                     RETURN movie
                 }
                 WITH movie AS this0
-                RETURN this0 AS this1
+                RETURN head(collect(this0)) AS this1
             }
             WITH *
             WHERE this1.title = $param0
@@ -1102,7 +1102,7 @@ describe("cypher directive filtering - Relationship", () => {
                         RETURN director
                     }
                     WITH director AS this5
-                    RETURN this5 AS this6
+                    RETURN head(collect(this5)) AS this6
                 }
                 WITH *
                 WHERE apoc.util.validatePredicate(NOT ($isAuthenticated = true AND ($jwt.custom_value IS NOT NULL AND this6.name = $jwt.custom_value)), \\"@neo4j/graphql/FORBIDDEN\\", [0])
@@ -1190,7 +1190,7 @@ describe("cypher directive filtering - Relationship", () => {
                     RETURN movie
                 }
                 WITH movie AS this0
-                RETURN this0 AS this1
+                RETURN head(collect(this0)) AS this1
             }
             WITH *
             WHERE this1.title = $param0
@@ -1224,7 +1224,7 @@ describe("cypher directive filtering - Relationship", () => {
                         RETURN director
                     }
                     WITH director AS this5
-                    RETURN this5 AS this6
+                    RETURN head(collect(this5)) AS this6
                 }
                 WITH *
                 WHERE apoc.util.validatePredicate(NOT ($isAuthenticated = true AND ($jwt.custom_value IS NOT NULL AND this6.name = $jwt.custom_value)), \\"@neo4j/graphql/FORBIDDEN\\", [0])
@@ -1312,7 +1312,7 @@ describe("cypher directive filtering - Relationship", () => {
                     RETURN movie
                 }
                 WITH movie AS this0
-                RETURN this0 AS this1
+                RETURN head(collect(this0)) AS this1
             }
             WITH *
             WHERE this1.title = $param0
@@ -1346,7 +1346,7 @@ describe("cypher directive filtering - Relationship", () => {
                         RETURN director
                     }
                     WITH director AS this5
-                    RETURN this5 AS this6
+                    RETURN head(collect(this5)) AS this6
                 }
                 WITH *
                 WHERE apoc.util.validatePredicate(NOT ($isAuthenticated = true AND ($jwt.custom_value IS NOT NULL AND this6.name = $jwt.custom_value)), \\"@neo4j/graphql/FORBIDDEN\\", [0])
@@ -1437,7 +1437,7 @@ describe("cypher directive filtering - Relationship", () => {
                     RETURN movie
                 }
                 WITH movie AS this0
-                RETURN this0 AS this1
+                RETURN head(collect(this0)) AS this1
             }
             WITH *
             WHERE this1.title = $param0
@@ -1561,7 +1561,7 @@ describe("cypher directive filtering - Relationship", () => {
                     RETURN director
                 }
                 WITH director AS this0
-                RETURN this0 AS this1
+                RETURN head(collect(this0)) AS this1
             }
             WITH *
             WHERE (this.title ENDS WITH $param0 AND this1.name = $param1)
