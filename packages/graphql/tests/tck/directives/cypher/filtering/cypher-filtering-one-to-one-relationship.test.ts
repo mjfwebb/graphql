@@ -372,7 +372,7 @@ describe("cypher directive filtering - One To One Relationship", () => {
                 RETURN head(collect(this0)) AS this1
             }
             WITH *
-            WHERE (this.released IN $param0 AND this1 IS NOT NULL)
+            WHERE (this.released IN $param0 AND NOT (this1 IS NULL))
             RETURN this { .title } AS this"
         `);
 
