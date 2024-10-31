@@ -25,7 +25,6 @@ import type { UnionEntityAdapter } from "../../../schema-model/entity/model-adap
 import { RelationshipAdapter } from "../../../schema-model/relationship/model-adapters/RelationshipAdapter";
 import { getEntityAdapter } from "../../../schema-model/utils/get-entity-adapter";
 import type { ConnectionWhereArg, GraphQLWhereArg } from "../../../types";
-import type { Neo4jGraphQLTranslationContext } from "../../../types/neo4j-graphql-translation-context";
 import { fromGlobalId } from "../../../utils/global-ids";
 import { asArray, filterTruthy } from "../../../utils/utils";
 import { isLogicalOperator } from "../../utils/logical-operators";
@@ -231,7 +230,6 @@ export class FilterFactory {
         operator: WhereOperator | undefined;
         isNot: boolean;
         attachedTo?: "node" | "relationship";
-        context?: Neo4jGraphQLTranslationContext;
     }): Filter | Filter[] {
         const filterOperator = operator || "EQ";
 
