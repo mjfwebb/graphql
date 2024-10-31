@@ -97,18 +97,13 @@ export class CypherRelationshipFilter extends Filter {
         const targetNodePredicates = this.targetNodeFilters.map((c) => c.getPredicate(queryASTContext));
         const innerPredicate = Cypher.and(...targetNodePredicates);
 
-        switch (this.operator) {
-            case "NONE":
-            case "SOME": {
-                if (this.isNot && this.isNullableSingle()) {
-                    // If the relationship is nullable and the operator is NOT SOME, we need to check if the relationship is null
-                    // Note that NOT SOME is equivalent to NONE
-                    return Cypher.and(innerPredicate, Cypher.isNull(this.returnVariable));
-                }
-
-                return innerPredicate;
-            }
+        if (this.isNot && this.isNullableSingle()) {
+            // If the relationship is nullable and the operator is NOT SOME, we need to check if the relationship is null
+            // Note that NOT SOME is equivalent to NONE
+            return Cypher.and(innerPredicate, Cypher.isNull(this.returnVariable));
         }
+
+        return innerPredicate;
     }
 
     private isNullableSingle(): boolean {
