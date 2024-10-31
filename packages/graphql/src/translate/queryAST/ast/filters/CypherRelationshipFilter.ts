@@ -112,7 +112,7 @@ export class CypherRelationshipFilter extends Filter {
     }
 
     private isNullableSingle(): boolean {
-        return !this.attribute.typeHelper.isList() && this.attribute.typeHelper.isNullable();
+        return !this.attribute.typeHelper.isList() && !this.attribute.typeHelper.isRequired();
     }
 
     private wrapInNotIfNeeded(predicate: Cypher.Predicate): Cypher.Predicate {

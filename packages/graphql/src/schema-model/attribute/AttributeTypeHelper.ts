@@ -177,10 +177,6 @@ export class AttributeTypeHelper {
         return this.type.isRequired;
     }
 
-    public isNullable(): boolean {
-        return !this.isRequired();
-    }
-
     public isGraphQLBuiltInScalar(options = this.assertionOptions): boolean {
         const type = this.getTypeForAssertion(options.includeLists);
         return type.name in GraphQLBuiltInScalarType;
