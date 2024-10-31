@@ -136,7 +136,14 @@ function hydrateCypherAnnotations(schema: Neo4jGraphQLSchemaModel, concreteEntit
         for (const attributeField of concreteEntity.attributes.values()) {
             if (attributeField.annotations.cypher) {
                 if (attributeField.type instanceof ObjectType) {
-                    attributeField.annotations.cypher.targetEntity = schema.getConcreteEntity(attributeField.type.name);
+                    const foundConcreteEntity = schema.getConcreteEntity(attributeField.type.name);
+                    if (!foundConcreteEntity) {
+                        throw new Neo4jGraphQLSchemaValidationError(
+                            `Could not find concrete entity with name ${attributeField.type.name}`
+                        );
+                    }
+
+                    attributeField.annotations.cypher.targetEntity = foundConcreteEntity;
                 }
             }
         }
