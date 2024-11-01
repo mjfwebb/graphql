@@ -131,9 +131,16 @@ export class AttributeAdapter {
         );
     }
 
+    isCypherRelationshipField(): boolean {
+        return this.isCypher() && Boolean(this.annotations.cypher?.targetEntity);
+    }
+
     isWhereField(): boolean {
         return (
-            (this.typeHelper.isEnum() || this.typeHelper.isSpatial() || this.typeHelper.isScalar()) &&
+            (this.typeHelper.isEnum() ||
+                this.typeHelper.isSpatial() ||
+                this.typeHelper.isScalar() ||
+                this.isCypherRelationshipField()) &&
             this.isFilterable() &&
             !this.isCustomResolvable()
         );

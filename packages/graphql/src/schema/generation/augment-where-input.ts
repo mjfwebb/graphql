@@ -24,7 +24,7 @@ import type { RelationshipDeclarationAdapter } from "../../schema-model/relation
 import type { Neo4jFeaturesSettings } from "../../types";
 import { shouldAddDeprecatedFields } from "./utils";
 
-function augmentWhereInputType({
+function augmentRelationshipWhereInputType({
     whereType,
     fieldName,
     filters,
@@ -101,7 +101,7 @@ export function augmentWhereInputTypeWithRelationshipFields(
     features: Neo4jFeaturesSettings | undefined
 ): InputTypeComposerFieldConfigMapDefinition {
     const filters = relationshipAdapter.listFiltersModel?.filters;
-    return augmentWhereInputType({
+    return augmentRelationshipWhereInputType({
         whereType: relationshipAdapter.target.operations.whereInputTypeName,
         fieldName: relationshipAdapter.name,
         filters,
@@ -117,7 +117,7 @@ export function augmentWhereInputTypeWithConnectionFields(
     features: Neo4jFeaturesSettings | undefined
 ): InputTypeComposerFieldConfigMapDefinition {
     const filters = relationshipAdapter.listFiltersModel?.connectionFilters;
-    return augmentWhereInputType({
+    return augmentRelationshipWhereInputType({
         whereType: relationshipAdapter.operations.getConnectionWhereTypename(),
         fieldName: relationshipAdapter.operations.connectionFieldName,
         filters,
