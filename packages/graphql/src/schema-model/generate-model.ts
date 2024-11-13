@@ -39,7 +39,7 @@ import type { Operations } from "./Neo4jGraphQLSchemaModel";
 import { Neo4jGraphQLSchemaModel } from "./Neo4jGraphQLSchemaModel";
 import { Operation } from "./Operation";
 import type { Attribute } from "./attribute/Attribute";
-import { ObjectType } from "./attribute/AttributeType";
+import { ListType, ObjectType } from "./attribute/AttributeType";
 import type { CompositeEntity } from "./entity/CompositeEntity";
 import { ConcreteEntity } from "./entity/ConcreteEntity";
 import type { Entity } from "./entity/Entity";
@@ -136,14 +136,29 @@ function hydrateCypherAnnotations(schema: Neo4jGraphQLSchemaModel, concreteEntit
         for (const attributeField of concreteEntity.attributes.values()) {
             if (attributeField.annotations.cypher) {
                 if (attributeField.type instanceof ObjectType) {
-                    const foundConcreteEntity = schema.getConcreteEntity(attributeField.type.name);
-                    if (!foundConcreteEntity) {
+                    const targetEntity = schema.getConcreteEntity(attributeField.type.name);
+                    if (!targetEntity) {
                         throw new Neo4jGraphQLSchemaValidationError(
                             `Could not find concrete entity with name ${attributeField.type.name}`
                         );
                     }
 
-                    attributeField.annotations.cypher.targetEntity = foundConcreteEntity;
+                    attributeField.annotations.cypher.targetEntity = targetEntity;
+                }
+
+                if (attributeField.type instanceof ListType) {
+                    if (!(attributeField.type.ofType instanceof ObjectType)) {
+                        continue;
+                    }
+
+                    const targetEntity = schema.getConcreteEntity(attributeField.type.ofType.name);
+                    if (!targetEntity) {
+                        throw new Neo4jGraphQLSchemaValidationError(
+                            `Could not find concrete entity with name ${attributeField.type.ofType.name}`
+                        );
+                    }
+
+                    attributeField.annotations.cypher.targetEntity = targetEntity;
                 }
             }
         }
