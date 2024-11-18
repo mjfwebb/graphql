@@ -1,5 +1,15 @@
 # @neo4j/graphql
 
+## 5.10.0
+
+### Minor Changes
+
+-   [#5723](https://github.com/neo4j/graphql/pull/5723) [`72a6504`](https://github.com/neo4j/graphql/commit/72a6504a0e73af5feb72ff7b6d3810fbd50e57f7) Thanks [@mjfwebb](https://github.com/mjfwebb)! - Add filtering on 1 to 1 relationship custom cypher fields
+
+### Patch Changes
+
+-   [#5765](https://github.com/neo4j/graphql/pull/5765) [`d444e16`](https://github.com/neo4j/graphql/commit/d444e16f942f4f6538c64f112fa91a1a12891b92) Thanks [@darrellwarde](https://github.com/darrellwarde)! - Fix issues #5759 and #5760 to do with sorting vector search results
+
 ## 5.9.2
 
 ### Patch Changes
