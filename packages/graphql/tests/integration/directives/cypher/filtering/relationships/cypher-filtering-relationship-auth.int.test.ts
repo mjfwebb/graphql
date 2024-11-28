@@ -19,7 +19,7 @@
 
 import { TestHelper } from "../../../../../utils/tests-helper";
 
-describe("cypher directive filtering - relationship auth filter", () => {
+describe("Connection API - cypher directive filtering - relationship auth filter", () => {
     const testHelper = new TestHelper();
 
     afterEach(async () => {
@@ -31,8 +31,9 @@ describe("cypher directive filtering - relationship auth filter", () => {
         const Actor = testHelper.createUniqueType("Actor");
 
         const typeDefs = /* GraphQL */ `
-            type ${Movie} @node @authorization(filter: [{ where: { node: { actors: { name: "$jwt.custom_value" } } } }]) {
+            type ${Movie} @node @authorization(filter: [{ where: { node: { actors_SOME: { name: "$jwt.custom_value" } } } }]) {
                 title: String
+                rating: Float
                 actors: [${Actor}!]!
                     @cypher(
                         statement: """
@@ -56,7 +57,7 @@ describe("cypher directive filtering - relationship auth filter", () => {
             }
         `;
 
-        const token = testHelper.createBearerToken("secret", { custom_value: "Keanu Reeves" });
+        const token = testHelper.createBearerToken("secret", { custom_value: "Jada Pinkett Smith" });
 
         await testHelper.initNeo4jGraphQL({
             typeDefs,
@@ -68,9 +69,9 @@ describe("cypher directive filtering - relationship auth filter", () => {
         });
         await testHelper.executeCypher(
             `
-            CREATE (m:${Movie} { title: "The Matrix" })
-            CREATE (m2:${Movie} { title: "The Matrix Reloaded" })
-            CREATE (m3:${Movie} { title: "The Matrix Revolutions" })
+            CREATE (m:${Movie} { title: "The Matrix", rating: 10.0 })
+            CREATE (m2:${Movie} { title: "The Matrix Reloaded", rating: 8.0 })
+            CREATE (m3:${Movie} { title: "The Matrix Revolutions", rating: 6.0 })
             CREATE (a:${Actor} { name: "Keanu Reeves" })
             CREATE (a)-[:ACTED_IN]->(m)
             CREATE (a)-[:ACTED_IN]->(m2)
@@ -88,12 +89,16 @@ describe("cypher directive filtering - relationship auth filter", () => {
 
         const query = /* GraphQL */ `
             query {
-                ${Movie.plural}(
+                ${Movie.operations.connection}(
                     where: {
-                        title: "The Matrix"
+                        rating_GT: 7.0
                     }
                 ) {
-                    title
+                    edges {
+                        node {
+                            title
+                        }
+                    }
                 }
             }
         `;
@@ -102,11 +107,15 @@ describe("cypher directive filtering - relationship auth filter", () => {
 
         expect(gqlResult.errors).toBeFalsy();
         expect(gqlResult?.data).toEqual({
-            [Movie.plural]: expect.toIncludeSameMembers([
-                {
-                    title: "The Matrix",
-                },
-            ]),
+            [Movie.operations.connection]: {
+                edges: expect.toIncludeSameMembers([
+                    {
+                        node: {
+                            title: "The Matrix Reloaded",
+                        },
+                    },
+                ]),
+            },
         });
     });
 
@@ -115,8 +124,9 @@ describe("cypher directive filtering - relationship auth filter", () => {
         const Actor = testHelper.createUniqueType("Actor");
 
         const typeDefs = /* GraphQL */ `
-            type ${Movie} @node @authorization(filter: [{ where: { node: { actors: { name: "$jwt.custom_value" } } } }]) {
+            type ${Movie} @node @authorization(filter: [{ where: { node: { actors_SOME: { name: "$jwt.custom_value" } } } }]) {
                 title: String
+                rating: Float
                 actors: [${Actor}!]!
                     @cypher(
                         statement: """
@@ -152,9 +162,9 @@ describe("cypher directive filtering - relationship auth filter", () => {
         });
         await testHelper.executeCypher(
             `
-            CREATE (m:${Movie} { title: "The Matrix" })
-            CREATE (m2:${Movie} { title: "The Matrix Reloaded" })
-            CREATE (m3:${Movie} { title: "The Matrix Revolutions" })
+            CREATE (m:${Movie} { title: "The Matrix", rating: 10.0 })
+            CREATE (m2:${Movie} { title: "The Matrix Reloaded", rating: 8.0 })
+            CREATE (m3:${Movie} { title: "The Matrix Revolutions", rating: 6.0 })
             CREATE (a:${Actor} { name: "Keanu Reeves" })
             CREATE (a)-[:ACTED_IN]->(m)
             CREATE (a)-[:ACTED_IN]->(m2)
@@ -172,92 +182,16 @@ describe("cypher directive filtering - relationship auth filter", () => {
 
         const query = /* GraphQL */ `
             query {
-                ${Movie.plural}(
+                ${Movie.operations.connection}(
                     where: {
-                        title: "The Matrix"
+                        rating_GT: 7.0
                     }
                 ) {
-                    title
-                }
-            }
-        `;
-
-        const gqlResult = await testHelper.executeGraphQLWithToken(query, token);
-
-        expect(gqlResult.errors).toBeFalsy();
-        expect(gqlResult.data).toEqual({
-            [Movie.plural]: expect.toIncludeSameMembers([]),
-        });
-    });
-
-    test("relationship with auth validate on type PASS", async () => {
-        const Movie = testHelper.createUniqueType("Movie");
-        const Actor = testHelper.createUniqueType("Actor");
-
-        const typeDefs = /* GraphQL */ `
-            type ${Movie} @node @authorization(validate: [{ where: { node: { actors: { name: "$jwt.custom_value" } } } }]) {
-                title: String
-                actors: [${Actor}!]!
-                    @cypher(
-                        statement: """
-                        MATCH (this)<-[:ACTED_IN]-(actor:${Actor})
-                        RETURN actor
-                        """
-                        columnName: "actor"
-                    )
-            }
-
-            type ${Actor} @node {
-                name: String
-                movies: [${Movie}!]!
-                    @cypher(
-                        statement: """
-                        MATCH (this)-[:ACTED_IN]->(movie:${Movie})
-                        RETURN movie
-                        """
-                        columnName: "movie"
-                    )
-            }
-        `;
-
-        const token = testHelper.createBearerToken("secret", { custom_value: "Keanu Reeves" });
-
-        await testHelper.initNeo4jGraphQL({
-            typeDefs,
-            features: {
-                authorization: {
-                    key: "secret",
-                },
-            },
-        });
-        await testHelper.executeCypher(
-            `
-            CREATE (m:${Movie} { title: "The Matrix" })
-            CREATE (m2:${Movie} { title: "The Matrix Reloaded" })
-            CREATE (m3:${Movie} { title: "The Matrix Revolutions" })
-            CREATE (a:${Actor} { name: "Keanu Reeves" })
-            CREATE (a)-[:ACTED_IN]->(m)
-            CREATE (a)-[:ACTED_IN]->(m2)
-            CREATE (a)-[:ACTED_IN]->(m3)
-            CREATE (a2:${Actor} { name: "Carrie-Anne Moss" })
-            CREATE (a2)-[:ACTED_IN]->(m)
-            CREATE (a2)-[:ACTED_IN]->(m2)
-            CREATE (a2)-[:ACTED_IN]->(m3)
-            CREATE (a3:${Actor} { name: "Jada Pinkett Smith" })
-            CREATE (a3)-[:ACTED_IN]->(m2)
-            CREATE (a3)-[:ACTED_IN]->(m3)
-            `,
-            {}
-        );
-
-        const query = /* GraphQL */ `
-            query {
-                ${Movie.plural}(
-                    where: {
-                        title: "The Matrix"
+                    edges {
+                        node {
+                            title
+                        }
                     }
-                ) {
-                    title
                 }
             }
         `;
@@ -266,21 +200,20 @@ describe("cypher directive filtering - relationship auth filter", () => {
 
         expect(gqlResult.errors).toBeFalsy();
         expect(gqlResult?.data).toEqual({
-            [Movie.plural]: expect.toIncludeSameMembers([
-                {
-                    title: "The Matrix",
-                },
-            ]),
+            [Movie.operations.connection]: {
+                edges: [],
+            },
         });
     });
 
-    test("relationship with auth validate on type FAIL", async () => {
+    test("relationship with auth validate on type PASS", async () => {
         const Movie = testHelper.createUniqueType("Movie");
         const Actor = testHelper.createUniqueType("Actor");
 
         const typeDefs = /* GraphQL */ `
-            type ${Movie} @node @authorization(validate: [{ where: { node: { actors: { name: "$jwt.custom_value" } } } }]) {
+            type ${Movie} @node @authorization(validate: [{ where: { node: { actors_SOME: { name: "$jwt.custom_value" } } } }]) {
                 title: String
+                rating: Float
                 actors: [${Actor}!]!
                     @cypher(
                         statement: """
@@ -304,7 +237,7 @@ describe("cypher directive filtering - relationship auth filter", () => {
             }
         `;
 
-        const token = testHelper.createBearerToken("secret", { custom_value: "Something Incorrect" });
+        const token = testHelper.createBearerToken("secret", { custom_value: "Jada Pinkett Smith" });
 
         await testHelper.initNeo4jGraphQL({
             typeDefs,
@@ -316,9 +249,9 @@ describe("cypher directive filtering - relationship auth filter", () => {
         });
         await testHelper.executeCypher(
             `
-            CREATE (m:${Movie} { title: "The Matrix" })
-            CREATE (m2:${Movie} { title: "The Matrix Reloaded" })
-            CREATE (m3:${Movie} { title: "The Matrix Revolutions" })
+            CREATE (m:${Movie} { title: "The Matrix", rating: 10.0 })
+            CREATE (m2:${Movie} { title: "The Matrix Reloaded", rating: 8.0 })
+            CREATE (m3:${Movie} { title: "The Matrix Revolutions", rating: 6.0 })
             CREATE (a:${Actor} { name: "Keanu Reeves" })
             CREATE (a)-[:ACTED_IN]->(m)
             CREATE (a)-[:ACTED_IN]->(m2)
@@ -336,12 +269,109 @@ describe("cypher directive filtering - relationship auth filter", () => {
 
         const query = /* GraphQL */ `
             query {
-                ${Movie.plural}(
+                ${Movie.operations.connection}(
                     where: {
-                        title: "The Matrix"
+                        rating_LT: 7.0
                     }
                 ) {
-                    title
+                    edges {
+                        node {
+                            title
+                        }
+                    }
+                }
+            }
+        `;
+
+        const gqlResult = await testHelper.executeGraphQLWithToken(query, token);
+
+        expect(gqlResult.errors).toBeFalsy();
+        expect(gqlResult?.data).toEqual({
+            [Movie.operations.connection]: {
+                edges: expect.toIncludeSameMembers([
+                    {
+                        node: {
+                            title: "The Matrix Revolutions",
+                        },
+                    },
+                ]),
+            },
+        });
+    });
+
+    test("relationship with auth validate on type FAIL", async () => {
+        const Movie = testHelper.createUniqueType("Movie");
+        const Actor = testHelper.createUniqueType("Actor");
+
+        const typeDefs = /* GraphQL */ `
+            type ${Movie} @node @authorization(validate: [{ where: { node: { actors_SOME: { name: "$jwt.custom_value" } } } }]) {
+                title: String
+                rating: Float
+                actors: [${Actor}!]!
+                    @cypher(
+                        statement: """
+                        MATCH (this)<-[:ACTED_IN]-(actor:${Actor})
+                        RETURN actor
+                        """
+                        columnName: "actor"
+                    )
+            }
+
+            type ${Actor} @node {
+                name: String
+                movies: [${Movie}!]!
+                    @cypher(
+                        statement: """
+                        MATCH (this)-[:ACTED_IN]->(movie:${Movie})
+                        RETURN movie
+                        """
+                        columnName: "movie"
+                    )
+            }
+        `;
+
+        const token = testHelper.createBearerToken("secret", { custom_value: "Jada Pinkett Smith" });
+
+        await testHelper.initNeo4jGraphQL({
+            typeDefs,
+            features: {
+                authorization: {
+                    key: "secret",
+                },
+            },
+        });
+        await testHelper.executeCypher(
+            `
+            CREATE (m:${Movie} { title: "The Matrix", rating: 10.0 })
+            CREATE (m2:${Movie} { title: "The Matrix Reloaded", rating: 8.0 })
+            CREATE (m3:${Movie} { title: "The Matrix Revolutions", rating: 6.0 })
+            CREATE (a:${Actor} { name: "Keanu Reeves" })
+            CREATE (a)-[:ACTED_IN]->(m)
+            CREATE (a)-[:ACTED_IN]->(m2)
+            CREATE (a)-[:ACTED_IN]->(m3)
+            CREATE (a2:${Actor} { name: "Carrie-Anne Moss" })
+            CREATE (a2)-[:ACTED_IN]->(m)
+            CREATE (a2)-[:ACTED_IN]->(m2)
+            CREATE (a2)-[:ACTED_IN]->(m3)
+            CREATE (a3:${Actor} { name: "Jada Pinkett Smith" })
+            CREATE (a3)-[:ACTED_IN]->(m2)
+            CREATE (a3)-[:ACTED_IN]->(m3)
+            `,
+            {}
+        );
+
+        const query = /* GraphQL */ `
+            query {
+                ${Movie.operations.connection}(
+                    where: {
+                        rating_GT: 7.0
+                    }
+                ) {
+                    edges {
+                        node {
+                            title
+                        }
+                    }
                 }
             }
         `;

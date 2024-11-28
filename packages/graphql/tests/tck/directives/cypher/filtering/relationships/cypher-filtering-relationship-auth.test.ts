@@ -21,11 +21,12 @@ import { Neo4jGraphQL } from "../../../../../../src";
 import { createBearerToken } from "../../../../../utils/create-bearer-token";
 import { formatCypher, formatParams, translateQuery } from "../../../../utils/tck-test-utils";
 
-describe("cypher directive filtering - relationship auth filter", () => {
+describe("Connection API - cypher directive filtering - relationship auth filter", () => {
     test("relationship with auth filter on type PASS", async () => {
         const typeDefs = /* GraphQL */ `
             type Movie @node @authorization(filter: [{ where: { node: { actors: { name: "$jwt.custom_value" } } } }]) {
                 title: String
+                rating: Float
                 actors: [Actor!]!
                     @cypher(
                         statement: """
@@ -62,8 +63,12 @@ describe("cypher directive filtering - relationship auth filter", () => {
 
         const query = /* GraphQL */ `
             query {
-                movies(where: { title: "The Matrix" }) {
-                    title
+                moviesConnection(where: { rating_LT: 7.0 }) {
+                    edges {
+                        node {
+                            title
+                        }
+                    }
                 }
             }
         `;
@@ -71,25 +76,33 @@ describe("cypher directive filtering - relationship auth filter", () => {
         const result = await translateQuery(neoSchema, query, { token });
 
         expect(formatCypher(result.cypher)).toMatchInlineSnapshot(`
-            "MATCH (this:Movie)
+            "MATCH (this0:Movie)
             CALL {
-                WITH this
+                WITH this0
                 CALL {
-                    WITH this
-                    WITH this AS this
+                    WITH this0
+                    WITH this0 AS this
                     MATCH (this)<-[:ACTED_IN]-(actor:Actor)
                     RETURN actor
                 }
-                WITH actor AS this0
-                RETURN collect(this0) AS this1
+                WITH actor AS this1
+                RETURN collect(this1) AS this2
             }
             WITH *
-            WHERE (this.title = $param0 AND ($isAuthenticated = true AND any(this2 IN this1 WHERE ($jwt.custom_value IS NOT NULL AND this2.name = $jwt.custom_value))))
-            RETURN this { .title } AS this"
+            WHERE (this0.rating < $param0 AND ($isAuthenticated = true AND any(this3 IN this2 WHERE ($jwt.custom_value IS NOT NULL AND this3.name = $jwt.custom_value))))
+            WITH collect({ node: this0 }) AS edges
+            WITH edges, size(edges) AS totalCount
+            CALL {
+                WITH edges
+                UNWIND edges AS edge
+                WITH edge.node AS this0
+                RETURN collect({ node: { title: this0.title, __resolveType: \\"Movie\\" } }) AS var4
+            }
+            RETURN { edges: var4, totalCount: totalCount } AS this"
         `);
         expect(formatParams(result.params)).toMatchInlineSnapshot(`
             "{
-                \\"param0\\": \\"The Matrix\\",
+                \\"param0\\": 7,
                 \\"isAuthenticated\\": true,
                 \\"jwt\\": {
                     \\"roles\\": [],
@@ -103,6 +116,7 @@ describe("cypher directive filtering - relationship auth filter", () => {
         const typeDefs = /* GraphQL */ `
             type Movie @node @authorization(filter: [{ where: { node: { actors: { name: "$jwt.custom_value" } } } }]) {
                 title: String
+                rating: Float
                 actors: [Actor!]!
                     @cypher(
                         statement: """
@@ -139,8 +153,12 @@ describe("cypher directive filtering - relationship auth filter", () => {
 
         const query = /* GraphQL */ `
             query {
-                movies(where: { title: "The Matrix" }) {
-                    title
+                moviesConnection(where: { rating_LT: 7.0 }) {
+                    edges {
+                        node {
+                            title
+                        }
+                    }
                 }
             }
         `;
@@ -148,25 +166,33 @@ describe("cypher directive filtering - relationship auth filter", () => {
         const result = await translateQuery(neoSchema, query, { token });
 
         expect(formatCypher(result.cypher)).toMatchInlineSnapshot(`
-            "MATCH (this:Movie)
+            "MATCH (this0:Movie)
             CALL {
-                WITH this
+                WITH this0
                 CALL {
-                    WITH this
-                    WITH this AS this
+                    WITH this0
+                    WITH this0 AS this
                     MATCH (this)<-[:ACTED_IN]-(actor:Actor)
                     RETURN actor
                 }
-                WITH actor AS this0
-                RETURN collect(this0) AS this1
+                WITH actor AS this1
+                RETURN collect(this1) AS this2
             }
             WITH *
-            WHERE (this.title = $param0 AND ($isAuthenticated = true AND any(this2 IN this1 WHERE ($jwt.custom_value IS NOT NULL AND this2.name = $jwt.custom_value))))
-            RETURN this { .title } AS this"
+            WHERE (this0.rating < $param0 AND ($isAuthenticated = true AND any(this3 IN this2 WHERE ($jwt.custom_value IS NOT NULL AND this3.name = $jwt.custom_value))))
+            WITH collect({ node: this0 }) AS edges
+            WITH edges, size(edges) AS totalCount
+            CALL {
+                WITH edges
+                UNWIND edges AS edge
+                WITH edge.node AS this0
+                RETURN collect({ node: { title: this0.title, __resolveType: \\"Movie\\" } }) AS var4
+            }
+            RETURN { edges: var4, totalCount: totalCount } AS this"
         `);
         expect(formatParams(result.params)).toMatchInlineSnapshot(`
             "{
-                \\"param0\\": \\"The Matrix\\",
+                \\"param0\\": 7,
                 \\"isAuthenticated\\": true,
                 \\"jwt\\": {
                     \\"roles\\": [],
@@ -182,6 +208,7 @@ describe("cypher directive filtering - relationship auth filter", () => {
                 @node
                 @authorization(validate: [{ where: { node: { actors: { name: "$jwt.custom_value" } } } }]) {
                 title: String
+                rating: Float
                 actors: [Actor!]!
                     @cypher(
                         statement: """
@@ -218,8 +245,12 @@ describe("cypher directive filtering - relationship auth filter", () => {
 
         const query = /* GraphQL */ `
             query {
-                movies(where: { title: "The Matrix" }) {
-                    title
+                moviesConnection(where: { rating_LT: 7.0 }) {
+                    edges {
+                        node {
+                            title
+                        }
+                    }
                 }
             }
         `;
@@ -227,25 +258,33 @@ describe("cypher directive filtering - relationship auth filter", () => {
         const result = await translateQuery(neoSchema, query, { token });
 
         expect(formatCypher(result.cypher)).toMatchInlineSnapshot(`
-            "MATCH (this:Movie)
+            "MATCH (this0:Movie)
             CALL {
-                WITH this
+                WITH this0
                 CALL {
-                    WITH this
-                    WITH this AS this
+                    WITH this0
+                    WITH this0 AS this
                     MATCH (this)<-[:ACTED_IN]-(actor:Actor)
                     RETURN actor
                 }
-                WITH actor AS this0
-                RETURN collect(this0) AS this1
+                WITH actor AS this1
+                RETURN collect(this1) AS this2
             }
             WITH *
-            WHERE (this.title = $param0 AND apoc.util.validatePredicate(NOT ($isAuthenticated = true AND any(this2 IN this1 WHERE ($jwt.custom_value IS NOT NULL AND this2.name = $jwt.custom_value))), \\"@neo4j/graphql/FORBIDDEN\\", [0]))
-            RETURN this { .title } AS this"
+            WHERE (this0.rating < $param0 AND apoc.util.validatePredicate(NOT ($isAuthenticated = true AND any(this3 IN this2 WHERE ($jwt.custom_value IS NOT NULL AND this3.name = $jwt.custom_value))), \\"@neo4j/graphql/FORBIDDEN\\", [0]))
+            WITH collect({ node: this0 }) AS edges
+            WITH edges, size(edges) AS totalCount
+            CALL {
+                WITH edges
+                UNWIND edges AS edge
+                WITH edge.node AS this0
+                RETURN collect({ node: { title: this0.title, __resolveType: \\"Movie\\" } }) AS var4
+            }
+            RETURN { edges: var4, totalCount: totalCount } AS this"
         `);
         expect(formatParams(result.params)).toMatchInlineSnapshot(`
             "{
-                \\"param0\\": \\"The Matrix\\",
+                \\"param0\\": 7,
                 \\"isAuthenticated\\": true,
                 \\"jwt\\": {
                     \\"roles\\": [],
@@ -261,6 +300,7 @@ describe("cypher directive filtering - relationship auth filter", () => {
                 @node
                 @authorization(validate: [{ where: { node: { actors: { name: "$jwt.custom_value" } } } }]) {
                 title: String
+                rating: Float
                 actors: [Actor!]!
                     @cypher(
                         statement: """
@@ -297,8 +337,12 @@ describe("cypher directive filtering - relationship auth filter", () => {
 
         const query = /* GraphQL */ `
             query {
-                movies(where: { title: "The Matrix" }) {
-                    title
+                moviesConnection(where: { rating_GT: 7.0 }) {
+                    edges {
+                        node {
+                            title
+                        }
+                    }
                 }
             }
         `;
@@ -306,25 +350,33 @@ describe("cypher directive filtering - relationship auth filter", () => {
         const result = await translateQuery(neoSchema, query, { token });
 
         expect(formatCypher(result.cypher)).toMatchInlineSnapshot(`
-            "MATCH (this:Movie)
+            "MATCH (this0:Movie)
             CALL {
-                WITH this
+                WITH this0
                 CALL {
-                    WITH this
-                    WITH this AS this
+                    WITH this0
+                    WITH this0 AS this
                     MATCH (this)<-[:ACTED_IN]-(actor:Actor)
                     RETURN actor
                 }
-                WITH actor AS this0
-                RETURN collect(this0) AS this1
+                WITH actor AS this1
+                RETURN collect(this1) AS this2
             }
             WITH *
-            WHERE (this.title = $param0 AND apoc.util.validatePredicate(NOT ($isAuthenticated = true AND any(this2 IN this1 WHERE ($jwt.custom_value IS NOT NULL AND this2.name = $jwt.custom_value))), \\"@neo4j/graphql/FORBIDDEN\\", [0]))
-            RETURN this { .title } AS this"
+            WHERE (this0.rating > $param0 AND apoc.util.validatePredicate(NOT ($isAuthenticated = true AND any(this3 IN this2 WHERE ($jwt.custom_value IS NOT NULL AND this3.name = $jwt.custom_value))), \\"@neo4j/graphql/FORBIDDEN\\", [0]))
+            WITH collect({ node: this0 }) AS edges
+            WITH edges, size(edges) AS totalCount
+            CALL {
+                WITH edges
+                UNWIND edges AS edge
+                WITH edge.node AS this0
+                RETURN collect({ node: { title: this0.title, __resolveType: \\"Movie\\" } }) AS var4
+            }
+            RETURN { edges: var4, totalCount: totalCount } AS this"
         `);
         expect(formatParams(result.params)).toMatchInlineSnapshot(`
             "{
-                \\"param0\\": \\"The Matrix\\",
+                \\"param0\\": 7,
                 \\"isAuthenticated\\": true,
                 \\"jwt\\": {
                     \\"roles\\": [],
