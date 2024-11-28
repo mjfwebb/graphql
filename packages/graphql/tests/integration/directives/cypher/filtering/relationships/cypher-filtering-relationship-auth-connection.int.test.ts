@@ -26,7 +26,7 @@ describe("Connection API - cypher directive filtering - relationship auth filter
         await testHelper.close();
     });
 
-    test("(relationship with auth filter on type PASS", async () => {
+    test("relationship with auth filter on type PASS", async () => {
         const Movie = testHelper.createUniqueType("Movie");
         const Actor = testHelper.createUniqueType("Actor");
 
