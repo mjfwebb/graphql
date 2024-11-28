@@ -21,7 +21,7 @@ import { Neo4jGraphQL } from "../../../../../../src";
 import { createBearerToken } from "../../../../../utils/create-bearer-token";
 import { formatCypher, formatParams, translateQuery } from "../../../../utils/tck-test-utils";
 
-describe("Connection API - cypher directive filtering - relationship auth filter", () => {
+describe("cypher directive filtering - relationship auth filter", () => {
     test("relationship with auth filter on type PASS", async () => {
         const typeDefs = /* GraphQL */ `
             type Movie @node @authorization(filter: [{ where: { node: { actors: { name: "$jwt.custom_value" } } } }]) {

@@ -19,7 +19,7 @@
 
 import { TestHelper } from "../../../../../utils/tests-helper";
 
-describe("Connection API - cypher directive filtering - relationship auth filter", () => {
+describe("cypher directive filtering - relationship auth filter", () => {
     const testHelper = new TestHelper();
 
     afterEach(async () => {
