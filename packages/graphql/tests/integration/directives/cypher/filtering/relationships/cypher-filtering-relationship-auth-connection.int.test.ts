@@ -31,7 +31,7 @@ describe("Connection API - cypher directive filtering - relationship auth filter
         const Actor = testHelper.createUniqueType("Actor");
 
         const typeDefs = /* GraphQL */ `
-            type ${Movie} @node @authorization(filter: [{ where: { node: { actors: { name: "$jwt.custom_value" } } } }]) {
+            type ${Movie} @node @authorization(filter: [{ where: { node: { actors_SOME: { name: "$jwt.custom_value" } } } }]) {
                 title: String
                 actors: [${Actor}!]!
                     @cypher(
