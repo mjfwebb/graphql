@@ -1,0 +1,242 @@
+/*
+ * Copyright (c) "Neo4j"
+ * Neo4j Sweden AB [http://neo4j.com]
+ *
+ * This file is part of Neo4j.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { DocumentNode } from "graphql";
+import gql from "graphql-tag";
+import { Neo4jGraphQL } from "../../../../src";
+import { formatCypher, formatParams, translateQuery } from "../../utils/tck-test-utils";
+
+describe("top level query limits version 3", () => {
+    let typeDefs: DocumentNode;
+    let neoSchema: Neo4jGraphQL;
+
+    beforeAll(() => {
+        typeDefs = gql`
+            type Tag @queryOptions(limit: { default: 10, max: 100 }) {
+                id: Int
+                name: String!
+            }
+
+            type Nested {
+                id: ID
+                nestedGetTagsByNamesCustomLimit(tagNames: [String]!, limit: Int): [Tag]
+                    @cypher(
+                        statement: """
+                        MATCH (t:Tag)
+                        WHERE ANY(name IN $tagNames WHERE t.marcelDisplayName = toLower(name))
+                        RETURN t
+                        LIMIT $limit
+                        """
+                        columnName: "t"
+                    )
+            }
+
+            type Query {
+                getTagsByNamesCustomLimit(tagNames: [String]!, limit: Int): [Tag]
+                    @cypher(
+                        statement: """
+                        MATCH (t:Tag)
+                        WHERE ANY(name IN $tagNames WHERE t.marcelDisplayName = toLower(name))
+                        RETURN t
+                        LIMIT $limit
+                        """
+                        columnName: "t"
+                    )
+                getTagsByNamesNoLimit(tagNames: [String]!): [Tag]
+                    @cypher(
+                        statement: """
+                        MATCH (t:Tag)
+                        WHERE ANY(name IN $tagNames WHERE t.marcelDisplayName = toLower(name))
+                        RETURN t
+                        LIMIT $limit
+                        """
+                        columnName: "t"
+                    )
+            }
+        `;
+
+        neoSchema = new Neo4jGraphQL({
+            typeDefs,
+        });
+    });
+
+    test("getTagsByNamesCustomLimit should have default limit of 10 without limit supplied", async () => {
+        const query = gql`
+            query {
+                getTagsByNamesCustomLimit(tagNames: ["a", "b", "c"]) {
+                    id
+                    name
+                }
+            }
+        `;
+
+        const result = await translateQuery(neoSchema, query);
+
+        expect(formatCypher(result.cypher)).toMatchInlineSnapshot(`
+            "CALL {
+            MATCH (t:Tag)
+            WHERE ANY(name IN $tagNames WHERE t.marcelDisplayName = toLower(name))
+            RETURN t
+            LIMIT $limit
+            }
+            WITH t as this
+            RETURN this { .id, .name } AS this"
+        `);
+
+        expect(formatParams(result.params)).toMatchInlineSnapshot(`
+            "{
+                \\"tagNames\\": [
+                    \\"a\\",
+                    \\"b\\",
+                    \\"c\\"
+                ],
+                \\"auth\\": {
+                    \\"isAuthenticated\\": false,
+                    \\"roles\\": []
+                },
+                \\"limit\\": null
+            }"
+        `);
+    });
+
+    test("getTagsByNamesCustomLimit should use supplied limit when under max", async () => {
+        const query = gql`
+            query {
+                getTagsByNamesCustomLimit(tagNames: ["a", "b", "c"], limit: 50) {
+                    id
+                    name
+                }
+            }
+        `;
+
+        const result = await translateQuery(neoSchema, query);
+
+        expect(formatCypher(result.cypher)).toMatchInlineSnapshot(`
+            "CALL {
+            MATCH (t:Tag)
+            WHERE ANY(name IN $tagNames WHERE t.marcelDisplayName = toLower(name))
+            RETURN t
+            LIMIT $limit
+            }
+            WITH t as this
+            RETURN this { .id, .name } AS this"
+        `);
+
+        expect(formatParams(result.params)).toMatchInlineSnapshot(`
+            "{
+                \\"tagNames\\": [
+                    \\"a\\",
+                    \\"b\\",
+                    \\"c\\"
+                ],
+                \\"limit\\": {
+                    \\"low\\": 50,
+                    \\"high\\": 0
+                },
+                \\"auth\\": {
+                    \\"isAuthenticated\\": false,
+                    \\"roles\\": []
+                }
+            }"
+        `);
+    });
+
+    test("getTagsByNamesNoLimit should have default limit of 10", async () => {
+        const query = gql`
+            query {
+                getTagsByNamesNoLimit(tagNames: ["a", "b", "c"]) {
+                    id
+                    name
+                }
+            }
+        `;
+
+        const result = await translateQuery(neoSchema, query);
+
+        expect(formatCypher(result.cypher)).toMatchInlineSnapshot(`
+            "CALL {
+            MATCH (t:Tag)
+            WHERE ANY(name IN $tagNames WHERE t.marcelDisplayName = toLower(name))
+            RETURN t
+            LIMIT $limit
+            }
+            WITH t as this
+            RETURN this { .id, .name } AS this"
+        `);
+
+        expect(formatParams(result.params)).toMatchInlineSnapshot(`
+            "{
+                \\"tagNames\\": [
+                    \\"a\\",
+                    \\"b\\",
+                    \\"c\\"
+                ],
+                \\"auth\\": {
+                    \\"isAuthenticated\\": false,
+                    \\"roles\\": []
+                }
+            }"
+        `);
+    });
+
+    test("extras query should have supplied limit of 14", async () => {
+        const query = gql`
+            query {
+                nesteds {
+                    nestedGetTagsByNamesCustomLimit(tagNames: ["a"], limit: 14) {
+                        id
+                        name
+                    }
+                }
+            }
+        `;
+
+        const result = await translateQuery(neoSchema, query);
+
+        expect(formatCypher(result.cypher)).toMatchInlineSnapshot(`
+            "MATCH (this:\`Nested\`)
+            CALL {
+                WITH this
+                CALL {
+                    WITH this
+                    WITH this AS this
+                    MATCH (t:Tag)
+                    WHERE ANY(name IN $param0 WHERE t.marcelDisplayName = toLower(name))
+                    RETURN t
+                    LIMIT $param1
+                }
+                WITH t AS this0
+                RETURN collect(this0 { .id, .name }) AS this0
+            }
+            RETURN this { nestedGetTagsByNamesCustomLimit: this0 } AS this"
+        `);
+
+        expect(formatParams(result.params)).toMatchInlineSnapshot(`
+            "{
+                \\"param0\\": [
+                    \\"a\\"
+                ],
+                \\"param1\\": {
+                    \\"low\\": 14,
+                    \\"high\\": 0
+                }
+            }"
+        `);
+    });
+});
